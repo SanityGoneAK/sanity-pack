@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "sanity-data"
+version = "0.1.0"
+description = "Arknights data extraction and processing tool"
+authors = ["Sanity;Gone 0"]
+readme = "README.md"
+packages = [{include = "sanity_data"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.32.3"
+pydantic = "^2.11.3"
+aiohttp = "^3.11.16"
+tenacity = "^9.1.2"
+unitypy = "^1.22.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+black = "^25.1.0"
+isort = "^6.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+multi_line_output = 3

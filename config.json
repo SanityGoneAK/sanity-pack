@@ -1,0 +1,30 @@
+{
+  "output_dir": "./assets",
+  "cache_dir": "./cache",
+  "servers": {
+    "CN": {
+      "enabled": true,
+      "path_whitelist": [
+        "arts/building/buffs/buff_icon_hub.ab"
+      ]
+    },
+    "EN": {
+      "enabled": false,
+      "path_whitelist": [
+        "arts/building/buffs/buff_icon_hub.ab"
+      ]
+    },
+    "JP": {
+      "enabled": false,
+      "path_whitelist": [
+        "arts/building/buffs/buff_icon_hub.ab"
+      ]
+    },
+    "KR": {
+      "enabled": false,
+      "path_whitelist": [
+        "arts/building/buffs/buff_icon_hub.ab"
+      ]
+    }
+  }
+} 
