@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 from .core.fetcher import DataFetcher
+from .core.extractor import UnityAssetExtractor
 from .models.cache import AssetCache, VersionCache
 from .models.config import Config, Server, ServerConfig
 from .utils.cache import load_cache, save_cache
@@ -52,7 +53,7 @@ async def main():
     version_cache = load_cache(config.cache_dir, "version.json", VersionCache)
     asset_cache = load_cache(config.cache_dir, "assets.json", AssetCache)
 
-    # Initialize fetcher
+    # Initialize fetcher and extractor
     async with DataFetcher(config) as fetcher:
         # Set the caches in the fetcher
         fetcher.version_cache = version_cache
@@ -64,6 +65,31 @@ async def main():
         # Save updated caches
         save_cache(fetcher.version_cache, config.cache_dir, "version.json")
         save_cache(fetcher.asset_cache, config.cache_dir, "assets.json")
+
+    # Initialize extractor and process assets
+    extractor = UnityAssetExtractor(config)
+    for server, server_config in config.servers.items():
+        if not server_config.enabled:
+            continue
+
+        print(f"\nProcessing {server} server assets...")
+        server_dir = config.output_dir / server.lower()
+        
+        # Process each asset file
+        for asset_path in server_dir.glob("**/*.ab"):
+            relative_path = asset_path.relative_to(server_dir)
+            print(f"Extracting {relative_path}...")
+            
+            try:
+                extractor.save_assets(
+                    server,
+                    str(relative_path),
+                    save_textures=True,
+                    save_sprites=True
+                )
+                print(f"Successfully extracted assets from {relative_path}")
+            except Exception as e:
+                print(f"Error processing {relative_path}: {e}")
 
 
 if __name__ == "__main__":
