@@ -5,6 +5,7 @@ from typing import Tuple
 from .fetcher import DataFetcher
 from .extractor import UnityAssetExtractor
 from .alpha_processor import AlphaProcessor
+from .portrait_processor import PortraitProcessor
 from ..models.cache import AssetCache, VersionCache
 from ..models.config import Config, Server, ServerConfig
 from ..utils.cache import load_cache, save_cache
@@ -97,6 +98,7 @@ def extract_assets(config: Config) -> None:
                     save_text_assets=True,
                     save_mono_behaviours=True
                 )
+                asset_path.unlink()
                 print(f"Successfully extracted assets from {relative_path}")
             except Exception as e:
                 print(f"Error processing {relative_path}: {e}")
@@ -107,4 +109,12 @@ def process_alpha_images(config: Config) -> None:
     print("\nProcessing alpha images...")
     alpha_processor = AlphaProcessor(config.output_dir)
     alpha_processor.process_alpha_images()
-    print("Alpha image processing complete!") 
+    print("Alpha image processing complete!")
+
+
+def process_portraits(config: Config) -> None:
+    """Process character portraits from atlases."""
+    print("\nProcessing character portraits...")
+    portrait_processor = PortraitProcessor(config)
+    portrait_processor.process_portraits()
+    print("Portrait processing complete!") 

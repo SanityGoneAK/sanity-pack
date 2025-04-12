@@ -26,32 +26,35 @@ def combine_alpha_rgb(
 
 def process_portrait(
     atlas_path: Path,
-    json_data: dict,
+    sprite_data: dict,
     output_path: Optional[Path] = None
 ) -> Image.Image:
-    """Process a portrait from an atlas using JSON metadata."""
+    """Process a portrait from an atlas using sprite data."""
     # Load the atlas image
     atlas = Image.open(atlas_path)
     
-    # Extract sprite information from JSON
-    sprite_info = json_data.get("sprite", {})
-    rect = sprite_info.get("rect", {})
-    x, y, width, height = (
-        rect.get("x", 0),
-        rect.get("y", 0),
-        rect.get("width", 0),
-        rect.get("height", 0)
-    )
+    # Extract sprite information from the data
+    rect = sprite_data.get("rect", {})
+    x = rect.get("x", 0)
+    y = rect.get("y", 0)
+    width = rect.get("w", 0)
+    height = rect.get("h", 0)
     
-    # Extract rotation if present
-    rotation = sprite_info.get("rotation", 0)
+    # Convert from Unity's bottom-left origin to PIL's top-left origin
+    # Unity's y coordinate is from bottom, so we need to subtract the height
+    # and then subtract the y coordinate from the total height
+    atlas_height = atlas.size[1]
+    y_pil = atlas_height - (y + height)
     
     # Crop the sprite from the atlas
-    sprite = atlas.crop((x, y, x + width, y + height))
+    sprite = atlas.crop((x, y_pil, x + width, y_pil + height))
+    
+    # Extract rotation if present
+    rotation = sprite_data.get("rotate", 0)
     
     # Apply rotation if needed
     if rotation != 0:
-        sprite = sprite.rotate(rotation, expand=True)
+        sprite = sprite.rotate(-90, expand=True)
     
     if output_path:
         sprite.save(output_path)

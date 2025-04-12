@@ -5,7 +5,8 @@ from .core.workflow import (
     load_caches,
     fetch_assets,
     extract_assets,
-    process_alpha_images
+    process_alpha_images,
+    process_portraits
 )
 
 
@@ -19,6 +20,7 @@ async def main():
     extract_assets(config)
     
     process_alpha_images(config)
+    process_portraits(config)
 
 
 if __name__ == "__main__":
