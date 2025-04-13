@@ -34,6 +34,7 @@ class DataFetcher:
         self.version_cache = VersionCache()
         self.asset_cache = AssetCache()
         self._session: Optional[aiohttp.ClientSession] = None
+        self._semaphore = asyncio.Semaphore(10)  # Limit concurrent downloads
 
     async def __aenter__(self):
         """Set up async context."""
@@ -71,15 +72,8 @@ class DataFetcher:
         try:
             async with self._session.get(url) as response:
                 response.raise_for_status()
-                
-                # Try to get the content type
-                content_type = response.headers.get('Content-Type', '')
-                print(f"Debug - URL: {url}")
-                print(f"Debug - Content-Type: {content_type}")
-                
                 # Read the response text first
                 text = await response.text()
-                print(f"Debug - Response text preview: {text[:200]}")  # Print first 200 chars
                 
                 try:
                     return await response.json(content_type=None)
@@ -133,74 +127,86 @@ class DataFetcher:
 
     async def download_asset(self, server: Server, asset_path: str, asset_hash: str) -> Optional[bytes]:
         """Download a specific asset if it matches the whitelist."""
-        # Check whitelist if it exists
-        if not self._is_path_whitelisted(server, asset_path):
-            return None
-
-        # Check if we already have this version cached
-        cached_hash = self.asset_cache.get_hash(asset_path)
-        if cached_hash == asset_hash:
-            return None
-
-        # Construct the download URL
-        version = await self.get_version(server)
-        transformed_path = self._transform_asset_path(asset_path)
-        url = f"{self.ASSET_BASE_URLS[server]}/assets/{version.resource}/{transformed_path}"
-        
-        print(f"Debug - Downloading from URL: {url}")  # Debug line
-
-        # Download the asset
-        if not self._session:
-            raise RuntimeError("DataFetcher must be used as an async context manager")
-        
-        try:
-            async with self._session.get(url) as response:
-                response.raise_for_status()
-                data = await response.read()
-
-            # Process the zip file
-            try:
-                with ZipFile(BytesIO(data)) as zip_file:
-                    # Extract all files to the output directory
-                    server_output_dir = self.config.output_dir / server.lower()
-                    for zip_info in zip_file.filelist:
-                        zip_info.filename = asset_path  # Use the original asset path
-                        zip_file.extract(zip_info, server_output_dir)
-            except Exception as e:
-                print(f"Failed to extract {asset_path}: {e}")
+        async with self._semaphore:  # Limit concurrent downloads
+            # Check whitelist if it exists
+            if not self._is_path_whitelisted(server, asset_path):
                 return None
 
-            # Update the cache
-            self.asset_cache.set_hash(asset_path, asset_hash)
-            return data
+            # Check if we already have this version cached
+            cached_hash = self.asset_cache.get_hash(asset_path)
+            if cached_hash == asset_hash:
+                return None
+
+            # Construct the download URL
+            version = self.version_cache.get_version(server)
+            transformed_path = self._transform_asset_path(asset_path)
+            url = f"{self.ASSET_BASE_URLS[server]}/assets/{version.resource}/{transformed_path}"
+
+            # Download the asset
+            if not self._session:
+                raise RuntimeError("DataFetcher must be used as an async context manager")
             
-        except aiohttp.ClientError as e:
-            print(f"Failed to download {asset_path}: {e}")
-            return None
+            try:
+                async with self._session.get(url) as response:
+                    response.raise_for_status()
+                    data = await response.read()
+
+                # Process the zip file
+                try:
+                    with ZipFile(BytesIO(data)) as zip_file:
+                        # Extract all files to the output directory
+                        server_output_dir = self.config.output_dir / server.lower()
+                        for zip_info in zip_file.filelist:
+                            zip_info.filename = asset_path  # Use the original asset path
+                            zip_file.extract(zip_info, server_output_dir)
+                except Exception as e:
+                    print(f"Failed to extract {asset_path}: {e}")
+                    return None
+
+                # Update the cache
+                self.asset_cache.set_hash(asset_path, asset_hash)
+                return data
+                
+            except aiohttp.ClientError as e:
+                print(f"Failed to download {asset_path}: {e}")
+                return None
+            except Exception as e:
+                print(f"Unexpected error downloading {asset_path}: {e}")
+                return None
+
+    async def fetch_server_assets(self, server: Server) -> None:
+        """Fetch assets for a specific server."""
+        if not self.config.servers[server].enabled:
+            return
+
+        print(f"\nProcessing {server} server...")
+        try:
+            # Get asset list
+            assets = await self.get_asset_list(server)
+            print(f"Found {len(assets)} assets")
+
+            # Create download tasks
+            tasks = []
+            for asset in assets:
+                if isinstance(asset, dict):
+                    path = asset.get("name")
+                    hash_value = asset.get("hash") or asset.get("md5")
+                    if path and hash_value:
+                        tasks.append(self.download_asset(server, path, hash_value))
+
+            # Run all download tasks concurrently
+            await asyncio.gather(*tasks)
+
         except Exception as e:
-            print(f"Unexpected error downloading {asset_path}: {e}")
-            return None
+            print(f"Error processing {server} server: {e}")
 
     async def fetch_all(self):
-        """Fetch assets from all enabled servers."""
-        for server, server_config in self.config.servers.items():
-            if not server_config.enabled:
-                continue
-
-            print(f"\nProcessing {server} server...")
-            try:
-                # Get asset list
-                assets = await self.get_asset_list(server)
-                print(f"Found {len(assets)} assets")
-
-                # Download new or updated assets
-                for asset in assets:
-                    if isinstance(asset, dict):
-                        path = asset.get("name")
-                        hash_value = asset.get("hash") or asset.get("md5")
-                        if path and hash_value:
-                            await self.download_asset(server, path, hash_value)
-
-            except Exception as e:
-                print(f"Error processing {server} server: {e}")
-                continue 
+        """Fetch assets from all enabled servers concurrently."""
+        # Create tasks for each server
+        tasks = [
+            self.fetch_server_assets(server)
+            for server in self.config.servers.keys()
+        ]
+        
+        # Run all server tasks concurrently
+        await asyncio.gather(*tasks) 

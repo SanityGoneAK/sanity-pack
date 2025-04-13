@@ -1,3 +1,4 @@
+import asyncio
 import json
 from pathlib import Path
 from typing import Tuple
@@ -75,34 +76,10 @@ async def fetch_assets(config: Config, version_cache: VersionCache, asset_cache:
         save_cache(fetcher.asset_cache, config.cache_dir, "assets.json")
 
 
-def extract_assets(config: Config) -> None:
-    """Extract assets from downloaded files."""
-    extractor = UnityAssetExtractor(config)
-    for server, server_config in config.servers.items():
-        if not server_config.enabled:
-            continue
-
-        print(f"\nProcessing {server} server assets...")
-        server_dir = config.output_dir / server.lower()
-        
-        for asset_path in server_dir.glob("**/*.ab"):
-            relative_path = asset_path.relative_to(server_dir)
-            print(f"Extracting {relative_path}...")
-            
-            try:
-                extractor.save_assets(
-                    server,
-                    str(relative_path),
-                    save_textures=True,
-                    save_sprites=True,
-                    save_text_assets=True,
-                    save_mono_behaviours=True
-                )
-                asset_path.unlink()
-                print(f"Successfully extracted assets from {relative_path}")
-            except Exception as e:
-                print(f"Error processing {relative_path}: {e}")
-
+async def process_assets(config: Config) -> None:
+    """Process all assets concurrently."""
+    async with UnityAssetExtractor(config) as extractor:
+        await extractor.extract_all()
 
 def process_alpha_images(config: Config) -> None:
     """Process alpha images and combine them with their RGB counterparts."""

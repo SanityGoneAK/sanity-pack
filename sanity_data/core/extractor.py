@@ -1,4 +1,4 @@
-import os
+import asyncio
 import json
 from pathlib import Path
 from typing import Dict, List, Optional, Union, Tuple, Any
@@ -15,12 +15,12 @@ from ..utils.compression import decompress_lz4ak
 CompressionHelper.DECOMPRESSION_MAP[CompressionFlags.LZHAM] = decompress_lz4ak
 
 
-
 class UnityAssetExtractor:
     """Handles extraction of Unity assets from downloaded game files."""
 
     def __init__(self, config: Config):
         self.config = config
+        self._semaphore = asyncio.Semaphore(4)  # Limit concurrent extractions
 
     def _get_env(self, server: Server, asset_path: str) -> UnityPy.Environment:
         """Get or create a UnityPy environment for the given asset."""
@@ -50,16 +50,6 @@ class UnityAssetExtractor:
             elif isinstance(obj.read(), TextAsset):
                 data = obj.read()
                 data = bytes(obj.m_Script)
-                # # Try to parse as JSON if it looks like JSON
-                # try:
-                #     content = data.script.decode('utf-8')
-                #     if content.strip().startswith(('{', '[')):
-                #         text_assets[data.m_Name] = json.loads(content)
-                #     else:
-                #         text_assets[data.m_Name] = content
-                # except Exception as e:
-                #     print(f"Error parsing text asset {data.m_Name}: {e}")
-                #     text_assets[data.m_Name] = data.script
             elif isinstance(obj.read(), MonoBehaviour):
                 try:
                     data = obj.read()
@@ -74,59 +64,64 @@ class UnityAssetExtractor:
 
         return textures, sprites, text_assets, mono_behaviours
 
-    def get_available_path(path: Path) -> Path:
-        if path.is_file():
-            path = path.with_stem(path.stem + "_1")
-            index = 1
-            while path.is_file():
-                index += 1
-                new_name = f"_{index}".join(path.stem.rsplit(f"_{index-1}", 1))
-                path = path.with_stem(new_name)
-        return path
-    
-    def save_assets(
-        self,
-        server: Server,
-        asset_path: str,
-        save_textures: bool = True,
-        save_sprites: bool = True,
-        save_text_assets: bool = True,
-        save_mono_behaviours: bool = True
-    ) -> None:
-        """Save extracted textures, sprites, text assets, and MonoBehaviours to disk, maintaining the original folder structure."""
-        # Get the base directory and filename without extension
-        server_dir = self.config.output_dir / server.lower()
-        asset_file = server_dir / asset_path
-        base_dir = asset_file.parent
-        base_name = asset_file.stem
-        
-        # Extract all assets in a single pass
-        textures, sprites, text_assets, mono_behaviours = self.extract_assets(server, asset_path)
-        
-        # Save textures
-        if save_textures and textures:
-            for name, image in textures.items():
-                image.save(base_dir / f"{name}.png")
-        
-        # Save sprites
-        if save_sprites and sprites:
-            for name, image in sprites.items():
-                image.save(base_dir / f"{name}.png")
-
-        # Save text assets
-        if save_text_assets and text_assets:
-            for name, content in text_assets.items():
-                output_path = base_dir / f"{name}.json" if isinstance(content, (dict, list)) else base_dir / f"{name}.txt"
-                if isinstance(content, (dict, list)):
+    async def process_asset(self, server: Server, asset_path: Path) -> None:
+        """Process a single asset file asynchronously."""
+        async with self._semaphore:
+            try:
+                relative_path = asset_path.relative_to(self.config.output_dir / server.lower())
+                print(f"Extracting {relative_path}...")
+                
+                textures, sprites, text_assets, mono_behaviours = self.extract_assets(
+                    server,
+                    str(relative_path)
+                )
+                
+                # Save all assets
+                base_dir = asset_path.parent
+                
+                # Save textures
+                for name, image in textures.items():
+                    image.save(base_dir / f"{name}.png")
+                
+                # Save sprites
+                for name, image in sprites.items():
+                    image.save(base_dir / f"{name}.png")
+                
+                # Save text assets
+                for name, content in text_assets.items():
+                    output_path = base_dir / f"{name}.json" if isinstance(content, (dict, list)) else base_dir / f"{name}.txt"
+                    if isinstance(content, (dict, list)):
+                        with open(output_path, 'w', encoding='utf-8') as f:
+                            json.dump(content, f, indent=2, ensure_ascii=False)
+                    else:
+                        with open(output_path, 'w', encoding='utf-8') as f:
+                            f.write(content)
+                
+                # Save MonoBehaviours
+                for name, content in mono_behaviours.items():
+                    output_path = base_dir / f"{name}.json"
                     with open(output_path, 'w', encoding='utf-8') as f:
                         json.dump(content, f, indent=2, ensure_ascii=False)
-                else:
-                    with open(output_path, 'w', encoding='utf-8') as f:
-                        f.write(content)
+                
+                # Delete the original asset file
+                asset_path.unlink()
+                print(f"Successfully extracted assets from {relative_path}")
+                
+            except Exception as e:
+                print(f"Error processing {asset_path}: {e}")
 
-        # Save MonoBehaviours
-        if save_mono_behaviours and mono_behaviours:
-            for name, content in mono_behaviours.items():
-                output_path = base_dir / f"{name}.json"
-                with open(output_path, 'w', encoding='utf-8') as f:
-                    json.dump(content, f, indent=2, ensure_ascii=False) 
+    async def extract_all(self) -> None:
+        """Extract all assets from downloaded files concurrently."""
+        tasks = []
+        for server, server_config in self.config.servers.items():
+            if not server_config.enabled:
+                continue
+
+            print(f"\nProcessing {server} server assets...")
+            server_dir = self.config.output_dir / server.lower()
+            
+            for asset_path in server_dir.glob("**/*.ab"):
+                tasks.append(self.process_asset(server, asset_path))
+        
+        # Run all extraction tasks concurrently
+        await asyncio.gather(*tasks) 
