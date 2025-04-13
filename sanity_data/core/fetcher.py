@@ -142,6 +142,8 @@ class DataFetcher:
             transformed_path = self._transform_asset_path(asset_path)
             url = f"{self.ASSET_BASE_URLS[server]}/assets/{version.resource}/{transformed_path}"
 
+            print(f"Fetching asset {asset_path}")
+
             # Download the asset
             if not self._session:
                 raise RuntimeError("DataFetcher must be used as an async context manager")

@@ -78,8 +78,8 @@ async def fetch_assets(config: Config, version_cache: VersionCache, asset_cache:
 
 async def process_assets(config: Config) -> None:
     """Process all assets concurrently."""
-    async with UnityAssetExtractor(config) as extractor:
-        await extractor.extract_all()
+    extractor = UnityAssetExtractor(config)
+    await extractor.extract_all()
 
 def process_alpha_images(config: Config) -> None:
     """Process alpha images and combine them with their RGB counterparts."""

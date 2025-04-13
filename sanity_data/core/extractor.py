@@ -49,7 +49,8 @@ class UnityAssetExtractor:
                 sprites[data.m_Name] = data.image
             elif isinstance(obj.read(), TextAsset):
                 data = obj.read()
-                data = bytes(obj.m_Script)
+                byte = data.m_Script.encode("utf-8", "surrogateescape")
+                text_assets[data.m_Name] = byte
             elif isinstance(obj.read(), MonoBehaviour):
                 try:
                     data = obj.read()
@@ -89,13 +90,9 @@ class UnityAssetExtractor:
                 
                 # Save text assets
                 for name, content in text_assets.items():
-                    output_path = base_dir / f"{name}.json" if isinstance(content, (dict, list)) else base_dir / f"{name}.txt"
-                    if isinstance(content, (dict, list)):
-                        with open(output_path, 'w', encoding='utf-8') as f:
-                            json.dump(content, f, indent=2, ensure_ascii=False)
-                    else:
-                        with open(output_path, 'w', encoding='utf-8') as f:
-                            f.write(content)
+                    output_path = base_dir / f"{name}"
+                    with open(output_path, 'wb') as f:
+                        f.write(content)
                 
                 # Save MonoBehaviours
                 for name, content in mono_behaviours.items():
