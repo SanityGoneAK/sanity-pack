@@ -110,6 +110,7 @@ class DataFetcher:
         try:
             version = await self.get_version(server)
             url = f"{self.ASSET_BASE_URLS[server]}/assets/{version.resource}/hot_update_list.json"
+            print(url)
             data = await self._fetch_json(url)
             return data.get("abInfos", [])
         except Exception as e:
@@ -120,6 +121,7 @@ class DataFetcher:
         """Transform asset path to match the server URL format."""
         return (path
                 .replace(".ab", "")
+                .replace(".bin", "")
                 .replace(".mp4", "")
                 .replace("/", "_")
                 .replace("#", "__")

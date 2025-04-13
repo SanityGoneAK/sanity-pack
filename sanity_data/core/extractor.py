@@ -20,7 +20,7 @@ class UnityAssetExtractor:
 
     def __init__(self, config: Config):
         self.config = config
-        self._semaphore = asyncio.Semaphore(4)  # Limit concurrent extractions
+        self._semaphore = asyncio.Semaphore(8)  # Limit concurrent extractions
         self._object_semaphore = asyncio.Semaphore(8)  # Limit concurrent object processing
 
     def _get_env(self, server: Server, asset_path: str) -> UnityPy.Environment:
@@ -207,6 +207,8 @@ class UnityAssetExtractor:
             server_dir = self.config.output_dir / server.lower()
             
             for asset_path in server_dir.glob("**/*.ab"):
+                tasks.append(self.process_asset(server, asset_path))
+            for asset_path in server_dir.glob("**/*.bin"):
                 tasks.append(self.process_asset(server, asset_path))
         
         # Run all extraction tasks concurrently

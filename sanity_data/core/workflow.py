@@ -7,6 +7,7 @@ from .fetcher import DataFetcher
 from .extractor import UnityAssetExtractor
 from .alpha_processor import AlphaProcessor
 from .portrait_processor import PortraitProcessor
+from .text_decoder import TextAssetDecoder
 from ..models.cache import AssetCache, VersionCache
 from ..models.config import Config, Server, ServerConfig
 from ..utils.cache import load_cache, save_cache
@@ -94,4 +95,11 @@ def process_portraits(config: Config) -> None:
     print("\nProcessing character portraits...")
     portrait_processor = PortraitProcessor(config)
     portrait_processor.process_portraits()
-    print("Portrait processing complete!") 
+    print("Portrait processing complete!")
+
+def process_text_assets(config: Config) -> None:
+    """Process text assets using FlatBuffers and AES decryption."""
+    print("\nProcessing text assets...")
+    text_decoder = TextAssetDecoder(config)
+    text_decoder.process_directory(config.output_dir)
+    print("Text asset processing complete!") 
