@@ -27,7 +27,7 @@ class UnityAssetExtractor:
         server_dir = self.config.output_dir / server.lower()
         asset_file = server_dir / asset_path
         return UnityPy.load(str(asset_file))
-
+    
     def extract_assets(
         self, 
         server: Server, 
@@ -49,16 +49,17 @@ class UnityAssetExtractor:
                 sprites[data.m_Name] = data.image
             elif isinstance(obj.read(), TextAsset):
                 data = obj.read()
-                # Try to parse as JSON if it looks like JSON
-                try:
-                    content = data.script.decode('utf-8')
-                    if content.strip().startswith(('{', '[')):
-                        text_assets[data.m_Name] = json.loads(content)
-                    else:
-                        text_assets[data.m_Name] = content
-                except Exception as e:
-                    print(f"Error parsing text asset {data.m_Name}: {e}")
-                    text_assets[data.m_Name] = data.script
+                data = bytes(obj.m_Script)
+                # # Try to parse as JSON if it looks like JSON
+                # try:
+                #     content = data.script.decode('utf-8')
+                #     if content.strip().startswith(('{', '[')):
+                #         text_assets[data.m_Name] = json.loads(content)
+                #     else:
+                #         text_assets[data.m_Name] = content
+                # except Exception as e:
+                #     print(f"Error parsing text asset {data.m_Name}: {e}")
+                #     text_assets[data.m_Name] = data.script
             elif isinstance(obj.read(), MonoBehaviour):
                 try:
                     data = obj.read()
