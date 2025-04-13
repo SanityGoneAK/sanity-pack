@@ -655,6 +655,18 @@ files = [
 test = ["pytest (>=6)"]
 
 [[package]]
+name = "flatbuffers"
+version = "24.12.23"
+description = "The FlatBuffers serialization format for Python"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "flatbuffers-24.12.23-py2.py3-none-any.whl", hash = "sha256:c418e0d48890f4142b92fd3e343e73a48f194e1f80075ddcc5793779b3585444"},
+    {file = "flatbuffers-24.12.23.tar.gz", hash = "sha256:2910b0bc6ae9b6db78dd2b18d0b7a0709ba240fb5585f286a3a2b30785c22dac"},
+]
+
+[[package]]
 name = "frozenlist"
 version = "1.5.0"
 description = "A list-like structure which implements collections.abc.MutableSequence"
@@ -1895,4 +1907,4 @@ propcache = ">=0.2.1"
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "f6e104f531a09eb1522241246774588352b2e9d85cbdea43dc11ab666375cd41"
+content-hash = "a70252fa6401c207248f5e86fb7a8f956ac17229b7f90ec9d1dee87210ad981f"

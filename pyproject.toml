@@ -16,11 +16,15 @@ UnityPy = "^1.22.2"
 Pillow = "^10.1.0"
 pycryptodome = "^3.22.0"
 bson = "^0.5.10"
+flatbuffers = "^24.3.25"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"
 black = "^25.1.0"
 isort = "^6.0.1"
+
+[tool.poetry.scripts]
+compile-fbs = "sanity_data.fbs.compile_fbs:main"
 
 [build-system]
 requires = ["poetry-core"]

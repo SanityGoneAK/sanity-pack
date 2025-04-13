@@ -46,6 +46,8 @@ cache/
 *.mp4
 version.json
 assets.json
+flatc
+_generated
 
 # OS specific
 .DS_Store
