@@ -54,11 +54,11 @@ Create a `config.json` file with the following structure:
 ## Usage
 
 ```bash
-# Run the main tool
-poetry run python -m sanity_data
-
-# Compile FlatBuffers schemas
+# Step 1: Compile FlatBuffers schemas
 poetry run compile-fbs
+
+# Step 2: Run the tool
+poetry run sanity-data
 ```
 
 ## Development
