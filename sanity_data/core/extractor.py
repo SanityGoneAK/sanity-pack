@@ -21,14 +21,95 @@ class UnityAssetExtractor:
     def __init__(self, config: Config):
         self.config = config
         self._semaphore = asyncio.Semaphore(4)  # Limit concurrent extractions
+        self._object_semaphore = asyncio.Semaphore(8)  # Limit concurrent object processing
 
     def _get_env(self, server: Server, asset_path: str) -> UnityPy.Environment:
         """Get or create a UnityPy environment for the given asset."""
         server_dir = self.config.output_dir / server.lower()
         asset_file = server_dir / asset_path
         return UnityPy.load(str(asset_file))
+
+    async def _process_texture(self, obj: Any) -> Optional[Tuple[str, Image.Image]]:
+        """Process a Texture2D object."""
+        try:
+            data = obj.read()
+            return data.m_Name, data.image
+        except Exception as e:
+            print(f"Error processing texture: {e}")
+            return None
+
+    async def _process_sprite(self, obj: Any) -> Optional[Tuple[str, Image.Image]]:
+        """Process a Sprite object."""
+        try:
+            data = obj.read()
+            return data.m_Name, data.image
+        except Exception as e:
+            print(f"Error processing sprite: {e}")
+            return None
+
+    async def _process_text_asset(self, obj: Any) -> Optional[Tuple[str, bytes]]:
+        """Process a TextAsset object."""
+        try:
+            data = obj.read()
+            return data.m_Name, data.m_Script.encode("utf-8", "surrogateescape")
+        except Exception as e:
+            print(f"Error processing text asset: {e}")
+            return None
+
+    async def _process_mono_behaviour(self, obj: Any) -> Optional[Tuple[str, Any]]:
+        """Process a MonoBehaviour object."""
+        try:
+            data = obj.read()
+            if obj.serialized_type.node:
+                tree = obj.read_typetree()
+                return tree['m_Name'], tree
+        except Exception as e:
+            print(f"Error processing MonoBehaviour: {e}")
+        return None
+
+    async def _process_audio_clip(self, obj: Any) -> Dict[str, bytes]:
+        """Process an AudioClip object."""
+        try:
+            clip = obj.read()
+            return {name: byte for name, byte in clip.samples.items()}
+        except Exception as e:
+            print(f"Error processing AudioClip: {e}")
+            return {}
+
+    async def _process_object(self, obj: Any) -> Tuple[
+        Optional[Tuple[str, Image.Image]],  # texture
+        Optional[Tuple[str, Image.Image]],  # sprite
+        Optional[Tuple[str, bytes]],        # text asset
+        Optional[Tuple[str, Any]],          # mono behaviour
+        Optional[Tuple[str, bytes]]         # audio clips
+    ]:
+        """Process a single Unity object."""
+        async with self._object_semaphore:
+            try:
+                obj_type = obj.read()
+                if isinstance(obj_type, Texture2D):
+                    texture = await self._process_texture(obj)
+                    return texture, None, None, None, {}
+                elif isinstance(obj_type, Sprite):
+                    sprite = await self._process_sprite(obj)
+                    return None, sprite, None, None, {}
+                elif isinstance(obj_type, TextAsset):
+                    text = await self._process_text_asset(obj)
+                    return None, None, text, None, {}
+                elif isinstance(obj_type, MonoBehaviour):
+                    mono = await self._process_mono_behaviour(obj)
+                    return None, None, None, mono, {}
+                elif isinstance(obj_type, AudioClip):
+                    audio = await self._process_audio_clip(obj)
+                    return None, None, None, None, audio
+                elif isinstance(obj, AssetBundle):
+                    if getattr(obj, "m_Name", None):
+                        print(f'Found AssetBundle named "{obj.m_Name}"')
+            except Exception as e:
+                print(f"Error processing object: {e}")
+            return None, None, None, None, {}
     
-    def extract_assets(
+    async def extract_assets(
         self, 
         server: Server, 
         asset_path: str
@@ -41,36 +122,25 @@ class UnityAssetExtractor:
         mono_behaviours: Dict[str, Any] = {}
         audio_clips: Dict[str, Any] = {}
 
-        for obj in env.objects:
-            if isinstance(obj.read(), Texture2D):
-                data = obj.read()
-                textures[data.m_Name] = data.image
-            elif isinstance(obj.read(), Sprite):
-                data = obj.read()
-                sprites[data.m_Name] = data.image
-            elif isinstance(obj.read(), TextAsset):
-                data = obj.read()
-                byte = data.m_Script.encode("utf-8", "surrogateescape")
-                text_assets[data.m_Name] = byte
-            elif isinstance(obj.read(), MonoBehaviour):
-                try:
-                    data = obj.read()
-                    if obj.serialized_type.node:
-                        tree = obj.read_typetree()
-                        mono_behaviours[tree['m_Name']] = tree
-                except Exception as e:
-                    print(f"Error serializing MonoBehaviour {data.m_Name}: {e}")
-            elif isinstance(obj.read(), AudioClip):
-                try:
-                    clip = obj.read()
-                    # Get the audio data and format
-                    for name, byte in clip.samples.items():
-                        audio_clips[name] = byte
-                except Exception as e:
-                    print(f"Error extracting AudioClip {data.m_Name}: {e}")
-            elif isinstance(obj, AssetBundle):
-                if getattr(obj, "m_Name", None):
-                    print(f'Found AssetBundle named "{obj.m_Name}"')             
+        # Process all objects concurrently
+        tasks = [self._process_object(obj) for obj in env.objects]
+        results = await asyncio.gather(*tasks)
+
+        # Combine results
+        for texture, sprite, text, mono, audio in results:
+            if texture:
+                name, image = texture
+                textures[name] = image
+            if sprite:
+                name, image = sprite
+                sprites[name] = image
+            if text:
+                name, content = text
+                text_assets[name] = content
+            if mono:
+                name, content = mono
+                mono_behaviours[name] = content
+            audio_clips.update(audio)
 
         return textures, sprites, text_assets, mono_behaviours, audio_clips
 
@@ -81,7 +151,7 @@ class UnityAssetExtractor:
                 relative_path = asset_path.relative_to(self.config.output_dir / server.lower())
                 print(f"Extracting {relative_path}...")
                 
-                textures, sprites, text_assets, mono_behaviours, audio_clips = self.extract_assets(
+                textures, sprites, text_assets, mono_behaviours, audio_clips = await self.extract_assets(
                     server,
                     str(relative_path)
                 )
