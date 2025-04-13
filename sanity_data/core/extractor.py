@@ -6,7 +6,7 @@ from typing import Dict, List, Optional, Union, Tuple, Any
 import UnityPy
 from UnityPy.enums.BundleFile import CompressionFlags
 from UnityPy.helpers import CompressionHelper
-from UnityPy.classes import Texture2D, Sprite, AssetBundle, TextAsset, MonoBehaviour
+from UnityPy.classes import Texture2D, Sprite, AssetBundle, TextAsset, MonoBehaviour, AudioClip
 from PIL import Image
 
 from ..models.config import Config, Server
@@ -32,13 +32,14 @@ class UnityAssetExtractor:
         self, 
         server: Server, 
         asset_path: str
-    ) -> Tuple[Dict[str, Image.Image], Dict[str, Image.Image], Dict[str, Any], Dict[str, Any]]:
-        """Extract all textures, sprites, text assets, and MonoBehaviours from a Unity asset file in a single pass."""
+    ) -> Tuple[Dict[str, Image.Image], Dict[str, Image.Image], Dict[str, Any], Dict[str, Any], Dict[str, Any]]:
+        """Extract all textures, sprites, text assets, MonoBehaviours, and audio clips from a Unity asset file in a single pass."""
         env = self._get_env(server, asset_path)
         textures: Dict[str, Image.Image] = {}
         sprites: Dict[str, Image.Image] = {}
         text_assets: Dict[str, Any] = {}
         mono_behaviours: Dict[str, Any] = {}
+        audio_clips: Dict[str, Any] = {}
 
         for obj in env.objects:
             if isinstance(obj.read(), Texture2D):
@@ -59,11 +60,19 @@ class UnityAssetExtractor:
                         mono_behaviours[tree['m_Name']] = tree
                 except Exception as e:
                     print(f"Error serializing MonoBehaviour {data.m_Name}: {e}")
+            elif isinstance(obj.read(), AudioClip):
+                try:
+                    clip = obj.read()
+                    # Get the audio data and format
+                    for name, byte in clip.samples.items():
+                        audio_clips[name] = byte
+                except Exception as e:
+                    print(f"Error extracting AudioClip {data.m_Name}: {e}")
             elif isinstance(obj, AssetBundle):
                 if getattr(obj, "m_Name", None):
                     print(f'Found AssetBundle named "{obj.m_Name}"')             
 
-        return textures, sprites, text_assets, mono_behaviours
+        return textures, sprites, text_assets, mono_behaviours, audio_clips
 
     async def process_asset(self, server: Server, asset_path: Path) -> None:
         """Process a single asset file asynchronously."""
@@ -72,7 +81,7 @@ class UnityAssetExtractor:
                 relative_path = asset_path.relative_to(self.config.output_dir / server.lower())
                 print(f"Extracting {relative_path}...")
                 
-                textures, sprites, text_assets, mono_behaviours = self.extract_assets(
+                textures, sprites, text_assets, mono_behaviours, audio_clips = self.extract_assets(
                     server,
                     str(relative_path)
                 )
@@ -99,6 +108,16 @@ class UnityAssetExtractor:
                     output_path = base_dir / f"{name}.json"
                     with open(output_path, 'w', encoding='utf-8') as f:
                         json.dump(content, f, indent=2, ensure_ascii=False)
+                
+                # Save audio clips
+                for name, audio_data in audio_clips.items():
+                    folder_name = asset_path.stem
+                    folder_dir = base_dir / folder_name
+                    folder_dir.mkdir(exist_ok=True)
+                    
+                    output_path = folder_dir / f"{name}"
+                    with open(output_path, 'wb') as f:
+                        f.write(audio_data)
                 
                 # Delete the original asset file
                 asset_path.unlink()

@@ -5,11 +5,7 @@
     "CN": {
       "enabled": true,
       "path_whitelist": [
-        "arts/building/buffs/buff_icon_hub.ab",       
-        "spritepack/building_ui_buff_skills_h1_0.ab", 
-        "spritepack/ui_char_avatar_",                 
-        "arts/charportraits",                                             
-        "chararts"                  
+        "audio/sound_beta_2/voice/"                
       ]
     },
     "EN": {
