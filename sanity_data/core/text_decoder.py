@@ -8,6 +8,7 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
 
 from ..models.config import Config, Server
+from ..utils.decoder import get_modules_from_package_name
 
 # Known file extensions to skip
 _EXT_KNOWN = (
@@ -21,11 +22,9 @@ _EXT_KNOWN = (
     ".mov",
     ".mkv",
     ".flv",
+    ".png",
 )
 _EXT_AB = (".ab", ".bin")
-
-# AES decryption constants
-AES_MASK_V2 = b"UITpAi82pHAWwnzqHRMCwPonJLIB3WCl"
 
 class TextAssetDecoder:
     """Handles decoding of text assets using either FlatBuffers or AES decryption."""
@@ -52,12 +51,15 @@ class TextAssetDecoder:
         if ext in _EXT_KNOWN:
             return False
             
-        if ext in _EXT_AB and self.is_binary_file(path):
+        if ext in _EXT_AB:
+            return False
+        
+        if Path(path).is_file() and self.is_binary_file(path):
             return True
             
         return False
         
-    def aes_cbc_decrypt_bytes(self, data: bytes, mask: bytes = AES_MASK_V2, has_rsa: bool = True) -> bytes:
+    def aes_cbc_decrypt_bytes(self, data: bytes, has_rsa: bool = True) -> bytes:
         """Decrypt AES-CBC encrypted data."""
         # if not isinstance(data, bytes) or len(data) < 16:
         #     raise ValueError("Data should be a bytes object longer than 16 bytes")
@@ -122,8 +124,8 @@ class TextAssetDecoder:
                 return {}
                 
             # Get the appropriate FlatBuffers module
-            fbs_module = self._get_fbs_module(server)
-            if not fbs_module:
+            fbs_modules = self._get_fbs_modules(server)
+            if not fbs_modules:
                 return {}
                 
             # Read and decode the file
@@ -131,7 +133,7 @@ class TextAssetDecoder:
                 data = bytearray(f.read())[128:]  # Skip header
                 
             # Get root type and decode
-            root_type = self._guess_root_type(path, fbs_module)
+            root_type = self._guess_root_type(path, fbs_modules)
             if not root_type:
                 return {}
                 
@@ -144,28 +146,29 @@ class TextAssetDecoder:
             
     def _get_server_from_path(self, path: str) -> Optional[Server]:
         """Determine server from file path."""
-        path = Path(path)
+        parts = Path(path).parts
         for server in Server:
-            if server.value in str(path):
-                return server
+            if server.value.lower() in map(str.lower, parts):
+                return server 
         return None
+
         
-    def _get_fbs_module(self, server: Server):
+    def _get_fbs_modules(self, server: Server):
         """Get the appropriate FlatBuffers module for the server."""
         try:
             # Import the server-specific FBS module
-            module_name = f"..fbs.{server.value}"
-            return __import__(module_name, fromlist=[""])
+            return get_modules_from_package_name(f"sanity_data.fbs._generated.{str(server.value).lower()}")
         except ImportError:
             print(f"[ERROR] Could not import FBS module for server {server}")
             return None
             
-    def _guess_root_type(self, path: str, fbs_module) -> Optional[type]:
+    def _guess_root_type(self, path: str, fbs_modules) -> Optional[type]:
         """Guess the root type of a FlatBuffer file."""
         target = os.path.basename(path)
-        for name in dir(fbs_module):
+        for m in fbs_modules:
+            name = m.__name__.split(".")[-1]
             if name in target:
-                return getattr(fbs_module, "ROOT_TYPE", None)
+                return getattr(m, "ROOT_TYPE", None)
         return None
         
     def process_directory(self, directory: Path) -> None:

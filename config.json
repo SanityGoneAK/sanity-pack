@@ -5,13 +5,12 @@
     "CN": {
       "enabled": true,
       "path_whitelist": [
-        "anon"
+        "anon/9d33dd72376d657e62b667e4fc2d0f52.bin"
       ]
     },
     "EN": {
       "enabled": false,
-      "path_whitelist": [
-      ]
+      "path_whitelist": []
     },
     "JP": {
       "enabled": false,
@@ -26,4 +25,4 @@
       ]
     }
   }
-} 
+}
