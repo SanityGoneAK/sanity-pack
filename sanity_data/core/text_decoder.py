@@ -115,7 +115,7 @@ class TextAssetDecoder:
             print(f'[ERROR] Failed to decode AES file "{path}": {str(e)}')
             return {}
             
-    def decode_flatbuffer(self, path: str) -> dict:
+    def decode_flatbuffer(self, path: str) -> tuple[dict, str]:
         """Decode FlatBuffer file."""
         try:
             # Import FlatBuffers schema based on server
@@ -133,12 +133,12 @@ class TextAssetDecoder:
                 data = bytearray(f.read())[128:]  # Skip header
                 
             # Get root type and decode
-            root_type = self._guess_root_type(path, fbs_modules)
+            fbs_name, root_type = self._guess_root_type(path, fbs_modules)
             if not root_type:
                 return {}
                 
             handle = FBOHandler(data, root_type)
-            return handle.to_json_dict()
+            return handle.to_json_dict(), fbs_name
             
         except Exception as e:
             print(f'[ERROR] Failed to decode FlatBuffer file "{path}": {str(e)}')
@@ -162,13 +162,13 @@ class TextAssetDecoder:
             print(f"[ERROR] Could not import FBS module for server {server}")
             return None
             
-    def _guess_root_type(self, path: str, fbs_modules) -> Optional[type]:
+    def _guess_root_type(self, path: str, fbs_modules) -> Optional[tuple[str, type]]:
         """Guess the root type of a FlatBuffer file."""
         target = os.path.basename(path)
-        for m in fbs_modules:
-            name = m.__name__.split(".")[-1]
+        for module_name, module in fbs_modules.items():
+            name = module.__name__.split(".")[-1]
             if name in target:
-                return getattr(m, "ROOT_TYPE", None)
+                return module_name, getattr(module, "ROOT_TYPE", None)
         return None
         
     def process_directory(self, directory: Path) -> None:
@@ -183,9 +183,11 @@ class TextAssetDecoder:
         """Process a single file."""
         try:
             # Try FlatBuffer decoding first
-            result = self.decode_flatbuffer(path)
+            result, fbs_name = self.decode_flatbuffer(path)
             if result:
-                self._save_result(path, result)
+                output_path = Path(path).parent / f"{fbs_name}.json"
+                self._save_result(output_path, result)
+                Path(path).unlink()
                 return
                 
             # Fall back to AES decoding
