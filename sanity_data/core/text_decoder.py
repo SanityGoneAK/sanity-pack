@@ -82,6 +82,11 @@ class TextAssetDecoder:
                 
             decrypted = self.aes_cbc_decrypt_bytes(data)
             
+            # If it's a .lua file, save it as text
+            if path.endswith('.lua'):
+                print(f'[DEBUG] Decoded Lua file: "{path}"')
+                return decrypted
+                
             try:
                 # Try JSON first
                 result = json.loads(decrypted)
@@ -175,18 +180,25 @@ class TextAssetDecoder:
             # Fall back to AES decoding
             result = self.decode_aes(path)
             if result:
-                self._save_result(path, result)
+                self._save_result(Path(path), result)
                 
         except Exception as e:
             print(f'[ERROR] Failed to process file "{path}": {str(e)}')
             
-    def _save_result(self, path: str, result: dict) -> None:
+    def _save_result(self, path: Path, result: dict) -> None:
         """Save decoded result to JSON file."""
+
         try:
-            output_path = Path(path).with_suffix('.json')
-            with open(output_path, 'w', encoding='utf-8') as f:
-                json.dump(result, f, ensure_ascii=False, indent=2)
-            print(f'[INFO] Saved decoded result to: {output_path}')
+            if path.suffix == '.lua':
+                output_path = path.with_suffix('.lua')
+                with open(output_path, 'w', encoding='utf-8') as f:
+                    f.write(result.decode('utf-8'))
+                print(f'[INFO] Saved decoded result to: {output_path}')
+            else:
+                output_path = path.with_suffix('.json')
+                with open(output_path, 'w', encoding='utf-8') as f:
+                    json.dump(result, f, ensure_ascii=False, indent=2)
+                print(f'[INFO] Saved decoded result to: {output_path}')
         except Exception as e:
             print(f'[ERROR] Failed to save result for "{path}": {str(e)}')
 
