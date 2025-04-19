@@ -17,9 +17,9 @@ class DataFetcher:
     # Server URLs
     VERSION_URLS = {
         Server.CN: "https://ak-conf.hypergryph.com/config/prod/official/Android/version",
-        Server.EN: "https://ark-us-static-online.yo-star.com/config/prod/official/Android/version",
-        Server.JP: "https://ark-jp-static-online.yo-star.com/config/prod/official/Android/version",
-        Server.KR: "https://ark-kr-static-online-1300509597.yo-star.com/config/prod/official/Android/version",
+        Server.EN: "https://ark-us-static-online.yo-star.com/assetbundle/official/Android/version",
+        Server.JP: "https://ark-jp-static-online.yo-star.com/assetbundle/official/Android/version",
+        Server.KR: "https://ark-kr-static-online-1300509597.yo-star.com/assetbundle/official/Android/version",
     }
 
     ASSET_BASE_URLS = {

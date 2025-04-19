@@ -61,37 +61,18 @@ class TextAssetDecoder:
         
     def aes_cbc_decrypt_bytes(self, data: bytes, has_rsa: bool = True) -> bytes:
         """Decrypt AES-CBC encrypted data."""
-        # if not isinstance(data, bytes) or len(data) < 16:
-        #     raise ValueError("Data should be a bytes object longer than 16 bytes")
-            
-        # if not isinstance(mask, bytes) or len(mask) != 32:
-        #     raise ValueError("Mask should be a 32-byte-long bytes object")
-            
-        CHAT_MASK = bytes.fromhex('554954704169383270484157776e7a7148524d4377506f6e4a4c49423357436c').decode()
+        mask = bytes.fromhex("554954704169383270484157776e7a7148524d4377506f6e4a4c49423357436c")
 
-        # Trim RSA signature if present
-        # if has_rsa:
-        #     data = data[128:]
+        if has_rsa:
+            data = data[128:]
 
-        aes_key = CHAT_MASK[:16].encode()
-        aes_iv = bytearray(
-            buffer_bit ^ mask_bit
-            for (buffer_bit, mask_bit) in zip(data[:16], CHAT_MASK[16:].encode())
-        )
+        aes_key = mask[:16]
+        aes_iv = bytearray(b ^ m for b, m in zip(data[:16], mask[16:]))
+        aes = AES.new(aes_key, AES.MODE_CBC, aes_iv)
 
-        decrypted = (
-            AES.new(aes_key, AES.MODE_CBC, aes_iv)
-            .decrypt(data[16:])
-        )
-
-        return unpad(decrypted)   
-        # # Calculate key and IV
-        # key = mask[:16].encode()
-        # iv = bytearray(d ^ m for d, m in zip(data[:16], mask[16:]))
-        
-        # # Decrypt data
-        # aes = AES.new(key, AES.MODE_CBC, iv)
-        # return unpad(aes.decrypt(data[16:]), AES.block_size)
+        decrypted_padded = aes.decrypt(data[16:])
+        decrypted = decrypted_padded[: -decrypted_padded[-1]]
+        return decrypted
         
     def decode_aes(self, path: str) -> dict:
         """Decode AES encrypted file."""
@@ -121,12 +102,12 @@ class TextAssetDecoder:
             # Import FlatBuffers schema based on server
             server = self._get_server_from_path(path)
             if not server:
-                return {}
+                return {}, None
                 
             # Get the appropriate FlatBuffers module
             fbs_modules = self._get_fbs_modules(server)
             if not fbs_modules:
-                return {}
+                return {}, None
                 
             # Read and decode the file
             with open(path, "rb") as f:
@@ -135,14 +116,14 @@ class TextAssetDecoder:
             # Get root type and decode
             fbs_name, root_type = self._guess_root_type(path, fbs_modules)
             if not root_type:
-                return {}
+                return {}, None
                 
             handle = FBOHandler(data, root_type)
             return handle.to_json_dict(), fbs_name
             
         except Exception as e:
             print(f'[ERROR] Failed to decode FlatBuffer file "{path}": {str(e)}')
-            return {}
+            return {}, None
             
     def _get_server_from_path(self, path: str) -> Optional[Server]:
         """Determine server from file path."""
@@ -157,7 +138,8 @@ class TextAssetDecoder:
         """Get the appropriate FlatBuffers module for the server."""
         try:
             # Import the server-specific FBS module
-            return get_modules_from_package_name(f"sanity_data.fbs._generated.{str(server.value).lower()}")
+            severType = 'cn' if server.value == "CN" else 'global'
+            return get_modules_from_package_name(f"sanity_data.fbs._generated.{severType}")
         except ImportError:
             print(f"[ERROR] Could not import FBS module for server {server}")
             return None
