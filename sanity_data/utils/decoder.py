@@ -18,3 +18,5 @@ def get_modules_from_package(package: types.ModuleType) -> dict[str, types.Modul
 def get_modules_from_package_name(package_name: str):
     package = importlib.import_module(package_name)
     return get_modules_from_package(package)
+
+

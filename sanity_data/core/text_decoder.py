@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from typing import Optional, Callable
 import bson
+import re
 import numpy as np
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
@@ -84,18 +85,12 @@ class TextAssetDecoder:
             decrypted = self.aes_cbc_decrypt_bytes(data)
             
             # If it's a .lua file, save it as text
-            if path.endswith('.lua'):
+            if path.endswith('.lua.bytes'):
                 logger.debug(f'Decoded Lua file: "{path}"')
                 return decrypted
                 
-            try:
-                # Try JSON first
-                result = json.loads(decrypted)
-                logger.debug(f'Decoded JSON document: "{path}"')
-            except UnicodeError:
-                # Fall back to BSON
-                result = bson.loads(decrypted)
-                logger.debug(f'Decoded BSON document: "{path}"')
+            result = self.load_json_or_bson(decrypted)
+            result = json.dumps(result ,indent=4, ensure_ascii=False).encode("utf-8")
                 
             return result
         except Exception as e:
@@ -139,7 +134,6 @@ class TextAssetDecoder:
                 return server 
         return None
 
-        
     def _get_fbs_modules(self, server: Server):
         """Get the appropriate FlatBuffers module for the server."""
         try:
@@ -157,7 +151,7 @@ class TextAssetDecoder:
             name = module.__name__.split(".")[-1]
             if name in target:
                 return module_name, getattr(module, "ROOT_TYPE", None)
-        return None
+        return None, None
         
     def process_directory(self, directory: Path) -> None:
         """Process all files in a directory."""
@@ -166,42 +160,91 @@ class TextAssetDecoder:
                 file_path = os.path.join(root, file)
                 if self.should_process_file(file_path):
                     self.process_file(file_path)
+    
+    def load_json_or_bson(self, data: bytes) -> any:
+        """Load json or possibly bson."""
+        if b"\x00" in data[:256]:
+            import bson
+
+            return bson.loads(data)
+
+        return json.loads(data)
+                    
+    def normalize_json(self, data: bytes, *, indent: int = 4, lenient: bool = True) -> bytes:
+        """Normalize a json format."""
+        if lenient and b"\x00" not in data[:256]:
+            return data
+
+        json_data = self.load_json_or_bson(data)
+        return json.dumps(json_data, indent=indent, ensure_ascii=False).encode("utf-8")
+    
+    def decode_file(self, path: str):
+        result, fbs_name = self.decode_flatbuffer(path)
+        if result:
+            output_path = Path(path).parent / f"{fbs_name}.json"
+            result = bytes(json.dumps(result, ensure_ascii=False, indent=4), encoding="UTF-8")
+            self._save_result(output_path, result)
+            Path(path).unlink()
+            return
+            
+        result = self.decode_aes(path)
+        if result:
+            self._save_result(Path(path), result)
+            return
                     
     def process_file(self, path: str) -> None:
         """Process a single file."""
         try:
-            # Try FlatBuffer decoding first
-            result, fbs_name = self.decode_flatbuffer(path)
-            if result:
-                output_path = Path(path).parent / f"{fbs_name}.json"
-                self._save_result(output_path, result)
-                Path(path).unlink()
+            if match := re.search(r"((gamedata/)?.+?\.json)", path):
+                with open(path, "rb") as f:
+                    data = f.read()
+                self._save_result(Path(match.group(1)), self.normalize_json(data))
                 return
                 
-            # Fall back to AES decoding
-            result = self.decode_aes(path)
-            if result:
-                self._save_result(Path(path), result)
+            if match := re.search(r"(gamedata/.+?)\.lua\.bytes", path):
+                result = self.decode_aes(path)
+                output_path = Path(path).parent / (match.group(1) + '.lua') 
+                self._save_result(output_path, bytes(result))
+                return
+            
+            if match := re.search(r"(gamedata/levels/(?:obt|activities)/.+?)\.bytes", path):
+                try:
+                    with open(path, "rb") as f:
+                        data = f.read()
+                    text = self.normalize_json(data[128:])
+                    self._save_result(Path(path).with_suffix('.json'), bytes(text))
+                except UnboundLocalError:  # effectively bson's "type not recognized" error
+                    result, fbs_name = self.decode_flatbuffer(path)
+                    if result:
+                        result = bytes(json.dumps(result, ensure_ascii=False, indent=4), encoding="UTF-8")
+                        output_path = Path(path).parent / f"{fbs_name}.json"
+                        self._save_result(output_path, result)
+                        Path(path).unlink()
+                return
+
+            if "gamedata/battle/buff_template_data.bytes" in path:
+                with open(path, "rb") as f:
+                    data = f.read()
+                self._save_result(Path(path).with_suffix('.json'), bytes(self.normalize_json(data)))
+                return
+            
+            if match := re.search(r"(gamedata/.+?)(?:[a-fA-F0-9]{6})?\.bytes", path):
+                result = self.decode_file(path)
+                return
+                
+            logger.warning(f"Unrecognized file type: {path}")
                 
         except Exception as e:
             logger.error(f'Failed to process file "{path}": {str(e)}', exc_info=True)
             
-    def _save_result(self, path: Path, result: dict) -> None:
+    def _save_result(self, output_path: Path, result: bytes) -> None:
         """Save decoded result to JSON file."""
 
         try:
-            if path.suffix == '.lua':
-                output_path = path.with_suffix('.lua')
-                with open(output_path, 'w', encoding='utf-8') as f:
-                    f.write(result.decode('utf-8'))
-                logger.info(f'Saved decoded result to: {output_path}')
-            else:
-                output_path = path.with_suffix('.json')
-                with open(output_path, 'w', encoding='utf-8') as f:
-                    json.dump(result, f, ensure_ascii=False, indent=2)
-                logger.info(f'Saved decoded result to: {output_path}')
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_bytes(result)
         except Exception as e:
-            logger.error(f'Failed to save result for "{path}": {str(e)}', exc_info=True)
+            logger.error(f'Failed to save result for "{output_path}": {str(e)}', exc_info=True)
 
 class FBOHandler:
     """Handler for FlatBuffers Objects conversion to Python dict."""

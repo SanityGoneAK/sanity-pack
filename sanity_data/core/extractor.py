@@ -7,7 +7,7 @@ from typing import Dict, List, Optional, Union, Tuple, Any, Protocol, runtime_ch
 import UnityPy
 from UnityPy.enums.BundleFile import CompressionFlags
 from UnityPy.helpers import CompressionHelper
-from UnityPy.classes import Texture2D, Sprite, AssetBundle, TextAsset, MonoBehaviour, AudioClip, Object
+from UnityPy.classes import Texture2D, Sprite, AssetBundle, TextAsset, MonoBehaviour, AudioClip, Object, MonoScript
 from PIL import Image
 
 from ..models.config import Config, Server
@@ -69,7 +69,7 @@ class TextAssetProcessor(AssetProcessor[TextAsset]):
         try:
             data = obj.read()
             return AssetResult(
-                name=getattr(data, 'm_Name', None),
+                name=Path(obj.container).name if obj.container else getattr(data, 'm_Name', None),
                 obj=obj,
                 content=data.m_Script.encode("utf-8", "surrogateescape"),
                 object_type=TextAsset,
@@ -119,6 +119,8 @@ class AssetProcessorFactory:
         try:
             obj_type = obj.read()
             match obj_type:
+                case MonoScript():
+                    return None
                 case Texture2D():
                     return TextureProcessor()
                 case Sprite():
