@@ -72,4 +72,5 @@ poetry run sanity-data
 `sanity-data` would not be possible without these projects:
 - [UnityPy](https://github.com/K0lb3/UnityPy)
 - [Ark-Unpacker](https://github.com/isHarryh/Ark-Unpacker)
+- [ArkPRTS](https://github.com/thesadru/ArkPRTS
 - [OpenArknightsFBS](https://github.com/MooncellWiki/OpenArknightsFBS)
