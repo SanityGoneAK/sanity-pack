@@ -189,7 +189,9 @@ class TextAssetDecoder:
             
         result = self.decode_aes(path)
         if result:
-            self._save_result(Path(path), result)
+            output_path = Path(path).with_suffix('.json')
+            self._save_result(output_path, result)
+            Path(path).unlink()
             return
                     
     def process_file(self, path: str) -> None:
