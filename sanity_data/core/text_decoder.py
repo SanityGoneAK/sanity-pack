@@ -262,7 +262,7 @@ class TextAssetDecoder:
         """Decode a flatbuffer file using flatc."""
         try:
             # Extract table name from path
-            if match := re.search(r"(\w+_(?:table|data|const|database))[0-9a-fA-F]{6}", path):
+            if match := re.search(r"(\w+_(?:table|data|const|database|text))[0-9a-fA-F]{6}", path):
                 table_name = match.group(1)
             else:
                 return None

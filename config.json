@@ -3,13 +3,13 @@
   "cache_dir": "./cache",
   "servers": {
     "CN": {
-      "enabled": false,
+      "enabled": true,
       "path_whitelist": [
-        "anon/9d33dd72376d657e62b667e4fc2d0f52.bin"
+        "anon"
       ]
     },
     "EN": {
-      "enabled": true,
+      "enabled": false,
       "path_whitelist": [
         "anon"
       ]
