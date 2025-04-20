@@ -5,6 +5,7 @@ from typing import Optional, List, Tuple
 from PIL import Image
 
 from ..utils.image import combine_alpha_rgb
+from ..utils.logger import logger
 
 
 class AlphaProcessor:
@@ -49,7 +50,7 @@ class AlphaProcessor:
         # Second pass: process each pair
         for rgb_path, alpha_path in alpha_images:
             try:
-                print(f"Processing alpha image: {alpha_path}")
+                logger.info(f"Processing alpha image: {alpha_path}")
                 
                 # Combine the images
                 combined_image = combine_alpha_rgb(rgb_path, alpha_path)
@@ -59,7 +60,7 @@ class AlphaProcessor:
                 
                 # Delete the alpha image
                 alpha_path.unlink()
-                print(f"Successfully processed and deleted: {alpha_path}")
+                logger.info(f"Successfully processed and deleted: {alpha_path}")
                 
             except Exception as e:
-                print(f"Error processing {alpha_path}: {e}") 
+                logger.error(f"Error processing {alpha_path}: {str(e)}", exc_info=True) 

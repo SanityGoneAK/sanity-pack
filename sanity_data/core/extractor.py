@@ -1,7 +1,6 @@
 import asyncio
 import json
 from dataclasses import dataclass
-import traceback
 from pathlib import Path
 from typing import Dict, List, Optional, Union, Tuple, Any, Protocol, runtime_checkable, TypeVar, Generic
 
@@ -13,6 +12,7 @@ from PIL import Image
 
 from ..models.config import Config, Server
 from ..utils.compression import decompress_lz4ak
+from ..utils.logger import logger
 
 CompressionHelper.DECOMPRESSION_MAP[CompressionFlags.LZHAM] = decompress_lz4ak
 
@@ -45,7 +45,7 @@ class TextureProcessor(AssetProcessor[Texture2D]):
                 object_type=Texture2D,
             )
         except Exception as e:
-            print(f"Error processing texture: {e}")
+            logger.error(f"Error processing texture: {str(e)}", exc_info=True)
             return None
 
 class SpriteProcessor(AssetProcessor[Sprite]):
@@ -60,7 +60,7 @@ class SpriteProcessor(AssetProcessor[Sprite]):
                 object_type=Sprite,
             )
         except Exception as e:
-            print(f"Error processing sprite: {e}")
+            logger.error(f"Error processing sprite: {str(e)}", exc_info=True)
             return None
 
 class TextAssetProcessor(AssetProcessor[TextAsset]):
@@ -75,7 +75,7 @@ class TextAssetProcessor(AssetProcessor[TextAsset]):
                 object_type=TextAsset,
             )
         except Exception as e:
-            print(f"Error processing text asset: {e}")
+            logger.error(f"Error processing text asset: {str(e)}", exc_info=True)
             return None
 
 class MonoBehaviourProcessor(AssetProcessor[MonoBehaviour]):
@@ -92,7 +92,7 @@ class MonoBehaviourProcessor(AssetProcessor[MonoBehaviour]):
                     object_type=MonoBehaviour,
                 )
         except Exception as e:
-            print(f"Error processing MonoBehaviour: {e}")
+            logger.error(f"Error processing MonoBehaviour: {str(e)}", exc_info=True)
         return None
 
 class AudioClipProcessor(AssetProcessor[AudioClip]):
@@ -108,7 +108,7 @@ class AudioClipProcessor(AssetProcessor[AudioClip]):
                 object_type=AudioClip,
             )
         except Exception as e:
-            print(f"Error processing AudioClip: {e}")
+            logger.error(f"Error processing AudioClip: {str(e)}", exc_info=True)
             return None
 
 class AssetProcessorFactory:
@@ -131,10 +131,10 @@ class AssetProcessorFactory:
                     return AudioClipProcessor()
                 case _:
                     if isinstance(obj, AssetBundle) and getattr(obj, "m_Name", None):
-                        print(f'Found AssetBundle named "{obj.m_Name}"')
+                        logger.warning(f'Found AssetBundle named "{obj.m_Name}"')
                     return None
         except Exception as e:
-            print(f"Error determining processor: {e}")
+            logger.error(f"Error determining processor: {str(e)}", exc_info=True)
             return None
 
 class UnityAssetExtractor:
@@ -204,7 +204,7 @@ class UnityAssetExtractor:
         async with self._semaphore:
             try:
                 relative_path = asset_path.relative_to(self.config.output_dir / server.lower())
-                print(f"Extracting {relative_path}...")
+                logger.info(f"Extracting {relative_path}...")
                 
                 # 1. Get UnityPy environment
                 env = self._get_env(server, str(relative_path))
@@ -221,11 +221,10 @@ class UnityAssetExtractor:
                 
                 # 4. Clean up
                 asset_path.unlink()
-                print(f"Successfully extracted assets from {relative_path}")
+                logger.info(f"Successfully extracted assets from {relative_path}")
                 
             except Exception as e:
-                print(f"Error processing {asset_path}: {e}")
-                traceback.print_exc()
+                logger.error(f"Error processing {asset_path}: {str(e)}", exc_info=True)
 
     async def extract_all(self) -> None:
         """Extract all assets from downloaded files concurrently."""
@@ -234,7 +233,7 @@ class UnityAssetExtractor:
             if not server_config.enabled:
                 continue
 
-            print(f"\nProcessing {server} server assets...")
+            logger.info(f"\nProcessing {server} server assets...")
             server_dir = self.config.output_dir / server.lower()
             
             # 1. Gather files to extract

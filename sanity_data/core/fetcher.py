@@ -9,6 +9,7 @@ from tenacity import retry, stop_after_attempt, wait_exponential
 
 from ..models.cache import AssetCache, VersionCache, VersionInfo
 from ..models.config import Config, Server
+from ..utils.logger import logger
 
 
 class DataFetcher:
@@ -78,23 +79,23 @@ class DataFetcher:
                 try:
                     return await response.json(content_type=None)
                 except Exception as e:
-                    print(f"Failed to parse JSON directly: {e}")
+                    logger.error(f"Failed to parse JSON directly: {str(e)}", exc_info=True)
                     # Fallback: try to parse the text we already have
                     import json
                     return json.loads(text)
                 
         except aiohttp.ClientError as e:
-            print(f"HTTP error for {url}: {str(e)}")
+            logger.error(f"HTTP error for {url}: {str(e)}")
             raise
         except Exception as e:
-            print(f"Unexpected error for {url}: {str(e)}")
+            logger.error(f"Unexpected error for {url}: {str(e)}", exc_info=True)
             raise
 
     async def get_version(self, server: Server) -> VersionInfo:
         """Get the current version information for the specified server."""
         try:
             data = await self._fetch_json(self.VERSION_URLS[server])
-            print(f"Debug - Version data: {data}")
+            logger.debug(f"Version data: {data}")
             version = VersionInfo(
                 resource=data["resVersion"],
                 client=data["clientVersion"]
@@ -102,7 +103,7 @@ class DataFetcher:
             self.version_cache.set_version(server, version)
             return version
         except Exception as e:
-            print(f"Error getting version for {server}: {str(e)}")
+            logger.error(f"Error getting version for {server}: {str(e)}", exc_info=True)
             raise
 
     async def get_asset_list(self, server: Server) -> List[Dict]:
@@ -110,11 +111,11 @@ class DataFetcher:
         try:
             version = await self.get_version(server)
             url = f"{self.ASSET_BASE_URLS[server]}/assets/{version.resource}/hot_update_list.json"
-            print(url)
+            logger.debug(f"Full asset list url: {url}")
             data = await self._fetch_json(url)
             return data.get("abInfos", [])
         except Exception as e:
-            print(f"Error getting asset list for {server}: {str(e)}")
+            logger.error(f"Error getting asset list for {server}: {str(e)}", exc_info=True)
             raise
 
     def _transform_asset_path(self, path: str) -> str:
@@ -144,7 +145,7 @@ class DataFetcher:
             transformed_path = self._transform_asset_path(asset_path)
             url = f"{self.ASSET_BASE_URLS[server]}/assets/{version.resource}/{transformed_path}"
 
-            print(f"Fetching asset {asset_path}")
+            logger.info(f"Fetching asset {asset_path}")
 
             # Download the asset
             if not self._session:
@@ -164,7 +165,7 @@ class DataFetcher:
                             zip_info.filename = asset_path  # Use the original asset path
                             zip_file.extract(zip_info, server_output_dir)
                 except Exception as e:
-                    print(f"Failed to extract {asset_path}: {e}")
+                    logger.error(f"Failed to extract {asset_path}: {str(e)}", exc_info=True)
                     return None
 
                 # Update the cache
@@ -172,10 +173,10 @@ class DataFetcher:
                 return data
                 
             except aiohttp.ClientError as e:
-                print(f"Failed to download {asset_path}: {e}")
+                logger.error(f"Failed to download {asset_path}: {str(e)}", exc_info=True)
                 return None
             except Exception as e:
-                print(f"Unexpected error downloading {asset_path}: {e}")
+                logger.error(f"Unexpected error downloading {asset_path}: {str(e)}", exc_info=True)
                 return None
 
     async def fetch_server_assets(self, server: Server) -> None:
@@ -183,11 +184,11 @@ class DataFetcher:
         if not self.config.servers[server].enabled:
             return
 
-        print(f"\nProcessing {server} server...")
+        logger.info(f"\nProcessing {server} server...")
         try:
             # Get asset list
             assets = await self.get_asset_list(server)
-            print(f"Found {len(assets)} assets")
+            logger.info(f"Found {len(assets)} assets")
 
             # Create download tasks
             tasks = []
@@ -202,7 +203,7 @@ class DataFetcher:
             await asyncio.gather(*tasks)
 
         except Exception as e:
-            print(f"Error processing {server} server: {e}")
+            logger.error(f"Error processing {server} server: {str(e)}", exc_info=True)
 
     async def fetch_all(self):
         """Fetch assets from all enabled servers concurrently."""

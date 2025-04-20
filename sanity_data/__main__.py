@@ -9,30 +9,24 @@ from .core.workflow import (
     process_portraits,
     process_text_assets
 )
+from .utils.logger import setup_logger
 
 
 async def main():
     """Main workflow function that runs all processes in the correct order."""
-    # Load configuration and setup
+    global logger
+    logger = setup_logger(level="WARNING")
+
+    # Setup configuration and caches
     config = load_or_create_config()
     setup_directories(config)
     version_cache, asset_cache = load_caches(config)
     
-    # # First, fetch all assets
-    # print("\nFetching assets from servers...")
+    # Process entire workflow
     await fetch_assets(config, version_cache, asset_cache)
-    # print("\nAsset fetching complete!")
-    
-    # # Then, process all assets
-    # print("\nProcessing downloaded assets...")
     await process_assets(config)
-    # print("\nAsset processing complete!")
-
-    # # Process alpha images and portraits
     process_alpha_images(config)
-    process_portraits(config)
-    
-    # Finally, process text assets
+    process_portraits(config)    
     process_text_assets(config)
 
 

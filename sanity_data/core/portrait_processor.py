@@ -6,6 +6,7 @@ from PIL import Image
 
 from ..models.config import Config, Server
 from ..utils.image import process_portrait
+from ..utils.logger import logger
 
 
 class PortraitProcessor:
@@ -36,30 +37,28 @@ class PortraitProcessor:
             # Get the atlas image path (same name but with .png extension)
             atlas_image_path = json_path.with_suffix(".png")
             if not atlas_image_path.exists():
-                print(f"Warning: Atlas image not found for {json_path}")
+                logger.warning(f"Warning: Atlas image not found for {json_path}")
                 return
             
             # Process each sprite in the atlas
             for sprite in atlas_data.get("_sprites", []):
                 try:
-                    # Create output directory for the character
                     char_name = sprite["name"]
                     
-                    # Process the portrait
                     output_path = json_path.parent / f"{char_name}.png"
                     process_portrait(atlas_image_path, sprite, output_path)
-                    print(f"Processed portrait: {char_name}")
+                    logger.info(f"Processed portrait: {char_name}")
                     
                 except Exception as e:
-                    print(f"Error processing sprite {sprite.get('name', 'unknown')}: {e}")
+                    logger.error(f"Error processing sprite {sprite.get('name', 'unknown')}: {str(e)}", exc_info=True)
             
             # Clean up original files
             json_path.unlink()
             atlas_image_path.unlink()
-            print(f"Cleaned up atlas files: {json_path.stem}")
+            logger.info(f"Cleaned up atlas files: {json_path.stem}")
             
         except Exception as e:
-            print(f"Error processing atlas {json_path}: {e}")
+            logger.error(f"Error processing atlas {json_path}: {str(e)}", exc_info=True)
 
     def process_portraits(self) -> None:
         """Process all portraits for all enabled servers."""
@@ -67,7 +66,7 @@ class PortraitProcessor:
             if not server_config.enabled:
                 continue
                 
-            print(f"\nProcessing portraits for {server} server...")
+            logger.info(f"\nProcessing portraits for {server} server...")
             portrait_paths = self._get_portrait_paths(server)
             
             for json_path in portrait_paths:

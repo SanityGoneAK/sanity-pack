@@ -48,6 +48,7 @@ version.json
 assets.json
 flatc
 _generated
+.logs
 
 # OS specific
 .DS_Store

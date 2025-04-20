@@ -9,6 +9,7 @@ from Crypto.Util.Padding import unpad
 
 from ..models.config import Config, Server
 from ..utils.decoder import get_modules_from_package_name
+from ..utils.logger import logger
 
 # Known file extensions to skip
 _EXT_KNOWN = (
@@ -84,21 +85,21 @@ class TextAssetDecoder:
             
             # If it's a .lua file, save it as text
             if path.endswith('.lua'):
-                print(f'[DEBUG] Decoded Lua file: "{path}"')
+                logger.debug(f'Decoded Lua file: "{path}"')
                 return decrypted
                 
             try:
                 # Try JSON first
                 result = json.loads(decrypted)
-                print(f'[DEBUG] Decoded JSON document: "{path}"')
+                logger.debug(f'Decoded JSON document: "{path}"')
             except UnicodeError:
                 # Fall back to BSON
                 result = bson.loads(decrypted)
-                print(f'[DEBUG] Decoded BSON document: "{path}"')
+                logger.debug(f'Decoded BSON document: "{path}"')
                 
             return result
         except Exception as e:
-            print(f'[ERROR] Failed to decode AES file "{path}": {str(e)}')
+            logger.error(f'Failed to decode AES file "{path}": {str(e)}', exc_info=True)
             return {}
             
     def decode_flatbuffer(self, path: str) -> tuple[dict, str]:
@@ -127,7 +128,7 @@ class TextAssetDecoder:
             return handle.to_json_dict(), fbs_name
             
         except Exception as e:
-            print(f'[ERROR] Failed to decode FlatBuffer file "{path}": {str(e)}')
+            logger.error(f'Failed to decode FlatBuffer file "{path}": {str(e)}', exc_info=True)
             return {}, None
             
     def _get_server_from_path(self, path: str) -> Optional[Server]:
@@ -146,7 +147,7 @@ class TextAssetDecoder:
             severType = 'cn' if server.value == "CN" else 'global'
             return get_modules_from_package_name(f"sanity_data.fbs._generated.{severType}")
         except ImportError:
-            print(f"[ERROR] Could not import FBS module for server {server}")
+            logger.error(f"Could not import FBS module for server {server}", exc_info=True)
             return None
             
     def _guess_root_type(self, path: str, fbs_modules) -> Optional[tuple[str, type]]:
@@ -183,7 +184,7 @@ class TextAssetDecoder:
                 self._save_result(Path(path), result)
                 
         except Exception as e:
-            print(f'[ERROR] Failed to process file "{path}": {str(e)}')
+            logger.error(f'Failed to process file "{path}": {str(e)}', exc_info=True)
             
     def _save_result(self, path: Path, result: dict) -> None:
         """Save decoded result to JSON file."""
@@ -193,14 +194,14 @@ class TextAssetDecoder:
                 output_path = path.with_suffix('.lua')
                 with open(output_path, 'w', encoding='utf-8') as f:
                     f.write(result.decode('utf-8'))
-                print(f'[INFO] Saved decoded result to: {output_path}')
+                logger.info(f'Saved decoded result to: {output_path}')
             else:
                 output_path = path.with_suffix('.json')
                 with open(output_path, 'w', encoding='utf-8') as f:
                     json.dump(result, f, ensure_ascii=False, indent=2)
-                print(f'[INFO] Saved decoded result to: {output_path}')
+                logger.info(f'Saved decoded result to: {output_path}')
         except Exception as e:
-            print(f'[ERROR] Failed to save result for "{path}": {str(e)}')
+            logger.error(f'Failed to save result for "{path}": {str(e)}', exc_info=True)
 
 class FBOHandler:
     """Handler for FlatBuffers Objects conversion to Python dict."""
