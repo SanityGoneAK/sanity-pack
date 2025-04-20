@@ -10,7 +10,7 @@ A Python tool for extracting and processing game data from Arknights.
   - Combines alpha and RGB images
   - Processes character portraits using image atlases
 - Decodes Text Assets
-  - By Flatbuffers using https://github.com/MooncellWiki/OpenArknightsFBS
+  - By Flatbuffers using https://github.com/ArknightsAssets/ArknightsFlatbuffers
   - By AES Encryption
 
 ## Installation
@@ -54,11 +54,7 @@ Create a `config.json` file with the following structure:
 ## Usage
 
 ```bash
-# Step 1: Compile FlatBuffers schemas
-poetry run compile-fbs
-
-# Step 2: Run the tool
-poetry run sanity-data
+poetry run python -m sanity_data
 ```
 
 ## Development
@@ -72,5 +68,5 @@ poetry run sanity-data
 `sanity-data` would not be possible without these projects:
 - [UnityPy](https://github.com/K0lb3/UnityPy)
 - [Ark-Unpacker](https://github.com/isHarryh/Ark-Unpacker)
-- [ArkPRTS](https://github.com/thesadru/ArkPRTS
+- [ArkPRTS](https://github.com/thesadru/ArkPRTS)
 - [OpenArknightsFBS](https://github.com/MooncellWiki/OpenArknightsFBS)

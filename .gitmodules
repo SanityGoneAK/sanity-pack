@@ -1,8 +1,3 @@
-[submodule "sanity_data/fbs/cn"]
-	path = sanity_data/fbs/cn
-	url = https://github.com/MooncellWiki/OpenArknightsFBS.git
-	branch = main
-[submodule "sanity_data/fbs/global"]
-	path = sanity_data/fbs/global
-	url = https://github.com/MooncellWiki/OpenArknightsFBS.git
-	branch = YoStar
+[submodule "sanity_data/fbs"]
+	path = sanity_data/fbs
+	url = https://github.com/ArknightsAssets/ArknightsFlatbuffers.git

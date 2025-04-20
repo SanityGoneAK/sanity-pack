@@ -272,8 +272,9 @@ class TextAssetDecoder:
             if not server:
                 return None
 
-            server_type = 'cn' if server.value == "CN" else 'global'
-            schema_dir = Path(__file__).parent.parent / 'fbs' / server_type / 'FBS'
+            # Use 'yostar' directory for global server, 'cn' for CN server
+            server_type = 'cn' if server.value == "CN" else 'yostar'
+            schema_dir = Path(__file__).parent.parent / 'fbs' / server_type
             schema_path = schema_dir / f"{table_name}.fbs"
 
             if not schema_path.exists():
