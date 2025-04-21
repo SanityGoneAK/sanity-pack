@@ -144,8 +144,8 @@ class UnityAssetExtractor:
 
     def __init__(self, config: Config):
         self.config = config
-        self._semaphore = asyncio.Semaphore(8)  # Limit concurrent extractions
-        self._object_semaphore = asyncio.Semaphore(8)  # Limit concurrent object processing
+        self._semaphore = asyncio.Semaphore(100)  # Limit concurrent extractions
+        self._object_semaphore = asyncio.Semaphore(100)  # Limit concurrent object processing
         self._processor_factory = AssetProcessorFactory()
 
     def _get_env(self, server: Server, asset_path: str) -> UnityPy.Environment:

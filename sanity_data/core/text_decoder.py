@@ -29,6 +29,7 @@ _EXT_KNOWN = (
     ".mkv",
     ".flv",
     ".png",
+    ".webp",
 )
 _EXT_AB = (".ab", ".bin")
 
