@@ -182,7 +182,8 @@ class UnityAssetExtractor:
         target_path.parent.mkdir(parents=True, exist_ok=True)
 
         if result.object_type in (Texture2D, Sprite):
-            target_path = target_path.with_suffix('.png')
+            file_extension = ".png" if "dynchars" in str(target_path) else ".webp"
+            target_path = target_path.with_suffix(file_extension)
             result.content.save(target_path)
 
         elif result.object_type == TextAsset:
