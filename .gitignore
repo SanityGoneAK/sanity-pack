@@ -38,12 +38,9 @@ venv.bak/
 *~
 
 # Project specific
-cache/
 *.dat
 *.ab
 *.mp4
-version.json
-assets.json
 flatc
 _generated
 .logs
