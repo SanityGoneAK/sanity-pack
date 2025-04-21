@@ -183,6 +183,14 @@ class UnityAssetExtractor:
 
         if result.object_type in (Texture2D, Sprite):
             file_extension = ".png" if "dynchars" in str(target_path) else ".webp"
+            
+            # Overrides to grab all data correctly
+            target_path_str = target_path.as_posix()
+            if "assets/torappu/dynamicassets/arts/item" in target_path_str:
+                target_path = Path("assets/torappu/dynamicassets/arts/item") / target_path.name
+            if "assets/torappu/dynamicassets/arts/charavatars" in target_path_str:
+                target_path = Path("assets/torappu/dynamicassets/arts/charavatars") / target_path.name
+            
             target_path = target_path.with_suffix(file_extension)
             result.content.save(target_path)
 

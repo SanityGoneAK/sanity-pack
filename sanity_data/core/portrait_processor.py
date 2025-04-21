@@ -35,7 +35,7 @@ class PortraitProcessor:
                 atlas_data = json.load(f)
             
             # Get the atlas image path (same name but with .png extension)
-            atlas_image_path = json_path.with_suffix(".png")
+            atlas_image_path = json_path.with_suffix(".webp")
             if not atlas_image_path.exists():
                 logger.warning(f"Warning: Atlas image not found for {json_path}")
                 return
@@ -45,7 +45,7 @@ class PortraitProcessor:
                 try:
                     char_name = sprite["name"]
                     
-                    output_path = json_path.parent / f"{char_name}.png"
+                    output_path = json_path.parent / f"{char_name}.webp"
                     process_portrait(atlas_image_path, sprite, output_path)
                     logger.info(f"Processed portrait: {char_name}")
                     
