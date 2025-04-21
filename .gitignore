@@ -38,8 +38,6 @@ venv.bak/
 *~
 
 # Project specific
-output/
-assets/
 cache/
 *.dat
 *.ab
