@@ -186,10 +186,10 @@ class UnityAssetExtractor:
             
             # Overrides to grab all data correctly
             target_path_str = target_path.as_posix()
-            if "assets/torappu/dynamicassets/arts/item" in target_path_str:
-                target_path = Path("assets/torappu/dynamicassets/arts/item") / target_path.name
-            if "assets/torappu/dynamicassets/arts/charavatars" in target_path_str:
-                target_path = Path("assets/torappu/dynamicassets/arts/charavatars") / target_path.name
+            if "/arts/item" in target_path_str:
+                target_path = base_dir / "arts/items" / target_path.name
+            if "/arts/charavatars" in target_path_str:
+                target_path = base_dir / "arts/charavatars" / target_path.name
             
             target_path = target_path.with_suffix(file_extension)
             result.content.save(target_path)
