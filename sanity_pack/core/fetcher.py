@@ -176,7 +176,7 @@ class DataFetcher:
                 logger.error(f"Failed to download {asset_path}: {str(e)}", exc_info=True)
                 return None
             except Exception as e:
-                logger.error(f"Unexpected error downloading {asset_path}: {str(e)}", exc_info=True)
+                logger.error(f"Unexpected error downloading {asset_path} from server {server.lower()}: {str(e)}", exc_info=True)
                 return None
 
     async def fetch_server_assets(self, server: Server) -> None:
