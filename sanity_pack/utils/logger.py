@@ -27,7 +27,7 @@ class CustomFormatter(logging.Formatter):
         return formatter.format(record)
 
 def setup_logger(
-    name: str = "sanity_data",
+    name: str = "sanity_pack",
     level: int = logging.ERROR,
     log_to_file: bool = True,
     log_dir: Optional[Path] = None

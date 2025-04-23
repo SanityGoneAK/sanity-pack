@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Arknights data extraction and processing tool"
 authors = ["Sanity;Gone 0"]
 readme = "README.md"
-packages = [{include = "sanity_data"}]
+packages = [{include = "sanity_pack"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -25,7 +25,7 @@ black = "^25.1.0"
 isort = "^6.0.1"
 
 [tool.poetry.scripts]
-compile-fbs = "sanity_data.fbs.compile_fbs:main"
+compile-fbs = "sanity_pack.fbs.compile_fbs:main"
 
 [build-system]
 requires = ["poetry-core"]

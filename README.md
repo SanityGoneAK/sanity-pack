@@ -54,7 +54,7 @@ Create a `config.json` file with the following structure:
 ## Usage
 
 ```bash
-poetry run python -m sanity_data
+poetry run python -m sanity_pack
 ```
 
 ## Development
