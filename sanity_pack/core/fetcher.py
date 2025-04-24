@@ -35,7 +35,7 @@ class DataFetcher:
         self.version_cache = VersionCache()
         self.asset_cache = AssetCache()
         self._session: Optional[aiohttp.ClientSession] = None
-        self._semaphore = asyncio.Semaphore(35)  # Limit concurrent downloads
+        self._semaphore = asyncio.Semaphore(200)  # Limit concurrent downloads
 
     async def __aenter__(self):
         """Set up async context."""

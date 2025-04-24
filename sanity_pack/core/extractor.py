@@ -3,6 +3,8 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Union, Tuple, Any, Protocol, runtime_checkable, TypeVar, Generic
+import aiofiles
+import aiofiles.os
 
 import UnityPy
 from UnityPy.enums.BundleFile import CompressionFlags
@@ -144,8 +146,8 @@ class UnityAssetExtractor:
 
     def __init__(self, config: Config):
         self.config = config
-        self._semaphore = asyncio.Semaphore(140)  # Limit concurrent extractions
-        self._object_semaphore = asyncio.Semaphore(140)  # Limit concurrent object processing
+        self._semaphore = asyncio.Semaphore(100)  # Limit concurrent extractions
+        self._object_semaphore = asyncio.Semaphore(100)  # Limit concurrent object processing
         self._processor_factory = AssetProcessorFactory()
 
     def _get_env(self, server: Server, asset_path: str) -> UnityPy.Environment:
@@ -170,8 +172,8 @@ class UnityAssetExtractor:
                 return await processor.process(obj)
             return None
 
-    async def _save_asset(self, result: AssetResult, asset_path: Path ,base_dir: Path) -> None:
-        """Save an asset to disk."""
+    async def _save_asset(self, result: AssetResult, asset_path: Path, base_dir: Path) -> None:
+        """Save an asset to disk asynchronously."""
         # Get the target path based on the source path and object type
         target_path = self._get_target_path(
             result.obj,
@@ -179,7 +181,8 @@ class UnityAssetExtractor:
             asset_path.parent,
             base_dir
         )
-        target_path.parent.mkdir(parents=True, exist_ok=True)
+        logger.info(f"Saving to path: {str(target_path)}...")
+        await aiofiles.os.makedirs(target_path.parent, exist_ok=True)
 
         if result.object_type in (Texture2D, Sprite):
             file_extension = ".png" if "dynchars" in str(target_path) else ".webp"
@@ -192,23 +195,27 @@ class UnityAssetExtractor:
                 target_path = base_dir / "arts/charavatars" / target_path.name
             
             target_path = target_path.with_suffix(file_extension)
-            result.content.save(target_path)
+            # Save image in a separate thread to avoid blocking
+            await asyncio.get_event_loop().run_in_executor(
+                None, 
+                lambda: result.content.save(target_path)
+            )
 
         elif result.object_type == TextAsset:
-            with open(target_path, 'wb') as f:
-                f.write(result.content)
+            async with aiofiles.open(target_path, 'wb') as f:
+                await f.write(result.content)
 
         elif result.object_type == MonoBehaviour:
             target_path = target_path.with_suffix('.json')
-            with open(target_path, 'w', encoding='utf-8') as f:
-                json.dump(result.content, f, indent=2, ensure_ascii=False)
+            async with aiofiles.open(target_path, 'w', encoding='utf-8') as f:
+                await f.write(json.dumps(result.content, indent=2, ensure_ascii=False))
 
         elif result.object_type == AudioClip:
             for name, audio_data in result.content.items():
                 audio_path = self._get_target_path(result.obj, name, asset_path, base_dir)
-                audio_path.parent.mkdir(parents=True, exist_ok=True)
-                with open(audio_path, 'wb') as f:
-                    f.write(audio_data)
+                await aiofiles.os.makedirs(audio_path.parent, exist_ok=True)
+                async with aiofiles.open(audio_path, 'wb') as f:
+                    await f.write(audio_data)
 
     async def process_asset(self, server: Server, asset_path: Path) -> None:
         """Process a single asset file asynchronously."""
@@ -224,14 +231,17 @@ class UnityAssetExtractor:
                 tasks = [self._process_object(obj) for obj in env.objects]
                 results = await asyncio.gather(*tasks)
                 
-                # 3. Save all assets
+                # 3. Save all assets concurrently
                 base_dir = self.config.output_dir / server.lower()
-                for result in results:
-                    if result:
-                        await self._save_asset(result, relative_path, base_dir)
+                save_tasks = [
+                    self._save_asset(result, relative_path, base_dir)
+                    for result in results
+                    if result
+                ]
+                await asyncio.gather(*save_tasks)
                 
                 # 4. Clean up
-                asset_path.unlink()
+                await asyncio.get_event_loop().run_in_executor(None, asset_path.unlink)
                 logger.info(f"Successfully extracted assets from {relative_path}")
                 
             except Exception as e:
