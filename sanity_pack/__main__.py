@@ -29,7 +29,7 @@ async def main():
     process_alpha_images(config)
     process_portraits(config)    
     process_text_assets(config)
-    process_audio_files(config)
+    await process_audio_files(config)
 
 
 if __name__ == "__main__":

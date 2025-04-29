@@ -24,7 +24,8 @@
         "arts/items/item_icons_no_tiny_hub.ab",
         "spritepack/icon_enemies_",
         "audio/sound_beta_2/voice/",
-        "audio/sound_beta_2/voice_cn"
+        "audio/sound_beta_2/voice_cn",
+        "audio/sound_beta_2/voice_en"
       ]
     },
     "EN": {
