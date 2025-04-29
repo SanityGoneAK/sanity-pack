@@ -19,6 +19,7 @@ bson = "^0.5.10"
 flatbuffers = "^24.3.25"
 numpy = "^2.2.4"
 aiofiles = "^24.1.0"
+pydub = "^0.25.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"

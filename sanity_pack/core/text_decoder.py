@@ -30,6 +30,7 @@ _EXT_KNOWN = (
     ".flv",
     ".png",
     ".webp",
+    ".DS_Store"
 )
 _EXT_AB = (".ab", ".bin")
 

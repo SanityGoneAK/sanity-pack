@@ -39,7 +39,7 @@ class DataFetcher:
 
     async def __aenter__(self):
         """Set up async context."""
-        timeout = aiohttp.ClientTimeout(total=30)  # 30 seconds timeout
+        timeout = aiohttp.ClientTimeout(total=60)  # 30 seconds timeout
         self._session = aiohttp.ClientSession(
             timeout=timeout,
             headers={

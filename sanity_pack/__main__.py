@@ -7,7 +7,8 @@ from .core.workflow import (
     process_assets,
     process_alpha_images,
     process_portraits,
-    process_text_assets
+    process_text_assets,
+    process_audio_files
 )
 from .utils.logger import setup_logger
 
@@ -15,7 +16,7 @@ from .utils.logger import setup_logger
 async def main():
     """Main workflow function that runs all processes in the correct order."""
     global logger
-    logger = setup_logger(level="WARNING")
+    logger = setup_logger(level="INFO")
 
     # Setup configuration and caches
     config = load_or_create_config()
@@ -28,6 +29,7 @@ async def main():
     process_alpha_images(config)
     process_portraits(config)    
     process_text_assets(config)
+    process_audio_files(config)
 
 
 if __name__ == "__main__":

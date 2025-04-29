@@ -8,6 +8,7 @@ from .extractor import UnityAssetExtractor
 from .alpha_processor import AlphaProcessor
 from .portrait_processor import PortraitProcessor
 from .text_decoder import TextAssetDecoder
+from .audio_processor import process_audio_files
 from ..models.cache import AssetCache, VersionCache
 from ..models.config import Config, Server, ServerConfig
 from ..utils.cache import load_cache, save_cache
@@ -78,6 +79,17 @@ async def process_assets(config: Config) -> None:
     extractor = UnityAssetExtractor(config)
     await extractor.extract_all()
 
+
+def process_text_assets(config: Config) -> None:
+    """Process text assets using FlatBuffers and AES decryption."""
+
+    logger.info("\nProcessing text assets...")
+    
+    text_decoder = TextAssetDecoder(config)
+    text_decoder.process_directory(config.output_dir)
+
+    logger.info("Text asset processing complete!")
+
 def process_alpha_images(config: Config) -> None:
     """Process alpha images and combine them with their RGB counterparts."""
     
@@ -99,12 +111,14 @@ def process_portraits(config: Config) -> None:
 
     logger.info("Portrait processing complete!")
 
-def process_text_assets(config: Config) -> None:
-    """Process text assets using FlatBuffers and AES decryption."""
-
-    logger.info("\nProcessing text assets...")
-    
-    text_decoder = TextAssetDecoder(config)
-    text_decoder.process_directory(config.output_dir)
-
-    logger.info("Text asset processing complete!") 
+__all__ = [
+    "load_or_create_config",
+    "setup_directories",
+    "load_caches",
+    "fetch_assets",
+    "process_assets",
+    "process_alpha_images",
+    "process_portraits",
+    "process_text_assets",
+    "process_audio_files"
+] 

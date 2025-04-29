@@ -1550,6 +1550,18 @@ files = [
 typing-extensions = ">=4.6.0,<4.7.0 || >4.7.0"
 
 [[package]]
+name = "pydub"
+version = "0.25.1"
+description = "Manipulate audio with an simple and easy high level interface"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "pydub-0.25.1-py2.py3-none-any.whl", hash = "sha256:65617e33033874b59d87db603aa1ed450633288aefead953b30bded59cb599a6"},
+    {file = "pydub-0.25.1.tar.gz", hash = "sha256:980a33ce9949cab2a569606b65674d748ecbca4f0796887fd6f46173a7b0d30f"},
+]
+
+[[package]]
 name = "pyfmodex"
 version = "0.7.2"
 description = "Python bindings to the Fmod Ex library."
@@ -1984,4 +1996,4 @@ propcache = ">=0.2.1"
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "e774df92eaefe71e291fb3ffb867e6f2d1e4803379b5c660598c8ef99268af21"
+content-hash = "d7af9b3dc1fa07f82ab2cea1db3f243cb59ff7e163a10c8e439cc3e59cf6e2bd"
