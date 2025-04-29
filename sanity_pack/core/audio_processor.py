@@ -28,7 +28,7 @@ async def convert_audio_file(wav_path: Path, mp3_path: Path) -> None:
             bitrate="192k"
         )
         
-        logger.info(f"Converted {wav_path.name} to MP3")
+        logger.info(f"Converted {wav_path} to MP3")
         
         # Remove original WAV file
         await aiofiles.os.remove(str(wav_path))
