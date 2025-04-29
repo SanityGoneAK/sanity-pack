@@ -43,7 +43,7 @@ def process_audio_files(config: Config) -> None:
                 bitrate="192k"
             )
             
-            logger.debug(f"Converted {wav_path.name} to MP3")
+            logger.info(f"Converted {wav_path.name} to MP3")
             
             # Remove original WAV file
             wav_path.unlink()
