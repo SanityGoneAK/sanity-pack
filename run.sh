@@ -1,8 +1,7 @@
 poetry install
 git submodule update --init --recursive
 poetry run python -m sanity_pack
-git config --global user.name "Sanity;Gone"
-git config --global user.email "actions@users.noreply.github.com"
+git config user.name "Sanity;Gone"
 git pull --all
 git add cache
 git add sanity_pack/fbs
