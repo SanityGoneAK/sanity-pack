@@ -24,16 +24,15 @@
         "arts/items/item_icons_no_tiny_hub.ab",
         "spritepack/icon_enemies_",
         "audio/sound_beta_2/voice/",
-        "audio/sound_beta_2/voice_cn",
-        "audio/sound_beta_2/voice_en",
-        "audio/sound_beta_2/voice_kr",
-        "audio/sound_beta_2/voice_custom"
+        "audio/sound_beta_2/voice_cn"
       ]
     },
     "EN": {
       "enabled": true,
       "path_whitelist": [
-        "anon"
+        "anon",
+        "audio/sound_beta_2/voice_en",
+        "audio/sound_beta_2/voice_custom"
       ]
     },
     "JP": {
@@ -45,7 +44,8 @@
     "KR": {
       "enabled": true,
       "path_whitelist": [
-        "anon"
+        "anon",
+        "audio/sound_beta_2/voice_kr"
       ]
     }
   }
