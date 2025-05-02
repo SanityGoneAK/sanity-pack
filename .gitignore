@@ -38,6 +38,7 @@ venv.bak/
 *~
 
 # Project specific
+assets/
 *.dat
 *.ab
 *.mp4
