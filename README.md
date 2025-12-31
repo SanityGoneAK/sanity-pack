@@ -49,7 +49,7 @@ You can use the regular flatc binary to decode flatbuffers into JSON but it is r
     - `poetry run sanity-pack pipeline `
 
 ## Acknowledgements
-`sanity-data` would not be possible without these projects:
+`sanity-pack` would not be possible without these projects:
 - [UnityPy](https://github.com/K0lb3/UnityPy)
 - [arkdata](https://github.com/astral4/arkdata)
 - [Ark-Unpacker](https://github.com/isHarryh/Ark-Unpacker)
