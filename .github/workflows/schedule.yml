@@ -12,6 +12,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set up FFMPEG
+        uses: FedericoCarboni/setup-ffmpeg@v3
+
       - name: Setup Python 3.12
         uses: actions/setup-python@v5
         with:
