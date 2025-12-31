@@ -45,6 +45,8 @@ assets/
 flatc
 _generated
 .logs
+ArknightsStudioCLI/
+OpenArknightsFBS/
 
 # OS specific
 .DS_Store

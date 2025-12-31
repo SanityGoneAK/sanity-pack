@@ -1,3 +1,0 @@
-[submodule "sanity_pack/fbs"]
-	path = sanity_pack/fbs
-	url = https://github.com/ArknightsAssets/ArknightsFlatbuffers.git
