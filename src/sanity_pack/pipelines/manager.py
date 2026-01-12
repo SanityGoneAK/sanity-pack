@@ -7,6 +7,7 @@ from sanity_pack.pipelines.steps.process_portraits import ProcessPortraitsStep
 from sanity_pack.pipelines.steps.convert_wav_to_mp3 import ConvertWavToMp3Step
 from sanity_pack.pipelines.steps.process_alpha_images import ProcessAlphaImagesStep
 from sanity_pack.pipelines.steps.decode_text_assets import DecodeTextAssetsStep
+from sanity_pack.pipelines.steps.flatten_image_paths import FlattenImagePathsStep
 from sanity_pack.pipelines.steps.cleanup import CleanupStep
 from sanity_pack.utils.logger import log
 
@@ -24,6 +25,7 @@ class PipelineManager:
         ConvertWavToMp3Step,
         ProcessAlphaImagesStep,
         DecodeTextAssetsStep,
+        FlattenImagePathsStep,
         # CleanupStep,  # Always run cleanup last
     ]
     
