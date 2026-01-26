@@ -47,52 +47,36 @@ class enum__Torappu_ItemType(object):
     REP_COIN = 37
     ROGUELIKE = 38
     LINKAGE_TKT_GACHA_10 = 39
-    VOUCHER_ELITE_II_4 = 40
-    VOUCHER_ELITE_II_5 = 41
-    VOUCHER_ELITE_II_6 = 42
-    VOUCHER_SKIN = 43
-    RETRO_COIN = 44
-    PLAYER_AVATAR = 45
-    UNI_COLLECTION = 46
-    VOUCHER_FULL_POTENTIAL = 47
-    RL_COIN = 48
-    RETURN_CREDIT = 49
-    MEDAL = 50
-    CHARM = 51
-    HOME_BACKGROUND = 52
-    EXTERMINATION_AGENT = 53
-    OPTIONAL_VOUCHER_PICK = 54
-    ACT_CART_COMPONENT = 55
-    VOUCHER_LEVELMAX_6 = 56
-    VOUCHER_LEVELMAX_5 = 57
-    VOUCHER_LEVELMAX_4 = 58
-    VOUCHER_SKILL_SPECIALLEVELMAX_6 = 59
-    VOUCHER_SKILL_SPECIALLEVELMAX_5 = 60
-    VOUCHER_SKILL_SPECIALLEVELMAX_4 = 61
-    ACTIVITY_POTENTIAL = 62
-    ITEM_PACK = 63
-    SANDBOX = 64
-    FAVOR_ADD_ITEM = 65
-    CLASSIC_SHD = 66
-    CLASSIC_TKT_GACHA = 67
-    CLASSIC_TKT_GACHA_10 = 68
-    LIMITED_BUFF = 69
-    CLASSIC_FES_PICK_TIER_5 = 70
-    CLASSIC_FES_PICK_TIER_6 = 71
-    RETURN_PROGRESS = 72
-    NEW_PROGRESS = 73
-    MCARD_VOUCHER = 74
-    MATERIAL_ISSUE_VOUCHER = 75
-    CRS_SHOP_COIN_V2 = 76
-    HOME_THEME = 77
-    SANDBOX_PERM = 78
-    SANDBOX_TOKEN = 79
-    TEMPLATE_TRAP = 80
-    NAME_CARD_SKIN = 81
-    EMOTICON_SET = 82
-    EXCLUSIVE_TKT_GACHA = 83
-    EXCLUSIVE_TKT_GACHA_10 = 84
-    SO_CHAR_EXP = 85
+    VOUCHER_ELITE_II_5 = 40
+    VOUCHER_ELITE_II_6 = 41
+    VOUCHER_SKIN = 42
+    RETRO_COIN = 43
+    PLAYER_AVATAR = 44
+    UNI_COLLECTION = 45
+    VOUCHER_FULL_POTENTIAL = 46
+    RL_COIN = 47
+    RETURN_CREDIT = 48
+    MEDAL = 49
+    CHARM = 50
+    HOME_BACKGROUND = 51
+    EXTERMINATION_AGENT = 52
+    OPTIONAL_VOUCHER_PICK = 53
+    ACT_CART_COMPONENT = 54
+    VOUCHER_LEVELMAX_6 = 55
+    VOUCHER_LEVELMAX_5 = 56
+    ACTIVITY_POTENTIAL = 57
+    ITEM_PACK = 58
+    SANDBOX = 59
+    FAVOR_ADD_ITEM = 60
+    CLASSIC_SHD = 61
+    CLASSIC_TKT_GACHA = 62
+    CLASSIC_TKT_GACHA_10 = 63
+    LIMITED_BUFF = 64
+    CLASSIC_FES_PICK_TIER_5 = 65
+    CLASSIC_FES_PICK_TIER_6 = 66
+    RETURN_PROGRESS = 67
+    NEW_PROGRESS = 68
+    MCARD_VOUCHER = 69
 
 
 class enum__Torappu_SubProfessionAttackType(object):
@@ -862,43 +846,36 @@ class clz_Torappu_GameDataConsts(object):
         return 0
 
     # clz_Torappu_GameDataConsts
-    def DiamondHandbookStageGain(self):
+    def ApBuyCost(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
-    def ApBuyCost(self):
+    def ApBuyThreshold(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
-    def ApBuyThreshold(self):
+    def CreditLimit(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(64))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
-    def CreditLimit(self):
+    def MonthlySubRemainTimeLimitDays(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(66))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
-    def MonthlySubRemainTimeLimitDays(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_GameDataConsts
     def FriendAssistRarityLimit(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.Get(flatbuffers.number_types.Int32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -906,152 +883,68 @@ class clz_Torappu_GameDataConsts(object):
 
     # clz_Torappu_GameDataConsts
     def FriendAssistRarityLimitAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int32Flags, o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def FriendAssistRarityLimitLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def FriendAssistRarityLimitIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
         return o == 0
 
     # clz_Torappu_GameDataConsts
     def MainlineCompatibleDesc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GameDataConsts
     def MainlineToughDesc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GameDataConsts
     def MainlineEasyDesc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GameDataConsts
     def MainlineNormalDesc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GameDataConsts
     def RejectSpCharMission(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(80))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def AddedRewardDisplayZone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(82))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_GameDataConsts
-    def OneDiamondAp(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(84))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_GameDataConsts
-    def CharRotationPresetMaxCnt(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(86))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_GameDataConsts
-    def CharRotationSkinListMaxCnt(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(88))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_GameDataConsts
-    def DefaultCrpresetCharId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(90))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_GameDataConsts
-    def DefaultCrpresetCharSkinId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(92))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_GameDataConsts
-    def DefaultCrpresetBgid(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(94))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_GameDataConsts
-    def DefaultCrpresetThemeId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(96))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_GameDataConsts
-    def DefaultCrpresetName(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(98))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_GameDataConsts
-    def CharRotationPresetTrackTs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(100))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_GameDataConsts
-    def UniequipArchiveSysTrackTs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(102))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_GameDataConsts
-    def ManufactPromptTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(104))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_GameDataConsts
-    def MainGuideActivedStageId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(106))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(80))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GameDataConsts
     def RichTextStyles(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(108))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(82))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -1063,19 +956,19 @@ class clz_Torappu_GameDataConsts(object):
 
     # clz_Torappu_GameDataConsts
     def RichTextStylesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(108))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(82))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def RichTextStylesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(108))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(82))
         return o == 0
 
     # clz_Torappu_GameDataConsts
     def CharAssistRefreshTime(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(110))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(84))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -1087,19 +980,19 @@ class clz_Torappu_GameDataConsts(object):
 
     # clz_Torappu_GameDataConsts
     def CharAssistRefreshTimeLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(110))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(84))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def CharAssistRefreshTimeIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(110))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(84))
         return o == 0
 
     # clz_Torappu_GameDataConsts
     def NormalRecruitLockedString(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(112))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(86))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -1107,89 +1000,96 @@ class clz_Torappu_GameDataConsts(object):
 
     # clz_Torappu_GameDataConsts
     def NormalRecruitLockedStringLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(112))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(86))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def NormalRecruitLockedStringIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(112))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(86))
         return o == 0
 
     # clz_Torappu_GameDataConsts
     def CommonPotentialLvlUpCount(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(114))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(88))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def WeeklyOverrideDesc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(116))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(90))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GameDataConsts
     def VoucherDiv(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(118))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(92))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def RecruitPoolVersion(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(120))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(94))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def V006RecruitTimeStep1Refresh(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(122))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(96))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def V006RecruitTimeStep2Check(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(124))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(98))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def V006RecruitTimeStep2Flush(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(126))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(100))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def BuyApTimeNoLimitFlag(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(128))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(102))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_GameDataConsts
     def IsLmgtsenabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(130))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(104))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_GameDataConsts
+    def CrisisUnlockStage(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(106))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_GameDataConsts
     def LegacyTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(132))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(108))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def LegacyItemList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(134))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(110))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -1201,33 +1101,33 @@ class clz_Torappu_GameDataConsts(object):
 
     # clz_Torappu_GameDataConsts
     def LegacyItemListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(134))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(110))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def LegacyItemListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(134))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(110))
         return o == 0
 
     # clz_Torappu_GameDataConsts
     def UseAssistSocialPt(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(136))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(112))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def UseAssistSocialPtMaxCount(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(138))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(114))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def AssistBeUsedSocialPt(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(140))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(116))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -1239,19 +1139,19 @@ class clz_Torappu_GameDataConsts(object):
 
     # clz_Torappu_GameDataConsts
     def AssistBeUsedSocialPtLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(140))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(116))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def AssistBeUsedSocialPtIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(140))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(116))
         return o == 0
 
     # clz_Torappu_GameDataConsts
     def PushForces(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(142))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(118))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.Get(flatbuffers.number_types.Float32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -1259,33 +1159,33 @@ class clz_Torappu_GameDataConsts(object):
 
     # clz_Torappu_GameDataConsts
     def PushForcesAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(142))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(118))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Float32Flags, o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def PushForcesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(142))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(118))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def PushForcesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(142))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(118))
         return o == 0
 
     # clz_Torappu_GameDataConsts
     def PushForceZeroIndex(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(144))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(120))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def NormalGachaUnlockPrice(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(146))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(122))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.Get(flatbuffers.number_types.Int32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -1293,26 +1193,26 @@ class clz_Torappu_GameDataConsts(object):
 
     # clz_Torappu_GameDataConsts
     def NormalGachaUnlockPriceAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(146))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(122))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int32Flags, o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def NormalGachaUnlockPriceLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(146))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(122))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def NormalGachaUnlockPriceIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(146))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(122))
         return o == 0
 
     # clz_Torappu_GameDataConsts
     def PullForces(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(148))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(124))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.Get(flatbuffers.number_types.Float32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -1320,33 +1220,33 @@ class clz_Torappu_GameDataConsts(object):
 
     # clz_Torappu_GameDataConsts
     def PullForcesAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(148))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(124))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Float32Flags, o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def PullForcesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(148))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(124))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def PullForcesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(148))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(124))
         return o == 0
 
     # clz_Torappu_GameDataConsts
     def PullForceZeroIndex(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(150))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(126))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def MultiInComeByRank(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(152))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(128))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -1354,61 +1254,61 @@ class clz_Torappu_GameDataConsts(object):
 
     # clz_Torappu_GameDataConsts
     def MultiInComeByRankLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(152))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(128))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def MultiInComeByRankIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(152))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(128))
         return o == 0
 
     # clz_Torappu_GameDataConsts
     def LmtgstoEpgsratio(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(154))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(130))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def NewBeeGiftEpgs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(156))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(132))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def LMtgsdescConstOne(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(158))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(134))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GameDataConsts
     def LMtgsdescConstTwo(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(160))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(136))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GameDataConsts
     def DefCdprimColor(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(162))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(138))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GameDataConsts
     def DefCdsecColor(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(164))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(140))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GameDataConsts
     def MailBannerType(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(166))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(142))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -1416,138 +1316,124 @@ class clz_Torappu_GameDataConsts(object):
 
     # clz_Torappu_GameDataConsts
     def MailBannerTypeLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(166))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(142))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def MailBannerTypeIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(166))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(142))
         return o == 0
 
     # clz_Torappu_GameDataConsts
     def MonthlySubWarningTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(168))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(144))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def UnlimitSkinOutOfTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(170))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(146))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def ReplicateShopStartTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(172))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(148))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
-    def Tso(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(174))
+    def Prts__checkRequired__clzTorappuGameDataConsts__operatorRecordsStartTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(150))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def IsDynIllustEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(176))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(152))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_GameDataConsts
     def IsDynIllustStartEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(178))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(154))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_GameDataConsts
     def IsClassicQcshopEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(180))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(156))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_GameDataConsts
     def IsRoguelikeTopicFuncEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(182))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # clz_Torappu_GameDataConsts
-    def IsSandboxPermFuncEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(184))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(158))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_GameDataConsts
     def IsRoguelikeAvgAchieveFuncEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(186))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(160))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_GameDataConsts
     def IsClassicPotentialItemFuncEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(188))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(162))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_GameDataConsts
     def IsClassicGachaPoolFuncEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(190))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # clz_Torappu_GameDataConsts
-    def IsSpecialGachaPoolFuncEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(192))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(164))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_GameDataConsts
     def IsVoucherClassicItemDistinguishable(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(194))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(166))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_GameDataConsts
     def VoucherSkinRedeem(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(196))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(168))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def VoucherSkinDesc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(198))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(170))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GameDataConsts
     def CharmEquipCount(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(200))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(172))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
     def TermDescriptionDict(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(202))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(174))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -1559,82 +1445,47 @@ class clz_Torappu_GameDataConsts(object):
 
     # clz_Torappu_GameDataConsts
     def TermDescriptionDictLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(202))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(174))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def TermDescriptionDictIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(202))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(174))
         return o == 0
 
     # clz_Torappu_GameDataConsts
     def StoryReviewUnlockItemLackTip(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(204))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(176))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GameDataConsts
     def DataVersion(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(206))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(178))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GameDataConsts
     def ResPrefVersion(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(208))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(180))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GameDataConsts
     def AnnounceWebBusType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(210))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(182))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
-
-    # clz_Torappu_GameDataConsts
-    def VideoPlayerWebBusType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(212))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_GameDataConsts
-    def GachaLogBusType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(214))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_GameDataConsts
-    def DefaultMinMultipleBattleTimes(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(216))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_GameDataConsts
-    def DefaultMaxMultipleBattleTimes(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(218))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_GameDataConsts
-    def MultipleActionOpen(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(220))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
 
     # clz_Torappu_GameDataConsts
     def SubProfessionDamageTypePairs(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(222))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(184))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -1646,94 +1497,18 @@ class clz_Torappu_GameDataConsts(object):
 
     # clz_Torappu_GameDataConsts
     def SubProfessionDamageTypePairsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(222))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(184))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GameDataConsts
     def SubProfessionDamageTypePairsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(222))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(184))
         return o == 0
-
-    # clz_Torappu_GameDataConsts
-    def ClassicProtectChar(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(224))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return ""
-
-    # clz_Torappu_GameDataConsts
-    def ClassicProtectCharLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(224))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_GameDataConsts
-    def ClassicProtectCharIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(224))
-        return o == 0
-
-    # clz_Torappu_GameDataConsts
-    def BirthdaySettingDesc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(226))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_GameDataConsts
-    def BirthdaySettingConfirmDesc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(228))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_GameDataConsts
-    def BirthdaySettingLeapConfirmDesc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(230))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_GameDataConsts
-    def LeapBirthdayRewardMonth(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(232))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_GameDataConsts
-    def LeapBirthdayRewardDay(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(234))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_GameDataConsts
-    def BirthdaySettingShowStageId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(236))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_GameDataConsts
-    def IsBirthdayFuncEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(238))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # clz_Torappu_GameDataConsts
-    def IsSoCharEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(240))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
 
 def clz_Torappu_GameDataConstsStart(builder):
-    builder.StartObject(119)
+    builder.StartObject(91)
 
 def clz_Torappu_GameDataConstsAddMaxPlayerLevel(builder, maxPlayerLevel):
     builder.PrependInt32Slot(0, maxPlayerLevel, 0)
@@ -1843,320 +1618,233 @@ def clz_Torappu_GameDataConstsAddEasyCrystalBonus(builder, easyCrystalBonus):
 def clz_Torappu_GameDataConstsAddDiamondMaterialToShardExchangeRatio(builder, diamondMaterialToShardExchangeRatio):
     builder.PrependInt32Slot(27, diamondMaterialToShardExchangeRatio, 0)
 
-def clz_Torappu_GameDataConstsAddDiamondHandbookStageGain(builder, diamondHandbookStageGain):
-    builder.PrependInt32Slot(28, diamondHandbookStageGain, 0)
-
 def clz_Torappu_GameDataConstsAddApBuyCost(builder, apBuyCost):
-    builder.PrependInt32Slot(29, apBuyCost, 0)
+    builder.PrependInt32Slot(28, apBuyCost, 0)
 
 def clz_Torappu_GameDataConstsAddApBuyThreshold(builder, apBuyThreshold):
-    builder.PrependInt32Slot(30, apBuyThreshold, 0)
+    builder.PrependInt32Slot(29, apBuyThreshold, 0)
 
 def clz_Torappu_GameDataConstsAddCreditLimit(builder, creditLimit):
-    builder.PrependInt32Slot(31, creditLimit, 0)
+    builder.PrependInt32Slot(30, creditLimit, 0)
 
 def clz_Torappu_GameDataConstsAddMonthlySubRemainTimeLimitDays(builder, monthlySubRemainTimeLimitDays):
-    builder.PrependInt32Slot(32, monthlySubRemainTimeLimitDays, 0)
+    builder.PrependInt32Slot(31, monthlySubRemainTimeLimitDays, 0)
 
 def clz_Torappu_GameDataConstsAddFriendAssistRarityLimit(builder, friendAssistRarityLimit):
-    builder.PrependUOffsetTRelativeSlot(33, flatbuffers.number_types.UOffsetTFlags.py_type(friendAssistRarityLimit), 0)
+    builder.PrependUOffsetTRelativeSlot(32, flatbuffers.number_types.UOffsetTFlags.py_type(friendAssistRarityLimit), 0)
 
 def clz_Torappu_GameDataConstsStartFriendAssistRarityLimitVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GameDataConstsAddMainlineCompatibleDesc(builder, mainlineCompatibleDesc):
-    builder.PrependUOffsetTRelativeSlot(34, flatbuffers.number_types.UOffsetTFlags.py_type(mainlineCompatibleDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(33, flatbuffers.number_types.UOffsetTFlags.py_type(mainlineCompatibleDesc), 0)
 
 def clz_Torappu_GameDataConstsAddMainlineToughDesc(builder, mainlineToughDesc):
-    builder.PrependUOffsetTRelativeSlot(35, flatbuffers.number_types.UOffsetTFlags.py_type(mainlineToughDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(34, flatbuffers.number_types.UOffsetTFlags.py_type(mainlineToughDesc), 0)
 
 def clz_Torappu_GameDataConstsAddMainlineEasyDesc(builder, mainlineEasyDesc):
-    builder.PrependUOffsetTRelativeSlot(36, flatbuffers.number_types.UOffsetTFlags.py_type(mainlineEasyDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(35, flatbuffers.number_types.UOffsetTFlags.py_type(mainlineEasyDesc), 0)
 
 def clz_Torappu_GameDataConstsAddMainlineNormalDesc(builder, mainlineNormalDesc):
-    builder.PrependUOffsetTRelativeSlot(37, flatbuffers.number_types.UOffsetTFlags.py_type(mainlineNormalDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(36, flatbuffers.number_types.UOffsetTFlags.py_type(mainlineNormalDesc), 0)
 
 def clz_Torappu_GameDataConstsAddRejectSpCharMission(builder, rejectSpCharMission):
-    builder.PrependInt64Slot(38, rejectSpCharMission, 0)
+    builder.PrependInt64Slot(37, rejectSpCharMission, 0)
 
 def clz_Torappu_GameDataConstsAddAddedRewardDisplayZone(builder, addedRewardDisplayZone):
-    builder.PrependUOffsetTRelativeSlot(39, flatbuffers.number_types.UOffsetTFlags.py_type(addedRewardDisplayZone), 0)
-
-def clz_Torappu_GameDataConstsAddOneDiamondAp(builder, oneDiamondAp):
-    builder.PrependInt32Slot(40, oneDiamondAp, 0)
-
-def clz_Torappu_GameDataConstsAddCharRotationPresetMaxCnt(builder, charRotationPresetMaxCnt):
-    builder.PrependInt32Slot(41, charRotationPresetMaxCnt, 0)
-
-def clz_Torappu_GameDataConstsAddCharRotationSkinListMaxCnt(builder, charRotationSkinListMaxCnt):
-    builder.PrependInt32Slot(42, charRotationSkinListMaxCnt, 0)
-
-def clz_Torappu_GameDataConstsAddDefaultCrpresetCharId(builder, defaultCrpresetCharId):
-    builder.PrependUOffsetTRelativeSlot(43, flatbuffers.number_types.UOffsetTFlags.py_type(defaultCrpresetCharId), 0)
-
-def clz_Torappu_GameDataConstsAddDefaultCrpresetCharSkinId(builder, defaultCrpresetCharSkinId):
-    builder.PrependUOffsetTRelativeSlot(44, flatbuffers.number_types.UOffsetTFlags.py_type(defaultCrpresetCharSkinId), 0)
-
-def clz_Torappu_GameDataConstsAddDefaultCrpresetBgid(builder, defaultCrpresetBgid):
-    builder.PrependUOffsetTRelativeSlot(45, flatbuffers.number_types.UOffsetTFlags.py_type(defaultCrpresetBgid), 0)
-
-def clz_Torappu_GameDataConstsAddDefaultCrpresetThemeId(builder, defaultCrpresetThemeId):
-    builder.PrependUOffsetTRelativeSlot(46, flatbuffers.number_types.UOffsetTFlags.py_type(defaultCrpresetThemeId), 0)
-
-def clz_Torappu_GameDataConstsAddDefaultCrpresetName(builder, defaultCrpresetName):
-    builder.PrependUOffsetTRelativeSlot(47, flatbuffers.number_types.UOffsetTFlags.py_type(defaultCrpresetName), 0)
-
-def clz_Torappu_GameDataConstsAddCharRotationPresetTrackTs(builder, charRotationPresetTrackTs):
-    builder.PrependInt64Slot(48, charRotationPresetTrackTs, 0)
-
-def clz_Torappu_GameDataConstsAddUniequipArchiveSysTrackTs(builder, uniequipArchiveSysTrackTs):
-    builder.PrependInt64Slot(49, uniequipArchiveSysTrackTs, 0)
-
-def clz_Torappu_GameDataConstsAddManufactPromptTime(builder, manufactPromptTime):
-    builder.PrependInt32Slot(50, manufactPromptTime, 0)
-
-def clz_Torappu_GameDataConstsAddMainGuideActivedStageId(builder, mainGuideActivedStageId):
-    builder.PrependUOffsetTRelativeSlot(51, flatbuffers.number_types.UOffsetTFlags.py_type(mainGuideActivedStageId), 0)
+    builder.PrependUOffsetTRelativeSlot(38, flatbuffers.number_types.UOffsetTFlags.py_type(addedRewardDisplayZone), 0)
 
 def clz_Torappu_GameDataConstsAddRichTextStyles(builder, richTextStyles):
-    builder.PrependUOffsetTRelativeSlot(52, flatbuffers.number_types.UOffsetTFlags.py_type(richTextStyles), 0)
+    builder.PrependUOffsetTRelativeSlot(39, flatbuffers.number_types.UOffsetTFlags.py_type(richTextStyles), 0)
 
 def clz_Torappu_GameDataConstsStartRichTextStylesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GameDataConstsAddCharAssistRefreshTime(builder, charAssistRefreshTime):
-    builder.PrependUOffsetTRelativeSlot(53, flatbuffers.number_types.UOffsetTFlags.py_type(charAssistRefreshTime), 0)
+    builder.PrependUOffsetTRelativeSlot(40, flatbuffers.number_types.UOffsetTFlags.py_type(charAssistRefreshTime), 0)
 
 def clz_Torappu_GameDataConstsStartCharAssistRefreshTimeVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GameDataConstsAddNormalRecruitLockedString(builder, normalRecruitLockedString):
-    builder.PrependUOffsetTRelativeSlot(54, flatbuffers.number_types.UOffsetTFlags.py_type(normalRecruitLockedString), 0)
+    builder.PrependUOffsetTRelativeSlot(41, flatbuffers.number_types.UOffsetTFlags.py_type(normalRecruitLockedString), 0)
 
 def clz_Torappu_GameDataConstsStartNormalRecruitLockedStringVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GameDataConstsAddCommonPotentialLvlUpCount(builder, commonPotentialLvlUpCount):
-    builder.PrependInt32Slot(55, commonPotentialLvlUpCount, 0)
+    builder.PrependInt32Slot(42, commonPotentialLvlUpCount, 0)
 
 def clz_Torappu_GameDataConstsAddWeeklyOverrideDesc(builder, weeklyOverrideDesc):
-    builder.PrependUOffsetTRelativeSlot(56, flatbuffers.number_types.UOffsetTFlags.py_type(weeklyOverrideDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(43, flatbuffers.number_types.UOffsetTFlags.py_type(weeklyOverrideDesc), 0)
 
 def clz_Torappu_GameDataConstsAddVoucherDiv(builder, voucherDiv):
-    builder.PrependInt32Slot(57, voucherDiv, 0)
+    builder.PrependInt32Slot(44, voucherDiv, 0)
 
 def clz_Torappu_GameDataConstsAddRecruitPoolVersion(builder, recruitPoolVersion):
-    builder.PrependInt32Slot(58, recruitPoolVersion, 0)
+    builder.PrependInt32Slot(45, recruitPoolVersion, 0)
 
 def clz_Torappu_GameDataConstsAddV006RecruitTimeStep1Refresh(builder, v006RecruitTimeStep1Refresh):
-    builder.PrependInt64Slot(59, v006RecruitTimeStep1Refresh, 0)
+    builder.PrependInt64Slot(46, v006RecruitTimeStep1Refresh, 0)
 
 def clz_Torappu_GameDataConstsAddV006RecruitTimeStep2Check(builder, v006RecruitTimeStep2Check):
-    builder.PrependInt64Slot(60, v006RecruitTimeStep2Check, 0)
+    builder.PrependInt64Slot(47, v006RecruitTimeStep2Check, 0)
 
 def clz_Torappu_GameDataConstsAddV006RecruitTimeStep2Flush(builder, v006RecruitTimeStep2Flush):
-    builder.PrependInt64Slot(61, v006RecruitTimeStep2Flush, 0)
+    builder.PrependInt64Slot(48, v006RecruitTimeStep2Flush, 0)
 
 def clz_Torappu_GameDataConstsAddBuyApTimeNoLimitFlag(builder, buyApTimeNoLimitFlag):
-    builder.PrependBoolSlot(62, buyApTimeNoLimitFlag, 0)
+    builder.PrependBoolSlot(49, buyApTimeNoLimitFlag, 0)
 
 def clz_Torappu_GameDataConstsAddIsLmgtsenabled(builder, isLmgtsenabled):
-    builder.PrependBoolSlot(63, isLmgtsenabled, 0)
+    builder.PrependBoolSlot(50, isLmgtsenabled, 0)
+
+def clz_Torappu_GameDataConstsAddCrisisUnlockStage(builder, crisisUnlockStage):
+    builder.PrependUOffsetTRelativeSlot(51, flatbuffers.number_types.UOffsetTFlags.py_type(crisisUnlockStage), 0)
 
 def clz_Torappu_GameDataConstsAddLegacyTime(builder, legacyTime):
-    builder.PrependInt64Slot(64, legacyTime, 0)
+    builder.PrependInt64Slot(52, legacyTime, 0)
 
 def clz_Torappu_GameDataConstsAddLegacyItemList(builder, legacyItemList):
-    builder.PrependUOffsetTRelativeSlot(65, flatbuffers.number_types.UOffsetTFlags.py_type(legacyItemList), 0)
+    builder.PrependUOffsetTRelativeSlot(53, flatbuffers.number_types.UOffsetTFlags.py_type(legacyItemList), 0)
 
 def clz_Torappu_GameDataConstsStartLegacyItemListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GameDataConstsAddUseAssistSocialPt(builder, useAssistSocialPt):
-    builder.PrependInt32Slot(66, useAssistSocialPt, 0)
+    builder.PrependInt32Slot(54, useAssistSocialPt, 0)
 
 def clz_Torappu_GameDataConstsAddUseAssistSocialPtMaxCount(builder, useAssistSocialPtMaxCount):
-    builder.PrependInt32Slot(67, useAssistSocialPtMaxCount, 0)
+    builder.PrependInt32Slot(55, useAssistSocialPtMaxCount, 0)
 
 def clz_Torappu_GameDataConstsAddAssistBeUsedSocialPt(builder, assistBeUsedSocialPt):
-    builder.PrependUOffsetTRelativeSlot(68, flatbuffers.number_types.UOffsetTFlags.py_type(assistBeUsedSocialPt), 0)
+    builder.PrependUOffsetTRelativeSlot(56, flatbuffers.number_types.UOffsetTFlags.py_type(assistBeUsedSocialPt), 0)
 
 def clz_Torappu_GameDataConstsStartAssistBeUsedSocialPtVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GameDataConstsAddPushForces(builder, pushForces):
-    builder.PrependUOffsetTRelativeSlot(69, flatbuffers.number_types.UOffsetTFlags.py_type(pushForces), 0)
+    builder.PrependUOffsetTRelativeSlot(57, flatbuffers.number_types.UOffsetTFlags.py_type(pushForces), 0)
 
 def clz_Torappu_GameDataConstsStartPushForcesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GameDataConstsAddPushForceZeroIndex(builder, pushForceZeroIndex):
-    builder.PrependInt32Slot(70, pushForceZeroIndex, 0)
+    builder.PrependInt32Slot(58, pushForceZeroIndex, 0)
 
 def clz_Torappu_GameDataConstsAddNormalGachaUnlockPrice(builder, normalGachaUnlockPrice):
-    builder.PrependUOffsetTRelativeSlot(71, flatbuffers.number_types.UOffsetTFlags.py_type(normalGachaUnlockPrice), 0)
+    builder.PrependUOffsetTRelativeSlot(59, flatbuffers.number_types.UOffsetTFlags.py_type(normalGachaUnlockPrice), 0)
 
 def clz_Torappu_GameDataConstsStartNormalGachaUnlockPriceVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GameDataConstsAddPullForces(builder, pullForces):
-    builder.PrependUOffsetTRelativeSlot(72, flatbuffers.number_types.UOffsetTFlags.py_type(pullForces), 0)
+    builder.PrependUOffsetTRelativeSlot(60, flatbuffers.number_types.UOffsetTFlags.py_type(pullForces), 0)
 
 def clz_Torappu_GameDataConstsStartPullForcesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GameDataConstsAddPullForceZeroIndex(builder, pullForceZeroIndex):
-    builder.PrependInt32Slot(73, pullForceZeroIndex, 0)
+    builder.PrependInt32Slot(61, pullForceZeroIndex, 0)
 
 def clz_Torappu_GameDataConstsAddMultiInComeByRank(builder, multiInComeByRank):
-    builder.PrependUOffsetTRelativeSlot(74, flatbuffers.number_types.UOffsetTFlags.py_type(multiInComeByRank), 0)
+    builder.PrependUOffsetTRelativeSlot(62, flatbuffers.number_types.UOffsetTFlags.py_type(multiInComeByRank), 0)
 
 def clz_Torappu_GameDataConstsStartMultiInComeByRankVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GameDataConstsAddLmtgstoEpgsratio(builder, lmtgstoEpgsratio):
-    builder.PrependInt32Slot(75, lmtgstoEpgsratio, 0)
+    builder.PrependInt32Slot(63, lmtgstoEpgsratio, 0)
 
 def clz_Torappu_GameDataConstsAddNewBeeGiftEpgs(builder, newBeeGiftEpgs):
-    builder.PrependInt32Slot(76, newBeeGiftEpgs, 0)
+    builder.PrependInt32Slot(64, newBeeGiftEpgs, 0)
 
 def clz_Torappu_GameDataConstsAddLMtgsdescConstOne(builder, lMtgsdescConstOne):
-    builder.PrependUOffsetTRelativeSlot(77, flatbuffers.number_types.UOffsetTFlags.py_type(lMtgsdescConstOne), 0)
+    builder.PrependUOffsetTRelativeSlot(65, flatbuffers.number_types.UOffsetTFlags.py_type(lMtgsdescConstOne), 0)
 
 def clz_Torappu_GameDataConstsAddLMtgsdescConstTwo(builder, lMtgsdescConstTwo):
-    builder.PrependUOffsetTRelativeSlot(78, flatbuffers.number_types.UOffsetTFlags.py_type(lMtgsdescConstTwo), 0)
+    builder.PrependUOffsetTRelativeSlot(66, flatbuffers.number_types.UOffsetTFlags.py_type(lMtgsdescConstTwo), 0)
 
 def clz_Torappu_GameDataConstsAddDefCdprimColor(builder, defCdprimColor):
-    builder.PrependUOffsetTRelativeSlot(79, flatbuffers.number_types.UOffsetTFlags.py_type(defCdprimColor), 0)
+    builder.PrependUOffsetTRelativeSlot(67, flatbuffers.number_types.UOffsetTFlags.py_type(defCdprimColor), 0)
 
 def clz_Torappu_GameDataConstsAddDefCdsecColor(builder, defCdsecColor):
-    builder.PrependUOffsetTRelativeSlot(80, flatbuffers.number_types.UOffsetTFlags.py_type(defCdsecColor), 0)
+    builder.PrependUOffsetTRelativeSlot(68, flatbuffers.number_types.UOffsetTFlags.py_type(defCdsecColor), 0)
 
 def clz_Torappu_GameDataConstsAddMailBannerType(builder, mailBannerType):
-    builder.PrependUOffsetTRelativeSlot(81, flatbuffers.number_types.UOffsetTFlags.py_type(mailBannerType), 0)
+    builder.PrependUOffsetTRelativeSlot(69, flatbuffers.number_types.UOffsetTFlags.py_type(mailBannerType), 0)
 
 def clz_Torappu_GameDataConstsStartMailBannerTypeVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GameDataConstsAddMonthlySubWarningTime(builder, monthlySubWarningTime):
-    builder.PrependInt64Slot(82, monthlySubWarningTime, 0)
+    builder.PrependInt64Slot(70, monthlySubWarningTime, 0)
 
 def clz_Torappu_GameDataConstsAddUnlimitSkinOutOfTime(builder, unlimitSkinOutOfTime):
-    builder.PrependInt64Slot(83, unlimitSkinOutOfTime, 0)
+    builder.PrependInt64Slot(71, unlimitSkinOutOfTime, 0)
 
 def clz_Torappu_GameDataConstsAddReplicateShopStartTime(builder, replicateShopStartTime):
-    builder.PrependInt64Slot(84, replicateShopStartTime, 0)
+    builder.PrependInt64Slot(72, replicateShopStartTime, 0)
 
-def clz_Torappu_GameDataConstsAddTso(builder, tso):
-    builder.PrependInt64Slot(85, tso, 0)
+def clz_Torappu_GameDataConstsAddPrts__checkRequired__clzTorappuGameDataConsts__operatorRecordsStartTime(builder, prts__checkRequired__clzTorappuGameDataConsts__operatorRecordsStartTime):
+    builder.PrependInt64Slot(73, prts__checkRequired__clzTorappuGameDataConsts__operatorRecordsStartTime, 0)
 
 def clz_Torappu_GameDataConstsAddIsDynIllustEnabled(builder, isDynIllustEnabled):
-    builder.PrependBoolSlot(86, isDynIllustEnabled, 0)
+    builder.PrependBoolSlot(74, isDynIllustEnabled, 0)
 
 def clz_Torappu_GameDataConstsAddIsDynIllustStartEnabled(builder, isDynIllustStartEnabled):
-    builder.PrependBoolSlot(87, isDynIllustStartEnabled, 0)
+    builder.PrependBoolSlot(75, isDynIllustStartEnabled, 0)
 
 def clz_Torappu_GameDataConstsAddIsClassicQcshopEnabled(builder, isClassicQcshopEnabled):
-    builder.PrependBoolSlot(88, isClassicQcshopEnabled, 0)
+    builder.PrependBoolSlot(76, isClassicQcshopEnabled, 0)
 
 def clz_Torappu_GameDataConstsAddIsRoguelikeTopicFuncEnabled(builder, isRoguelikeTopicFuncEnabled):
-    builder.PrependBoolSlot(89, isRoguelikeTopicFuncEnabled, 0)
-
-def clz_Torappu_GameDataConstsAddIsSandboxPermFuncEnabled(builder, isSandboxPermFuncEnabled):
-    builder.PrependBoolSlot(90, isSandboxPermFuncEnabled, 0)
+    builder.PrependBoolSlot(77, isRoguelikeTopicFuncEnabled, 0)
 
 def clz_Torappu_GameDataConstsAddIsRoguelikeAvgAchieveFuncEnabled(builder, isRoguelikeAvgAchieveFuncEnabled):
-    builder.PrependBoolSlot(91, isRoguelikeAvgAchieveFuncEnabled, 0)
+    builder.PrependBoolSlot(78, isRoguelikeAvgAchieveFuncEnabled, 0)
 
 def clz_Torappu_GameDataConstsAddIsClassicPotentialItemFuncEnabled(builder, isClassicPotentialItemFuncEnabled):
-    builder.PrependBoolSlot(92, isClassicPotentialItemFuncEnabled, 0)
+    builder.PrependBoolSlot(79, isClassicPotentialItemFuncEnabled, 0)
 
 def clz_Torappu_GameDataConstsAddIsClassicGachaPoolFuncEnabled(builder, isClassicGachaPoolFuncEnabled):
-    builder.PrependBoolSlot(93, isClassicGachaPoolFuncEnabled, 0)
-
-def clz_Torappu_GameDataConstsAddIsSpecialGachaPoolFuncEnabled(builder, isSpecialGachaPoolFuncEnabled):
-    builder.PrependBoolSlot(94, isSpecialGachaPoolFuncEnabled, 0)
+    builder.PrependBoolSlot(80, isClassicGachaPoolFuncEnabled, 0)
 
 def clz_Torappu_GameDataConstsAddIsVoucherClassicItemDistinguishable(builder, isVoucherClassicItemDistinguishable):
-    builder.PrependBoolSlot(95, isVoucherClassicItemDistinguishable, 0)
+    builder.PrependBoolSlot(81, isVoucherClassicItemDistinguishable, 0)
 
 def clz_Torappu_GameDataConstsAddVoucherSkinRedeem(builder, voucherSkinRedeem):
-    builder.PrependInt32Slot(96, voucherSkinRedeem, 0)
+    builder.PrependInt32Slot(82, voucherSkinRedeem, 0)
 
 def clz_Torappu_GameDataConstsAddVoucherSkinDesc(builder, voucherSkinDesc):
-    builder.PrependUOffsetTRelativeSlot(97, flatbuffers.number_types.UOffsetTFlags.py_type(voucherSkinDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(83, flatbuffers.number_types.UOffsetTFlags.py_type(voucherSkinDesc), 0)
 
 def clz_Torappu_GameDataConstsAddCharmEquipCount(builder, charmEquipCount):
-    builder.PrependInt32Slot(98, charmEquipCount, 0)
+    builder.PrependInt32Slot(84, charmEquipCount, 0)
 
 def clz_Torappu_GameDataConstsAddTermDescriptionDict(builder, termDescriptionDict):
-    builder.PrependUOffsetTRelativeSlot(99, flatbuffers.number_types.UOffsetTFlags.py_type(termDescriptionDict), 0)
+    builder.PrependUOffsetTRelativeSlot(85, flatbuffers.number_types.UOffsetTFlags.py_type(termDescriptionDict), 0)
 
 def clz_Torappu_GameDataConstsStartTermDescriptionDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GameDataConstsAddStoryReviewUnlockItemLackTip(builder, storyReviewUnlockItemLackTip):
-    builder.PrependUOffsetTRelativeSlot(100, flatbuffers.number_types.UOffsetTFlags.py_type(storyReviewUnlockItemLackTip), 0)
+    builder.PrependUOffsetTRelativeSlot(86, flatbuffers.number_types.UOffsetTFlags.py_type(storyReviewUnlockItemLackTip), 0)
 
 def clz_Torappu_GameDataConstsAddDataVersion(builder, dataVersion):
-    builder.PrependUOffsetTRelativeSlot(101, flatbuffers.number_types.UOffsetTFlags.py_type(dataVersion), 0)
+    builder.PrependUOffsetTRelativeSlot(87, flatbuffers.number_types.UOffsetTFlags.py_type(dataVersion), 0)
 
 def clz_Torappu_GameDataConstsAddResPrefVersion(builder, resPrefVersion):
-    builder.PrependUOffsetTRelativeSlot(102, flatbuffers.number_types.UOffsetTFlags.py_type(resPrefVersion), 0)
+    builder.PrependUOffsetTRelativeSlot(88, flatbuffers.number_types.UOffsetTFlags.py_type(resPrefVersion), 0)
 
 def clz_Torappu_GameDataConstsAddAnnounceWebBusType(builder, announceWebBusType):
-    builder.PrependUOffsetTRelativeSlot(103, flatbuffers.number_types.UOffsetTFlags.py_type(announceWebBusType), 0)
-
-def clz_Torappu_GameDataConstsAddVideoPlayerWebBusType(builder, videoPlayerWebBusType):
-    builder.PrependUOffsetTRelativeSlot(104, flatbuffers.number_types.UOffsetTFlags.py_type(videoPlayerWebBusType), 0)
-
-def clz_Torappu_GameDataConstsAddGachaLogBusType(builder, gachaLogBusType):
-    builder.PrependUOffsetTRelativeSlot(105, flatbuffers.number_types.UOffsetTFlags.py_type(gachaLogBusType), 0)
-
-def clz_Torappu_GameDataConstsAddDefaultMinMultipleBattleTimes(builder, defaultMinMultipleBattleTimes):
-    builder.PrependInt32Slot(106, defaultMinMultipleBattleTimes, 0)
-
-def clz_Torappu_GameDataConstsAddDefaultMaxMultipleBattleTimes(builder, defaultMaxMultipleBattleTimes):
-    builder.PrependInt32Slot(107, defaultMaxMultipleBattleTimes, 0)
-
-def clz_Torappu_GameDataConstsAddMultipleActionOpen(builder, multipleActionOpen):
-    builder.PrependBoolSlot(108, multipleActionOpen, 0)
+    builder.PrependUOffsetTRelativeSlot(89, flatbuffers.number_types.UOffsetTFlags.py_type(announceWebBusType), 0)
 
 def clz_Torappu_GameDataConstsAddSubProfessionDamageTypePairs(builder, subProfessionDamageTypePairs):
-    builder.PrependUOffsetTRelativeSlot(109, flatbuffers.number_types.UOffsetTFlags.py_type(subProfessionDamageTypePairs), 0)
+    builder.PrependUOffsetTRelativeSlot(90, flatbuffers.number_types.UOffsetTFlags.py_type(subProfessionDamageTypePairs), 0)
 
 def clz_Torappu_GameDataConstsStartSubProfessionDamageTypePairsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_GameDataConstsAddClassicProtectChar(builder, classicProtectChar):
-    builder.PrependUOffsetTRelativeSlot(110, flatbuffers.number_types.UOffsetTFlags.py_type(classicProtectChar), 0)
-
-def clz_Torappu_GameDataConstsStartClassicProtectCharVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_GameDataConstsAddBirthdaySettingDesc(builder, birthdaySettingDesc):
-    builder.PrependUOffsetTRelativeSlot(111, flatbuffers.number_types.UOffsetTFlags.py_type(birthdaySettingDesc), 0)
-
-def clz_Torappu_GameDataConstsAddBirthdaySettingConfirmDesc(builder, birthdaySettingConfirmDesc):
-    builder.PrependUOffsetTRelativeSlot(112, flatbuffers.number_types.UOffsetTFlags.py_type(birthdaySettingConfirmDesc), 0)
-
-def clz_Torappu_GameDataConstsAddBirthdaySettingLeapConfirmDesc(builder, birthdaySettingLeapConfirmDesc):
-    builder.PrependUOffsetTRelativeSlot(113, flatbuffers.number_types.UOffsetTFlags.py_type(birthdaySettingLeapConfirmDesc), 0)
-
-def clz_Torappu_GameDataConstsAddLeapBirthdayRewardMonth(builder, leapBirthdayRewardMonth):
-    builder.PrependInt32Slot(114, leapBirthdayRewardMonth, 0)
-
-def clz_Torappu_GameDataConstsAddLeapBirthdayRewardDay(builder, leapBirthdayRewardDay):
-    builder.PrependInt32Slot(115, leapBirthdayRewardDay, 0)
-
-def clz_Torappu_GameDataConstsAddBirthdaySettingShowStageId(builder, birthdaySettingShowStageId):
-    builder.PrependUOffsetTRelativeSlot(116, flatbuffers.number_types.UOffsetTFlags.py_type(birthdaySettingShowStageId), 0)
-
-def clz_Torappu_GameDataConstsAddIsBirthdayFuncEnabled(builder, isBirthdayFuncEnabled):
-    builder.PrependBoolSlot(117, isBirthdayFuncEnabled, 0)
-
-def clz_Torappu_GameDataConstsAddIsSoCharEnabled(builder, isSoCharEnabled):
-    builder.PrependBoolSlot(118, isSoCharEnabled, 0)
 
 def clz_Torappu_GameDataConstsEnd(builder):
     return builder.EndObject()

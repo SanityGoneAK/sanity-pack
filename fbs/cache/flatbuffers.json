@@ -131,7 +131,7 @@
     "building_data": "ad1f7afbe2085100005d6af9d45087e5d4e07e80",
     "retro_table": "ad1f7afbe2085100005d6af9d45087e5d4e07e80",
     "char_patch_table": "3cd83986000ba0bd4a88d78a636558cb7505684a",
-    "mission_table": "3cd83986000ba0bd4a88d78a636558cb7505684a",
+    "mission_table": "2d269a64523c4298cde267f29f1462ef4cbeb550",
     "shop_client_table": "ad1f7afbe2085100005d6af9d45087e5d4e07e80",
     "favor_table": "ad1f7afbe2085100005d6af9d45087e5d4e07e80",
     "activity_table": "64a7db4a9cdc852b06f77879f835d8db255ecf9e",
@@ -171,6 +171,9 @@
     "character_table": "3cd83986000ba0bd4a88d78a636558cb7505684a",
     "building_local_data": "ad1f7afbe2085100005d6af9d45087e5d4e07e80",
     "enemy_database": "ad1f7afbe2085100005d6af9d45087e5d4e07e80",
-    "prts___levels": "3cd83986000ba0bd4a88d78a636558cb7505684a"
+    "prts___levels": "3cd83986000ba0bd4a88d78a636558cb7505684a",
+    "level_script_table": "b11b249f1feeb34ba863ae822d81f9ac2c8c3f9f",
+    "special_operator_table": "b11b249f1feeb34ba863ae822d81f9ac2c8c3f9f",
+    "char_master_table": "b11b249f1feeb34ba863ae822d81f9ac2c8c3f9f"
   }
 }

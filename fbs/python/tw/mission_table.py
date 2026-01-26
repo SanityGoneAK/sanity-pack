@@ -16,7 +16,6 @@ class enum__Torappu_MissionType(object):
     ACTIVITY = 6
     OPENSERVER = 7
     TOWERSEASON = 8
-    RETRO = 9
 
 
 class enum__Torappu_MissionItemBgType(object):
@@ -66,56 +65,39 @@ class enum__Torappu_ItemType(object):
     REP_COIN = 37
     ROGUELIKE = 38
     LINKAGE_TKT_GACHA_10 = 39
-    VOUCHER_ELITE_II_4 = 40
-    VOUCHER_ELITE_II_5 = 41
-    VOUCHER_ELITE_II_6 = 42
-    VOUCHER_SKIN = 43
-    RETRO_COIN = 44
-    PLAYER_AVATAR = 45
-    UNI_COLLECTION = 46
-    VOUCHER_FULL_POTENTIAL = 47
-    RL_COIN = 48
-    RETURN_CREDIT = 49
-    MEDAL = 50
-    CHARM = 51
-    HOME_BACKGROUND = 52
-    EXTERMINATION_AGENT = 53
-    OPTIONAL_VOUCHER_PICK = 54
-    ACT_CART_COMPONENT = 55
-    VOUCHER_LEVELMAX_6 = 56
-    VOUCHER_LEVELMAX_5 = 57
-    VOUCHER_LEVELMAX_4 = 58
-    VOUCHER_SKILL_SPECIALLEVELMAX_6 = 59
-    VOUCHER_SKILL_SPECIALLEVELMAX_5 = 60
-    VOUCHER_SKILL_SPECIALLEVELMAX_4 = 61
-    ACTIVITY_POTENTIAL = 62
-    ITEM_PACK = 63
-    SANDBOX = 64
-    FAVOR_ADD_ITEM = 65
-    CLASSIC_SHD = 66
-    CLASSIC_TKT_GACHA = 67
-    CLASSIC_TKT_GACHA_10 = 68
-    LIMITED_BUFF = 69
-    CLASSIC_FES_PICK_TIER_5 = 70
-    CLASSIC_FES_PICK_TIER_6 = 71
-    RETURN_PROGRESS = 72
-    NEW_PROGRESS = 73
-    MCARD_VOUCHER = 74
-    MATERIAL_ISSUE_VOUCHER = 75
-    CRS_SHOP_COIN_V2 = 76
-    HOME_THEME = 77
-    SANDBOX_PERM = 78
-    SANDBOX_TOKEN = 79
-    TEMPLATE_TRAP = 80
-    NAME_CARD_SKIN = 81
-    EMOTICON_SET = 82
-    EXCLUSIVE_TKT_GACHA = 83
-    EXCLUSIVE_TKT_GACHA_10 = 84
-
-
-class enum__Torappu_CrossAppShareMissionType(object):
-    NORMAL = 0
-    ACTIVITY = 1
+    VOUCHER_ELITE_II_5 = 40
+    VOUCHER_ELITE_II_6 = 41
+    VOUCHER_SKIN = 42
+    RETRO_COIN = 43
+    PLAYER_AVATAR = 44
+    UNI_COLLECTION = 45
+    VOUCHER_FULL_POTENTIAL = 46
+    RL_COIN = 47
+    RETURN_CREDIT = 48
+    MEDAL = 49
+    CHARM = 50
+    HOME_BACKGROUND = 51
+    EXTERMINATION_AGENT = 52
+    OPTIONAL_VOUCHER_PICK = 53
+    ACT_CART_COMPONENT = 54
+    VOUCHER_LEVELMAX_6 = 55
+    VOUCHER_LEVELMAX_5 = 56
+    ACTIVITY_POTENTIAL = 57
+    ITEM_PACK = 58
+    SANDBOX = 59
+    FAVOR_ADD_ITEM = 60
+    CLASSIC_SHD = 61
+    CLASSIC_TKT_GACHA = 62
+    CLASSIC_TKT_GACHA_10 = 63
+    LIMITED_BUFF = 64
+    CLASSIC_FES_PICK_TIER_5 = 65
+    CLASSIC_FES_PICK_TIER_6 = 66
+    RETURN_PROGRESS = 67
+    NEW_PROGRESS = 68
+    MCARD_VOUCHER = 69
+    MATERIAL_ISSUE_VOUCHER = 70
+    CRS_SHOP_COIN_V2 = 71
+    HOME_THEME = 72
 
 
 class clz_Torappu_MissionDisplayRewards(object):
@@ -374,15 +356,8 @@ class clz_Torappu_MissionData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-    # clz_Torappu_MissionData
-    def CountEndTs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
 def clz_Torappu_MissionDataStart(builder):
-    builder.StartObject(19)
+    builder.StartObject(18)
 
 def clz_Torappu_MissionDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
@@ -449,9 +424,6 @@ def clz_Torappu_MissionDataAddFoldId(builder, foldId):
 
 def clz_Torappu_MissionDataAddHaveSubMissionToUnlock(builder, haveSubMissionToUnlock):
     builder.PrependBoolSlot(17, haveSubMissionToUnlock, 0)
-
-def clz_Torappu_MissionDataAddCountEndTs(builder, countEndTs):
-    builder.PrependInt64Slot(18, countEndTs, 0)
 
 def clz_Torappu_MissionDataEnd(builder):
     return builder.EndObject()
@@ -1275,404 +1247,6 @@ def dict__string__clz_Torappu_DailyMissionGroupInfoEnd(builder):
 
 
 
-class clz_Torappu_MainlineMissionEndImageData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_MainlineMissionEndImageData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_MainlineMissionEndImageData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_MainlineMissionEndImageData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_MainlineMissionEndImageData
-    def ImageId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_MainlineMissionEndImageData
-    def Priority(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-def clz_Torappu_MainlineMissionEndImageDataStart(builder):
-    builder.StartObject(2)
-
-def clz_Torappu_MainlineMissionEndImageDataAddImageId(builder, imageId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(imageId), 0)
-
-def clz_Torappu_MainlineMissionEndImageDataAddPriority(builder, priority):
-    builder.PrependInt32Slot(1, priority, 0)
-
-def clz_Torappu_MainlineMissionEndImageDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_CrossAppShareMission(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_CrossAppShareMission()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_CrossAppShareMission(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_CrossAppShareMission
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_CrossAppShareMission
-    def ShareMissionId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_CrossAppShareMission
-    def MissionType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_CrossAppShareMission
-    def RelateActivityId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_CrossAppShareMission
-    def StartTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_CrossAppShareMission
-    def EndTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_CrossAppShareMission
-    def LimitCount(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_CrossAppShareMission
-    def CondTemplate(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_CrossAppShareMission
-    def CondParam(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return ""
-
-    # clz_Torappu_CrossAppShareMission
-    def CondParamLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_CrossAppShareMission
-    def CondParamIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        return o == 0
-
-    # clz_Torappu_CrossAppShareMission
-    def RewardsList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_MissionDisplayRewards()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_CrossAppShareMission
-    def RewardsListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_CrossAppShareMission
-    def RewardsListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        return o == 0
-
-def clz_Torappu_CrossAppShareMissionStart(builder):
-    builder.StartObject(9)
-
-def clz_Torappu_CrossAppShareMissionAddShareMissionId(builder, shareMissionId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(shareMissionId), 0)
-
-def clz_Torappu_CrossAppShareMissionAddMissionType(builder, missionType):
-    builder.PrependInt32Slot(1, missionType, 0)
-
-def clz_Torappu_CrossAppShareMissionAddRelateActivityId(builder, relateActivityId):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(relateActivityId), 0)
-
-def clz_Torappu_CrossAppShareMissionAddStartTime(builder, startTime):
-    builder.PrependInt64Slot(3, startTime, 0)
-
-def clz_Torappu_CrossAppShareMissionAddEndTime(builder, endTime):
-    builder.PrependInt64Slot(4, endTime, 0)
-
-def clz_Torappu_CrossAppShareMissionAddLimitCount(builder, limitCount):
-    builder.PrependInt32Slot(5, limitCount, 0)
-
-def clz_Torappu_CrossAppShareMissionAddCondTemplate(builder, condTemplate):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(condTemplate), 0)
-
-def clz_Torappu_CrossAppShareMissionAddCondParam(builder, condParam):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(condParam), 0)
-
-def clz_Torappu_CrossAppShareMissionStartCondParamVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_CrossAppShareMissionAddRewardsList(builder, rewardsList):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(rewardsList), 0)
-
-def clz_Torappu_CrossAppShareMissionStartRewardsListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_CrossAppShareMissionEnd(builder):
-    return builder.EndObject()
-
-
-
-class dict__string__clz_Torappu_CrossAppShareMission(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = dict__string__clz_Torappu_CrossAppShareMission()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsdict__string__clz_Torappu_CrossAppShareMission(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # dict__string__clz_Torappu_CrossAppShareMission
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # dict__string__clz_Torappu_CrossAppShareMission
-    def Key(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # dict__string__clz_Torappu_CrossAppShareMission
-    def Value(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = clz_Torappu_CrossAppShareMission()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def dict__string__clz_Torappu_CrossAppShareMissionStart(builder):
-    builder.StartObject(2)
-
-def dict__string__clz_Torappu_CrossAppShareMissionAddKey(builder, key):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
-
-def dict__string__clz_Torappu_CrossAppShareMissionAddValue(builder, value):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
-
-def dict__string__clz_Torappu_CrossAppShareMissionEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_CrossAppShareMissionConst(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_CrossAppShareMissionConst()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_CrossAppShareMissionConst(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_CrossAppShareMissionConst
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_CrossAppShareMissionConst
-    def NameCardShareMissionId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def clz_Torappu_CrossAppShareMissionConstStart(builder):
-    builder.StartObject(1)
-
-def clz_Torappu_CrossAppShareMissionConstAddNameCardShareMissionId(builder, nameCardShareMissionId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(nameCardShareMissionId), 0)
-
-def clz_Torappu_CrossAppShareMissionConstEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_GuideMissionGroupInfo(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_GuideMissionGroupInfo()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_GuideMissionGroupInfo(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_GuideMissionGroupInfo
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_GuideMissionGroupInfo
-    def GroupId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_GuideMissionGroupInfo
-    def SortId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_GuideMissionGroupInfo
-    def ShortName(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_GuideMissionGroupInfo
-    def UnlockDesc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def clz_Torappu_GuideMissionGroupInfoStart(builder):
-    builder.StartObject(4)
-
-def clz_Torappu_GuideMissionGroupInfoAddGroupId(builder, groupId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
-
-def clz_Torappu_GuideMissionGroupInfoAddSortId(builder, sortId):
-    builder.PrependInt32Slot(1, sortId, 0)
-
-def clz_Torappu_GuideMissionGroupInfoAddShortName(builder, shortName):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(shortName), 0)
-
-def clz_Torappu_GuideMissionGroupInfoAddUnlockDesc(builder, unlockDesc):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(unlockDesc), 0)
-
-def clz_Torappu_GuideMissionGroupInfoEnd(builder):
-    return builder.EndObject()
-
-
-
-class dict__string__clz_Torappu_GuideMissionGroupInfo(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = dict__string__clz_Torappu_GuideMissionGroupInfo()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsdict__string__clz_Torappu_GuideMissionGroupInfo(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # dict__string__clz_Torappu_GuideMissionGroupInfo
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # dict__string__clz_Torappu_GuideMissionGroupInfo
-    def Key(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # dict__string__clz_Torappu_GuideMissionGroupInfo
-    def Value(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = clz_Torappu_GuideMissionGroupInfo()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def dict__string__clz_Torappu_GuideMissionGroupInfoStart(builder):
-    builder.StartObject(2)
-
-def dict__string__clz_Torappu_GuideMissionGroupInfoAddKey(builder, key):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
-
-def dict__string__clz_Torappu_GuideMissionGroupInfoAddValue(builder, value):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
-
-def dict__string__clz_Torappu_GuideMissionGroupInfoEnd(builder):
-    return builder.EndObject()
-
-
-
 class clz_Torappu_MissionTable(object):
     __slots__ = ['_tab']
 
@@ -1835,90 +1409,8 @@ class clz_Torappu_MissionTable(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         return o == 0
 
-    # clz_Torappu_MissionTable
-    def MainlineMissionEndImageDataList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_MainlineMissionEndImageData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_MissionTable
-    def MainlineMissionEndImageDataListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_MissionTable
-    def MainlineMissionEndImageDataListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        return o == 0
-
-    # clz_Torappu_MissionTable
-    def CrossAppShareMissions(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = dict__string__clz_Torappu_CrossAppShareMission()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_MissionTable
-    def CrossAppShareMissionsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_MissionTable
-    def CrossAppShareMissionsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        return o == 0
-
-    # clz_Torappu_MissionTable
-    def CrossAppShareMissionConst(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = clz_Torappu_CrossAppShareMissionConst()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_MissionTable
-    def GuideMissionGroupInfo(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = dict__string__clz_Torappu_GuideMissionGroupInfo()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_MissionTable
-    def GuideMissionGroupInfoLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_MissionTable
-    def GuideMissionGroupInfoIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
-        return o == 0
-
 def clz_Torappu_MissionTableStart(builder):
-    builder.StartObject(10)
+    builder.StartObject(6)
 
 def clz_Torappu_MissionTableAddMissions(builder, missions):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(missions), 0)
@@ -1954,27 +1446,6 @@ def clz_Torappu_MissionTableAddDailyMissionPeriodInfo(builder, dailyMissionPerio
     builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(dailyMissionPeriodInfo), 0)
 
 def clz_Torappu_MissionTableStartDailyMissionPeriodInfoVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_MissionTableAddMainlineMissionEndImageDataList(builder, mainlineMissionEndImageDataList):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(mainlineMissionEndImageDataList), 0)
-
-def clz_Torappu_MissionTableStartMainlineMissionEndImageDataListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_MissionTableAddCrossAppShareMissions(builder, crossAppShareMissions):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(crossAppShareMissions), 0)
-
-def clz_Torappu_MissionTableStartCrossAppShareMissionsVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_MissionTableAddCrossAppShareMissionConst(builder, crossAppShareMissionConst):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(crossAppShareMissionConst), 0)
-
-def clz_Torappu_MissionTableAddGuideMissionGroupInfo(builder, guideMissionGroupInfo):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(guideMissionGroupInfo), 0)
-
-def clz_Torappu_MissionTableStartGuideMissionGroupInfoVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_MissionTableEnd(builder):
