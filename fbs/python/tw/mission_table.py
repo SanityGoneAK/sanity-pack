@@ -95,9 +95,6 @@ class enum__Torappu_ItemType(object):
     RETURN_PROGRESS = 67
     NEW_PROGRESS = 68
     MCARD_VOUCHER = 69
-    MATERIAL_ISSUE_VOUCHER = 70
-    CRS_SHOP_COIN_V2 = 71
-    HOME_THEME = 72
 
 
 class clz_Torappu_MissionDisplayRewards(object):
