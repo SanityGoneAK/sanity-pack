@@ -74,6 +74,8 @@ class FlatBuffersSchemaManager:
         "extra_battlelog_table",
         "legion_mode_buff_table",
         "building_local_data",
+        "sandbox_table",
+        "resource_manifest"
     ]
 
     FLATBUFFER_MAPPINGS = {
