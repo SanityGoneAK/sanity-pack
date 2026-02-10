@@ -705,8 +705,22 @@ class clz_Torappu_BattleUniEquipData(object):
         return False
 
     # clz_Torappu_BattleUniEquipData
-    def AddOrOverrideTalentDataBundle(self):
+    def ValidInGameTag(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_BattleUniEquipData
+    def ValidInMapTag(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_BattleUniEquipData
+    def AddOrOverrideTalentDataBundle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_CharacterData_EquipTalentDataBundle()
@@ -716,7 +730,7 @@ class clz_Torappu_BattleUniEquipData(object):
 
     # clz_Torappu_BattleUniEquipData
     def OverrideTraitDataBundle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_CharacterData_EquipTraitDataBundle()
@@ -725,7 +739,7 @@ class clz_Torappu_BattleUniEquipData(object):
         return None
 
 def clz_Torappu_BattleUniEquipDataStart(builder):
-    builder.StartObject(5)
+    builder.StartObject(7)
 
 def clz_Torappu_BattleUniEquipDataAddResKey(builder, resKey):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(resKey), 0)
@@ -736,11 +750,17 @@ def clz_Torappu_BattleUniEquipDataAddTarget(builder, target):
 def clz_Torappu_BattleUniEquipDataAddIsToken(builder, isToken):
     builder.PrependBoolSlot(2, isToken, 0)
 
+def clz_Torappu_BattleUniEquipDataAddValidInGameTag(builder, validInGameTag):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(validInGameTag), 0)
+
+def clz_Torappu_BattleUniEquipDataAddValidInMapTag(builder, validInMapTag):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(validInMapTag), 0)
+
 def clz_Torappu_BattleUniEquipDataAddAddOrOverrideTalentDataBundle(builder, addOrOverrideTalentDataBundle):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(addOrOverrideTalentDataBundle), 0)
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(addOrOverrideTalentDataBundle), 0)
 
 def clz_Torappu_BattleUniEquipDataAddOverrideTraitDataBundle(builder, overrideTraitDataBundle):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(overrideTraitDataBundle), 0)
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(overrideTraitDataBundle), 0)
 
 def clz_Torappu_BattleUniEquipDataEnd(builder):
     return builder.EndObject()
