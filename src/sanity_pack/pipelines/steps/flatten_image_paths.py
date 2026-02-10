@@ -23,7 +23,7 @@ class FlattenImagePathsStep(PipelineStep):
         "/arts/ui/subprofessionicon": "arts/ui/subprofessionicon",
         "/arts/ui/uniequipimg": "arts/ui/uniequipimg",
         "/arts/ui/uniequiptype": "arts/ui/uniequiptype",
-        "/arts/ui/building/skills": "arts/ui/building/skills",
+        "/arts/building/skills": "arts/building/skills",
         "/arts/ui/medalicon/*": "arts/ui/medalicon",
     }
 
