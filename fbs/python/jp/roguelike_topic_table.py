@@ -133,7 +133,10 @@ class enum__Torappu_ItemType(object):
     EXCLUSIVE_TKT_GACHA_10 = 84
     SO_CHAR_EXP = 85
     GIFTPACKAGE_TKT = 86
-    ACT1VHALFIDLE_ITEM = 87
+    VOUCHER_SKIN_V2 = 87
+    RANDOM_VOUCHER_SKIN = 88
+    ACT1VHALFIDLE_ITEM = 89
+    PLOT_ITEM = 90
 
 
 class enum__Torappu_RoguelikeGameMonthTaskClass(object):
@@ -324,6 +327,7 @@ class enum__Torappu_RoguelikeGameChoiceType(object):
     KILL = 13
     USE_STASHED_TICKET = 14
     EXPEDITION_ALL = 15
+    EXPEDITION_RETURN_ALL = 16
 
 
 class enum__Torappu_RoguelikeChoiceLeftDecoType(object):
@@ -345,17 +349,19 @@ class enum__Torappu_RoguelikeChoiceHintType(object):
     NONE = 0
     ITEM = 1
     CANDLED_CHAR = 2
-    SACRIFICE = 3
-    SACRIFICE_TOTEM = 4
-    EXPEDITION = 5
-    CANDLE = 6
-    HP = 7
-    VISION = 8
-    STASHED_RECRUIT = 9
-    CHAOS = 10
-    FRAGMENT = 11
-    SP_ZONE_AP = 12
-    COPPER_LUCK = 13
+    GUIDED_CHAR = 3
+    SACRIFICE = 4
+    SACRIFICE_TOTEM = 5
+    EXPEDITION = 6
+    CANDLE = 7
+    GUIDED = 8
+    HP = 9
+    VISION = 10
+    STASHED_RECRUIT = 11
+    CHAOS = 12
+    FRAGMENT = 13
+    SP_ZONE_AP = 14
+    COPPER_LUCK = 15
 
 
 class enum__Torappu_RoguelikeEventType(object):
@@ -626,7 +632,8 @@ class enum__Torappu_RoguelikeSkyZoneNodeType(object):
     BATTLE_HARD = 512
     BATTLES = 514
     INCIDENT_BOSS = 1024
-    CHOICES = 1500
+    INCIDENT_BOSS_ONLY = 2048
+    CHOICES = 3548
 
 
 class enum__Torappu_RoguelikeTopicDevNodeType(object):
@@ -11363,99 +11370,113 @@ class clz_Torappu_RoguelikeGameConst(object):
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def GainBuffDiffGrade(self):
+    def CharSelectGuidedConflictToast(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(126))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
     # clz_Torappu_RoguelikeGameConst
-    def DsPredictTips(self):
+    def CharSelectNonGuidedConflictToast(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(128))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def DsBuffActiveTips(self):
+    def GainBuffDiffGrade(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(130))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_RoguelikeGameConst
-    def TotemDesc(self):
+    def DsPredictTips(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(132))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def CopperGildDesc(self):
+    def DsBuffActiveTips(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(134))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def RelicDesc(self):
+    def TotemDesc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(136))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def BuffDesc(self):
+    def CopperGildDesc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(138))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def RefreshNodeItemId(self):
+    def RelicDesc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(140))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def StoringRecruitDesc(self):
+    def BuffDesc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(142))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def StoringRecruitSucceedToast(self):
+    def RefreshNodeItemId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(144))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def SpecialRecruitReductionDesc(self):
+    def StoringRecruitDesc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(146))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def SpecialRecruitFuncDesc(self):
+    def StoringRecruitSucceedToast(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(148))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def SpecialRecruitDetailDesc(self):
+    def SpecialRecruitReductionDesc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(150))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def PortalZones(self, j):
+    def SpecialRecruitFuncDesc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(152))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_RoguelikeGameConst
+    def SpecialRecruitDetailDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(154))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_RoguelikeGameConst
+    def PortalZones(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(156))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -11463,102 +11484,102 @@ class clz_Torappu_RoguelikeGameConst(object):
 
     # clz_Torappu_RoguelikeGameConst
     def PortalZonesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(152))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(156))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RoguelikeGameConst
     def PortalZonesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(152))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(156))
         return o == 0
 
     # clz_Torappu_RoguelikeGameConst
     def DiffDisplayZoneId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(154))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_RoguelikeGameConst
-    def ExploreExpOnKill(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(156))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_RoguelikeGameConst
-    def FusionName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(158))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def FusionNotifyToast(self):
+    def ExploreExpOnKill(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(160))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def HaveSpZone(self):
+    def FusionName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(162))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
     # clz_Torappu_RoguelikeGameConst
-    def GotCharCandleBuffToast(self):
+    def FusionNotifyToast(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(164))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def GotCharsCandleBuffToast(self):
+    def HaveSpZone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(166))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
     # clz_Torappu_RoguelikeGameConst
-    def StashedRecruitNodeDescription(self):
+    def GotCharCandleBuffToast(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(168))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def StashedRecruitEmptyNodeDescription(self):
+    def GotCharsCandleBuffToast(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(170))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameConst
-    def RecruitStashMaxNum(self):
+    def StashedRecruitNodeDescription(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(172))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_RoguelikeGameConst
+    def StashedRecruitEmptyNodeDescription(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(174))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_RoguelikeGameConst
+    def RecruitStashMaxNum(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(176))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_RoguelikeGameConst
     def RecruitStashMinNum(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(174))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(178))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_RoguelikeGameConst
     def HasTopicCharSelectMenuButton(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(176))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(180))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
 def clz_Torappu_RoguelikeGameConstStart(builder):
-    builder.StartObject(87)
+    builder.StartObject(89)
 
 def clz_Torappu_RoguelikeGameConstAddInitSceneName(builder, initSceneName):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(initSceneName), 0)
@@ -11758,86 +11779,92 @@ def clz_Torappu_RoguelikeGameConstAddCandleReturnDescCandle(builder, candleRetur
 def clz_Torappu_RoguelikeGameConstAddCharSelectCandleConflictToast(builder, charSelectCandleConflictToast):
     builder.PrependUOffsetTRelativeSlot(60, flatbuffers.number_types.UOffsetTFlags.py_type(charSelectCandleConflictToast), 0)
 
+def clz_Torappu_RoguelikeGameConstAddCharSelectGuidedConflictToast(builder, charSelectGuidedConflictToast):
+    builder.PrependUOffsetTRelativeSlot(61, flatbuffers.number_types.UOffsetTFlags.py_type(charSelectGuidedConflictToast), 0)
+
+def clz_Torappu_RoguelikeGameConstAddCharSelectNonGuidedConflictToast(builder, charSelectNonGuidedConflictToast):
+    builder.PrependUOffsetTRelativeSlot(62, flatbuffers.number_types.UOffsetTFlags.py_type(charSelectNonGuidedConflictToast), 0)
+
 def clz_Torappu_RoguelikeGameConstAddGainBuffDiffGrade(builder, gainBuffDiffGrade):
-    builder.PrependInt32Slot(61, gainBuffDiffGrade, 0)
+    builder.PrependInt32Slot(63, gainBuffDiffGrade, 0)
 
 def clz_Torappu_RoguelikeGameConstAddDsPredictTips(builder, dsPredictTips):
-    builder.PrependUOffsetTRelativeSlot(62, flatbuffers.number_types.UOffsetTFlags.py_type(dsPredictTips), 0)
+    builder.PrependUOffsetTRelativeSlot(64, flatbuffers.number_types.UOffsetTFlags.py_type(dsPredictTips), 0)
 
 def clz_Torappu_RoguelikeGameConstAddDsBuffActiveTips(builder, dsBuffActiveTips):
-    builder.PrependUOffsetTRelativeSlot(63, flatbuffers.number_types.UOffsetTFlags.py_type(dsBuffActiveTips), 0)
+    builder.PrependUOffsetTRelativeSlot(65, flatbuffers.number_types.UOffsetTFlags.py_type(dsBuffActiveTips), 0)
 
 def clz_Torappu_RoguelikeGameConstAddTotemDesc(builder, totemDesc):
-    builder.PrependUOffsetTRelativeSlot(64, flatbuffers.number_types.UOffsetTFlags.py_type(totemDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(66, flatbuffers.number_types.UOffsetTFlags.py_type(totemDesc), 0)
 
 def clz_Torappu_RoguelikeGameConstAddCopperGildDesc(builder, copperGildDesc):
-    builder.PrependUOffsetTRelativeSlot(65, flatbuffers.number_types.UOffsetTFlags.py_type(copperGildDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(67, flatbuffers.number_types.UOffsetTFlags.py_type(copperGildDesc), 0)
 
 def clz_Torappu_RoguelikeGameConstAddRelicDesc(builder, relicDesc):
-    builder.PrependUOffsetTRelativeSlot(66, flatbuffers.number_types.UOffsetTFlags.py_type(relicDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(68, flatbuffers.number_types.UOffsetTFlags.py_type(relicDesc), 0)
 
 def clz_Torappu_RoguelikeGameConstAddBuffDesc(builder, buffDesc):
-    builder.PrependUOffsetTRelativeSlot(67, flatbuffers.number_types.UOffsetTFlags.py_type(buffDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(69, flatbuffers.number_types.UOffsetTFlags.py_type(buffDesc), 0)
 
 def clz_Torappu_RoguelikeGameConstAddRefreshNodeItemId(builder, refreshNodeItemId):
-    builder.PrependUOffsetTRelativeSlot(68, flatbuffers.number_types.UOffsetTFlags.py_type(refreshNodeItemId), 0)
+    builder.PrependUOffsetTRelativeSlot(70, flatbuffers.number_types.UOffsetTFlags.py_type(refreshNodeItemId), 0)
 
 def clz_Torappu_RoguelikeGameConstAddStoringRecruitDesc(builder, storingRecruitDesc):
-    builder.PrependUOffsetTRelativeSlot(69, flatbuffers.number_types.UOffsetTFlags.py_type(storingRecruitDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(71, flatbuffers.number_types.UOffsetTFlags.py_type(storingRecruitDesc), 0)
 
 def clz_Torappu_RoguelikeGameConstAddStoringRecruitSucceedToast(builder, storingRecruitSucceedToast):
-    builder.PrependUOffsetTRelativeSlot(70, flatbuffers.number_types.UOffsetTFlags.py_type(storingRecruitSucceedToast), 0)
+    builder.PrependUOffsetTRelativeSlot(72, flatbuffers.number_types.UOffsetTFlags.py_type(storingRecruitSucceedToast), 0)
 
 def clz_Torappu_RoguelikeGameConstAddSpecialRecruitReductionDesc(builder, specialRecruitReductionDesc):
-    builder.PrependUOffsetTRelativeSlot(71, flatbuffers.number_types.UOffsetTFlags.py_type(specialRecruitReductionDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(73, flatbuffers.number_types.UOffsetTFlags.py_type(specialRecruitReductionDesc), 0)
 
 def clz_Torappu_RoguelikeGameConstAddSpecialRecruitFuncDesc(builder, specialRecruitFuncDesc):
-    builder.PrependUOffsetTRelativeSlot(72, flatbuffers.number_types.UOffsetTFlags.py_type(specialRecruitFuncDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(74, flatbuffers.number_types.UOffsetTFlags.py_type(specialRecruitFuncDesc), 0)
 
 def clz_Torappu_RoguelikeGameConstAddSpecialRecruitDetailDesc(builder, specialRecruitDetailDesc):
-    builder.PrependUOffsetTRelativeSlot(73, flatbuffers.number_types.UOffsetTFlags.py_type(specialRecruitDetailDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(75, flatbuffers.number_types.UOffsetTFlags.py_type(specialRecruitDetailDesc), 0)
 
 def clz_Torappu_RoguelikeGameConstAddPortalZones(builder, portalZones):
-    builder.PrependUOffsetTRelativeSlot(74, flatbuffers.number_types.UOffsetTFlags.py_type(portalZones), 0)
+    builder.PrependUOffsetTRelativeSlot(76, flatbuffers.number_types.UOffsetTFlags.py_type(portalZones), 0)
 
 def clz_Torappu_RoguelikeGameConstStartPortalZonesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_RoguelikeGameConstAddDiffDisplayZoneId(builder, diffDisplayZoneId):
-    builder.PrependUOffsetTRelativeSlot(75, flatbuffers.number_types.UOffsetTFlags.py_type(diffDisplayZoneId), 0)
+    builder.PrependUOffsetTRelativeSlot(77, flatbuffers.number_types.UOffsetTFlags.py_type(diffDisplayZoneId), 0)
 
 def clz_Torappu_RoguelikeGameConstAddExploreExpOnKill(builder, exploreExpOnKill):
-    builder.PrependUOffsetTRelativeSlot(76, flatbuffers.number_types.UOffsetTFlags.py_type(exploreExpOnKill), 0)
+    builder.PrependUOffsetTRelativeSlot(78, flatbuffers.number_types.UOffsetTFlags.py_type(exploreExpOnKill), 0)
 
 def clz_Torappu_RoguelikeGameConstAddFusionName(builder, fusionName):
-    builder.PrependUOffsetTRelativeSlot(77, flatbuffers.number_types.UOffsetTFlags.py_type(fusionName), 0)
+    builder.PrependUOffsetTRelativeSlot(79, flatbuffers.number_types.UOffsetTFlags.py_type(fusionName), 0)
 
 def clz_Torappu_RoguelikeGameConstAddFusionNotifyToast(builder, fusionNotifyToast):
-    builder.PrependUOffsetTRelativeSlot(78, flatbuffers.number_types.UOffsetTFlags.py_type(fusionNotifyToast), 0)
+    builder.PrependUOffsetTRelativeSlot(80, flatbuffers.number_types.UOffsetTFlags.py_type(fusionNotifyToast), 0)
 
 def clz_Torappu_RoguelikeGameConstAddHaveSpZone(builder, haveSpZone):
-    builder.PrependBoolSlot(79, haveSpZone, 0)
+    builder.PrependBoolSlot(81, haveSpZone, 0)
 
 def clz_Torappu_RoguelikeGameConstAddGotCharCandleBuffToast(builder, gotCharCandleBuffToast):
-    builder.PrependUOffsetTRelativeSlot(80, flatbuffers.number_types.UOffsetTFlags.py_type(gotCharCandleBuffToast), 0)
+    builder.PrependUOffsetTRelativeSlot(82, flatbuffers.number_types.UOffsetTFlags.py_type(gotCharCandleBuffToast), 0)
 
 def clz_Torappu_RoguelikeGameConstAddGotCharsCandleBuffToast(builder, gotCharsCandleBuffToast):
-    builder.PrependUOffsetTRelativeSlot(81, flatbuffers.number_types.UOffsetTFlags.py_type(gotCharsCandleBuffToast), 0)
+    builder.PrependUOffsetTRelativeSlot(83, flatbuffers.number_types.UOffsetTFlags.py_type(gotCharsCandleBuffToast), 0)
 
 def clz_Torappu_RoguelikeGameConstAddStashedRecruitNodeDescription(builder, stashedRecruitNodeDescription):
-    builder.PrependUOffsetTRelativeSlot(82, flatbuffers.number_types.UOffsetTFlags.py_type(stashedRecruitNodeDescription), 0)
+    builder.PrependUOffsetTRelativeSlot(84, flatbuffers.number_types.UOffsetTFlags.py_type(stashedRecruitNodeDescription), 0)
 
 def clz_Torappu_RoguelikeGameConstAddStashedRecruitEmptyNodeDescription(builder, stashedRecruitEmptyNodeDescription):
-    builder.PrependUOffsetTRelativeSlot(83, flatbuffers.number_types.UOffsetTFlags.py_type(stashedRecruitEmptyNodeDescription), 0)
+    builder.PrependUOffsetTRelativeSlot(85, flatbuffers.number_types.UOffsetTFlags.py_type(stashedRecruitEmptyNodeDescription), 0)
 
 def clz_Torappu_RoguelikeGameConstAddRecruitStashMaxNum(builder, recruitStashMaxNum):
-    builder.PrependInt32Slot(84, recruitStashMaxNum, 0)
+    builder.PrependInt32Slot(86, recruitStashMaxNum, 0)
 
 def clz_Torappu_RoguelikeGameConstAddRecruitStashMinNum(builder, recruitStashMinNum):
-    builder.PrependInt32Slot(85, recruitStashMinNum, 0)
+    builder.PrependInt32Slot(87, recruitStashMinNum, 0)
 
 def clz_Torappu_RoguelikeGameConstAddHasTopicCharSelectMenuButton(builder, hasTopicCharSelectMenuButton):
-    builder.PrependBoolSlot(86, hasTopicCharSelectMenuButton, 0)
+    builder.PrependBoolSlot(88, hasTopicCharSelectMenuButton, 0)
 
 def clz_Torappu_RoguelikeGameConstEnd(builder):
     return builder.EndObject()
@@ -20582,8 +20609,15 @@ class clz_Torappu_RoguelikeCopperData(object):
         return o == 0
 
     # clz_Torappu_RoguelikeCopperData
-    def BuffItemIdList(self, j):
+    def AlwaysShowCountDown(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_RoguelikeCopperData
+    def BuffItemIdList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -20591,18 +20625,18 @@ class clz_Torappu_RoguelikeCopperData(object):
 
     # clz_Torappu_RoguelikeCopperData
     def BuffItemIdListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RoguelikeCopperData
     def BuffItemIdListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         return o == 0
 
 def clz_Torappu_RoguelikeCopperDataStart(builder):
-    builder.StartObject(8)
+    builder.StartObject(9)
 
 def clz_Torappu_RoguelikeCopperDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
@@ -20628,8 +20662,11 @@ def clz_Torappu_RoguelikeCopperDataAddPoemList(builder, poemList):
 def clz_Torappu_RoguelikeCopperDataStartPoemListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_RoguelikeCopperDataAddAlwaysShowCountDown(builder, alwaysShowCountDown):
+    builder.PrependBoolSlot(7, alwaysShowCountDown, 0)
+
 def clz_Torappu_RoguelikeCopperDataAddBuffItemIdList(builder, buffItemIdList):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(buffItemIdList), 0)
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(buffItemIdList), 0)
 
 def clz_Torappu_RoguelikeCopperDataStartBuffItemIdListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
@@ -27182,371 +27219,385 @@ class clz_Torappu_RL05EndingText(object):
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryExpeditionBackCandle(self):
+    def SummaryExpeditionGoEndingFour(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryExpeditionGoEnding(self):
+    def SummaryExpeditionBackEndingFour(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryExpeditionBackEnding(self):
+    def SummaryExpeditionBackCandle(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryHoldCandle(self):
+    def SummaryExpeditionGoEnding(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryHoldCandleRecruit(self):
+    def SummaryExpeditionBackEnding(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryHoldCandleUpgrade(self):
+    def SummaryHoldCandle(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryExchangeSpZoneGet(self):
+    def SummaryHoldCandleRecruit(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryMeetShopSpZone(self):
+    def SummaryHoldCandleUpgrade(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryBattleFailSpZone(self):
+    def SummaryExchangeSpZoneGet(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryMeetEventLock(self):
+    def SummaryMeetShopSpZone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryTreasureSpZone(self):
+    def SummaryBattleFailSpZone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryMeetExchangeSpZone(self):
+    def SummaryMeetEventLock(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryMeetTradeSpZone(self):
+    def SummaryTreasureSpZone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryActor(self):
+    def SummaryMeetExchangeSpZone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryTop(self):
+    def SummaryMeetTradeSpZone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryZone(self):
+    def SummaryActor(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryEnding(self):
+    def SummaryTop(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryDifficultyZone(self):
+    def SummaryZone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryDifficultyEnding(self):
+    def SummaryEnding(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryMode(self):
+    def SummaryDifficultyZone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummarySupport(self):
+    def SummaryDifficultyEnding(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(64))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryGroup(self):
+    def SummaryMode(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(66))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryNormalRecruit(self):
+    def SummarySupport(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryDirectRecruit(self):
+    def SummaryGroup(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryFriendRecruit(self):
+    def SummaryNormalRecruit(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryFreeRecruit(self):
+    def SummaryDirectRecruit(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryMonthRecruit(self):
+    def SummaryFriendRecruit(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryUpgrade(self):
+    def SummaryFreeRecruit(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryCompleteEnding(self):
+    def SummaryMonthRecruit(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(80))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryEachZone(self):
+    def SummaryUpgrade(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(82))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryMeetSpZone(self):
+    def SummaryCompleteEnding(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(84))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryPerfectBattle(self):
+    def SummaryEachZone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(86))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryMeetBattle(self):
+    def SummaryMeetSpZone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(88))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryMeetEvent(self):
+    def SummaryPerfectBattle(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(90))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryMeetShop(self):
+    def SummaryMeetBattle(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(92))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryMeetTreasure(self):
+    def SummaryMeetEvent(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(94))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryMeetSecretpath(self):
+    def SummaryMeetShop(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(96))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryExchangeRelic(self):
+    def SummaryMeetTreasure(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(98))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryMeetTrade(self):
+    def SummaryMeetSecretpath(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(100))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryBuy(self):
+    def SummaryExchangeRelic(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(102))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryBuyWithPriceId(self):
+    def SummaryMeetTrade(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(104))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryInvest(self):
+    def SummaryBuy(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(106))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryGet(self):
+    def SummaryBuyWithPriceId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(108))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryRelic(self):
+    def SummaryInvest(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(110))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummarySafeHouse(self):
+    def SummaryGet(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(112))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryFailEnd(self):
+    def SummaryRelic(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(114))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryStockRecruitTicket(self):
+    def SummarySafeHouse(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(116))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryDuelWin(self):
+    def SummaryFailEnd(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(118))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryDuelTie(self):
+    def SummaryStockRecruitTicket(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(120))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryDuelLose(self):
+    def SummaryDuelWin(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(122))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryExpeditionGo(self):
+    def SummaryDuelTie(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(124))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RL05EndingText
-    def SummaryExpeditionBack(self):
+    def SummaryDuelLose(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(126))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
+    # clz_Torappu_RL05EndingText
+    def SummaryExpeditionGo(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(128))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_RL05EndingText
+    def SummaryExpeditionBack(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(130))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_RL05EndingTextStart(builder):
-    builder.StartObject(62)
+    builder.StartObject(64)
 
 def clz_Torappu_RL05EndingTextAddSummaryGetCopper(builder, summaryGetCopper):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(summaryGetCopper), 0)
@@ -27578,161 +27629,167 @@ def clz_Torappu_RL05EndingTextAddSummaryCopperCheckNormal(builder, summaryCopper
 def clz_Torappu_RL05EndingTextAddSummaryMeetWrath(builder, summaryMeetWrath):
     builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetWrath), 0)
 
+def clz_Torappu_RL05EndingTextAddSummaryExpeditionGoEndingFour(builder, summaryExpeditionGoEndingFour):
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExpeditionGoEndingFour), 0)
+
+def clz_Torappu_RL05EndingTextAddSummaryExpeditionBackEndingFour(builder, summaryExpeditionBackEndingFour):
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExpeditionBackEndingFour), 0)
+
 def clz_Torappu_RL05EndingTextAddSummaryExpeditionBackCandle(builder, summaryExpeditionBackCandle):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExpeditionBackCandle), 0)
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExpeditionBackCandle), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryExpeditionGoEnding(builder, summaryExpeditionGoEnding):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExpeditionGoEnding), 0)
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExpeditionGoEnding), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryExpeditionBackEnding(builder, summaryExpeditionBackEnding):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExpeditionBackEnding), 0)
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExpeditionBackEnding), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryHoldCandle(builder, summaryHoldCandle):
-    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(summaryHoldCandle), 0)
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(summaryHoldCandle), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryHoldCandleRecruit(builder, summaryHoldCandleRecruit):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(summaryHoldCandleRecruit), 0)
+    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(summaryHoldCandleRecruit), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryHoldCandleUpgrade(builder, summaryHoldCandleUpgrade):
-    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(summaryHoldCandleUpgrade), 0)
+    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(summaryHoldCandleUpgrade), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryExchangeSpZoneGet(builder, summaryExchangeSpZoneGet):
-    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExchangeSpZoneGet), 0)
+    builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExchangeSpZoneGet), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryMeetShopSpZone(builder, summaryMeetShopSpZone):
-    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetShopSpZone), 0)
+    builder.PrependUOffsetTRelativeSlot(19, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetShopSpZone), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryBattleFailSpZone(builder, summaryBattleFailSpZone):
-    builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(summaryBattleFailSpZone), 0)
+    builder.PrependUOffsetTRelativeSlot(20, flatbuffers.number_types.UOffsetTFlags.py_type(summaryBattleFailSpZone), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryMeetEventLock(builder, summaryMeetEventLock):
-    builder.PrependUOffsetTRelativeSlot(19, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetEventLock), 0)
+    builder.PrependUOffsetTRelativeSlot(21, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetEventLock), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryTreasureSpZone(builder, summaryTreasureSpZone):
-    builder.PrependUOffsetTRelativeSlot(20, flatbuffers.number_types.UOffsetTFlags.py_type(summaryTreasureSpZone), 0)
+    builder.PrependUOffsetTRelativeSlot(22, flatbuffers.number_types.UOffsetTFlags.py_type(summaryTreasureSpZone), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryMeetExchangeSpZone(builder, summaryMeetExchangeSpZone):
-    builder.PrependUOffsetTRelativeSlot(21, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetExchangeSpZone), 0)
+    builder.PrependUOffsetTRelativeSlot(23, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetExchangeSpZone), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryMeetTradeSpZone(builder, summaryMeetTradeSpZone):
-    builder.PrependUOffsetTRelativeSlot(22, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetTradeSpZone), 0)
+    builder.PrependUOffsetTRelativeSlot(24, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetTradeSpZone), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryActor(builder, summaryActor):
-    builder.PrependUOffsetTRelativeSlot(23, flatbuffers.number_types.UOffsetTFlags.py_type(summaryActor), 0)
+    builder.PrependUOffsetTRelativeSlot(25, flatbuffers.number_types.UOffsetTFlags.py_type(summaryActor), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryTop(builder, summaryTop):
-    builder.PrependUOffsetTRelativeSlot(24, flatbuffers.number_types.UOffsetTFlags.py_type(summaryTop), 0)
+    builder.PrependUOffsetTRelativeSlot(26, flatbuffers.number_types.UOffsetTFlags.py_type(summaryTop), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryZone(builder, summaryZone):
-    builder.PrependUOffsetTRelativeSlot(25, flatbuffers.number_types.UOffsetTFlags.py_type(summaryZone), 0)
+    builder.PrependUOffsetTRelativeSlot(27, flatbuffers.number_types.UOffsetTFlags.py_type(summaryZone), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryEnding(builder, summaryEnding):
-    builder.PrependUOffsetTRelativeSlot(26, flatbuffers.number_types.UOffsetTFlags.py_type(summaryEnding), 0)
+    builder.PrependUOffsetTRelativeSlot(28, flatbuffers.number_types.UOffsetTFlags.py_type(summaryEnding), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryDifficultyZone(builder, summaryDifficultyZone):
-    builder.PrependUOffsetTRelativeSlot(27, flatbuffers.number_types.UOffsetTFlags.py_type(summaryDifficultyZone), 0)
+    builder.PrependUOffsetTRelativeSlot(29, flatbuffers.number_types.UOffsetTFlags.py_type(summaryDifficultyZone), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryDifficultyEnding(builder, summaryDifficultyEnding):
-    builder.PrependUOffsetTRelativeSlot(28, flatbuffers.number_types.UOffsetTFlags.py_type(summaryDifficultyEnding), 0)
+    builder.PrependUOffsetTRelativeSlot(30, flatbuffers.number_types.UOffsetTFlags.py_type(summaryDifficultyEnding), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryMode(builder, summaryMode):
-    builder.PrependUOffsetTRelativeSlot(29, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMode), 0)
+    builder.PrependUOffsetTRelativeSlot(31, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMode), 0)
 
 def clz_Torappu_RL05EndingTextAddSummarySupport(builder, summarySupport):
-    builder.PrependUOffsetTRelativeSlot(30, flatbuffers.number_types.UOffsetTFlags.py_type(summarySupport), 0)
+    builder.PrependUOffsetTRelativeSlot(32, flatbuffers.number_types.UOffsetTFlags.py_type(summarySupport), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryGroup(builder, summaryGroup):
-    builder.PrependUOffsetTRelativeSlot(31, flatbuffers.number_types.UOffsetTFlags.py_type(summaryGroup), 0)
+    builder.PrependUOffsetTRelativeSlot(33, flatbuffers.number_types.UOffsetTFlags.py_type(summaryGroup), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryNormalRecruit(builder, summaryNormalRecruit):
-    builder.PrependUOffsetTRelativeSlot(32, flatbuffers.number_types.UOffsetTFlags.py_type(summaryNormalRecruit), 0)
+    builder.PrependUOffsetTRelativeSlot(34, flatbuffers.number_types.UOffsetTFlags.py_type(summaryNormalRecruit), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryDirectRecruit(builder, summaryDirectRecruit):
-    builder.PrependUOffsetTRelativeSlot(33, flatbuffers.number_types.UOffsetTFlags.py_type(summaryDirectRecruit), 0)
+    builder.PrependUOffsetTRelativeSlot(35, flatbuffers.number_types.UOffsetTFlags.py_type(summaryDirectRecruit), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryFriendRecruit(builder, summaryFriendRecruit):
-    builder.PrependUOffsetTRelativeSlot(34, flatbuffers.number_types.UOffsetTFlags.py_type(summaryFriendRecruit), 0)
+    builder.PrependUOffsetTRelativeSlot(36, flatbuffers.number_types.UOffsetTFlags.py_type(summaryFriendRecruit), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryFreeRecruit(builder, summaryFreeRecruit):
-    builder.PrependUOffsetTRelativeSlot(35, flatbuffers.number_types.UOffsetTFlags.py_type(summaryFreeRecruit), 0)
+    builder.PrependUOffsetTRelativeSlot(37, flatbuffers.number_types.UOffsetTFlags.py_type(summaryFreeRecruit), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryMonthRecruit(builder, summaryMonthRecruit):
-    builder.PrependUOffsetTRelativeSlot(36, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMonthRecruit), 0)
+    builder.PrependUOffsetTRelativeSlot(38, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMonthRecruit), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryUpgrade(builder, summaryUpgrade):
-    builder.PrependUOffsetTRelativeSlot(37, flatbuffers.number_types.UOffsetTFlags.py_type(summaryUpgrade), 0)
+    builder.PrependUOffsetTRelativeSlot(39, flatbuffers.number_types.UOffsetTFlags.py_type(summaryUpgrade), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryCompleteEnding(builder, summaryCompleteEnding):
-    builder.PrependUOffsetTRelativeSlot(38, flatbuffers.number_types.UOffsetTFlags.py_type(summaryCompleteEnding), 0)
+    builder.PrependUOffsetTRelativeSlot(40, flatbuffers.number_types.UOffsetTFlags.py_type(summaryCompleteEnding), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryEachZone(builder, summaryEachZone):
-    builder.PrependUOffsetTRelativeSlot(39, flatbuffers.number_types.UOffsetTFlags.py_type(summaryEachZone), 0)
+    builder.PrependUOffsetTRelativeSlot(41, flatbuffers.number_types.UOffsetTFlags.py_type(summaryEachZone), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryMeetSpZone(builder, summaryMeetSpZone):
-    builder.PrependUOffsetTRelativeSlot(40, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetSpZone), 0)
+    builder.PrependUOffsetTRelativeSlot(42, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetSpZone), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryPerfectBattle(builder, summaryPerfectBattle):
-    builder.PrependUOffsetTRelativeSlot(41, flatbuffers.number_types.UOffsetTFlags.py_type(summaryPerfectBattle), 0)
+    builder.PrependUOffsetTRelativeSlot(43, flatbuffers.number_types.UOffsetTFlags.py_type(summaryPerfectBattle), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryMeetBattle(builder, summaryMeetBattle):
-    builder.PrependUOffsetTRelativeSlot(42, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetBattle), 0)
+    builder.PrependUOffsetTRelativeSlot(44, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetBattle), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryMeetEvent(builder, summaryMeetEvent):
-    builder.PrependUOffsetTRelativeSlot(43, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetEvent), 0)
+    builder.PrependUOffsetTRelativeSlot(45, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetEvent), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryMeetShop(builder, summaryMeetShop):
-    builder.PrependUOffsetTRelativeSlot(44, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetShop), 0)
+    builder.PrependUOffsetTRelativeSlot(46, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetShop), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryMeetTreasure(builder, summaryMeetTreasure):
-    builder.PrependUOffsetTRelativeSlot(45, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetTreasure), 0)
+    builder.PrependUOffsetTRelativeSlot(47, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetTreasure), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryMeetSecretpath(builder, summaryMeetSecretpath):
-    builder.PrependUOffsetTRelativeSlot(46, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetSecretpath), 0)
+    builder.PrependUOffsetTRelativeSlot(48, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetSecretpath), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryExchangeRelic(builder, summaryExchangeRelic):
-    builder.PrependUOffsetTRelativeSlot(47, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExchangeRelic), 0)
+    builder.PrependUOffsetTRelativeSlot(49, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExchangeRelic), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryMeetTrade(builder, summaryMeetTrade):
-    builder.PrependUOffsetTRelativeSlot(48, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetTrade), 0)
+    builder.PrependUOffsetTRelativeSlot(50, flatbuffers.number_types.UOffsetTFlags.py_type(summaryMeetTrade), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryBuy(builder, summaryBuy):
-    builder.PrependUOffsetTRelativeSlot(49, flatbuffers.number_types.UOffsetTFlags.py_type(summaryBuy), 0)
+    builder.PrependUOffsetTRelativeSlot(51, flatbuffers.number_types.UOffsetTFlags.py_type(summaryBuy), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryBuyWithPriceId(builder, summaryBuyWithPriceId):
-    builder.PrependUOffsetTRelativeSlot(50, flatbuffers.number_types.UOffsetTFlags.py_type(summaryBuyWithPriceId), 0)
+    builder.PrependUOffsetTRelativeSlot(52, flatbuffers.number_types.UOffsetTFlags.py_type(summaryBuyWithPriceId), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryInvest(builder, summaryInvest):
-    builder.PrependUOffsetTRelativeSlot(51, flatbuffers.number_types.UOffsetTFlags.py_type(summaryInvest), 0)
+    builder.PrependUOffsetTRelativeSlot(53, flatbuffers.number_types.UOffsetTFlags.py_type(summaryInvest), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryGet(builder, summaryGet):
-    builder.PrependUOffsetTRelativeSlot(52, flatbuffers.number_types.UOffsetTFlags.py_type(summaryGet), 0)
+    builder.PrependUOffsetTRelativeSlot(54, flatbuffers.number_types.UOffsetTFlags.py_type(summaryGet), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryRelic(builder, summaryRelic):
-    builder.PrependUOffsetTRelativeSlot(53, flatbuffers.number_types.UOffsetTFlags.py_type(summaryRelic), 0)
+    builder.PrependUOffsetTRelativeSlot(55, flatbuffers.number_types.UOffsetTFlags.py_type(summaryRelic), 0)
 
 def clz_Torappu_RL05EndingTextAddSummarySafeHouse(builder, summarySafeHouse):
-    builder.PrependUOffsetTRelativeSlot(54, flatbuffers.number_types.UOffsetTFlags.py_type(summarySafeHouse), 0)
+    builder.PrependUOffsetTRelativeSlot(56, flatbuffers.number_types.UOffsetTFlags.py_type(summarySafeHouse), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryFailEnd(builder, summaryFailEnd):
-    builder.PrependUOffsetTRelativeSlot(55, flatbuffers.number_types.UOffsetTFlags.py_type(summaryFailEnd), 0)
+    builder.PrependUOffsetTRelativeSlot(57, flatbuffers.number_types.UOffsetTFlags.py_type(summaryFailEnd), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryStockRecruitTicket(builder, summaryStockRecruitTicket):
-    builder.PrependUOffsetTRelativeSlot(56, flatbuffers.number_types.UOffsetTFlags.py_type(summaryStockRecruitTicket), 0)
+    builder.PrependUOffsetTRelativeSlot(58, flatbuffers.number_types.UOffsetTFlags.py_type(summaryStockRecruitTicket), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryDuelWin(builder, summaryDuelWin):
-    builder.PrependUOffsetTRelativeSlot(57, flatbuffers.number_types.UOffsetTFlags.py_type(summaryDuelWin), 0)
+    builder.PrependUOffsetTRelativeSlot(59, flatbuffers.number_types.UOffsetTFlags.py_type(summaryDuelWin), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryDuelTie(builder, summaryDuelTie):
-    builder.PrependUOffsetTRelativeSlot(58, flatbuffers.number_types.UOffsetTFlags.py_type(summaryDuelTie), 0)
+    builder.PrependUOffsetTRelativeSlot(60, flatbuffers.number_types.UOffsetTFlags.py_type(summaryDuelTie), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryDuelLose(builder, summaryDuelLose):
-    builder.PrependUOffsetTRelativeSlot(59, flatbuffers.number_types.UOffsetTFlags.py_type(summaryDuelLose), 0)
+    builder.PrependUOffsetTRelativeSlot(61, flatbuffers.number_types.UOffsetTFlags.py_type(summaryDuelLose), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryExpeditionGo(builder, summaryExpeditionGo):
-    builder.PrependUOffsetTRelativeSlot(60, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExpeditionGo), 0)
+    builder.PrependUOffsetTRelativeSlot(62, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExpeditionGo), 0)
 
 def clz_Torappu_RL05EndingTextAddSummaryExpeditionBack(builder, summaryExpeditionBack):
-    builder.PrependUOffsetTRelativeSlot(61, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExpeditionBack), 0)
+    builder.PrependUOffsetTRelativeSlot(63, flatbuffers.number_types.UOffsetTFlags.py_type(summaryExpeditionBack), 0)
 
 def clz_Torappu_RL05EndingTextEnd(builder):
     return builder.EndObject()

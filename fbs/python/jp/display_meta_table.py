@@ -217,6 +217,32 @@ class enum__Torappu_UIGuideTarget(object):
     AUTO_CHESS = 50
 
 
+class enum__Torappu_UI_KeyBoardVirtualButtonEnum(object):
+    ESC = 0
+    SCROLL = 1
+    CHANGE_SPEED = 2
+    PAUSE_BATTLE = 3
+    RELEASE_SKILL = 4
+    RETREAT_CHAR = 5
+    HOME_KEY = 6
+    MOVE_FORWARD = 7
+    MOVE_BACKWARD = 8
+    MOVE_TO_LEFT = 9
+    MOVE_TO_RIGHT = 10
+    ENUM = 11
+
+
+class enum__Torappu_KeySettingGroup(object):
+    BATTLE = 0
+    NORMAL = 1
+
+
+class enum__Torappu_KeyEffectGroup(object):
+    BATTLE = 0
+    OUT_BATTLE = 1
+    ALL = 2
+
+
 class clz_Torappu_PlayerAvatarPerData(object):
     __slots__ = ['_tab']
 
@@ -3778,6 +3804,550 @@ def dict__string__clz_Torappu_GuidebookGroupDataEnd(builder):
 
 
 
+class clz_Torappu_KeyItem(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_KeyItem()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_KeyItem(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_KeyItem
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_KeyItem
+    def KeyId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_KeyItem
+    def KeyName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_KeyItem
+    def UseIcon(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_KeyItem
+    def KeyCodes(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return 0
+
+    # clz_Torappu_KeyItem
+    def KeyCodesAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int32Flags, o)
+        return 0
+
+    # clz_Torappu_KeyItem
+    def KeyCodesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_KeyItem
+    def KeyCodesIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # clz_Torappu_KeyItem
+    def CanBeSetted(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def clz_Torappu_KeyItemStart(builder):
+    builder.StartObject(5)
+
+def clz_Torappu_KeyItemAddKeyId(builder, keyId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(keyId), 0)
+
+def clz_Torappu_KeyItemAddKeyName(builder, keyName):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(keyName), 0)
+
+def clz_Torappu_KeyItemAddUseIcon(builder, useIcon):
+    builder.PrependBoolSlot(2, useIcon, 0)
+
+def clz_Torappu_KeyItemAddKeyCodes(builder, keyCodes):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(keyCodes), 0)
+
+def clz_Torappu_KeyItemStartKeyCodesVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_KeyItemAddCanBeSetted(builder, canBeSetted):
+    builder.PrependBoolSlot(4, canBeSetted, 0)
+
+def clz_Torappu_KeyItemEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_KeyItem(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_KeyItem()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_KeyItem(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_KeyItem
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_KeyItem
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_KeyItem
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_KeyItem()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_KeyItemStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_KeyItemAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_KeyItemAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_KeyItemEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_KeySettingItemData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_KeySettingItemData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_KeySettingItemData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_KeySettingItemData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_KeySettingItemData
+    def FuncId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_KeySettingItemData
+    def FuncName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_KeySettingItemData
+    def FuncType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_KeySettingItemData
+    def KeyEffectGroup(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_KeySettingItemData
+    def CanBeSet(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_KeySettingItemData
+    def DefaultKeyId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_KeySettingItemData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_KeySettingItemDataStart(builder):
+    builder.StartObject(7)
+
+def clz_Torappu_KeySettingItemDataAddFuncId(builder, funcId):
+    builder.PrependInt32Slot(0, funcId, 0)
+
+def clz_Torappu_KeySettingItemDataAddFuncName(builder, funcName):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(funcName), 0)
+
+def clz_Torappu_KeySettingItemDataAddFuncType(builder, funcType):
+    builder.PrependInt32Slot(2, funcType, 0)
+
+def clz_Torappu_KeySettingItemDataAddKeyEffectGroup(builder, keyEffectGroup):
+    builder.PrependInt32Slot(3, keyEffectGroup, 0)
+
+def clz_Torappu_KeySettingItemDataAddCanBeSet(builder, canBeSet):
+    builder.PrependBoolSlot(4, canBeSet, 0)
+
+def clz_Torappu_KeySettingItemDataAddDefaultKeyId(builder, defaultKeyId):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(defaultKeyId), 0)
+
+def clz_Torappu_KeySettingItemDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(6, sortId, 0)
+
+def clz_Torappu_KeySettingItemDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__enum__Torappu_UI_KeyBoardVirtualButtonEnum__clz_Torappu_KeySettingItemData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__enum__Torappu_UI_KeyBoardVirtualButtonEnum__clz_Torappu_KeySettingItemData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__enum__Torappu_UI_KeyBoardVirtualButtonEnum__clz_Torappu_KeySettingItemData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__enum__Torappu_UI_KeyBoardVirtualButtonEnum__clz_Torappu_KeySettingItemData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__enum__Torappu_UI_KeyBoardVirtualButtonEnum__clz_Torappu_KeySettingItemData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # dict__enum__Torappu_UI_KeyBoardVirtualButtonEnum__clz_Torappu_KeySettingItemData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_KeySettingItemData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__enum__Torappu_UI_KeyBoardVirtualButtonEnum__clz_Torappu_KeySettingItemDataStart(builder):
+    builder.StartObject(2)
+
+def dict__enum__Torappu_UI_KeyBoardVirtualButtonEnum__clz_Torappu_KeySettingItemDataAddKey(builder, key):
+    builder.PrependInt32Slot(0, key, 0)
+
+def dict__enum__Torappu_UI_KeyBoardVirtualButtonEnum__clz_Torappu_KeySettingItemDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__enum__Torappu_UI_KeyBoardVirtualButtonEnum__clz_Torappu_KeySettingItemDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_PCKeyConstData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_PCKeyConstData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_PCKeyConstData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_PCKeyConstData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_PCKeyConstData
+    def CannotSetKeyNotice(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_PCKeyConstData
+    def ResetKeyNotice(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_PCKeyConstDataStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_PCKeyConstDataAddCannotSetKeyNotice(builder, cannotSetKeyNotice):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(cannotSetKeyNotice), 0)
+
+def clz_Torappu_PCKeyConstDataAddResetKeyNotice(builder, resetKeyNotice):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(resetKeyNotice), 0)
+
+def clz_Torappu_PCKeyConstDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_PCKeyData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_PCKeyData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_PCKeyData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_PCKeyData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_PCKeyData
+    def KeyList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_KeyItem()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_PCKeyData
+    def KeyListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_PCKeyData
+    def KeyListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+    # clz_Torappu_PCKeyData
+    def KeySettingData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__enum__Torappu_UI_KeyBoardVirtualButtonEnum__clz_Torappu_KeySettingItemData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_PCKeyData
+    def KeySettingDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_PCKeyData
+    def KeySettingDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+    # clz_Torappu_PCKeyData
+    def ConstData(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_PCKeyConstData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_PCKeyData
+    def KeyHideSettingData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__enum__Torappu_UI_KeyBoardVirtualButtonEnum__clz_Torappu_KeySettingItemData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_PCKeyData
+    def KeyHideSettingDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_PCKeyData
+    def KeyHideSettingDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+def clz_Torappu_PCKeyDataStart(builder):
+    builder.StartObject(4)
+
+def clz_Torappu_PCKeyDataAddKeyList(builder, keyList):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(keyList), 0)
+
+def clz_Torappu_PCKeyDataStartKeyListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_PCKeyDataAddKeySettingData(builder, keySettingData):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(keySettingData), 0)
+
+def clz_Torappu_PCKeyDataStartKeySettingDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_PCKeyDataAddConstData(builder, constData):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(constData), 0)
+
+def clz_Torappu_PCKeyDataAddKeyHideSettingData(builder, keyHideSettingData):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(keyHideSettingData), 0)
+
+def clz_Torappu_PCKeyDataStartKeyHideSettingDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_PCKeyDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ResolutionSettingItemData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ResolutionSettingItemData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ResolutionSettingItemData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ResolutionSettingItemData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ResolutionSettingItemData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ResolutionSettingItemData
+    def ResolutionWidth(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ResolutionSettingItemData
+    def ResolutionHeight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ResolutionSettingItemData
+    def ResolutionText(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ResolutionSettingItemData
+    def IsFullScreen(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def clz_Torappu_ResolutionSettingItemDataStart(builder):
+    builder.StartObject(5)
+
+def clz_Torappu_ResolutionSettingItemDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(0, sortId, 0)
+
+def clz_Torappu_ResolutionSettingItemDataAddResolutionWidth(builder, resolutionWidth):
+    builder.PrependInt32Slot(1, resolutionWidth, 0)
+
+def clz_Torappu_ResolutionSettingItemDataAddResolutionHeight(builder, resolutionHeight):
+    builder.PrependInt32Slot(2, resolutionHeight, 0)
+
+def clz_Torappu_ResolutionSettingItemDataAddResolutionText(builder, resolutionText):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(resolutionText), 0)
+
+def clz_Torappu_ResolutionSettingItemDataAddIsFullScreen(builder, isFullScreen):
+    builder.PrependBoolSlot(4, isFullScreen, 0)
+
+def clz_Torappu_ResolutionSettingItemDataEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_DisplayMetaData(object):
     __slots__ = ['_tab']
 
@@ -3904,8 +4474,42 @@ class clz_Torappu_DisplayMetaData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         return o == 0
 
+    # clz_Torappu_DisplayMetaData
+    def PcKeyData(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_PCKeyData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_DisplayMetaData
+    def ResolutionSettingList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ResolutionSettingItemData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_DisplayMetaData
+    def ResolutionSettingListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_DisplayMetaData
+    def ResolutionSettingListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        return o == 0
+
 def clz_Torappu_DisplayMetaDataStart(builder):
-    builder.StartObject(8)
+    builder.StartObject(10)
 
 def clz_Torappu_DisplayMetaDataAddPlayerAvatarData(builder, playerAvatarData):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(playerAvatarData), 0)
@@ -3935,6 +4539,15 @@ def clz_Torappu_DisplayMetaDataAddGuidebookGroupDatas(builder, guidebookGroupDat
     builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(guidebookGroupDatas), 0)
 
 def clz_Torappu_DisplayMetaDataStartGuidebookGroupDatasVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_DisplayMetaDataAddPcKeyData(builder, pcKeyData):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(pcKeyData), 0)
+
+def clz_Torappu_DisplayMetaDataAddResolutionSettingList(builder, resolutionSettingList):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(resolutionSettingList), 0)
+
+def clz_Torappu_DisplayMetaDataStartResolutionSettingListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_DisplayMetaDataEnd(builder):
