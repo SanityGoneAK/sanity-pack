@@ -227,13 +227,7 @@ class FlatBuffersSchemaManager:
         cache = get_flatbuffers_cache()
         
         # Start with cached commit or latest commit
-        current_commit = cache.get_commit(self.region, schema)
-        if not current_commit:
-            current_commit = self.get_latest_commit()
-            if not current_commit:
-                log.error(f"[red]Failed to get latest commit for {schema}[/red]")
-                return False
-            log.info(f"[cyan]No cached commit for {schema}, starting from latest: {current_commit[:8]}[/cyan]")
+        current_commit = self.get_latest_commit()
         
         success_count = 0
         
