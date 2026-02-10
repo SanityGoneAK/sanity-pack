@@ -166,8 +166,35 @@ class clz_Torappu_EquipTalentData(object):
         return 0
 
     # clz_Torappu_EquipTalentData
-    def UnlockCondition(self):
+    def ValidModeIndices(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return 0
+
+    # clz_Torappu_EquipTalentData
+    def ValidModeIndicesAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int32Flags, o)
+        return 0
+
+    # clz_Torappu_EquipTalentData
+    def ValidModeIndicesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_EquipTalentData
+    def ValidModeIndicesIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # clz_Torappu_EquipTalentData
+    def UnlockCondition(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_CharacterData_UnlockCondition()
@@ -177,42 +204,42 @@ class clz_Torappu_EquipTalentData(object):
 
     # clz_Torappu_EquipTalentData
     def RequiredPotentialRank(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_EquipTalentData
     def PrefabKey(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_EquipTalentData
-    def Name(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_EquipTalentData
-    def Description(self):
+    def Name(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_EquipTalentData
-    def RangeId(self):
+    def Description(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_EquipTalentData
-    def Blackboard(self, j):
+    def RangeId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_EquipTalentData
+    def Blackboard(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -224,32 +251,32 @@ class clz_Torappu_EquipTalentData(object):
 
     # clz_Torappu_EquipTalentData
     def BlackboardLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_EquipTalentData
     def BlackboardIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         return o == 0
 
     # clz_Torappu_EquipTalentData
     def TokenKey(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_EquipTalentData
     def IsHideTalent(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
 def clz_Torappu_EquipTalentDataStart(builder):
-    builder.StartObject(12)
+    builder.StartObject(13)
 
 def clz_Torappu_EquipTalentDataAddDisplayRangeId(builder, displayRangeId):
     builder.PrependBoolSlot(0, displayRangeId, 0)
@@ -260,35 +287,41 @@ def clz_Torappu_EquipTalentDataAddUpgradeDescription(builder, upgradeDescription
 def clz_Torappu_EquipTalentDataAddTalentIndex(builder, talentIndex):
     builder.PrependInt32Slot(2, talentIndex, 0)
 
+def clz_Torappu_EquipTalentDataAddValidModeIndices(builder, validModeIndices):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(validModeIndices), 0)
+
+def clz_Torappu_EquipTalentDataStartValidModeIndicesVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_EquipTalentDataAddUnlockCondition(builder, unlockCondition):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(unlockCondition), 0)
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(unlockCondition), 0)
 
 def clz_Torappu_EquipTalentDataAddRequiredPotentialRank(builder, requiredPotentialRank):
-    builder.PrependInt32Slot(4, requiredPotentialRank, 0)
+    builder.PrependInt32Slot(5, requiredPotentialRank, 0)
 
 def clz_Torappu_EquipTalentDataAddPrefabKey(builder, prefabKey):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(prefabKey), 0)
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(prefabKey), 0)
 
 def clz_Torappu_EquipTalentDataAddName(builder, name):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
 
 def clz_Torappu_EquipTalentDataAddDescription(builder, description):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(description), 0)
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(description), 0)
 
 def clz_Torappu_EquipTalentDataAddRangeId(builder, rangeId):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(rangeId), 0)
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(rangeId), 0)
 
 def clz_Torappu_EquipTalentDataAddBlackboard(builder, blackboard):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(blackboard), 0)
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(blackboard), 0)
 
 def clz_Torappu_EquipTalentDataStartBlackboardVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_EquipTalentDataAddTokenKey(builder, tokenKey):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(tokenKey), 0)
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(tokenKey), 0)
 
 def clz_Torappu_EquipTalentDataAddIsHideTalent(builder, isHideTalent):
-    builder.PrependBoolSlot(11, isHideTalent, 0)
+    builder.PrependBoolSlot(12, isHideTalent, 0)
 
 def clz_Torappu_EquipTalentDataEnd(builder):
     return builder.EndObject()
@@ -705,8 +738,22 @@ class clz_Torappu_BattleUniEquipData(object):
         return False
 
     # clz_Torappu_BattleUniEquipData
-    def AddOrOverrideTalentDataBundle(self):
+    def ValidInGameTag(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_BattleUniEquipData
+    def ValidInMapTag(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_BattleUniEquipData
+    def AddOrOverrideTalentDataBundle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_CharacterData_EquipTalentDataBundle()
@@ -716,7 +763,7 @@ class clz_Torappu_BattleUniEquipData(object):
 
     # clz_Torappu_BattleUniEquipData
     def OverrideTraitDataBundle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_CharacterData_EquipTraitDataBundle()
@@ -725,7 +772,7 @@ class clz_Torappu_BattleUniEquipData(object):
         return None
 
 def clz_Torappu_BattleUniEquipDataStart(builder):
-    builder.StartObject(5)
+    builder.StartObject(7)
 
 def clz_Torappu_BattleUniEquipDataAddResKey(builder, resKey):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(resKey), 0)
@@ -736,11 +783,17 @@ def clz_Torappu_BattleUniEquipDataAddTarget(builder, target):
 def clz_Torappu_BattleUniEquipDataAddIsToken(builder, isToken):
     builder.PrependBoolSlot(2, isToken, 0)
 
+def clz_Torappu_BattleUniEquipDataAddValidInGameTag(builder, validInGameTag):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(validInGameTag), 0)
+
+def clz_Torappu_BattleUniEquipDataAddValidInMapTag(builder, validInMapTag):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(validInMapTag), 0)
+
 def clz_Torappu_BattleUniEquipDataAddAddOrOverrideTalentDataBundle(builder, addOrOverrideTalentDataBundle):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(addOrOverrideTalentDataBundle), 0)
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(addOrOverrideTalentDataBundle), 0)
 
 def clz_Torappu_BattleUniEquipDataAddOverrideTraitDataBundle(builder, overrideTraitDataBundle):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(overrideTraitDataBundle), 0)
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(overrideTraitDataBundle), 0)
 
 def clz_Torappu_BattleUniEquipDataEnd(builder):
     return builder.EndObject()

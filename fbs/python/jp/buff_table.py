@@ -49,7 +49,9 @@ class enum__Torappu_AbnormalFlag(object):
     PALSY = 39
     PALSYING = 40
     ATTRACTED = 41
-    E_NUM = 42
+    FEARED_PRIVATE = 42
+    DOZE = 43
+    E_NUM = 44
 
 
 class enum__Torappu_AbnormalCombo(object):
@@ -120,6 +122,7 @@ class enum__Torappu_BuffData_OverrideType(object):
 
 
 class enum__Torappu_BuffData_OnEventPriority(object):
+    TITI_DOZE_PRIORITY = -4000
     LOWEST_PRIORITY = -3000
     LOWER_PRIORITY = -2000
     LOW_PRIORITY = -1000

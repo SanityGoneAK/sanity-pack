@@ -142,6 +142,8 @@ class enum__Torappu_ItemType(object):
     RANDOM_VOUCHER_SKIN = 88
     ACT1VHALFIDLE_ITEM = 89
     PLOT_ITEM = 90
+    MAGAZINE_LEAF = 91
+    STICKER = 92
 
 
 class enum__Torappu_CharacterData_PotentialRank_TypeEnum(object):
@@ -192,7 +194,9 @@ class enum__Torappu_AbnormalFlag(object):
     PALSY = 39
     PALSYING = 40
     ATTRACTED = 41
-    E_NUM = 42
+    FEARED_PRIVATE = 42
+    DOZE = 43
+    E_NUM = 44
 
 
 class enum__Torappu_AbnormalCombo(object):

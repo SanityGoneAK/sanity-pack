@@ -6,14 +6,19 @@ import flatbuffers
 from flatbuffers.compat import import_numpy
 np = import_numpy()
 
-class Torappu__BuildableType(object):
+class enum__Torappu_SpecialOperatorTargetType(object):
+    NONE = 0
+    ROGUE = 1
+
+
+class enum__Torappu_BuildableType(object):
     NONE = 0
     MELEE = 1
     RANGED = 2
     ALL = 3
 
 
-class Torappu__RarityRank(object):
+class enum__Torappu_RarityRank(object):
     TIER_1 = 0
     TIER_2 = 1
     TIER_3 = 2
@@ -23,7 +28,7 @@ class Torappu__RarityRank(object):
     E_NUM = 6
 
 
-class Torappu__ProfessionCategory(object):
+class enum__Torappu_ProfessionCategory(object):
     NONE = 0
     WARRIOR = 1
     SNIPER = 2
@@ -37,7 +42,7 @@ class Torappu__ProfessionCategory(object):
     PIONEER = 512
 
 
-class Torappu__EvolvePhase(object):
+class enum__Torappu_EvolvePhase(object):
     PHASE_0 = 0
     PHASE_1 = 1
     PHASE_2 = 2
@@ -45,7 +50,7 @@ class Torappu__EvolvePhase(object):
     E_NUM = 4
 
 
-class Torappu__ItemType(object):
+class enum__Torappu_ItemType(object):
     NONE = 0
     CHAR = 1
     CARD_EXP = 2
@@ -86,41 +91,67 @@ class Torappu__ItemType(object):
     REP_COIN = 37
     ROGUELIKE = 38
     LINKAGE_TKT_GACHA_10 = 39
-    VOUCHER_ELITE_II_5 = 40
-    VOUCHER_ELITE_II_6 = 41
-    VOUCHER_SKIN = 42
-    RETRO_COIN = 43
-    PLAYER_AVATAR = 44
-    UNI_COLLECTION = 45
-    VOUCHER_FULL_POTENTIAL = 46
-    RL_COIN = 47
-    RETURN_CREDIT = 48
-    MEDAL = 49
-    CHARM = 50
-    HOME_BACKGROUND = 51
-    EXTERMINATION_AGENT = 52
-    OPTIONAL_VOUCHER_PICK = 53
-    ACT_CART_COMPONENT = 54
-    VOUCHER_LEVELMAX_6 = 55
-    VOUCHER_LEVELMAX_5 = 56
-    ACTIVITY_POTENTIAL = 57
-    ITEM_PACK = 58
-    SANDBOX = 59
-    FAVOR_ADD_ITEM = 60
-    CLASSIC_SHD = 61
-    CLASSIC_TKT_GACHA = 62
-    CLASSIC_TKT_GACHA_10 = 63
-    LIMITED_BUFF = 64
-    CLASSIC_FES_PICK_TIER_5 = 65
-    CLASSIC_FES_PICK_TIER_6 = 66
+    VOUCHER_ELITE_II_4 = 40
+    VOUCHER_ELITE_II_5 = 41
+    VOUCHER_ELITE_II_6 = 42
+    VOUCHER_SKIN = 43
+    RETRO_COIN = 44
+    PLAYER_AVATAR = 45
+    UNI_COLLECTION = 46
+    VOUCHER_FULL_POTENTIAL = 47
+    RL_COIN = 48
+    RETURN_CREDIT = 49
+    MEDAL = 50
+    CHARM = 51
+    HOME_BACKGROUND = 52
+    EXTERMINATION_AGENT = 53
+    OPTIONAL_VOUCHER_PICK = 54
+    ACT_CART_COMPONENT = 55
+    VOUCHER_LEVELMAX_6 = 56
+    VOUCHER_LEVELMAX_5 = 57
+    VOUCHER_LEVELMAX_4 = 58
+    VOUCHER_SKILL_SPECIALLEVELMAX_6 = 59
+    VOUCHER_SKILL_SPECIALLEVELMAX_5 = 60
+    VOUCHER_SKILL_SPECIALLEVELMAX_4 = 61
+    ACTIVITY_POTENTIAL = 62
+    ITEM_PACK = 63
+    SANDBOX = 64
+    FAVOR_ADD_ITEM = 65
+    CLASSIC_SHD = 66
+    CLASSIC_TKT_GACHA = 67
+    CLASSIC_TKT_GACHA_10 = 68
+    LIMITED_BUFF = 69
+    CLASSIC_FES_PICK_TIER_5 = 70
+    CLASSIC_FES_PICK_TIER_6 = 71
+    RETURN_PROGRESS = 72
+    NEW_PROGRESS = 73
+    MCARD_VOUCHER = 74
+    MATERIAL_ISSUE_VOUCHER = 75
+    CRS_SHOP_COIN_V2 = 76
+    HOME_THEME = 77
+    SANDBOX_PERM = 78
+    SANDBOX_TOKEN = 79
+    TEMPLATE_TRAP = 80
+    NAME_CARD_SKIN = 81
+    EMOTICON_SET = 82
+    EXCLUSIVE_TKT_GACHA = 83
+    EXCLUSIVE_TKT_GACHA_10 = 84
+    SO_CHAR_EXP = 85
+    GIFTPACKAGE_TKT = 86
+    VOUCHER_SKIN_V2 = 87
+    RANDOM_VOUCHER_SKIN = 88
+    ACT1VHALFIDLE_ITEM = 89
+    PLOT_ITEM = 90
+    MAGAZINE_LEAF = 91
+    STICKER = 92
 
 
-class Torappu__TypeEnum(object):
+class enum__Torappu_CharacterData_PotentialRank_TypeEnum(object):
     BUFF = 0
     CUSTOM = 1
 
 
-class Torappu__AbnormalFlag(object):
+class enum__Torappu_AbnormalFlag(object):
     STUNNED = 0
     SP_RECOVER_STOPPED = 1
     TARGET_FREE = 2
@@ -150,16 +181,31 @@ class Torappu__AbnormalFlag(object):
     DURANCE = 26
     NOT_WITHDRAWABLE = 27
     OUT_OF_GROUND = 28
-    E_NUM = 29
+    SP_MODIFY_STOPPED = 29
+    ANTI_STATUS_RESISTABLE = 30
+    DISARMED_COMBAT = 31
+    TOWER_TARGET_FREE = 32
+    FEARED = 33
+    SKILL_ACTIVABLE_IN_ABNORMAL = 34
+    MOTION_TARGET_FREE = 35
+    FORCE_LEVITATE = 36
+    BUFF_ADD_CAN_BE_CANCELED_IF_DEFENSE = 37
+    DEFENSE_BUFF_ADD_IF_CANCELABLE_BUFF = 38
+    PALSY = 39
+    PALSYING = 40
+    ATTRACTED = 41
+    FEARED_PRIVATE = 42
+    DOZE = 43
+    E_NUM = 44
 
 
-class Torappu__AbnormalCombo(object):
+class enum__Torappu_AbnormalCombo(object):
     SLEEPING = 0
     SHELTERING = 1
     E_NUM = 2
 
 
-class Torappu__AttributeType(object):
+class enum__Torappu_AttributeType(object):
     MAX_HP = 0
     ATK = 1
     DEF = 2
@@ -191,1168 +237,1365 @@ class Torappu__AttributeType(object):
     MAX_EP = 28
     EP_RECOVERY_PER_SEC = 29
     SP_RECOVER_RATIO = 30
-    E_NUM = 31
+    EP_DAMAGE_RESISTANCE = 31
+    EP_RESISTANCE = 32
+    DAMAGE_HITRATE_PHYSICAL = 33
+    DAMAGE_HITRATE_MAGICAL = 34
+    EP_BREAK_RECOVER_SPEED = 35
+    E_NUM = 36
 
 
-class Torappu__FormulaItemType(object):
+class enum__Torappu_AttributeModifierData_AttributeModifier_FormulaItemType(object):
     ADDITION = 0
     MULTIPLIER = 1
     FINAL_ADDITION = 2
     FINAL_SCALER = 3
 
 
-class Torappu__UnlockCondition(object):
+class clz_Torappu_CharacterData_PowerData(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__UnlockCondition()
+        x = clz_Torappu_CharacterData_PowerData()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__UnlockCondition(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_CharacterData_PowerData(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__UnlockCondition
+    # clz_Torappu_CharacterData_PowerData
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__UnlockCondition
+    # clz_Torappu_CharacterData_PowerData
+    def NationId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CharacterData_PowerData
+    def GroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CharacterData_PowerData
+    def TeamId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_CharacterData_PowerDataStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_CharacterData_PowerDataAddNationId(builder, nationId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(nationId), 0)
+
+def clz_Torappu_CharacterData_PowerDataAddGroupId(builder, groupId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
+
+def clz_Torappu_CharacterData_PowerDataAddTeamId(builder, teamId):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(teamId), 0)
+
+def clz_Torappu_CharacterData_PowerDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_CharacterData_UnlockCondition(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_CharacterData_UnlockCondition()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_CharacterData_UnlockCondition(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_CharacterData_UnlockCondition
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_CharacterData_UnlockCondition
     def Phase(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__UnlockCondition
+    # clz_Torappu_CharacterData_UnlockCondition
     def Level(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-def Torappu__UnlockConditionStart(builder):
+def clz_Torappu_CharacterData_UnlockConditionStart(builder):
     builder.StartObject(2)
 
-def Torappu__UnlockConditionAddPhase(builder, phase):
+def clz_Torappu_CharacterData_UnlockConditionAddPhase(builder, phase):
     builder.PrependInt32Slot(0, phase, 0)
 
-def Torappu__UnlockConditionAddLevel(builder, level):
+def clz_Torappu_CharacterData_UnlockConditionAddLevel(builder, level):
     builder.PrependInt32Slot(1, level, 0)
 
-def Torappu__UnlockConditionEnd(builder):
+def clz_Torappu_CharacterData_UnlockConditionEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__DataPair(object):
+class clz_Torappu_Blackboard_DataPair(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__DataPair()
+        x = clz_Torappu_Blackboard_DataPair()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__DataPair(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_Blackboard_DataPair(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__DataPair
+    # clz_Torappu_Blackboard_DataPair
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__DataPair
+    # clz_Torappu_Blackboard_DataPair
     def Key(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__DataPair
+    # clz_Torappu_Blackboard_DataPair
     def Value(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
-    # Torappu__DataPair
+    # clz_Torappu_Blackboard_DataPair
     def ValueStr(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-def Torappu__DataPairStart(builder):
+def clz_Torappu_Blackboard_DataPairStart(builder):
     builder.StartObject(3)
 
-def Torappu__DataPairAddKey(builder, key):
+def clz_Torappu_Blackboard_DataPairAddKey(builder, key):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
 
-def Torappu__DataPairAddValue(builder, value):
+def clz_Torappu_Blackboard_DataPairAddValue(builder, value):
     builder.PrependFloat32Slot(1, value, 0.0)
 
-def Torappu__DataPairAddValueStr(builder, valueStr):
+def clz_Torappu_Blackboard_DataPairAddValueStr(builder, valueStr):
     builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(valueStr), 0)
 
-def Torappu__DataPairEnd(builder):
+def clz_Torappu_Blackboard_DataPairEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__TraitData(object):
+class clz_Torappu_CharacterData_TraitData(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__TraitData()
+        x = clz_Torappu_CharacterData_TraitData()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__TraitData(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_CharacterData_TraitData(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__TraitData
+    # clz_Torappu_CharacterData_TraitData
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__TraitData
+    # clz_Torappu_CharacterData_TraitData
     def UnlockCondition(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            obj = Torappu__UnlockCondition()
+            obj = clz_Torappu_CharacterData_UnlockCondition()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__TraitData
+    # clz_Torappu_CharacterData_TraitData
     def RequiredPotentialRank(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__TraitData
+    # clz_Torappu_CharacterData_TraitData
     def Blackboard(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__DataPair()
+            obj = clz_Torappu_Blackboard_DataPair()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__TraitData
+    # clz_Torappu_CharacterData_TraitData
     def BlackboardLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__TraitData
+    # clz_Torappu_CharacterData_TraitData
     def BlackboardIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         return o == 0
 
-def Torappu__TraitDataStart(builder):
-    builder.StartObject(3)
+    # clz_Torappu_CharacterData_TraitData
+    def OverrideDescripton(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
-def Torappu__TraitDataAddUnlockCondition(builder, unlockCondition):
+    # clz_Torappu_CharacterData_TraitData
+    def PrefabKey(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CharacterData_TraitData
+    def RangeId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_CharacterData_TraitDataStart(builder):
+    builder.StartObject(6)
+
+def clz_Torappu_CharacterData_TraitDataAddUnlockCondition(builder, unlockCondition):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(unlockCondition), 0)
 
-def Torappu__TraitDataAddRequiredPotentialRank(builder, requiredPotentialRank):
+def clz_Torappu_CharacterData_TraitDataAddRequiredPotentialRank(builder, requiredPotentialRank):
     builder.PrependInt32Slot(1, requiredPotentialRank, 0)
 
-def Torappu__TraitDataAddBlackboard(builder, blackboard):
+def clz_Torappu_CharacterData_TraitDataAddBlackboard(builder, blackboard):
     builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(blackboard), 0)
 
-def Torappu__TraitDataStartBlackboardVector(builder, numElems):
+def clz_Torappu_CharacterData_TraitDataStartBlackboardVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__TraitDataEnd(builder):
+def clz_Torappu_CharacterData_TraitDataAddOverrideDescripton(builder, overrideDescripton):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(overrideDescripton), 0)
+
+def clz_Torappu_CharacterData_TraitDataAddPrefabKey(builder, prefabKey):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(prefabKey), 0)
+
+def clz_Torappu_CharacterData_TraitDataAddRangeId(builder, rangeId):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(rangeId), 0)
+
+def clz_Torappu_CharacterData_TraitDataEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__TraitDataBundle(object):
+class clz_Torappu_CharacterData_TraitDataBundle(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__TraitDataBundle()
+        x = clz_Torappu_CharacterData_TraitDataBundle()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__TraitDataBundle(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_CharacterData_TraitDataBundle(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__TraitDataBundle
+    # clz_Torappu_CharacterData_TraitDataBundle
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__TraitDataBundle
+    # clz_Torappu_CharacterData_TraitDataBundle
     def Candidates(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__TraitData()
+            obj = clz_Torappu_CharacterData_TraitData()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__TraitDataBundle
+    # clz_Torappu_CharacterData_TraitDataBundle
     def CandidatesLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__TraitDataBundle
+    # clz_Torappu_CharacterData_TraitDataBundle
     def CandidatesIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         return o == 0
 
-def Torappu__TraitDataBundleStart(builder):
+def clz_Torappu_CharacterData_TraitDataBundleStart(builder):
     builder.StartObject(1)
 
-def Torappu__TraitDataBundleAddCandidates(builder, candidates):
+def clz_Torappu_CharacterData_TraitDataBundleAddCandidates(builder, candidates):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(candidates), 0)
 
-def Torappu__TraitDataBundleStartCandidatesVector(builder, numElems):
+def clz_Torappu_CharacterData_TraitDataBundleStartCandidatesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__TraitDataBundleEnd(builder):
+def clz_Torappu_CharacterData_TraitDataBundleEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__AttributesData(object):
+class clz_Torappu_AttributesData(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__AttributesData()
+        x = clz_Torappu_AttributesData()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__AttributesData(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_AttributesData(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def MaxHp(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def Atk(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def Def_(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def MagicResistance(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def Cost(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def BlockCnt(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def MoveSpeed(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def AttackSpeed(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def BaseAttackTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def RespawnTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def HpRecoveryPerSec(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def SpRecoveryPerSec(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def MaxDeployCount(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def MaxDeckStackCnt(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def TauntLevel(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def MassLevel(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def BaseForceLevel(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def StunImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def SilenceImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def SleepImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def FrozenImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-    # Torappu__AttributesData
+    # clz_Torappu_AttributesData
     def LevitateImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-def Torappu__AttributesDataStart(builder):
-    builder.StartObject(22)
+    # clz_Torappu_AttributesData
+    def DisarmedCombatImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def Torappu__AttributesDataAddMaxHp(builder, maxHp):
+    # clz_Torappu_AttributesData
+    def FearedImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_AttributesData
+    def PalsyImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_AttributesData
+    def AttractImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def clz_Torappu_AttributesDataStart(builder):
+    builder.StartObject(26)
+
+def clz_Torappu_AttributesDataAddMaxHp(builder, maxHp):
     builder.PrependInt32Slot(0, maxHp, 0)
 
-def Torappu__AttributesDataAddAtk(builder, atk):
+def clz_Torappu_AttributesDataAddAtk(builder, atk):
     builder.PrependInt32Slot(1, atk, 0)
 
-def Torappu__AttributesDataAddDef_(builder, def_):
+def clz_Torappu_AttributesDataAddDef_(builder, def_):
     builder.PrependInt32Slot(2, def_, 0)
 
-def Torappu__AttributesDataAddMagicResistance(builder, magicResistance):
+def clz_Torappu_AttributesDataAddMagicResistance(builder, magicResistance):
     builder.PrependFloat32Slot(3, magicResistance, 0.0)
 
-def Torappu__AttributesDataAddCost(builder, cost):
+def clz_Torappu_AttributesDataAddCost(builder, cost):
     builder.PrependInt32Slot(4, cost, 0)
 
-def Torappu__AttributesDataAddBlockCnt(builder, blockCnt):
+def clz_Torappu_AttributesDataAddBlockCnt(builder, blockCnt):
     builder.PrependInt32Slot(5, blockCnt, 0)
 
-def Torappu__AttributesDataAddMoveSpeed(builder, moveSpeed):
+def clz_Torappu_AttributesDataAddMoveSpeed(builder, moveSpeed):
     builder.PrependFloat32Slot(6, moveSpeed, 0.0)
 
-def Torappu__AttributesDataAddAttackSpeed(builder, attackSpeed):
+def clz_Torappu_AttributesDataAddAttackSpeed(builder, attackSpeed):
     builder.PrependFloat32Slot(7, attackSpeed, 0.0)
 
-def Torappu__AttributesDataAddBaseAttackTime(builder, baseAttackTime):
+def clz_Torappu_AttributesDataAddBaseAttackTime(builder, baseAttackTime):
     builder.PrependFloat32Slot(8, baseAttackTime, 0.0)
 
-def Torappu__AttributesDataAddRespawnTime(builder, respawnTime):
+def clz_Torappu_AttributesDataAddRespawnTime(builder, respawnTime):
     builder.PrependInt32Slot(9, respawnTime, 0)
 
-def Torappu__AttributesDataAddHpRecoveryPerSec(builder, hpRecoveryPerSec):
+def clz_Torappu_AttributesDataAddHpRecoveryPerSec(builder, hpRecoveryPerSec):
     builder.PrependFloat32Slot(10, hpRecoveryPerSec, 0.0)
 
-def Torappu__AttributesDataAddSpRecoveryPerSec(builder, spRecoveryPerSec):
+def clz_Torappu_AttributesDataAddSpRecoveryPerSec(builder, spRecoveryPerSec):
     builder.PrependFloat32Slot(11, spRecoveryPerSec, 0.0)
 
-def Torappu__AttributesDataAddMaxDeployCount(builder, maxDeployCount):
+def clz_Torappu_AttributesDataAddMaxDeployCount(builder, maxDeployCount):
     builder.PrependInt32Slot(12, maxDeployCount, 0)
 
-def Torappu__AttributesDataAddMaxDeckStackCnt(builder, maxDeckStackCnt):
+def clz_Torappu_AttributesDataAddMaxDeckStackCnt(builder, maxDeckStackCnt):
     builder.PrependInt32Slot(13, maxDeckStackCnt, 0)
 
-def Torappu__AttributesDataAddTauntLevel(builder, tauntLevel):
+def clz_Torappu_AttributesDataAddTauntLevel(builder, tauntLevel):
     builder.PrependInt32Slot(14, tauntLevel, 0)
 
-def Torappu__AttributesDataAddMassLevel(builder, massLevel):
+def clz_Torappu_AttributesDataAddMassLevel(builder, massLevel):
     builder.PrependInt32Slot(15, massLevel, 0)
 
-def Torappu__AttributesDataAddBaseForceLevel(builder, baseForceLevel):
+def clz_Torappu_AttributesDataAddBaseForceLevel(builder, baseForceLevel):
     builder.PrependInt32Slot(16, baseForceLevel, 0)
 
-def Torappu__AttributesDataAddStunImmune(builder, stunImmune):
+def clz_Torappu_AttributesDataAddStunImmune(builder, stunImmune):
     builder.PrependBoolSlot(17, stunImmune, 0)
 
-def Torappu__AttributesDataAddSilenceImmune(builder, silenceImmune):
+def clz_Torappu_AttributesDataAddSilenceImmune(builder, silenceImmune):
     builder.PrependBoolSlot(18, silenceImmune, 0)
 
-def Torappu__AttributesDataAddSleepImmune(builder, sleepImmune):
+def clz_Torappu_AttributesDataAddSleepImmune(builder, sleepImmune):
     builder.PrependBoolSlot(19, sleepImmune, 0)
 
-def Torappu__AttributesDataAddFrozenImmune(builder, frozenImmune):
+def clz_Torappu_AttributesDataAddFrozenImmune(builder, frozenImmune):
     builder.PrependBoolSlot(20, frozenImmune, 0)
 
-def Torappu__AttributesDataAddLevitateImmune(builder, levitateImmune):
+def clz_Torappu_AttributesDataAddLevitateImmune(builder, levitateImmune):
     builder.PrependBoolSlot(21, levitateImmune, 0)
 
-def Torappu__AttributesDataEnd(builder):
+def clz_Torappu_AttributesDataAddDisarmedCombatImmune(builder, disarmedCombatImmune):
+    builder.PrependBoolSlot(22, disarmedCombatImmune, 0)
+
+def clz_Torappu_AttributesDataAddFearedImmune(builder, fearedImmune):
+    builder.PrependBoolSlot(23, fearedImmune, 0)
+
+def clz_Torappu_AttributesDataAddPalsyImmune(builder, palsyImmune):
+    builder.PrependBoolSlot(24, palsyImmune, 0)
+
+def clz_Torappu_AttributesDataAddAttractImmune(builder, attractImmune):
+    builder.PrependBoolSlot(25, attractImmune, 0)
+
+def clz_Torappu_AttributesDataEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__KeyFrame(object):
+class clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesData_Torappu_AttributesData_(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__KeyFrame()
+        x = clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesData_Torappu_AttributesData_()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__KeyFrame(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesData_Torappu_AttributesData_(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__KeyFrame
+    # clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesData_Torappu_AttributesData_
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__KeyFrame
+    # clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesData_Torappu_AttributesData_
     def Level(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__KeyFrame
+    # clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesData_Torappu_AttributesData_
     def Data(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            obj = Torappu__AttributesData()
+            obj = clz_Torappu_AttributesData()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-def Torappu__KeyFrameStart(builder):
+def clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesData_Torappu_AttributesData_Start(builder):
     builder.StartObject(2)
 
-def Torappu__KeyFrameAddLevel(builder, level):
+def clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesData_Torappu_AttributesData_AddLevel(builder, level):
     builder.PrependInt32Slot(0, level, 0)
 
-def Torappu__KeyFrameAddData(builder, data):
+def clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesData_Torappu_AttributesData_AddData(builder, data):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(data), 0)
 
-def Torappu__KeyFrameEnd(builder):
+def clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesData_Torappu_AttributesData_End(builder):
     return builder.EndObject()
 
 
 
-class Torappu__PhaseData(object):
+class clz_Torappu_ItemBundle(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__PhaseData()
+        x = clz_Torappu_ItemBundle()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__PhaseData(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_ItemBundle(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__PhaseData
+    # clz_Torappu_ItemBundle
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__PhaseData
-    def CharacterPrefabKey(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # Torappu__PhaseData
-    def RangeId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # Torappu__PhaseData
-    def MaxLevel(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # Torappu__PhaseData
-    def AttributesKeyFrames(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = Torappu__KeyFrame()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # Torappu__PhaseData
-    def AttributesKeyFramesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # Torappu__PhaseData
-    def AttributesKeyFramesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        return o == 0
-
-    # Torappu__PhaseData
-    def EvolveCost(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = Torappu__ItemBundle()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # Torappu__PhaseData
-    def EvolveCostLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # Torappu__PhaseData
-    def EvolveCostIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        return o == 0
-
-def Torappu__PhaseDataStart(builder):
-    builder.StartObject(5)
-
-def Torappu__PhaseDataAddCharacterPrefabKey(builder, characterPrefabKey):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(characterPrefabKey), 0)
-
-def Torappu__PhaseDataAddRangeId(builder, rangeId):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(rangeId), 0)
-
-def Torappu__PhaseDataAddMaxLevel(builder, maxLevel):
-    builder.PrependInt32Slot(2, maxLevel, 0)
-
-def Torappu__PhaseDataAddAttributesKeyFrames(builder, attributesKeyFrames):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(attributesKeyFrames), 0)
-
-def Torappu__PhaseDataStartAttributesKeyFramesVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def Torappu__PhaseDataAddEvolveCost(builder, evolveCost):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(evolveCost), 0)
-
-def Torappu__PhaseDataStartEvolveCostVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def Torappu__PhaseDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class Torappu__ItemBundle(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__ItemBundle()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsTorappu__ItemBundle(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # Torappu__ItemBundle
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # Torappu__ItemBundle
+    # clz_Torappu_ItemBundle
     def Id(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__ItemBundle
+    # clz_Torappu_ItemBundle
     def Count(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__ItemBundle
+    # clz_Torappu_ItemBundle
     def Type(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-def Torappu__ItemBundleStart(builder):
+def clz_Torappu_ItemBundleStart(builder):
     builder.StartObject(3)
 
-def Torappu__ItemBundleAddId(builder, id):
+def clz_Torappu_ItemBundleAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
 
-def Torappu__ItemBundleAddCount(builder, count):
+def clz_Torappu_ItemBundleAddCount(builder, count):
     builder.PrependInt32Slot(1, count, 0)
 
-def Torappu__ItemBundleAddType(builder, type):
+def clz_Torappu_ItemBundleAddType(builder, type):
     builder.PrependInt32Slot(2, type, 0)
 
-def Torappu__ItemBundleEnd(builder):
+def clz_Torappu_ItemBundleEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__SpecializeLevelData(object):
+class clz_Torappu_CharacterData_PhaseData(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__SpecializeLevelData()
+        x = clz_Torappu_CharacterData_PhaseData()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__SpecializeLevelData(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_CharacterData_PhaseData(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__SpecializeLevelData
+    # clz_Torappu_CharacterData_PhaseData
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__SpecializeLevelData
-    def UnlockCond(self):
+    # clz_Torappu_CharacterData_PhaseData
+    def CharacterPrefabKey(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = Torappu__UnlockCondition()
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CharacterData_PhaseData
+    def RangeId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CharacterData_PhaseData
+    def MaxLevel(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CharacterData_PhaseData
+    def AttributesKeyFrames(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesData_Torappu_AttributesData_()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__SpecializeLevelData
+    # clz_Torappu_CharacterData_PhaseData
+    def AttributesKeyFramesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_CharacterData_PhaseData
+    def AttributesKeyFramesIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # clz_Torappu_CharacterData_PhaseData
+    def EvolveCost(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ItemBundle()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_CharacterData_PhaseData
+    def EvolveCostLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_CharacterData_PhaseData
+    def EvolveCostIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        return o == 0
+
+def clz_Torappu_CharacterData_PhaseDataStart(builder):
+    builder.StartObject(5)
+
+def clz_Torappu_CharacterData_PhaseDataAddCharacterPrefabKey(builder, characterPrefabKey):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(characterPrefabKey), 0)
+
+def clz_Torappu_CharacterData_PhaseDataAddRangeId(builder, rangeId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(rangeId), 0)
+
+def clz_Torappu_CharacterData_PhaseDataAddMaxLevel(builder, maxLevel):
+    builder.PrependInt32Slot(2, maxLevel, 0)
+
+def clz_Torappu_CharacterData_PhaseDataAddAttributesKeyFrames(builder, attributesKeyFrames):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(attributesKeyFrames), 0)
+
+def clz_Torappu_CharacterData_PhaseDataStartAttributesKeyFramesVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_CharacterData_PhaseDataAddEvolveCost(builder, evolveCost):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(evolveCost), 0)
+
+def clz_Torappu_CharacterData_PhaseDataStartEvolveCostVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_CharacterData_PhaseDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_CharacterData_MainSkill_SpecializeLevelData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_CharacterData_MainSkill_SpecializeLevelData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_CharacterData_MainSkill_SpecializeLevelData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_CharacterData_MainSkill_SpecializeLevelData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_CharacterData_MainSkill_SpecializeLevelData
+    def UnlockCond(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_CharacterData_UnlockCondition()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_CharacterData_MainSkill_SpecializeLevelData
     def LvlUpTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__SpecializeLevelData
+    # clz_Torappu_CharacterData_MainSkill_SpecializeLevelData
     def LevelUpCost(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__ItemBundle()
+            obj = clz_Torappu_ItemBundle()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__SpecializeLevelData
+    # clz_Torappu_CharacterData_MainSkill_SpecializeLevelData
     def LevelUpCostLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__SpecializeLevelData
+    # clz_Torappu_CharacterData_MainSkill_SpecializeLevelData
     def LevelUpCostIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         return o == 0
 
-def Torappu__SpecializeLevelDataStart(builder):
+def clz_Torappu_CharacterData_MainSkill_SpecializeLevelDataStart(builder):
     builder.StartObject(3)
 
-def Torappu__SpecializeLevelDataAddUnlockCond(builder, unlockCond):
+def clz_Torappu_CharacterData_MainSkill_SpecializeLevelDataAddUnlockCond(builder, unlockCond):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(unlockCond), 0)
 
-def Torappu__SpecializeLevelDataAddLvlUpTime(builder, lvlUpTime):
+def clz_Torappu_CharacterData_MainSkill_SpecializeLevelDataAddLvlUpTime(builder, lvlUpTime):
     builder.PrependInt32Slot(1, lvlUpTime, 0)
 
-def Torappu__SpecializeLevelDataAddLevelUpCost(builder, levelUpCost):
+def clz_Torappu_CharacterData_MainSkill_SpecializeLevelDataAddLevelUpCost(builder, levelUpCost):
     builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(levelUpCost), 0)
 
-def Torappu__SpecializeLevelDataStartLevelUpCostVector(builder, numElems):
+def clz_Torappu_CharacterData_MainSkill_SpecializeLevelDataStartLevelUpCostVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__SpecializeLevelDataEnd(builder):
+def clz_Torappu_CharacterData_MainSkill_SpecializeLevelDataEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__MainSkill(object):
+class clz_Torappu_CharacterData_MainSkill(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__MainSkill()
+        x = clz_Torappu_CharacterData_MainSkill()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__MainSkill(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_CharacterData_MainSkill(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__MainSkill
+    # clz_Torappu_CharacterData_MainSkill
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__MainSkill
+    # clz_Torappu_CharacterData_MainSkill
     def SkillId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__MainSkill
+    # clz_Torappu_CharacterData_MainSkill
     def OverridePrefabKey(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__MainSkill
+    # clz_Torappu_CharacterData_MainSkill
     def OverrideTokenKey(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__MainSkill
+    # clz_Torappu_CharacterData_MainSkill
     def LevelUpCostCond(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__SpecializeLevelData()
+            obj = clz_Torappu_CharacterData_MainSkill_SpecializeLevelData()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__MainSkill
+    # clz_Torappu_CharacterData_MainSkill
     def LevelUpCostCondLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__MainSkill
+    # clz_Torappu_CharacterData_MainSkill
     def LevelUpCostCondIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         return o == 0
 
-    # Torappu__MainSkill
+    # clz_Torappu_CharacterData_MainSkill
     def UnlockCond(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            obj = Torappu__UnlockCondition()
+            obj = clz_Torappu_CharacterData_UnlockCondition()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-def Torappu__MainSkillStart(builder):
+def clz_Torappu_CharacterData_MainSkillStart(builder):
     builder.StartObject(5)
 
-def Torappu__MainSkillAddSkillId(builder, skillId):
+def clz_Torappu_CharacterData_MainSkillAddSkillId(builder, skillId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(skillId), 0)
 
-def Torappu__MainSkillAddOverridePrefabKey(builder, overridePrefabKey):
+def clz_Torappu_CharacterData_MainSkillAddOverridePrefabKey(builder, overridePrefabKey):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(overridePrefabKey), 0)
 
-def Torappu__MainSkillAddOverrideTokenKey(builder, overrideTokenKey):
+def clz_Torappu_CharacterData_MainSkillAddOverrideTokenKey(builder, overrideTokenKey):
     builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(overrideTokenKey), 0)
 
-def Torappu__MainSkillAddLevelUpCostCond(builder, levelUpCostCond):
+def clz_Torappu_CharacterData_MainSkillAddLevelUpCostCond(builder, levelUpCostCond):
     builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(levelUpCostCond), 0)
 
-def Torappu__MainSkillStartLevelUpCostCondVector(builder, numElems):
+def clz_Torappu_CharacterData_MainSkillStartLevelUpCostCondVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__MainSkillAddUnlockCond(builder, unlockCond):
+def clz_Torappu_CharacterData_MainSkillAddUnlockCond(builder, unlockCond):
     builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(unlockCond), 0)
 
-def Torappu__MainSkillEnd(builder):
+def clz_Torappu_CharacterData_MainSkillEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__TalentData(object):
+class dict__string__bool(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__TalentData()
+        x = dict__string__bool()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__TalentData(cls, buf, offset=0):
+    def GetRootAsdict__string__bool(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__TalentData
+    # dict__string__bool
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__TalentData
+    # dict__string__bool
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__bool
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def dict__string__boolStart(builder):
+    builder.StartObject(2)
+
+def dict__string__boolAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__boolAddValue(builder, value):
+    builder.PrependBoolSlot(1, value, 0)
+
+def dict__string__boolEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_TalentData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_TalentData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_TalentData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_TalentData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_TalentData
     def UnlockCondition(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            obj = Torappu__UnlockCondition()
+            obj = clz_Torappu_CharacterData_UnlockCondition()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__TalentData
+    # clz_Torappu_TalentData
     def RequiredPotentialRank(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__TalentData
+    # clz_Torappu_TalentData
     def PrefabKey(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__TalentData
+    # clz_Torappu_TalentData
     def Name(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__TalentData
+    # clz_Torappu_TalentData
     def Description(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__TalentData
+    # clz_Torappu_TalentData
     def RangeId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__TalentData
+    # clz_Torappu_TalentData
     def Blackboard(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__DataPair()
+            obj = clz_Torappu_Blackboard_DataPair()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__TalentData
+    # clz_Torappu_TalentData
     def BlackboardLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__TalentData
+    # clz_Torappu_TalentData
     def BlackboardIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         return o == 0
 
-def Torappu__TalentDataStart(builder):
-    builder.StartObject(7)
+    # clz_Torappu_TalentData
+    def TokenKey(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
-def Torappu__TalentDataAddUnlockCondition(builder, unlockCondition):
+    # clz_Torappu_TalentData
+    def IsHideTalent(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def clz_Torappu_TalentDataStart(builder):
+    builder.StartObject(9)
+
+def clz_Torappu_TalentDataAddUnlockCondition(builder, unlockCondition):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(unlockCondition), 0)
 
-def Torappu__TalentDataAddRequiredPotentialRank(builder, requiredPotentialRank):
+def clz_Torappu_TalentDataAddRequiredPotentialRank(builder, requiredPotentialRank):
     builder.PrependInt32Slot(1, requiredPotentialRank, 0)
 
-def Torappu__TalentDataAddPrefabKey(builder, prefabKey):
+def clz_Torappu_TalentDataAddPrefabKey(builder, prefabKey):
     builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(prefabKey), 0)
 
-def Torappu__TalentDataAddName(builder, name):
+def clz_Torappu_TalentDataAddName(builder, name):
     builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
 
-def Torappu__TalentDataAddDescription(builder, description):
+def clz_Torappu_TalentDataAddDescription(builder, description):
     builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(description), 0)
 
-def Torappu__TalentDataAddRangeId(builder, rangeId):
+def clz_Torappu_TalentDataAddRangeId(builder, rangeId):
     builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(rangeId), 0)
 
-def Torappu__TalentDataAddBlackboard(builder, blackboard):
+def clz_Torappu_TalentDataAddBlackboard(builder, blackboard):
     builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(blackboard), 0)
 
-def Torappu__TalentDataStartBlackboardVector(builder, numElems):
+def clz_Torappu_TalentDataStartBlackboardVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__TalentDataEnd(builder):
+def clz_Torappu_TalentDataAddTokenKey(builder, tokenKey):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(tokenKey), 0)
+
+def clz_Torappu_TalentDataAddIsHideTalent(builder, isHideTalent):
+    builder.PrependBoolSlot(8, isHideTalent, 0)
+
+def clz_Torappu_TalentDataEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__TalentDataBundle(object):
+class clz_Torappu_CharacterData_TalentDataBundle(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__TalentDataBundle()
+        x = clz_Torappu_CharacterData_TalentDataBundle()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__TalentDataBundle(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_CharacterData_TalentDataBundle(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__TalentDataBundle
+    # clz_Torappu_CharacterData_TalentDataBundle
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__TalentDataBundle
+    # clz_Torappu_CharacterData_TalentDataBundle
     def Candidates(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__TalentData()
+            obj = clz_Torappu_TalentData()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__TalentDataBundle
+    # clz_Torappu_CharacterData_TalentDataBundle
     def CandidatesLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__TalentDataBundle
+    # clz_Torappu_CharacterData_TalentDataBundle
     def CandidatesIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         return o == 0
 
-def Torappu__TalentDataBundleStart(builder):
+def clz_Torappu_CharacterData_TalentDataBundleStart(builder):
     builder.StartObject(1)
 
-def Torappu__TalentDataBundleAddCandidates(builder, candidates):
+def clz_Torappu_CharacterData_TalentDataBundleAddCandidates(builder, candidates):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(candidates), 0)
 
-def Torappu__TalentDataBundleStartCandidatesVector(builder, numElems):
+def clz_Torappu_CharacterData_TalentDataBundleStartCandidatesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__TalentDataBundleEnd(builder):
+def clz_Torappu_CharacterData_TalentDataBundleEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__AttributeModifier(object):
+class clz_Torappu_AttributeModifierData_AttributeModifier(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__AttributeModifier()
+        x = clz_Torappu_AttributeModifierData_AttributeModifier()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__AttributeModifier(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_AttributeModifierData_AttributeModifier(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__AttributeModifier
+    # clz_Torappu_AttributeModifierData_AttributeModifier
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__AttributeModifier
+    # clz_Torappu_AttributeModifierData_AttributeModifier
     def AttributeType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__AttributeModifier
+    # clz_Torappu_AttributeModifierData_AttributeModifier
     def FormulaItem(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__AttributeModifier
+    # clz_Torappu_AttributeModifierData_AttributeModifier
     def Value(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
-    # Torappu__AttributeModifier
+    # clz_Torappu_AttributeModifierData_AttributeModifier
     def LoadFromBlackboard(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-    # Torappu__AttributeModifier
+    # clz_Torappu_AttributeModifierData_AttributeModifier
     def FetchBaseValueFromSourceEntity(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-def Torappu__AttributeModifierStart(builder):
+def clz_Torappu_AttributeModifierData_AttributeModifierStart(builder):
     builder.StartObject(5)
 
-def Torappu__AttributeModifierAddAttributeType(builder, attributeType):
+def clz_Torappu_AttributeModifierData_AttributeModifierAddAttributeType(builder, attributeType):
     builder.PrependInt32Slot(0, attributeType, 0)
 
-def Torappu__AttributeModifierAddFormulaItem(builder, formulaItem):
+def clz_Torappu_AttributeModifierData_AttributeModifierAddFormulaItem(builder, formulaItem):
     builder.PrependInt32Slot(1, formulaItem, 0)
 
-def Torappu__AttributeModifierAddValue(builder, value):
+def clz_Torappu_AttributeModifierData_AttributeModifierAddValue(builder, value):
     builder.PrependFloat32Slot(2, value, 0.0)
 
-def Torappu__AttributeModifierAddLoadFromBlackboard(builder, loadFromBlackboard):
+def clz_Torappu_AttributeModifierData_AttributeModifierAddLoadFromBlackboard(builder, loadFromBlackboard):
     builder.PrependBoolSlot(3, loadFromBlackboard, 0)
 
-def Torappu__AttributeModifierAddFetchBaseValueFromSourceEntity(builder, fetchBaseValueFromSourceEntity):
+def clz_Torappu_AttributeModifierData_AttributeModifierAddFetchBaseValueFromSourceEntity(builder, fetchBaseValueFromSourceEntity):
     builder.PrependBoolSlot(4, fetchBaseValueFromSourceEntity, 0)
 
-def Torappu__AttributeModifierEnd(builder):
+def clz_Torappu_AttributeModifierData_AttributeModifierEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__AttributeModifierData(object):
+class clz_Torappu_AttributeModifierData(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__AttributeModifierData()
+        x = clz_Torappu_AttributeModifierData()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__AttributeModifierData(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_AttributeModifierData(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalFlags(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
@@ -1360,26 +1603,26 @@ class Torappu__AttributeModifierData(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalFlagsAsNumpy(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int32Flags, o)
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalFlagsLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalFlagsIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         return o == 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalImmunes(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
@@ -1387,26 +1630,26 @@ class Torappu__AttributeModifierData(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalImmunesAsNumpy(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int32Flags, o)
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalImmunesLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalImmunesIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         return o == 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalAntis(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
@@ -1414,26 +1657,26 @@ class Torappu__AttributeModifierData(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalAntisAsNumpy(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int32Flags, o)
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalAntisLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalAntisIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         return o == 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalCombos(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
@@ -1441,26 +1684,26 @@ class Torappu__AttributeModifierData(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalCombosAsNumpy(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int32Flags, o)
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalCombosLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalCombosIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         return o == 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalComboImmunes(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
@@ -1468,866 +1711,1294 @@ class Torappu__AttributeModifierData(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalComboImmunesAsNumpy(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int32Flags, o)
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalComboImmunesLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AbnormalComboImmunesIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         return o == 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AttributeModifiers(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__AttributeModifier()
+            obj = clz_Torappu_AttributeModifierData_AttributeModifier()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AttributeModifiersLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__AttributeModifierData
+    # clz_Torappu_AttributeModifierData
     def AttributeModifiersIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         return o == 0
 
-def Torappu__AttributeModifierDataStart(builder):
+def clz_Torappu_AttributeModifierDataStart(builder):
     builder.StartObject(6)
 
-def Torappu__AttributeModifierDataAddAbnormalFlags(builder, abnormalFlags):
+def clz_Torappu_AttributeModifierDataAddAbnormalFlags(builder, abnormalFlags):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(abnormalFlags), 0)
 
-def Torappu__AttributeModifierDataStartAbnormalFlagsVector(builder, numElems):
+def clz_Torappu_AttributeModifierDataStartAbnormalFlagsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__AttributeModifierDataAddAbnormalImmunes(builder, abnormalImmunes):
+def clz_Torappu_AttributeModifierDataAddAbnormalImmunes(builder, abnormalImmunes):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(abnormalImmunes), 0)
 
-def Torappu__AttributeModifierDataStartAbnormalImmunesVector(builder, numElems):
+def clz_Torappu_AttributeModifierDataStartAbnormalImmunesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__AttributeModifierDataAddAbnormalAntis(builder, abnormalAntis):
+def clz_Torappu_AttributeModifierDataAddAbnormalAntis(builder, abnormalAntis):
     builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(abnormalAntis), 0)
 
-def Torappu__AttributeModifierDataStartAbnormalAntisVector(builder, numElems):
+def clz_Torappu_AttributeModifierDataStartAbnormalAntisVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__AttributeModifierDataAddAbnormalCombos(builder, abnormalCombos):
+def clz_Torappu_AttributeModifierDataAddAbnormalCombos(builder, abnormalCombos):
     builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(abnormalCombos), 0)
 
-def Torappu__AttributeModifierDataStartAbnormalCombosVector(builder, numElems):
+def clz_Torappu_AttributeModifierDataStartAbnormalCombosVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__AttributeModifierDataAddAbnormalComboImmunes(builder, abnormalComboImmunes):
+def clz_Torappu_AttributeModifierDataAddAbnormalComboImmunes(builder, abnormalComboImmunes):
     builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(abnormalComboImmunes), 0)
 
-def Torappu__AttributeModifierDataStartAbnormalComboImmunesVector(builder, numElems):
+def clz_Torappu_AttributeModifierDataStartAbnormalComboImmunesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__AttributeModifierDataAddAttributeModifiers(builder, attributeModifiers):
+def clz_Torappu_AttributeModifierDataAddAttributeModifiers(builder, attributeModifiers):
     builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(attributeModifiers), 0)
 
-def Torappu__AttributeModifierDataStartAttributeModifiersVector(builder, numElems):
+def clz_Torappu_AttributeModifierDataStartAttributeModifiersVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__AttributeModifierDataEnd(builder):
+def clz_Torappu_AttributeModifierDataEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__ExternalBuff(object):
+class clz_Torappu_ExternalBuff(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__ExternalBuff()
+        x = clz_Torappu_ExternalBuff()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__ExternalBuff(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_ExternalBuff(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__ExternalBuff
+    # clz_Torappu_ExternalBuff
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__ExternalBuff
+    # clz_Torappu_ExternalBuff
     def Attributes(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            obj = Torappu__AttributeModifierData()
+            obj = clz_Torappu_AttributeModifierData()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-def Torappu__ExternalBuffStart(builder):
+def clz_Torappu_ExternalBuffStart(builder):
     builder.StartObject(1)
 
-def Torappu__ExternalBuffAddAttributes(builder, attributes):
+def clz_Torappu_ExternalBuffAddAttributes(builder, attributes):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(attributes), 0)
 
-def Torappu__ExternalBuffEnd(builder):
+def clz_Torappu_ExternalBuffEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__PotentialRank(object):
+class clz_Torappu_CharacterData_PotentialRank(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__PotentialRank()
+        x = clz_Torappu_CharacterData_PotentialRank()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__PotentialRank(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_CharacterData_PotentialRank(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__PotentialRank
+    # clz_Torappu_CharacterData_PotentialRank
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__PotentialRank
+    # clz_Torappu_CharacterData_PotentialRank
     def Type(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # Torappu__PotentialRank
+    # clz_Torappu_CharacterData_PotentialRank
     def Description(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__PotentialRank
+    # clz_Torappu_CharacterData_PotentialRank
     def Buff(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            obj = Torappu__ExternalBuff()
+            obj = clz_Torappu_ExternalBuff()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__PotentialRank
+    # clz_Torappu_CharacterData_PotentialRank
     def EquivalentCost(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__ItemBundle()
+            obj = clz_Torappu_ItemBundle()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__PotentialRank
+    # clz_Torappu_CharacterData_PotentialRank
     def EquivalentCostLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__PotentialRank
+    # clz_Torappu_CharacterData_PotentialRank
     def EquivalentCostIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         return o == 0
 
-def Torappu__PotentialRankStart(builder):
+def clz_Torappu_CharacterData_PotentialRankStart(builder):
     builder.StartObject(4)
 
-def Torappu__PotentialRankAddType(builder, type):
+def clz_Torappu_CharacterData_PotentialRankAddType(builder, type):
     builder.PrependInt32Slot(0, type, 0)
 
-def Torappu__PotentialRankAddDescription(builder, description):
+def clz_Torappu_CharacterData_PotentialRankAddDescription(builder, description):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(description), 0)
 
-def Torappu__PotentialRankAddBuff(builder, buff):
+def clz_Torappu_CharacterData_PotentialRankAddBuff(builder, buff):
     builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(buff), 0)
 
-def Torappu__PotentialRankAddEquivalentCost(builder, equivalentCost):
+def clz_Torappu_CharacterData_PotentialRankAddEquivalentCost(builder, equivalentCost):
     builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(equivalentCost), 0)
 
-def Torappu__PotentialRankStartEquivalentCostVector(builder, numElems):
+def clz_Torappu_CharacterData_PotentialRankStartEquivalentCostVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__PotentialRankEnd(builder):
+def clz_Torappu_CharacterData_PotentialRankEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__SkillLevelCost(object):
+class clz_Torappu_AttributesDeltaData(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__SkillLevelCost()
+        x = clz_Torappu_AttributesDeltaData()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__SkillLevelCost(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_AttributesDeltaData(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__SkillLevelCost
+    # clz_Torappu_AttributesDeltaData
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__SkillLevelCost
-    def UnlockCond(self):
+    # clz_Torappu_AttributesDeltaData
+    def MaxHp(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_AttributesDeltaData
+    def Atk(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_AttributesDeltaData
+    def Def_(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_AttributesDeltaData
+    def MagicResistance(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_AttributesDeltaData
+    def Cost(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_AttributesDeltaData
+    def BlockCnt(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_AttributesDeltaData
+    def MoveSpeed(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_AttributesDeltaData
+    def AttackSpeed(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_AttributesDeltaData
+    def BaseAttackTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_AttributesDeltaData
+    def RespawnTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_AttributesDeltaData
+    def HpRecoveryPerSec(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_AttributesDeltaData
+    def SpRecoveryPerSec(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_AttributesDeltaData
+    def MaxDeployCount(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_AttributesDeltaData
+    def MaxDeckStackCnt(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_AttributesDeltaData
+    def TauntLevel(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_AttributesDeltaData
+    def MassLevel(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_AttributesDeltaData
+    def BaseForceLevel(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_AttributesDeltaData
+    def StunImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_AttributesDeltaData
+    def SilenceImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_AttributesDeltaData
+    def SleepImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_AttributesDeltaData
+    def FrozenImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_AttributesDeltaData
+    def LevitateImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_AttributesDeltaData
+    def DisarmedCombatImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_AttributesDeltaData
+    def FearedImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_AttributesDeltaData
+    def PalsyImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_AttributesDeltaData
+    def AttractImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def clz_Torappu_AttributesDeltaDataStart(builder):
+    builder.StartObject(26)
+
+def clz_Torappu_AttributesDeltaDataAddMaxHp(builder, maxHp):
+    builder.PrependInt32Slot(0, maxHp, 0)
+
+def clz_Torappu_AttributesDeltaDataAddAtk(builder, atk):
+    builder.PrependInt32Slot(1, atk, 0)
+
+def clz_Torappu_AttributesDeltaDataAddDef_(builder, def_):
+    builder.PrependInt32Slot(2, def_, 0)
+
+def clz_Torappu_AttributesDeltaDataAddMagicResistance(builder, magicResistance):
+    builder.PrependFloat32Slot(3, magicResistance, 0.0)
+
+def clz_Torappu_AttributesDeltaDataAddCost(builder, cost):
+    builder.PrependInt32Slot(4, cost, 0)
+
+def clz_Torappu_AttributesDeltaDataAddBlockCnt(builder, blockCnt):
+    builder.PrependInt32Slot(5, blockCnt, 0)
+
+def clz_Torappu_AttributesDeltaDataAddMoveSpeed(builder, moveSpeed):
+    builder.PrependFloat32Slot(6, moveSpeed, 0.0)
+
+def clz_Torappu_AttributesDeltaDataAddAttackSpeed(builder, attackSpeed):
+    builder.PrependFloat32Slot(7, attackSpeed, 0.0)
+
+def clz_Torappu_AttributesDeltaDataAddBaseAttackTime(builder, baseAttackTime):
+    builder.PrependFloat32Slot(8, baseAttackTime, 0.0)
+
+def clz_Torappu_AttributesDeltaDataAddRespawnTime(builder, respawnTime):
+    builder.PrependInt32Slot(9, respawnTime, 0)
+
+def clz_Torappu_AttributesDeltaDataAddHpRecoveryPerSec(builder, hpRecoveryPerSec):
+    builder.PrependFloat32Slot(10, hpRecoveryPerSec, 0.0)
+
+def clz_Torappu_AttributesDeltaDataAddSpRecoveryPerSec(builder, spRecoveryPerSec):
+    builder.PrependFloat32Slot(11, spRecoveryPerSec, 0.0)
+
+def clz_Torappu_AttributesDeltaDataAddMaxDeployCount(builder, maxDeployCount):
+    builder.PrependInt32Slot(12, maxDeployCount, 0)
+
+def clz_Torappu_AttributesDeltaDataAddMaxDeckStackCnt(builder, maxDeckStackCnt):
+    builder.PrependInt32Slot(13, maxDeckStackCnt, 0)
+
+def clz_Torappu_AttributesDeltaDataAddTauntLevel(builder, tauntLevel):
+    builder.PrependInt32Slot(14, tauntLevel, 0)
+
+def clz_Torappu_AttributesDeltaDataAddMassLevel(builder, massLevel):
+    builder.PrependInt32Slot(15, massLevel, 0)
+
+def clz_Torappu_AttributesDeltaDataAddBaseForceLevel(builder, baseForceLevel):
+    builder.PrependInt32Slot(16, baseForceLevel, 0)
+
+def clz_Torappu_AttributesDeltaDataAddStunImmune(builder, stunImmune):
+    builder.PrependBoolSlot(17, stunImmune, 0)
+
+def clz_Torappu_AttributesDeltaDataAddSilenceImmune(builder, silenceImmune):
+    builder.PrependBoolSlot(18, silenceImmune, 0)
+
+def clz_Torappu_AttributesDeltaDataAddSleepImmune(builder, sleepImmune):
+    builder.PrependBoolSlot(19, sleepImmune, 0)
+
+def clz_Torappu_AttributesDeltaDataAddFrozenImmune(builder, frozenImmune):
+    builder.PrependBoolSlot(20, frozenImmune, 0)
+
+def clz_Torappu_AttributesDeltaDataAddLevitateImmune(builder, levitateImmune):
+    builder.PrependBoolSlot(21, levitateImmune, 0)
+
+def clz_Torappu_AttributesDeltaDataAddDisarmedCombatImmune(builder, disarmedCombatImmune):
+    builder.PrependBoolSlot(22, disarmedCombatImmune, 0)
+
+def clz_Torappu_AttributesDeltaDataAddFearedImmune(builder, fearedImmune):
+    builder.PrependBoolSlot(23, fearedImmune, 0)
+
+def clz_Torappu_AttributesDeltaDataAddPalsyImmune(builder, palsyImmune):
+    builder.PrependBoolSlot(24, palsyImmune, 0)
+
+def clz_Torappu_AttributesDeltaDataAddAttractImmune(builder, attractImmune):
+    builder.PrependBoolSlot(25, attractImmune, 0)
+
+def clz_Torappu_AttributesDeltaDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesDeltaData_Torappu_AttributesData_(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesDeltaData_Torappu_AttributesData_()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesDeltaData_Torappu_AttributesData_(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesDeltaData_Torappu_AttributesData_
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesDeltaData_Torappu_AttributesData_
+    def Level(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesDeltaData_Torappu_AttributesData_
+    def Data(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            obj = Torappu__UnlockCondition()
+            obj = clz_Torappu_AttributesDeltaData()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__SkillLevelCost
+def clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesDeltaData_Torappu_AttributesData_Start(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesDeltaData_Torappu_AttributesData_AddLevel(builder, level):
+    builder.PrependInt32Slot(0, level, 0)
+
+def clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesDeltaData_Torappu_AttributesData_AddData(builder, data):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(data), 0)
+
+def clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesDeltaData_Torappu_AttributesData_End(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_CharacterData_SkillLevelCost(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_CharacterData_SkillLevelCost()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_CharacterData_SkillLevelCost(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_CharacterData_SkillLevelCost
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_CharacterData_SkillLevelCost
+    def UnlockCond(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_CharacterData_UnlockCondition()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_CharacterData_SkillLevelCost
     def LvlUpCost(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__ItemBundle()
+            obj = clz_Torappu_ItemBundle()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__SkillLevelCost
+    # clz_Torappu_CharacterData_SkillLevelCost
     def LvlUpCostLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__SkillLevelCost
+    # clz_Torappu_CharacterData_SkillLevelCost
     def LvlUpCostIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         return o == 0
 
-def Torappu__SkillLevelCostStart(builder):
+def clz_Torappu_CharacterData_SkillLevelCostStart(builder):
     builder.StartObject(2)
 
-def Torappu__SkillLevelCostAddUnlockCond(builder, unlockCond):
+def clz_Torappu_CharacterData_SkillLevelCostAddUnlockCond(builder, unlockCond):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(unlockCond), 0)
 
-def Torappu__SkillLevelCostAddLvlUpCost(builder, lvlUpCost):
+def clz_Torappu_CharacterData_SkillLevelCostAddLvlUpCost(builder, lvlUpCost):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(lvlUpCost), 0)
 
-def Torappu__SkillLevelCostStartLvlUpCostVector(builder, numElems):
+def clz_Torappu_CharacterData_SkillLevelCostStartLvlUpCostVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__SkillLevelCostEnd(builder):
+def clz_Torappu_CharacterData_SkillLevelCostEnd(builder):
     return builder.EndObject()
 
 
 
-class Torappu__CharacterData(object):
+class clz_Torappu_CharacterData(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Torappu__CharacterData()
+        x = clz_Torappu_CharacterData()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTorappu__CharacterData(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_CharacterData(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def Name(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def Description(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__CharacterData
-    def CanUseGeneralPotentialItem(self):
+    # clz_Torappu_CharacterData
+    def SortIndex(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
-    # Torappu__CharacterData
-    def CanUseActivityPotentialItem(self):
+    # clz_Torappu_CharacterData
+    def SpTargetType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
-    # Torappu__CharacterData
-    def PotentialItemId(self):
+    # clz_Torappu_CharacterData
+    def SpTargetId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__CharacterData
-    def ActivityPotentialItemId(self):
+    # clz_Torappu_CharacterData
+    def CanUseGeneralPotentialItem(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-    # Torappu__CharacterData
-    def ClassicPotentialItemId(self):
+    # clz_Torappu_CharacterData
+    def CanUseActivityPotentialItem(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-    # Torappu__CharacterData
-    def NationId(self):
+    # clz_Torappu_CharacterData
+    def PotentialItemId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__CharacterData
-    def GroupId(self):
+    # clz_Torappu_CharacterData
+    def ActivityPotentialItemId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__CharacterData
-    def TeamId(self):
+    # clz_Torappu_CharacterData
+    def ClassicPotentialItemId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__CharacterData
-    def DisplayNumber(self):
+    # clz_Torappu_CharacterData
+    def NationId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__CharacterData
-    def TokenKey(self):
+    # clz_Torappu_CharacterData
+    def GroupId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__CharacterData
-    def Appellation(self):
+    # clz_Torappu_CharacterData
+    def TeamId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__CharacterData
-    def Position(self):
+    # clz_Torappu_CharacterData
+    def MainPower(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_CharacterData_PowerData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
-    # Torappu__CharacterData
-    def TagList(self, j):
+    # clz_Torappu_CharacterData
+    def SubPower(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return ""
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_CharacterData_PowerData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
-    # Torappu__CharacterData
-    def TagListLength(self):
+    # clz_Torappu_CharacterData
+    def SubPowerLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__CharacterData
-    def TagListIsNone(self):
+    # clz_Torappu_CharacterData
+    def SubPowerIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         return o == 0
 
-    # Torappu__CharacterData
-    def ItemUsage(self):
+    # clz_Torappu_CharacterData
+    def DisplayNumber(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__CharacterData
-    def ItemDesc(self):
+    # clz_Torappu_CharacterData
+    def Appellation(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__CharacterData
-    def ItemObtainApproach(self):
+    # clz_Torappu_CharacterData
+    def Position(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
-    # Torappu__CharacterData
-    def IsNotObtainable(self):
+    # clz_Torappu_CharacterData
+    def TagList(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
 
-    # Torappu__CharacterData
-    def IsSpChar(self):
+    # clz_Torappu_CharacterData
+    def TagListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_CharacterData
+    def TagListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        return o == 0
+
+    # clz_Torappu_CharacterData
+    def ItemUsage(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # Torappu__CharacterData
-    def MaxPotentialLevel(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # Torappu__CharacterData
-    def Rarity(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # Torappu__CharacterData
-    def Profession(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # Torappu__CharacterData
-    def SubProfessionId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Torappu__CharacterData
-    def Trait(self):
+    # clz_Torappu_CharacterData
+    def ItemDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CharacterData
+    def ItemObtainApproach(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CharacterData
+    def IsNotObtainable(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_CharacterData
+    def IsSpChar(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_CharacterData
+    def MaxPotentialLevel(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
         if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CharacterData
+    def Rarity(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CharacterData
+    def Profession(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CharacterData
+    def SubProfessionId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CharacterData
+    def Trait(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
+        if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            obj = Torappu__TraitDataBundle()
+            obj = clz_Torappu_CharacterData_TraitDataBundle()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def Phases(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__PhaseData()
+            obj = clz_Torappu_CharacterData_PhaseData()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def PhasesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def PhasesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
         return o == 0
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def Skills(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(64))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__MainSkill()
+            obj = clz_Torappu_CharacterData_MainSkill()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def SkillsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(64))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def SkillsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(64))
         return o == 0
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
+    def DisplayTokenDict(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(66))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__bool()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_CharacterData
+    def DisplayTokenDictLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(66))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_CharacterData
+    def DisplayTokenDictIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(66))
+        return o == 0
+
+    # clz_Torappu_CharacterData
     def Talents(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__TalentDataBundle()
+            obj = clz_Torappu_CharacterData_TalentDataBundle()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def TalentsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def TalentsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
         return o == 0
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def PotentialRanks(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__PotentialRank()
+            obj = clz_Torappu_CharacterData_PotentialRank()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def PotentialRanksLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def PotentialRanksIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
         return o == 0
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def FavorKeyFrames(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__KeyFrame()
+            obj = clz_Torappu_KeyFrames_2_KeyFrame_Torappu_AttributesDeltaData_Torappu_AttributesData_()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def FavorKeyFramesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def FavorKeyFramesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
         return o == 0
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def AllSkillLvlup(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(64))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = Torappu__SkillLevelCost()
+            obj = clz_Torappu_CharacterData_SkillLevelCost()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def AllSkillLvlupLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(64))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # Torappu__CharacterData
+    # clz_Torappu_CharacterData
     def AllSkillLvlupIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(64))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
         return o == 0
 
-def Torappu__CharacterDataStart(builder):
-    builder.StartObject(31)
+def clz_Torappu_CharacterDataStart(builder):
+    builder.StartObject(36)
 
-def Torappu__CharacterDataAddName(builder, name):
+def clz_Torappu_CharacterDataAddName(builder, name):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
 
-def Torappu__CharacterDataAddDescription(builder, description):
+def clz_Torappu_CharacterDataAddDescription(builder, description):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(description), 0)
 
-def Torappu__CharacterDataAddCanUseGeneralPotentialItem(builder, canUseGeneralPotentialItem):
-    builder.PrependBoolSlot(2, canUseGeneralPotentialItem, 0)
+def clz_Torappu_CharacterDataAddSortIndex(builder, sortIndex):
+    builder.PrependInt32Slot(2, sortIndex, 0)
 
-def Torappu__CharacterDataAddCanUseActivityPotentialItem(builder, canUseActivityPotentialItem):
-    builder.PrependBoolSlot(3, canUseActivityPotentialItem, 0)
+def clz_Torappu_CharacterDataAddSpTargetType(builder, spTargetType):
+    builder.PrependInt32Slot(3, spTargetType, 0)
 
-def Torappu__CharacterDataAddPotentialItemId(builder, potentialItemId):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(potentialItemId), 0)
+def clz_Torappu_CharacterDataAddSpTargetId(builder, spTargetId):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(spTargetId), 0)
 
-def Torappu__CharacterDataAddActivityPotentialItemId(builder, activityPotentialItemId):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(activityPotentialItemId), 0)
+def clz_Torappu_CharacterDataAddCanUseGeneralPotentialItem(builder, canUseGeneralPotentialItem):
+    builder.PrependBoolSlot(5, canUseGeneralPotentialItem, 0)
 
-def Torappu__CharacterDataAddClassicPotentialItemId(builder, classicPotentialItemId):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(classicPotentialItemId), 0)
+def clz_Torappu_CharacterDataAddCanUseActivityPotentialItem(builder, canUseActivityPotentialItem):
+    builder.PrependBoolSlot(6, canUseActivityPotentialItem, 0)
 
-def Torappu__CharacterDataAddNationId(builder, nationId):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(nationId), 0)
+def clz_Torappu_CharacterDataAddPotentialItemId(builder, potentialItemId):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(potentialItemId), 0)
 
-def Torappu__CharacterDataAddGroupId(builder, groupId):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
+def clz_Torappu_CharacterDataAddActivityPotentialItemId(builder, activityPotentialItemId):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(activityPotentialItemId), 0)
 
-def Torappu__CharacterDataAddTeamId(builder, teamId):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(teamId), 0)
+def clz_Torappu_CharacterDataAddClassicPotentialItemId(builder, classicPotentialItemId):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(classicPotentialItemId), 0)
 
-def Torappu__CharacterDataAddDisplayNumber(builder, displayNumber):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(displayNumber), 0)
+def clz_Torappu_CharacterDataAddNationId(builder, nationId):
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(nationId), 0)
 
-def Torappu__CharacterDataAddTokenKey(builder, tokenKey):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(tokenKey), 0)
+def clz_Torappu_CharacterDataAddGroupId(builder, groupId):
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
 
-def Torappu__CharacterDataAddAppellation(builder, appellation):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(appellation), 0)
+def clz_Torappu_CharacterDataAddTeamId(builder, teamId):
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(teamId), 0)
 
-def Torappu__CharacterDataAddPosition(builder, position):
-    builder.PrependInt32Slot(13, position, 0)
+def clz_Torappu_CharacterDataAddMainPower(builder, mainPower):
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(mainPower), 0)
 
-def Torappu__CharacterDataAddTagList(builder, tagList):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(tagList), 0)
+def clz_Torappu_CharacterDataAddSubPower(builder, subPower):
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(subPower), 0)
 
-def Torappu__CharacterDataStartTagListVector(builder, numElems):
+def clz_Torappu_CharacterDataStartSubPowerVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__CharacterDataAddItemUsage(builder, itemUsage):
-    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(itemUsage), 0)
+def clz_Torappu_CharacterDataAddDisplayNumber(builder, displayNumber):
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(displayNumber), 0)
 
-def Torappu__CharacterDataAddItemDesc(builder, itemDesc):
-    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(itemDesc), 0)
+def clz_Torappu_CharacterDataAddAppellation(builder, appellation):
+    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(appellation), 0)
 
-def Torappu__CharacterDataAddItemObtainApproach(builder, itemObtainApproach):
-    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(itemObtainApproach), 0)
+def clz_Torappu_CharacterDataAddPosition(builder, position):
+    builder.PrependInt32Slot(17, position, 0)
 
-def Torappu__CharacterDataAddIsNotObtainable(builder, isNotObtainable):
-    builder.PrependBoolSlot(18, isNotObtainable, 0)
+def clz_Torappu_CharacterDataAddTagList(builder, tagList):
+    builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(tagList), 0)
 
-def Torappu__CharacterDataAddIsSpChar(builder, isSpChar):
-    builder.PrependBoolSlot(19, isSpChar, 0)
-
-def Torappu__CharacterDataAddMaxPotentialLevel(builder, maxPotentialLevel):
-    builder.PrependInt32Slot(20, maxPotentialLevel, 0)
-
-def Torappu__CharacterDataAddRarity(builder, rarity):
-    builder.PrependInt32Slot(21, rarity, 0)
-
-def Torappu__CharacterDataAddProfession(builder, profession):
-    builder.PrependInt32Slot(22, profession, 0)
-
-def Torappu__CharacterDataAddSubProfessionId(builder, subProfessionId):
-    builder.PrependUOffsetTRelativeSlot(23, flatbuffers.number_types.UOffsetTFlags.py_type(subProfessionId), 0)
-
-def Torappu__CharacterDataAddTrait(builder, trait):
-    builder.PrependUOffsetTRelativeSlot(24, flatbuffers.number_types.UOffsetTFlags.py_type(trait), 0)
-
-def Torappu__CharacterDataAddPhases(builder, phases):
-    builder.PrependUOffsetTRelativeSlot(25, flatbuffers.number_types.UOffsetTFlags.py_type(phases), 0)
-
-def Torappu__CharacterDataStartPhasesVector(builder, numElems):
+def clz_Torappu_CharacterDataStartTagListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__CharacterDataAddSkills(builder, skills):
-    builder.PrependUOffsetTRelativeSlot(26, flatbuffers.number_types.UOffsetTFlags.py_type(skills), 0)
+def clz_Torappu_CharacterDataAddItemUsage(builder, itemUsage):
+    builder.PrependUOffsetTRelativeSlot(19, flatbuffers.number_types.UOffsetTFlags.py_type(itemUsage), 0)
 
-def Torappu__CharacterDataStartSkillsVector(builder, numElems):
+def clz_Torappu_CharacterDataAddItemDesc(builder, itemDesc):
+    builder.PrependUOffsetTRelativeSlot(20, flatbuffers.number_types.UOffsetTFlags.py_type(itemDesc), 0)
+
+def clz_Torappu_CharacterDataAddItemObtainApproach(builder, itemObtainApproach):
+    builder.PrependUOffsetTRelativeSlot(21, flatbuffers.number_types.UOffsetTFlags.py_type(itemObtainApproach), 0)
+
+def clz_Torappu_CharacterDataAddIsNotObtainable(builder, isNotObtainable):
+    builder.PrependBoolSlot(22, isNotObtainable, 0)
+
+def clz_Torappu_CharacterDataAddIsSpChar(builder, isSpChar):
+    builder.PrependBoolSlot(23, isSpChar, 0)
+
+def clz_Torappu_CharacterDataAddMaxPotentialLevel(builder, maxPotentialLevel):
+    builder.PrependInt32Slot(24, maxPotentialLevel, 0)
+
+def clz_Torappu_CharacterDataAddRarity(builder, rarity):
+    builder.PrependInt32Slot(25, rarity, 0)
+
+def clz_Torappu_CharacterDataAddProfession(builder, profession):
+    builder.PrependInt32Slot(26, profession, 0)
+
+def clz_Torappu_CharacterDataAddSubProfessionId(builder, subProfessionId):
+    builder.PrependUOffsetTRelativeSlot(27, flatbuffers.number_types.UOffsetTFlags.py_type(subProfessionId), 0)
+
+def clz_Torappu_CharacterDataAddTrait(builder, trait):
+    builder.PrependUOffsetTRelativeSlot(28, flatbuffers.number_types.UOffsetTFlags.py_type(trait), 0)
+
+def clz_Torappu_CharacterDataAddPhases(builder, phases):
+    builder.PrependUOffsetTRelativeSlot(29, flatbuffers.number_types.UOffsetTFlags.py_type(phases), 0)
+
+def clz_Torappu_CharacterDataStartPhasesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__CharacterDataAddTalents(builder, talents):
-    builder.PrependUOffsetTRelativeSlot(27, flatbuffers.number_types.UOffsetTFlags.py_type(talents), 0)
+def clz_Torappu_CharacterDataAddSkills(builder, skills):
+    builder.PrependUOffsetTRelativeSlot(30, flatbuffers.number_types.UOffsetTFlags.py_type(skills), 0)
 
-def Torappu__CharacterDataStartTalentsVector(builder, numElems):
+def clz_Torappu_CharacterDataStartSkillsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__CharacterDataAddPotentialRanks(builder, potentialRanks):
-    builder.PrependUOffsetTRelativeSlot(28, flatbuffers.number_types.UOffsetTFlags.py_type(potentialRanks), 0)
+def clz_Torappu_CharacterDataAddDisplayTokenDict(builder, displayTokenDict):
+    builder.PrependUOffsetTRelativeSlot(31, flatbuffers.number_types.UOffsetTFlags.py_type(displayTokenDict), 0)
 
-def Torappu__CharacterDataStartPotentialRanksVector(builder, numElems):
+def clz_Torappu_CharacterDataStartDisplayTokenDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__CharacterDataAddFavorKeyFrames(builder, favorKeyFrames):
-    builder.PrependUOffsetTRelativeSlot(29, flatbuffers.number_types.UOffsetTFlags.py_type(favorKeyFrames), 0)
+def clz_Torappu_CharacterDataAddTalents(builder, talents):
+    builder.PrependUOffsetTRelativeSlot(32, flatbuffers.number_types.UOffsetTFlags.py_type(talents), 0)
 
-def Torappu__CharacterDataStartFavorKeyFramesVector(builder, numElems):
+def clz_Torappu_CharacterDataStartTalentsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__CharacterDataAddAllSkillLvlup(builder, allSkillLvlup):
-    builder.PrependUOffsetTRelativeSlot(30, flatbuffers.number_types.UOffsetTFlags.py_type(allSkillLvlup), 0)
+def clz_Torappu_CharacterDataAddPotentialRanks(builder, potentialRanks):
+    builder.PrependUOffsetTRelativeSlot(33, flatbuffers.number_types.UOffsetTFlags.py_type(potentialRanks), 0)
 
-def Torappu__CharacterDataStartAllSkillLvlupVector(builder, numElems):
+def clz_Torappu_CharacterDataStartPotentialRanksVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def Torappu__CharacterDataEnd(builder):
+def clz_Torappu_CharacterDataAddFavorKeyFrames(builder, favorKeyFrames):
+    builder.PrependUOffsetTRelativeSlot(34, flatbuffers.number_types.UOffsetTFlags.py_type(favorKeyFrames), 0)
+
+def clz_Torappu_CharacterDataStartFavorKeyFramesVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_CharacterDataAddAllSkillLvlup(builder, allSkillLvlup):
+    builder.PrependUOffsetTRelativeSlot(35, flatbuffers.number_types.UOffsetTFlags.py_type(allSkillLvlup), 0)
+
+def clz_Torappu_CharacterDataStartAllSkillLvlupVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_CharacterDataEnd(builder):
     return builder.EndObject()
 
 
 
-class KV_Torappu__CharacterData(object):
+class dict__string__clz_Torappu_CharacterData(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = KV_Torappu__CharacterData()
+        x = dict__string__clz_Torappu_CharacterData()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsKV_Torappu__CharacterData(cls, buf, offset=0):
+    def GetRootAsdict__string__clz_Torappu_CharacterData(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # KV_Torappu__CharacterData
+    # dict__string__clz_Torappu_CharacterData
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # KV_Torappu__CharacterData
+    # dict__string__clz_Torappu_CharacterData
     def Key(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # KV_Torappu__CharacterData
+    # dict__string__clz_Torappu_CharacterData
     def Value(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            obj = Torappu__CharacterData()
+            obj = clz_Torappu_CharacterData()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-def KV_Torappu__CharacterDataStart(builder):
+def dict__string__clz_Torappu_CharacterDataStart(builder):
     builder.StartObject(2)
 
-def KV_Torappu__CharacterDataAddKey(builder, key):
+def dict__string__clz_Torappu_CharacterDataAddKey(builder, key):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
 
-def KV_Torappu__CharacterDataAddValue(builder, value):
+def dict__string__clz_Torappu_CharacterDataAddValue(builder, value):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
 
-def KV_Torappu__CharacterDataEnd(builder):
+def dict__string__clz_Torappu_CharacterDataEnd(builder):
     return builder.EndObject()
 
 
 
-class character_table(object):
+class clz_Torappu_SimpleKVTable_clz_Torappu_CharacterData(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = character_table()
+        x = clz_Torappu_SimpleKVTable_clz_Torappu_CharacterData()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAscharacter_table(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_SimpleKVTable_clz_Torappu_CharacterData(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # character_table
+    # clz_Torappu_SimpleKVTable_clz_Torappu_CharacterData
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # character_table
-    def Values(self, j):
+    # clz_Torappu_SimpleKVTable_clz_Torappu_CharacterData
+    def Characters(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = KV_Torappu__CharacterData()
+            obj = dict__string__clz_Torappu_CharacterData()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # character_table
-    def ValuesLength(self):
+    # clz_Torappu_SimpleKVTable_clz_Torappu_CharacterData
+    def CharactersLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # character_table
-    def ValuesIsNone(self):
+    # clz_Torappu_SimpleKVTable_clz_Torappu_CharacterData
+    def CharactersIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         return o == 0
 
-def character_tableStart(builder):
+def clz_Torappu_SimpleKVTable_clz_Torappu_CharacterDataStart(builder):
     builder.StartObject(1)
 
-def character_tableAddValues(builder, values):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(values), 0)
+def clz_Torappu_SimpleKVTable_clz_Torappu_CharacterDataAddCharacters(builder, characters):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(characters), 0)
 
-def character_tableStartValuesVector(builder, numElems):
+def clz_Torappu_SimpleKVTable_clz_Torappu_CharacterDataStartCharactersVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def character_tableEnd(builder):
+def clz_Torappu_SimpleKVTable_clz_Torappu_CharacterDataEnd(builder):
     return builder.EndObject()
 
-ROOT_TYPE = character_table
+ROOT_TYPE = clz_Torappu_SimpleKVTable_clz_Torappu_CharacterData

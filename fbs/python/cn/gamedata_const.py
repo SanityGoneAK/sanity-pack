@@ -98,6 +98,8 @@ class enum__Torappu_ItemType(object):
     RANDOM_VOUCHER_SKIN = 88
     ACT1VHALFIDLE_ITEM = 89
     PLOT_ITEM = 90
+    MAGAZINE_LEAF = 91
+    STICKER = 92
 
 
 class enum__Torappu_SubProfessionAttackType(object):
