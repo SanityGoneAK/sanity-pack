@@ -32,6 +32,7 @@ table clz_Torappu_EquipTalentData {
     displayRangeId: bool; 
     upgradeDescription: string; 
     talentIndex: int; 
+    validModeIndices: [int]; 
     unlockCondition: clz_Torappu_CharacterData_UnlockCondition; 
     requiredPotentialRank: int; 
     prefabKey: string; 
@@ -79,6 +80,7 @@ table clz_Torappu_BattleUniEquipData {
     target: enum__Torappu_UniEquipTarget; 
     isToken: bool; 
     validInGameTag: string; 
+    validInMapTag: string; 
     addOrOverrideTalentDataBundle: clz_Torappu_CharacterData_EquipTalentDataBundle; 
     overrideTraitDataBundle: clz_Torappu_CharacterData_EquipTraitDataBundle; 
 }
