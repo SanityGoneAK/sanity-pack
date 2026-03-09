@@ -123,7 +123,18 @@ class enum__Torappu_MissionItemBgType(object):
     Char = 2
 
 
-class enum__Torappu_ReturnV2JumpType(object):
+class enum__Torappu_ReturnAllOpenType(object):
+    RESOURCE = 0
+    CAMP = 1
+
+
+class enum__Torappu_ReturnMissionGroupType(object):
+    DAILY = 0
+    NORMAL = 1
+    DIFF = 2
+
+
+class enum__Torappu_ReturnJumpType(object):
     NONE = 0
     ZONE_GROUP = 1
     ROGUE = 2
@@ -133,6 +144,14 @@ class enum__Torappu_ReturnV2JumpType(object):
     RECRUIT_BUILD = 6
     DAILY_MISSION = 7
     SANDBOX = 8
+    MAIN_SS = 9
+
+
+class enum__Torappu_ReturnNewsType(object):
+    NONE = 0
+    MAIN_SS = 1
+    ROGUE = 2
+    SANDBOX = 3
 
 
 class clz_Torappu_OpenServerScheduleItem(object):
@@ -1266,138 +1285,512 @@ def clz_Torappu_OpenServerConstEnd(builder):
 
 
 
-class clz_Torappu_ReturnConst(object):
+class clz_Torappu_ReturnOpenData(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnConst()
+        x = clz_Torappu_ReturnOpenData()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsclz_Torappu_ReturnConst(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_ReturnOpenData(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnConst
+    # clz_Torappu_ReturnOpenData
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # clz_Torappu_ReturnConst
-    def StartTime(self):
+    # clz_Torappu_ReturnOpenData
+    def AllOpenType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # clz_Torappu_ReturnConst
-    def SystemTabTime(self):
+    # clz_Torappu_ReturnOpenData
+    def AllOpenTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # clz_Torappu_ReturnConst
-    def AfkDays(self):
+    # clz_Torappu_ReturnOpenData
+    def Desc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
-    # clz_Torappu_ReturnConst
-    def UnlockLv(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+def clz_Torappu_ReturnOpenDataStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_ReturnOpenDataAddAllOpenType(builder, allOpenType):
+    builder.PrependInt32Slot(0, allOpenType, 0)
+
+def clz_Torappu_ReturnOpenDataAddAllOpenTime(builder, allOpenTime):
+    builder.PrependInt32Slot(1, allOpenTime, 0)
+
+def clz_Torappu_ReturnOpenDataAddDesc(builder, desc):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
+
+def clz_Torappu_ReturnOpenDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ReturnGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ReturnGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ReturnGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ReturnGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ReturnGroupData
+    def GroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnGroupData
+    def TaskDays(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # clz_Torappu_ReturnConst
-    def UnlockLevel(self):
+    # clz_Torappu_ReturnGroupData
+    def OnceGroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnGroupData
+    def MissionGroupId(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_ReturnGroupData
+    def MissionGroupIdLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnGroupData
+    def MissionGroupIdIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # clz_Torappu_ReturnGroupData
+    def CheckinGroupId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # clz_Torappu_ReturnConst
-    def JuniorClear(self):
+    # clz_Torappu_ReturnGroupData
+    def PriceGroupId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
-    # clz_Torappu_ReturnConst
-    def Ifvisitor(self):
+    # clz_Torappu_ReturnGroupData
+    def NewsGroupId(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
 
-    # clz_Torappu_ReturnConst
-    def PermMissionTime(self):
+    # clz_Torappu_ReturnGroupData
+    def NewsGroupIdLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnGroupData
+    def NewsGroupIdIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        return o == 0
+
+    # clz_Torappu_ReturnGroupData
+    def GiftPackageIdList(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_ReturnGroupData
+    def GiftPackageIdListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.VectorLen(o)
         return 0
 
-    # clz_Torappu_ReturnConst
-    def NeedPoints(self):
+    # clz_Torappu_ReturnGroupData
+    def GiftPackageIdListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        return o == 0
+
+    # clz_Torappu_ReturnGroupData
+    def CheckinGpId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
-    # clz_Torappu_ReturnConst
-    def DefaultIntro(self):
+    # clz_Torappu_ReturnGroupData
+    def GachaPoolId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # clz_Torappu_ReturnConst
-    def PointId(self):
+    # clz_Torappu_ReturnGroupData
+    def AllOpenDays(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ReturnGroupData
+    def CampAllOpenDays(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ReturnGroupData
+    def AllOpenData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ReturnOpenData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ReturnGroupData
+    def AllOpenDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnGroupData
+    def AllOpenDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        return o == 0
+
+def clz_Torappu_ReturnGroupDataStart(builder):
+    builder.StartObject(13)
+
+def clz_Torappu_ReturnGroupDataAddGroupId(builder, groupId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
+
+def clz_Torappu_ReturnGroupDataAddTaskDays(builder, taskDays):
+    builder.PrependInt32Slot(1, taskDays, 0)
+
+def clz_Torappu_ReturnGroupDataAddOnceGroupId(builder, onceGroupId):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(onceGroupId), 0)
+
+def clz_Torappu_ReturnGroupDataAddMissionGroupId(builder, missionGroupId):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(missionGroupId), 0)
+
+def clz_Torappu_ReturnGroupDataStartMissionGroupIdVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ReturnGroupDataAddCheckinGroupId(builder, checkinGroupId):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(checkinGroupId), 0)
+
+def clz_Torappu_ReturnGroupDataAddPriceGroupId(builder, priceGroupId):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(priceGroupId), 0)
+
+def clz_Torappu_ReturnGroupDataAddNewsGroupId(builder, newsGroupId):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(newsGroupId), 0)
+
+def clz_Torappu_ReturnGroupDataStartNewsGroupIdVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ReturnGroupDataAddGiftPackageIdList(builder, giftPackageIdList):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(giftPackageIdList), 0)
+
+def clz_Torappu_ReturnGroupDataStartGiftPackageIdListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ReturnGroupDataAddCheckinGpId(builder, checkinGpId):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(checkinGpId), 0)
+
+def clz_Torappu_ReturnGroupDataAddGachaPoolId(builder, gachaPoolId):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(gachaPoolId), 0)
+
+def clz_Torappu_ReturnGroupDataAddAllOpenDays(builder, allOpenDays):
+    builder.PrependInt32Slot(10, allOpenDays, 0)
+
+def clz_Torappu_ReturnGroupDataAddCampAllOpenDays(builder, campAllOpenDays):
+    builder.PrependInt32Slot(11, campAllOpenDays, 0)
+
+def clz_Torappu_ReturnGroupDataAddAllOpenData(builder, allOpenData):
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(allOpenData), 0)
+
+def clz_Torappu_ReturnGroupDataStartAllOpenDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ReturnGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ReturnGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ReturnGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ReturnGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ReturnGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ReturnGroupData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-def clz_Torappu_ReturnConstStart(builder):
-    builder.StartObject(11)
+    # dict__string__clz_Torappu_ReturnGroupData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ReturnGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
-def clz_Torappu_ReturnConstAddStartTime(builder, startTime):
-    builder.PrependInt64Slot(0, startTime, 0)
+def dict__string__clz_Torappu_ReturnGroupDataStart(builder):
+    builder.StartObject(2)
 
-def clz_Torappu_ReturnConstAddSystemTabTime(builder, systemTabTime):
-    builder.PrependInt32Slot(1, systemTabTime, 0)
+def dict__string__clz_Torappu_ReturnGroupDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
 
-def clz_Torappu_ReturnConstAddAfkDays(builder, afkDays):
-    builder.PrependInt32Slot(2, afkDays, 0)
+def dict__string__clz_Torappu_ReturnGroupDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
 
-def clz_Torappu_ReturnConstAddUnlockLv(builder, unlockLv):
-    builder.PrependInt32Slot(3, unlockLv, 0)
+def dict__string__clz_Torappu_ReturnGroupDataEnd(builder):
+    return builder.EndObject()
 
-def clz_Torappu_ReturnConstAddUnlockLevel(builder, unlockLevel):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(unlockLevel), 0)
 
-def clz_Torappu_ReturnConstAddJuniorClear(builder, juniorClear):
-    builder.PrependBoolSlot(5, juniorClear, 0)
 
-def clz_Torappu_ReturnConstAddIfvisitor(builder, ifvisitor):
-    builder.PrependBoolSlot(6, ifvisitor, 0)
+class clz_Torappu_ReturnItemData(object):
+    __slots__ = ['_tab']
 
-def clz_Torappu_ReturnConstAddPermMissionTime(builder, permMissionTime):
-    builder.PrependInt32Slot(7, permMissionTime, 0)
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ReturnItemData()
+        x.Init(buf, n + offset)
+        return x
 
-def clz_Torappu_ReturnConstAddNeedPoints(builder, needPoints):
-    builder.PrependInt32Slot(8, needPoints, 0)
+    @classmethod
+    def GetRootAsclz_Torappu_ReturnItemData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ReturnItemData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
 
-def clz_Torappu_ReturnConstAddDefaultIntro(builder, defaultIntro):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(defaultIntro), 0)
+    # clz_Torappu_ReturnItemData
+    def Id(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
-def clz_Torappu_ReturnConstAddPointId(builder, pointId):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(pointId), 0)
+    # clz_Torappu_ReturnItemData
+    def Count(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
-def clz_Torappu_ReturnConstEnd(builder):
+    # clz_Torappu_ReturnItemData
+    def Type(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ReturnItemData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_ReturnItemDataStart(builder):
+    builder.StartObject(4)
+
+def clz_Torappu_ReturnItemDataAddId(builder, id):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
+
+def clz_Torappu_ReturnItemDataAddCount(builder, count):
+    builder.PrependInt32Slot(1, count, 0)
+
+def clz_Torappu_ReturnItemDataAddType(builder, type):
+    builder.PrependInt32Slot(2, type, 0)
+
+def clz_Torappu_ReturnItemDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(3, sortId, 0)
+
+def clz_Torappu_ReturnItemDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ReturnOnceRewardData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ReturnOnceRewardData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ReturnOnceRewardData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ReturnOnceRewardData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ReturnOnceRewardData
+    def GroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnOnceRewardData
+    def RewardList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ReturnItemData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ReturnOnceRewardData
+    def RewardListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnOnceRewardData
+    def RewardListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+def clz_Torappu_ReturnOnceRewardDataStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_ReturnOnceRewardDataAddGroupId(builder, groupId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
+
+def clz_Torappu_ReturnOnceRewardDataAddRewardList(builder, rewardList):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(rewardList), 0)
+
+def clz_Torappu_ReturnOnceRewardDataStartRewardListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ReturnOnceRewardDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ReturnOnceRewardData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ReturnOnceRewardData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ReturnOnceRewardData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ReturnOnceRewardData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ReturnOnceRewardData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ReturnOnceRewardData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ReturnOnceRewardData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ReturnOnceRewardDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ReturnOnceRewardDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ReturnOnceRewardDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ReturnOnceRewardDataEnd(builder):
     return builder.EndObject()
 
 
@@ -1458,440 +1851,41 @@ def clz_Torappu_ItemBundleEnd(builder):
 
 
 
-class clz_Torappu_ReturnIntroData(object):
+class clz_Torappu_ReturnCheckinItemData(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnIntroData()
+        x = clz_Torappu_ReturnCheckinItemData()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsclz_Torappu_ReturnIntroData(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_ReturnCheckinItemData(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnIntroData
+    # clz_Torappu_ReturnCheckinItemData
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # clz_Torappu_ReturnIntroData
-    def Sort(self):
+    # clz_Torappu_ReturnCheckinItemData
+    def Order(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # clz_Torappu_ReturnIntroData
-    def PubTime(self):
+    # clz_Torappu_ReturnCheckinItemData
+    def IsKeyItem(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnIntroData
-    def Image(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def clz_Torappu_ReturnIntroDataStart(builder):
-    builder.StartObject(3)
-
-def clz_Torappu_ReturnIntroDataAddSort(builder, sort):
-    builder.PrependInt32Slot(0, sort, 0)
-
-def clz_Torappu_ReturnIntroDataAddPubTime(builder, pubTime):
-    builder.PrependInt64Slot(1, pubTime, 0)
-
-def clz_Torappu_ReturnIntroDataAddImage(builder, image):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(image), 0)
-
-def clz_Torappu_ReturnIntroDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnDailyTaskData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnDailyTaskData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnDailyTaskData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnDailyTaskData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnDailyTaskData
-    def GroupId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnDailyTaskData
-    def Id(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnDailyTaskData
-    def GroupSortId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnDailyTaskData
-    def TaskSortId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnDailyTaskData
-    def Template(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnDailyTaskData
-    def Param(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return ""
-
-    # clz_Torappu_ReturnDailyTaskData
-    def ParamLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnDailyTaskData
-    def ParamIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        return o == 0
-
-    # clz_Torappu_ReturnDailyTaskData
-    def Desc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnDailyTaskData
-    def Rewards(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_MissionDisplayRewards()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnDailyTaskData
-    def RewardsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnDailyTaskData
-    def RewardsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        return o == 0
-
-    # clz_Torappu_ReturnDailyTaskData
-    def PlayPoint(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-def clz_Torappu_ReturnDailyTaskDataStart(builder):
-    builder.StartObject(9)
-
-def clz_Torappu_ReturnDailyTaskDataAddGroupId(builder, groupId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
-
-def clz_Torappu_ReturnDailyTaskDataAddId(builder, id):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
-
-def clz_Torappu_ReturnDailyTaskDataAddGroupSortId(builder, groupSortId):
-    builder.PrependInt32Slot(2, groupSortId, 0)
-
-def clz_Torappu_ReturnDailyTaskDataAddTaskSortId(builder, taskSortId):
-    builder.PrependInt32Slot(3, taskSortId, 0)
-
-def clz_Torappu_ReturnDailyTaskDataAddTemplate(builder, template):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(template), 0)
-
-def clz_Torappu_ReturnDailyTaskDataAddParam(builder, param):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(param), 0)
-
-def clz_Torappu_ReturnDailyTaskDataStartParamVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnDailyTaskDataAddDesc(builder, desc):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
-
-def clz_Torappu_ReturnDailyTaskDataAddRewards(builder, rewards):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(rewards), 0)
-
-def clz_Torappu_ReturnDailyTaskDataStartRewardsVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnDailyTaskDataAddPlayPoint(builder, playPoint):
-    builder.PrependInt32Slot(8, playPoint, 0)
-
-def clz_Torappu_ReturnDailyTaskDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class dict__string__list_clz_Torappu_ReturnDailyTaskData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = dict__string__list_clz_Torappu_ReturnDailyTaskData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsdict__string__list_clz_Torappu_ReturnDailyTaskData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # dict__string__list_clz_Torappu_ReturnDailyTaskData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # dict__string__list_clz_Torappu_ReturnDailyTaskData
-    def Key(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # dict__string__list_clz_Torappu_ReturnDailyTaskData
-    def Value(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnDailyTaskData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # dict__string__list_clz_Torappu_ReturnDailyTaskData
-    def ValueLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # dict__string__list_clz_Torappu_ReturnDailyTaskData
-    def ValueIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        return o == 0
-
-def dict__string__list_clz_Torappu_ReturnDailyTaskDataStart(builder):
-    builder.StartObject(2)
-
-def dict__string__list_clz_Torappu_ReturnDailyTaskDataAddKey(builder, key):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
-
-def dict__string__list_clz_Torappu_ReturnDailyTaskDataAddValue(builder, value):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
-
-def dict__string__list_clz_Torappu_ReturnDailyTaskDataStartValueVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def dict__string__list_clz_Torappu_ReturnDailyTaskDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnLongTermTaskData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnLongTermTaskData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnLongTermTaskData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnLongTermTaskData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnLongTermTaskData
-    def Id(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnLongTermTaskData
-    def SortId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnLongTermTaskData
-    def Template(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnLongTermTaskData
-    def Param(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return ""
-
-    # clz_Torappu_ReturnLongTermTaskData
-    def ParamLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnLongTermTaskData
-    def ParamIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        return o == 0
-
-    # clz_Torappu_ReturnLongTermTaskData
-    def Desc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnLongTermTaskData
-    def Rewards(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_MissionDisplayRewards()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnLongTermTaskData
-    def RewardsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnLongTermTaskData
-    def RewardsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        return o == 0
-
-    # clz_Torappu_ReturnLongTermTaskData
-    def PlayPoint(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-def clz_Torappu_ReturnLongTermTaskDataStart(builder):
-    builder.StartObject(7)
-
-def clz_Torappu_ReturnLongTermTaskDataAddId(builder, id):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
-
-def clz_Torappu_ReturnLongTermTaskDataAddSortId(builder, sortId):
-    builder.PrependInt32Slot(1, sortId, 0)
-
-def clz_Torappu_ReturnLongTermTaskDataAddTemplate(builder, template):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(template), 0)
-
-def clz_Torappu_ReturnLongTermTaskDataAddParam(builder, param):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(param), 0)
-
-def clz_Torappu_ReturnLongTermTaskDataStartParamVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnLongTermTaskDataAddDesc(builder, desc):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
-
-def clz_Torappu_ReturnLongTermTaskDataAddRewards(builder, rewards):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(rewards), 0)
-
-def clz_Torappu_ReturnLongTermTaskDataStartRewardsVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnLongTermTaskDataAddPlayPoint(builder, playPoint):
-    builder.PrependInt32Slot(6, playPoint, 0)
-
-def clz_Torappu_ReturnLongTermTaskDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnCheckinData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnCheckinData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnCheckinData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnCheckinData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnCheckinData
-    def IsImportant(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-    # clz_Torappu_ReturnCheckinData
-    def CheckinRewardItems(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+    # clz_Torappu_ReturnCheckinItemData
+    def RewardList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -1901,31 +1895,1336 @@ class clz_Torappu_ReturnCheckinData(object):
             return obj
         return None
 
-    # clz_Torappu_ReturnCheckinData
-    def CheckinRewardItemsLength(self):
+    # clz_Torappu_ReturnCheckinItemData
+    def RewardListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnCheckinItemData
+    def RewardListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+def clz_Torappu_ReturnCheckinItemDataStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_ReturnCheckinItemDataAddOrder(builder, order):
+    builder.PrependInt32Slot(0, order, 0)
+
+def clz_Torappu_ReturnCheckinItemDataAddIsKeyItem(builder, isKeyItem):
+    builder.PrependBoolSlot(1, isKeyItem, 0)
+
+def clz_Torappu_ReturnCheckinItemDataAddRewardList(builder, rewardList):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(rewardList), 0)
+
+def clz_Torappu_ReturnCheckinItemDataStartRewardListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ReturnCheckinItemDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ReturnCheckinGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ReturnCheckinGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ReturnCheckinGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ReturnCheckinGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ReturnCheckinGroupData
+    def GroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnCheckinGroupData
+    def CheckinItemList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ReturnCheckinItemData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ReturnCheckinGroupData
+    def CheckinItemListLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # clz_Torappu_ReturnCheckinData
-    def CheckinRewardItemsIsNone(self):
+    # clz_Torappu_ReturnCheckinGroupData
+    def CheckinItemListIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         return o == 0
 
-def clz_Torappu_ReturnCheckinDataStart(builder):
+def clz_Torappu_ReturnCheckinGroupDataStart(builder):
     builder.StartObject(2)
 
-def clz_Torappu_ReturnCheckinDataAddIsImportant(builder, isImportant):
-    builder.PrependBoolSlot(0, isImportant, 0)
+def clz_Torappu_ReturnCheckinGroupDataAddGroupId(builder, groupId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
 
-def clz_Torappu_ReturnCheckinDataAddCheckinRewardItems(builder, checkinRewardItems):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(checkinRewardItems), 0)
+def clz_Torappu_ReturnCheckinGroupDataAddCheckinItemList(builder, checkinItemList):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(checkinItemList), 0)
 
-def clz_Torappu_ReturnCheckinDataStartCheckinRewardItemsVector(builder, numElems):
+def clz_Torappu_ReturnCheckinGroupDataStartCheckinItemListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def clz_Torappu_ReturnCheckinDataEnd(builder):
+def clz_Torappu_ReturnCheckinGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ReturnCheckinGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ReturnCheckinGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ReturnCheckinGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ReturnCheckinGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ReturnCheckinGroupData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ReturnCheckinGroupData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ReturnCheckinGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ReturnCheckinGroupDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ReturnCheckinGroupDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ReturnCheckinGroupDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ReturnCheckinGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ReturnPriceItemData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ReturnPriceItemData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ReturnPriceItemData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ReturnPriceItemData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ReturnPriceItemData
+    def ContentId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnPriceItemData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ReturnPriceItemData
+    def PointRequire(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ReturnPriceItemData
+    def Desc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnPriceItemData
+    def DisplayReward(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ReturnItemData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ReturnPriceItemData
+    def RewardList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ReturnItemData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ReturnPriceItemData
+    def RewardListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnPriceItemData
+    def RewardListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        return o == 0
+
+def clz_Torappu_ReturnPriceItemDataStart(builder):
+    builder.StartObject(6)
+
+def clz_Torappu_ReturnPriceItemDataAddContentId(builder, contentId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(contentId), 0)
+
+def clz_Torappu_ReturnPriceItemDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(1, sortId, 0)
+
+def clz_Torappu_ReturnPriceItemDataAddPointRequire(builder, pointRequire):
+    builder.PrependInt32Slot(2, pointRequire, 0)
+
+def clz_Torappu_ReturnPriceItemDataAddDesc(builder, desc):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
+
+def clz_Torappu_ReturnPriceItemDataAddDisplayReward(builder, displayReward):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(displayReward), 0)
+
+def clz_Torappu_ReturnPriceItemDataAddRewardList(builder, rewardList):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(rewardList), 0)
+
+def clz_Torappu_ReturnPriceItemDataStartRewardListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ReturnPriceItemDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ReturnPriceGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ReturnPriceGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ReturnPriceGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ReturnPriceGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ReturnPriceGroupData
+    def GroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnPriceGroupData
+    def Content(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ReturnPriceItemData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ReturnPriceGroupData
+    def ContentLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnPriceGroupData
+    def ContentIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+def clz_Torappu_ReturnPriceGroupDataStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_ReturnPriceGroupDataAddGroupId(builder, groupId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
+
+def clz_Torappu_ReturnPriceGroupDataAddContent(builder, content):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(content), 0)
+
+def clz_Torappu_ReturnPriceGroupDataStartContentVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ReturnPriceGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ReturnPriceGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ReturnPriceGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ReturnPriceGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ReturnPriceGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ReturnPriceGroupData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ReturnPriceGroupData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ReturnPriceGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ReturnPriceGroupDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ReturnPriceGroupDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ReturnPriceGroupDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ReturnPriceGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ReturnMissionItemData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ReturnMissionItemData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ReturnMissionItemData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ReturnMissionItemData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ReturnMissionItemData
+    def MissionId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnMissionItemData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ReturnMissionItemData
+    def UncompleteBgIcon(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnMissionItemData
+    def CompleteBgIcon(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnMissionItemData
+    def Desc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnMissionItemData
+    def JumpType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ReturnMissionItemData
+    def JumpPlace(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnMissionItemData
+    def RewardList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ItemBundle()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ReturnMissionItemData
+    def RewardListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnMissionItemData
+    def RewardListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        return o == 0
+
+def clz_Torappu_ReturnMissionItemDataStart(builder):
+    builder.StartObject(8)
+
+def clz_Torappu_ReturnMissionItemDataAddMissionId(builder, missionId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(missionId), 0)
+
+def clz_Torappu_ReturnMissionItemDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(1, sortId, 0)
+
+def clz_Torappu_ReturnMissionItemDataAddUncompleteBgIcon(builder, uncompleteBgIcon):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(uncompleteBgIcon), 0)
+
+def clz_Torappu_ReturnMissionItemDataAddCompleteBgIcon(builder, completeBgIcon):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(completeBgIcon), 0)
+
+def clz_Torappu_ReturnMissionItemDataAddDesc(builder, desc):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
+
+def clz_Torappu_ReturnMissionItemDataAddJumpType(builder, jumpType):
+    builder.PrependInt32Slot(5, jumpType, 0)
+
+def clz_Torappu_ReturnMissionItemDataAddJumpPlace(builder, jumpPlace):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(jumpPlace), 0)
+
+def clz_Torappu_ReturnMissionItemDataAddRewardList(builder, rewardList):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(rewardList), 0)
+
+def clz_Torappu_ReturnMissionItemDataStartRewardListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ReturnMissionItemDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ReturnMissionGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ReturnMissionGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ReturnMissionGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ReturnMissionGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ReturnMissionGroupData
+    def GroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnMissionGroupData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ReturnMissionGroupData
+    def Type(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ReturnMissionGroupData
+    def MissionList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ReturnMissionItemData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ReturnMissionGroupData
+    def MissionListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnMissionGroupData
+    def MissionListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+def clz_Torappu_ReturnMissionGroupDataStart(builder):
+    builder.StartObject(4)
+
+def clz_Torappu_ReturnMissionGroupDataAddGroupId(builder, groupId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
+
+def clz_Torappu_ReturnMissionGroupDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(1, sortId, 0)
+
+def clz_Torappu_ReturnMissionGroupDataAddType(builder, type):
+    builder.PrependInt32Slot(2, type, 0)
+
+def clz_Torappu_ReturnMissionGroupDataAddMissionList(builder, missionList):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(missionList), 0)
+
+def clz_Torappu_ReturnMissionGroupDataStartMissionListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ReturnMissionGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ReturnMissionGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ReturnMissionGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ReturnMissionGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ReturnMissionGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ReturnMissionGroupData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ReturnMissionGroupData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ReturnMissionGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ReturnMissionGroupDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ReturnMissionGroupDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ReturnMissionGroupDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ReturnMissionGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__int__list_clz_Torappu_ReturnItemData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__int__list_clz_Torappu_ReturnItemData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__int__list_clz_Torappu_ReturnItemData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__int__list_clz_Torappu_ReturnItemData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__int__list_clz_Torappu_ReturnItemData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # dict__int__list_clz_Torappu_ReturnItemData
+    def Value(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ReturnItemData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # dict__int__list_clz_Torappu_ReturnItemData
+    def ValueLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # dict__int__list_clz_Torappu_ReturnItemData
+    def ValueIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+def dict__int__list_clz_Torappu_ReturnItemDataStart(builder):
+    builder.StartObject(2)
+
+def dict__int__list_clz_Torappu_ReturnItemDataAddKey(builder, key):
+    builder.PrependInt32Slot(0, key, 0)
+
+def dict__int__list_clz_Torappu_ReturnItemDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__int__list_clz_Torappu_ReturnItemDataStartValueVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def dict__int__list_clz_Torappu_ReturnItemDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ReturnCheckinGpRewardData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ReturnCheckinGpRewardData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ReturnCheckinGpRewardData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ReturnCheckinGpRewardData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ReturnCheckinGpRewardData
+    def GroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnCheckinGpRewardData
+    def GetTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ReturnCheckinGpRewardData
+    def BindGpgoodId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnCheckinGpRewardData
+    def TotalCheckInDay(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ReturnCheckinGpRewardData
+    def IconId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnCheckinGpRewardData
+    def RewardDict(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__int__list_clz_Torappu_ReturnItemData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ReturnCheckinGpRewardData
+    def RewardDictLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnCheckinGpRewardData
+    def RewardDictIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        return o == 0
+
+def clz_Torappu_ReturnCheckinGpRewardDataStart(builder):
+    builder.StartObject(6)
+
+def clz_Torappu_ReturnCheckinGpRewardDataAddGroupId(builder, groupId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
+
+def clz_Torappu_ReturnCheckinGpRewardDataAddGetTime(builder, getTime):
+    builder.PrependInt32Slot(1, getTime, 0)
+
+def clz_Torappu_ReturnCheckinGpRewardDataAddBindGpgoodId(builder, bindGpgoodId):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(bindGpgoodId), 0)
+
+def clz_Torappu_ReturnCheckinGpRewardDataAddTotalCheckInDay(builder, totalCheckInDay):
+    builder.PrependInt32Slot(3, totalCheckInDay, 0)
+
+def clz_Torappu_ReturnCheckinGpRewardDataAddIconId(builder, iconId):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(iconId), 0)
+
+def clz_Torappu_ReturnCheckinGpRewardDataAddRewardDict(builder, rewardDict):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(rewardDict), 0)
+
+def clz_Torappu_ReturnCheckinGpRewardDataStartRewardDictVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ReturnCheckinGpRewardDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ReturnCheckinGpRewardData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ReturnCheckinGpRewardData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ReturnCheckinGpRewardData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ReturnCheckinGpRewardData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ReturnCheckinGpRewardData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ReturnCheckinGpRewardData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ReturnCheckinGpRewardData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ReturnCheckinGpRewardDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ReturnCheckinGpRewardDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ReturnCheckinGpRewardDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ReturnCheckinGpRewardDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ReturnNewsData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ReturnNewsData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ReturnNewsData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ReturnNewsData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ReturnNewsData
+    def GroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnNewsData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ReturnNewsData
+    def TabTitle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnNewsData
+    def TabIcon(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnNewsData
+    def Title(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnNewsData
+    def Desc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnNewsData
+    def ImgId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnNewsData
+    def IconId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnNewsData
+    def JumpType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ReturnNewsData
+    def JumpPlace(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_ReturnNewsDataStart(builder):
+    builder.StartObject(10)
+
+def clz_Torappu_ReturnNewsDataAddGroupId(builder, groupId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
+
+def clz_Torappu_ReturnNewsDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(1, sortId, 0)
+
+def clz_Torappu_ReturnNewsDataAddTabTitle(builder, tabTitle):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(tabTitle), 0)
+
+def clz_Torappu_ReturnNewsDataAddTabIcon(builder, tabIcon):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(tabIcon), 0)
+
+def clz_Torappu_ReturnNewsDataAddTitle(builder, title):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(title), 0)
+
+def clz_Torappu_ReturnNewsDataAddDesc(builder, desc):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
+
+def clz_Torappu_ReturnNewsDataAddImgId(builder, imgId):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(imgId), 0)
+
+def clz_Torappu_ReturnNewsDataAddIconId(builder, iconId):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(iconId), 0)
+
+def clz_Torappu_ReturnNewsDataAddJumpType(builder, jumpType):
+    builder.PrependInt32Slot(8, jumpType, 0)
+
+def clz_Torappu_ReturnNewsDataAddJumpPlace(builder, jumpPlace):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(jumpPlace), 0)
+
+def clz_Torappu_ReturnNewsDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ReturnNewsData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ReturnNewsData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ReturnNewsData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ReturnNewsData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ReturnNewsData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ReturnNewsData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ReturnNewsData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ReturnNewsDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ReturnNewsDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ReturnNewsDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ReturnNewsDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ReturnGiftPackagePicData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ReturnGiftPackagePicData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ReturnGiftPackagePicData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ReturnGiftPackagePicData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ReturnGiftPackagePicData
+    def GiftPackageId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnGiftPackagePicData
+    def GiftPackagePic(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnGiftPackagePicData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_ReturnGiftPackagePicDataStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_ReturnGiftPackagePicDataAddGiftPackageId(builder, giftPackageId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(giftPackageId), 0)
+
+def clz_Torappu_ReturnGiftPackagePicDataAddGiftPackagePic(builder, giftPackagePic):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(giftPackagePic), 0)
+
+def clz_Torappu_ReturnGiftPackagePicDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(2, sortId, 0)
+
+def clz_Torappu_ReturnGiftPackagePicDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ReturnGiftPackagePicData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ReturnGiftPackagePicData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ReturnGiftPackagePicData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ReturnGiftPackagePicData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ReturnGiftPackagePicData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ReturnGiftPackagePicData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ReturnGiftPackagePicData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ReturnGiftPackagePicDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ReturnGiftPackagePicDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ReturnGiftPackagePicDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ReturnGiftPackagePicDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ReturnOpenStyleData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ReturnOpenStyleData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ReturnOpenStyleData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ReturnOpenStyleData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ReturnOpenStyleData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ReturnOpenStyleData
+    def ImgBkgId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnOpenStyleData
+    def ImgEntryId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnOpenStyleData
+    def ImgIconId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnOpenStyleData
+    def PauseDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnOpenStyleData
+    def Title(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnOpenStyleData
+    def Name(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_ReturnOpenStyleDataStart(builder):
+    builder.StartObject(7)
+
+def clz_Torappu_ReturnOpenStyleDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(0, sortId, 0)
+
+def clz_Torappu_ReturnOpenStyleDataAddImgBkgId(builder, imgBkgId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(imgBkgId), 0)
+
+def clz_Torappu_ReturnOpenStyleDataAddImgEntryId(builder, imgEntryId):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(imgEntryId), 0)
+
+def clz_Torappu_ReturnOpenStyleDataAddImgIconId(builder, imgIconId):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(imgIconId), 0)
+
+def clz_Torappu_ReturnOpenStyleDataAddPauseDesc(builder, pauseDesc):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(pauseDesc), 0)
+
+def clz_Torappu_ReturnOpenStyleDataAddTitle(builder, title):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(title), 0)
+
+def clz_Torappu_ReturnOpenStyleDataAddName(builder, name):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
+
+def clz_Torappu_ReturnOpenStyleDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ReturnOpenStyleData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ReturnOpenStyleData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ReturnOpenStyleData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ReturnOpenStyleData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ReturnOpenStyleData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ReturnOpenStyleData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ReturnOpenStyleData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ReturnOpenStyleDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ReturnOpenStyleDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ReturnOpenStyleDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ReturnOpenStyleDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ReturnConstData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ReturnConstData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ReturnConstData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ReturnConstData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ReturnConstData
+    def PointItemId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnConstData
+    def ReturnPriceDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ReturnConstData
+    def OldReturnGroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_ReturnConstDataStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_ReturnConstDataAddPointItemId(builder, pointItemId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(pointItemId), 0)
+
+def clz_Torappu_ReturnConstDataAddReturnPriceDesc(builder, returnPriceDesc):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(returnPriceDesc), 0)
+
+def clz_Torappu_ReturnConstDataAddOldReturnGroupId(builder, oldReturnGroupId):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(oldReturnGroupId), 0)
+
+def clz_Torappu_ReturnConstDataEnd(builder):
     return builder.EndObject()
 
 
@@ -1949,1593 +3248,292 @@ class clz_Torappu_ReturnData(object):
         self._tab = flatbuffers.table.Table(buf, pos)
 
     # clz_Torappu_ReturnData
-    def ConstData(self):
+    def GroupDataMap(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = clz_Torappu_ReturnConst()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnData
-    def OnceRewards(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = clz_Torappu_ItemBundle()
+            obj = dict__string__clz_Torappu_ReturnGroupData()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
     # clz_Torappu_ReturnData
-    def OnceRewardsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnData
-    def OnceRewardsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        return o == 0
-
-    # clz_Torappu_ReturnData
-    def Intro(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnIntroData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnData
-    def IntroLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnData
-    def IntroIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        return o == 0
-
-    # clz_Torappu_ReturnData
-    def ReturnDailyTaskDic(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = dict__string__list_clz_Torappu_ReturnDailyTaskData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnData
-    def ReturnDailyTaskDicLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnData
-    def ReturnDailyTaskDicIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        return o == 0
-
-    # clz_Torappu_ReturnData
-    def ReturnLongTermTaskList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnLongTermTaskData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnData
-    def ReturnLongTermTaskListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnData
-    def ReturnLongTermTaskListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        return o == 0
-
-    # clz_Torappu_ReturnData
-    def CreditsList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ItemBundle()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnData
-    def CreditsListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnData
-    def CreditsListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        return o == 0
-
-    # clz_Torappu_ReturnData
-    def CheckinRewardList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnCheckinData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnData
-    def CheckinRewardListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnData
-    def CheckinRewardListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        return o == 0
-
-def clz_Torappu_ReturnDataStart(builder):
-    builder.StartObject(7)
-
-def clz_Torappu_ReturnDataAddConstData(builder, constData):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(constData), 0)
-
-def clz_Torappu_ReturnDataAddOnceRewards(builder, onceRewards):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(onceRewards), 0)
-
-def clz_Torappu_ReturnDataStartOnceRewardsVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnDataAddIntro(builder, intro):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(intro), 0)
-
-def clz_Torappu_ReturnDataStartIntroVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnDataAddReturnDailyTaskDic(builder, returnDailyTaskDic):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(returnDailyTaskDic), 0)
-
-def clz_Torappu_ReturnDataStartReturnDailyTaskDicVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnDataAddReturnLongTermTaskList(builder, returnLongTermTaskList):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(returnLongTermTaskList), 0)
-
-def clz_Torappu_ReturnDataStartReturnLongTermTaskListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnDataAddCreditsList(builder, creditsList):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(creditsList), 0)
-
-def clz_Torappu_ReturnDataStartCreditsListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnDataAddCheckinRewardList(builder, checkinRewardList):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(checkinRewardList), 0)
-
-def clz_Torappu_ReturnDataStartCheckinRewardListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnV2Const(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnV2Const()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnV2Const(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnV2Const
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnV2Const
-    def StartTime(self):
+    def GroupDataMapLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+            return self._tab.VectorLen(o)
         return 0
 
-    # clz_Torappu_ReturnV2Const
-    def UnlockLv(self):
+    # clz_Torappu_ReturnData
+    def GroupDataMapIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+    # clz_Torappu_ReturnData
+    def OnceDataMap(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ReturnOnceRewardData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ReturnData
+    def OnceDataMapLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
         return 0
 
-    # clz_Torappu_ReturnV2Const
-    def UnlockStage(self):
+    # clz_Torappu_ReturnData
+    def OnceDataMapIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+    # clz_Torappu_ReturnData
+    def CheckinDataMap(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ReturnCheckinGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
         return None
 
-    # clz_Torappu_ReturnV2Const
-    def PermMissionTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+    # clz_Torappu_ReturnData
+    def CheckinDataMapLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+            return self._tab.VectorLen(o)
         return 0
 
-    # clz_Torappu_ReturnV2Const
-    def PointId(self):
+    # clz_Torappu_ReturnData
+    def CheckinDataMapIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+    # clz_Torappu_ReturnData
+    def PriceDataMap(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ReturnPriceGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ReturnData
+    def PriceDataMapLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnData
+    def PriceDataMapIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # clz_Torappu_ReturnData
+    def MissionDataMap(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ReturnMissionGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
         return None
 
-    # clz_Torappu_ReturnV2Const
-    def ReturnPriceDesc(self):
+    # clz_Torappu_ReturnData
+    def MissionDataMapLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnData
+    def MissionDataMapIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        return o == 0
+
+    # clz_Torappu_ReturnData
+    def CheckinGpData(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ReturnCheckinGpRewardData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
         return None
 
-    # clz_Torappu_ReturnV2Const
-    def DailySupplyDesc(self):
+    # clz_Torappu_ReturnData
+    def CheckinGpDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnData
+    def CheckinGpDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        return o == 0
+
+    # clz_Torappu_ReturnData
+    def NewsDataMap(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ReturnNewsData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
         return None
 
-    # clz_Torappu_ReturnV2Const
-    def OldGpid(self):
+    # clz_Torappu_ReturnData
+    def NewsDataMapLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnData
+    def NewsDataMapIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        return o == 0
+
+    # clz_Torappu_ReturnData
+    def GiftPackagePicDataMap(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def clz_Torappu_ReturnV2ConstStart(builder):
-    builder.StartObject(8)
-
-def clz_Torappu_ReturnV2ConstAddStartTime(builder, startTime):
-    builder.PrependInt64Slot(0, startTime, 0)
-
-def clz_Torappu_ReturnV2ConstAddUnlockLv(builder, unlockLv):
-    builder.PrependInt32Slot(1, unlockLv, 0)
-
-def clz_Torappu_ReturnV2ConstAddUnlockStage(builder, unlockStage):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(unlockStage), 0)
-
-def clz_Torappu_ReturnV2ConstAddPermMissionTime(builder, permMissionTime):
-    builder.PrependInt32Slot(3, permMissionTime, 0)
-
-def clz_Torappu_ReturnV2ConstAddPointId(builder, pointId):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(pointId), 0)
-
-def clz_Torappu_ReturnV2ConstAddReturnPriceDesc(builder, returnPriceDesc):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(returnPriceDesc), 0)
-
-def clz_Torappu_ReturnV2ConstAddDailySupplyDesc(builder, dailySupplyDesc):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(dailySupplyDesc), 0)
-
-def clz_Torappu_ReturnV2ConstAddOldGpid(builder, oldGpid):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(oldGpid), 0)
-
-def clz_Torappu_ReturnV2ConstEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnV2ItemData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnV2ItemData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnV2ItemData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnV2ItemData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnV2ItemData
-    def Id(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2ItemData
-    def Type(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2ItemData
-    def Count(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2ItemData
-    def SortId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-def clz_Torappu_ReturnV2ItemDataStart(builder):
-    builder.StartObject(4)
-
-def clz_Torappu_ReturnV2ItemDataAddId(builder, id):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
-
-def clz_Torappu_ReturnV2ItemDataAddType(builder, type):
-    builder.PrependInt32Slot(1, type, 0)
-
-def clz_Torappu_ReturnV2ItemDataAddCount(builder, count):
-    builder.PrependInt32Slot(2, count, 0)
-
-def clz_Torappu_ReturnV2ItemDataAddSortId(builder, sortId):
-    builder.PrependInt32Slot(3, sortId, 0)
-
-def clz_Torappu_ReturnV2ItemDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnV2OnceRewardData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnV2OnceRewardData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnV2OnceRewardData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnV2OnceRewardData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnV2OnceRewardData
-    def GroupId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2OnceRewardData
-    def StartTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2OnceRewardData
-    def EndTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2OnceRewardData
-    def RewardList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnV2ItemData()
+            obj = dict__string__clz_Torappu_ReturnGiftPackagePicData()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # clz_Torappu_ReturnV2OnceRewardData
-    def RewardListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnV2OnceRewardData
-    def RewardListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        return o == 0
-
-def clz_Torappu_ReturnV2OnceRewardDataStart(builder):
-    builder.StartObject(4)
-
-def clz_Torappu_ReturnV2OnceRewardDataAddGroupId(builder, groupId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
-
-def clz_Torappu_ReturnV2OnceRewardDataAddStartTime(builder, startTime):
-    builder.PrependInt64Slot(1, startTime, 0)
-
-def clz_Torappu_ReturnV2OnceRewardDataAddEndTime(builder, endTime):
-    builder.PrependInt64Slot(2, endTime, 0)
-
-def clz_Torappu_ReturnV2OnceRewardDataAddRewardList(builder, rewardList):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(rewardList), 0)
-
-def clz_Torappu_ReturnV2OnceRewardDataStartRewardListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnV2OnceRewardDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnV2CheckInRewardItemData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnV2CheckInRewardItemData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnV2CheckInRewardItemData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnV2CheckInRewardItemData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnV2CheckInRewardItemData
-    def SortId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2CheckInRewardItemData
-    def IsImportant(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # clz_Torappu_ReturnV2CheckInRewardItemData
-    def RewardList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ItemBundle()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnV2CheckInRewardItemData
-    def RewardListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnV2CheckInRewardItemData
-    def RewardListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        return o == 0
-
-def clz_Torappu_ReturnV2CheckInRewardItemDataStart(builder):
-    builder.StartObject(3)
-
-def clz_Torappu_ReturnV2CheckInRewardItemDataAddSortId(builder, sortId):
-    builder.PrependInt32Slot(0, sortId, 0)
-
-def clz_Torappu_ReturnV2CheckInRewardItemDataAddIsImportant(builder, isImportant):
-    builder.PrependBoolSlot(1, isImportant, 0)
-
-def clz_Torappu_ReturnV2CheckInRewardItemDataAddRewardList(builder, rewardList):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(rewardList), 0)
-
-def clz_Torappu_ReturnV2CheckInRewardItemDataStartRewardListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnV2CheckInRewardItemDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnV2CheckInRewardData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnV2CheckInRewardData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnV2CheckInRewardData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnV2CheckInRewardData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnV2CheckInRewardData
-    def GroupId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2CheckInRewardData
-    def StartTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2CheckInRewardData
-    def EndTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2CheckInRewardData
-    def RewardList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnV2CheckInRewardItemData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnV2CheckInRewardData
-    def RewardListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnV2CheckInRewardData
-    def RewardListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        return o == 0
-
-def clz_Torappu_ReturnV2CheckInRewardDataStart(builder):
-    builder.StartObject(4)
-
-def clz_Torappu_ReturnV2CheckInRewardDataAddGroupId(builder, groupId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
-
-def clz_Torappu_ReturnV2CheckInRewardDataAddStartTime(builder, startTime):
-    builder.PrependInt64Slot(1, startTime, 0)
-
-def clz_Torappu_ReturnV2CheckInRewardDataAddEndTime(builder, endTime):
-    builder.PrependInt64Slot(2, endTime, 0)
-
-def clz_Torappu_ReturnV2CheckInRewardDataAddRewardList(builder, rewardList):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(rewardList), 0)
-
-def clz_Torappu_ReturnV2CheckInRewardDataStartRewardListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnV2CheckInRewardDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnV2PriceRewardData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnV2PriceRewardData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnV2PriceRewardData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnV2PriceRewardData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnV2PriceRewardData
-    def ContentId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2PriceRewardData
-    def SortId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2PriceRewardData
-    def PointRequire(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2PriceRewardData
-    def Desc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2PriceRewardData
-    def IconId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2PriceRewardData
-    def TopIconId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2PriceRewardData
-    def RewardList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnV2ItemData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnV2PriceRewardData
-    def RewardListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnV2PriceRewardData
-    def RewardListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        return o == 0
-
-def clz_Torappu_ReturnV2PriceRewardDataStart(builder):
-    builder.StartObject(7)
-
-def clz_Torappu_ReturnV2PriceRewardDataAddContentId(builder, contentId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(contentId), 0)
-
-def clz_Torappu_ReturnV2PriceRewardDataAddSortId(builder, sortId):
-    builder.PrependInt32Slot(1, sortId, 0)
-
-def clz_Torappu_ReturnV2PriceRewardDataAddPointRequire(builder, pointRequire):
-    builder.PrependInt32Slot(2, pointRequire, 0)
-
-def clz_Torappu_ReturnV2PriceRewardDataAddDesc(builder, desc):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
-
-def clz_Torappu_ReturnV2PriceRewardDataAddIconId(builder, iconId):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(iconId), 0)
-
-def clz_Torappu_ReturnV2PriceRewardDataAddTopIconId(builder, topIconId):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(topIconId), 0)
-
-def clz_Torappu_ReturnV2PriceRewardDataAddRewardList(builder, rewardList):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(rewardList), 0)
-
-def clz_Torappu_ReturnV2PriceRewardDataStartRewardListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnV2PriceRewardDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnV2PriceRewardGroupData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnV2PriceRewardGroupData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnV2PriceRewardGroupData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnV2PriceRewardGroupData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnV2PriceRewardGroupData
-    def GroupId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2PriceRewardGroupData
-    def StartTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2PriceRewardGroupData
-    def EndTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2PriceRewardGroupData
-    def ContentList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnV2PriceRewardData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnV2PriceRewardGroupData
-    def ContentListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnV2PriceRewardGroupData
-    def ContentListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        return o == 0
-
-def clz_Torappu_ReturnV2PriceRewardGroupDataStart(builder):
-    builder.StartObject(4)
-
-def clz_Torappu_ReturnV2PriceRewardGroupDataAddGroupId(builder, groupId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
-
-def clz_Torappu_ReturnV2PriceRewardGroupDataAddStartTime(builder, startTime):
-    builder.PrependInt64Slot(1, startTime, 0)
-
-def clz_Torappu_ReturnV2PriceRewardGroupDataAddEndTime(builder, endTime):
-    builder.PrependInt64Slot(2, endTime, 0)
-
-def clz_Torappu_ReturnV2PriceRewardGroupDataAddContentList(builder, contentList):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(contentList), 0)
-
-def clz_Torappu_ReturnV2PriceRewardGroupDataStartContentListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnV2PriceRewardGroupDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnV2MissionItemData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnV2MissionItemData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnV2MissionItemData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnV2MissionItemData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnV2MissionItemData
-    def MissionId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2MissionItemData
-    def GroupId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2MissionItemData
-    def SortId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2MissionItemData
-    def JumpType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2MissionItemData
-    def JumpParam(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2MissionItemData
-    def Desc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2MissionItemData
-    def RewardList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ItemBundle()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnV2MissionItemData
-    def RewardListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnV2MissionItemData
-    def RewardListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        return o == 0
-
-def clz_Torappu_ReturnV2MissionItemDataStart(builder):
-    builder.StartObject(7)
-
-def clz_Torappu_ReturnV2MissionItemDataAddMissionId(builder, missionId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(missionId), 0)
-
-def clz_Torappu_ReturnV2MissionItemDataAddGroupId(builder, groupId):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
-
-def clz_Torappu_ReturnV2MissionItemDataAddSortId(builder, sortId):
-    builder.PrependInt32Slot(2, sortId, 0)
-
-def clz_Torappu_ReturnV2MissionItemDataAddJumpType(builder, jumpType):
-    builder.PrependInt32Slot(3, jumpType, 0)
-
-def clz_Torappu_ReturnV2MissionItemDataAddJumpParam(builder, jumpParam):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(jumpParam), 0)
-
-def clz_Torappu_ReturnV2MissionItemDataAddDesc(builder, desc):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
-
-def clz_Torappu_ReturnV2MissionItemDataAddRewardList(builder, rewardList):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(rewardList), 0)
-
-def clz_Torappu_ReturnV2MissionItemDataStartRewardListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnV2MissionItemDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnV2MissionGroupData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnV2MissionGroupData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnV2MissionGroupData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnV2MissionGroupData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnV2MissionGroupData
-    def GroupId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2MissionGroupData
-    def SortId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2MissionGroupData
-    def TabTitle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2MissionGroupData
-    def Title(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2MissionGroupData
-    def Desc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2MissionGroupData
-    def DiffMissionCount(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2MissionGroupData
-    def StartTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2MissionGroupData
-    def EndTime(self):
+    # clz_Torappu_ReturnData
+    def GiftPackagePicDataMapLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+            return self._tab.VectorLen(o)
         return 0
 
-    # clz_Torappu_ReturnV2MissionGroupData
-    def ImageId(self):
+    # clz_Torappu_ReturnData
+    def GiftPackagePicDataMapIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        return o == 0
+
+    # clz_Torappu_ReturnData
+    def OpenStyleData(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ReturnOpenStyleData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
         return None
 
-    # clz_Torappu_ReturnV2MissionGroupData
-    def IconId(self):
+    # clz_Torappu_ReturnData
+    def OpenStyleDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ReturnData
+    def OpenStyleDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        return o == 0
+
+    # clz_Torappu_ReturnData
+    def ConstData(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2MissionGroupData
-    def MissionList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnV2MissionItemData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnV2MissionGroupData
-    def MissionListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnV2MissionGroupData
-    def MissionListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
-        return o == 0
-
-def clz_Torappu_ReturnV2MissionGroupDataStart(builder):
-    builder.StartObject(11)
-
-def clz_Torappu_ReturnV2MissionGroupDataAddGroupId(builder, groupId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
-
-def clz_Torappu_ReturnV2MissionGroupDataAddSortId(builder, sortId):
-    builder.PrependInt32Slot(1, sortId, 0)
-
-def clz_Torappu_ReturnV2MissionGroupDataAddTabTitle(builder, tabTitle):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(tabTitle), 0)
-
-def clz_Torappu_ReturnV2MissionGroupDataAddTitle(builder, title):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(title), 0)
-
-def clz_Torappu_ReturnV2MissionGroupDataAddDesc(builder, desc):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
-
-def clz_Torappu_ReturnV2MissionGroupDataAddDiffMissionCount(builder, diffMissionCount):
-    builder.PrependInt32Slot(5, diffMissionCount, 0)
-
-def clz_Torappu_ReturnV2MissionGroupDataAddStartTime(builder, startTime):
-    builder.PrependInt64Slot(6, startTime, 0)
-
-def clz_Torappu_ReturnV2MissionGroupDataAddEndTime(builder, endTime):
-    builder.PrependInt64Slot(7, endTime, 0)
-
-def clz_Torappu_ReturnV2MissionGroupDataAddImageId(builder, imageId):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(imageId), 0)
-
-def clz_Torappu_ReturnV2MissionGroupDataAddIconId(builder, iconId):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(iconId), 0)
-
-def clz_Torappu_ReturnV2MissionGroupDataAddMissionList(builder, missionList):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(missionList), 0)
-
-def clz_Torappu_ReturnV2MissionGroupDataStartMissionListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnV2MissionGroupDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnV2DailySupplyData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnV2DailySupplyData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnV2DailySupplyData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnV2DailySupplyData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnV2DailySupplyData
-    def GroupId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2DailySupplyData
-    def StartTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2DailySupplyData
-    def EndTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2DailySupplyData
-    def RewardList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ItemBundle()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnV2DailySupplyData
-    def RewardListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnV2DailySupplyData
-    def RewardListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        return o == 0
-
-def clz_Torappu_ReturnV2DailySupplyDataStart(builder):
-    builder.StartObject(4)
-
-def clz_Torappu_ReturnV2DailySupplyDataAddGroupId(builder, groupId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
-
-def clz_Torappu_ReturnV2DailySupplyDataAddStartTime(builder, startTime):
-    builder.PrependInt64Slot(1, startTime, 0)
-
-def clz_Torappu_ReturnV2DailySupplyDataAddEndTime(builder, endTime):
-    builder.PrependInt64Slot(2, endTime, 0)
-
-def clz_Torappu_ReturnV2DailySupplyDataAddRewardList(builder, rewardList):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(rewardList), 0)
-
-def clz_Torappu_ReturnV2DailySupplyDataStartRewardListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnV2DailySupplyDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class dict__int__list_clz_Torappu_ReturnV2ItemData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = dict__int__list_clz_Torappu_ReturnV2ItemData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsdict__int__list_clz_Torappu_ReturnV2ItemData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # dict__int__list_clz_Torappu_ReturnV2ItemData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # dict__int__list_clz_Torappu_ReturnV2ItemData
-    def Key(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # dict__int__list_clz_Torappu_ReturnV2ItemData
-    def Value(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnV2ItemData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # dict__int__list_clz_Torappu_ReturnV2ItemData
-    def ValueLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # dict__int__list_clz_Torappu_ReturnV2ItemData
-    def ValueIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        return o == 0
-
-def dict__int__list_clz_Torappu_ReturnV2ItemDataStart(builder):
-    builder.StartObject(2)
-
-def dict__int__list_clz_Torappu_ReturnV2ItemDataAddKey(builder, key):
-    builder.PrependInt32Slot(0, key, 0)
-
-def dict__int__list_clz_Torappu_ReturnV2ItemDataAddValue(builder, value):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
-
-def dict__int__list_clz_Torappu_ReturnV2ItemDataStartValueVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def dict__int__list_clz_Torappu_ReturnV2ItemDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnV2PackageCheckInRewardData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnV2PackageCheckInRewardData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnV2PackageCheckInRewardData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnV2PackageCheckInRewardData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnV2PackageCheckInRewardData
-    def GroupId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2PackageCheckInRewardData
-    def StartTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2PackageCheckInRewardData
-    def EndTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2PackageCheckInRewardData
-    def GetTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2PackageCheckInRewardData
-    def BindGpgoodId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2PackageCheckInRewardData
-    def TotalCheckInDay(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ReturnV2PackageCheckInRewardData
-    def IconId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ReturnV2PackageCheckInRewardData
-    def RewardDict(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = dict__int__list_clz_Torappu_ReturnV2ItemData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnV2PackageCheckInRewardData
-    def RewardDictLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnV2PackageCheckInRewardData
-    def RewardDictIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        return o == 0
-
-def clz_Torappu_ReturnV2PackageCheckInRewardDataStart(builder):
-    builder.StartObject(8)
-
-def clz_Torappu_ReturnV2PackageCheckInRewardDataAddGroupId(builder, groupId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
-
-def clz_Torappu_ReturnV2PackageCheckInRewardDataAddStartTime(builder, startTime):
-    builder.PrependInt64Slot(1, startTime, 0)
-
-def clz_Torappu_ReturnV2PackageCheckInRewardDataAddEndTime(builder, endTime):
-    builder.PrependInt64Slot(2, endTime, 0)
-
-def clz_Torappu_ReturnV2PackageCheckInRewardDataAddGetTime(builder, getTime):
-    builder.PrependInt32Slot(3, getTime, 0)
-
-def clz_Torappu_ReturnV2PackageCheckInRewardDataAddBindGpgoodId(builder, bindGpgoodId):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(bindGpgoodId), 0)
-
-def clz_Torappu_ReturnV2PackageCheckInRewardDataAddTotalCheckInDay(builder, totalCheckInDay):
-    builder.PrependInt32Slot(5, totalCheckInDay, 0)
-
-def clz_Torappu_ReturnV2PackageCheckInRewardDataAddIconId(builder, iconId):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(iconId), 0)
-
-def clz_Torappu_ReturnV2PackageCheckInRewardDataAddRewardDict(builder, rewardDict):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(rewardDict), 0)
-
-def clz_Torappu_ReturnV2PackageCheckInRewardDataStartRewardDictVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ReturnV2PackageCheckInRewardDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ReturnV2Data(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ReturnV2Data()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ReturnV2Data(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ReturnV2Data
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ReturnV2Data
-    def ConstData(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            obj = clz_Torappu_ReturnV2Const()
+            obj = clz_Torappu_ReturnConstData()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # clz_Torappu_ReturnV2Data
-    def OnceRewardData(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnV2OnceRewardData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+def clz_Torappu_ReturnDataStart(builder):
+    builder.StartObject(10)
 
-    # clz_Torappu_ReturnV2Data
-    def OnceRewardDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
+def clz_Torappu_ReturnDataAddGroupDataMap(builder, groupDataMap):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupDataMap), 0)
 
-    # clz_Torappu_ReturnV2Data
-    def OnceRewardDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        return o == 0
-
-    # clz_Torappu_ReturnV2Data
-    def CheckInRewardData(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnV2CheckInRewardData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnV2Data
-    def CheckInRewardDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnV2Data
-    def CheckInRewardDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        return o == 0
-
-    # clz_Torappu_ReturnV2Data
-    def PriceRewardData(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnV2PriceRewardGroupData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnV2Data
-    def PriceRewardDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnV2Data
-    def PriceRewardDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        return o == 0
-
-    # clz_Torappu_ReturnV2Data
-    def MissionGroupData(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnV2MissionGroupData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnV2Data
-    def MissionGroupDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnV2Data
-    def MissionGroupDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        return o == 0
-
-    # clz_Torappu_ReturnV2Data
-    def DailySupplyData(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnV2DailySupplyData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnV2Data
-    def DailySupplyDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnV2Data
-    def DailySupplyDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        return o == 0
-
-    # clz_Torappu_ReturnV2Data
-    def PackageCheckInRewardData(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ReturnV2PackageCheckInRewardData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ReturnV2Data
-    def PackageCheckInRewardDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ReturnV2Data
-    def PackageCheckInRewardDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        return o == 0
-
-def clz_Torappu_ReturnV2DataStart(builder):
-    builder.StartObject(7)
-
-def clz_Torappu_ReturnV2DataAddConstData(builder, constData):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(constData), 0)
-
-def clz_Torappu_ReturnV2DataAddOnceRewardData(builder, onceRewardData):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(onceRewardData), 0)
-
-def clz_Torappu_ReturnV2DataStartOnceRewardDataVector(builder, numElems):
+def clz_Torappu_ReturnDataStartGroupDataMapVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def clz_Torappu_ReturnV2DataAddCheckInRewardData(builder, checkInRewardData):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(checkInRewardData), 0)
+def clz_Torappu_ReturnDataAddOnceDataMap(builder, onceDataMap):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(onceDataMap), 0)
 
-def clz_Torappu_ReturnV2DataStartCheckInRewardDataVector(builder, numElems):
+def clz_Torappu_ReturnDataStartOnceDataMapVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def clz_Torappu_ReturnV2DataAddPriceRewardData(builder, priceRewardData):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(priceRewardData), 0)
+def clz_Torappu_ReturnDataAddCheckinDataMap(builder, checkinDataMap):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(checkinDataMap), 0)
 
-def clz_Torappu_ReturnV2DataStartPriceRewardDataVector(builder, numElems):
+def clz_Torappu_ReturnDataStartCheckinDataMapVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def clz_Torappu_ReturnV2DataAddMissionGroupData(builder, missionGroupData):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(missionGroupData), 0)
+def clz_Torappu_ReturnDataAddPriceDataMap(builder, priceDataMap):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(priceDataMap), 0)
 
-def clz_Torappu_ReturnV2DataStartMissionGroupDataVector(builder, numElems):
+def clz_Torappu_ReturnDataStartPriceDataMapVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def clz_Torappu_ReturnV2DataAddDailySupplyData(builder, dailySupplyData):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(dailySupplyData), 0)
+def clz_Torappu_ReturnDataAddMissionDataMap(builder, missionDataMap):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(missionDataMap), 0)
 
-def clz_Torappu_ReturnV2DataStartDailySupplyDataVector(builder, numElems):
+def clz_Torappu_ReturnDataStartMissionDataMapVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def clz_Torappu_ReturnV2DataAddPackageCheckInRewardData(builder, packageCheckInRewardData):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(packageCheckInRewardData), 0)
+def clz_Torappu_ReturnDataAddCheckinGpData(builder, checkinGpData):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(checkinGpData), 0)
 
-def clz_Torappu_ReturnV2DataStartPackageCheckInRewardDataVector(builder, numElems):
+def clz_Torappu_ReturnDataStartCheckinGpDataVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def clz_Torappu_ReturnV2DataEnd(builder):
+def clz_Torappu_ReturnDataAddNewsDataMap(builder, newsDataMap):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(newsDataMap), 0)
+
+def clz_Torappu_ReturnDataStartNewsDataMapVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ReturnDataAddGiftPackagePicDataMap(builder, giftPackagePicDataMap):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(giftPackagePicDataMap), 0)
+
+def clz_Torappu_ReturnDataStartGiftPackagePicDataMapVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ReturnDataAddOpenStyleData(builder, openStyleData):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(openStyleData), 0)
+
+def clz_Torappu_ReturnDataStartOpenStyleDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ReturnDataAddConstData(builder, constData):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(constData), 0)
+
+def clz_Torappu_ReturnDataEnd(builder):
     return builder.EndObject()
 
 
@@ -4139,18 +4137,8 @@ class clz_Torappu_OpenServerSchedule(object):
         return None
 
     # clz_Torappu_OpenServerSchedule
-    def PlayerReturnV2(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = clz_Torappu_ReturnV2Data()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_OpenServerSchedule
     def NewbieCheckInPackageList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -4162,19 +4150,19 @@ class clz_Torappu_OpenServerSchedule(object):
 
     # clz_Torappu_OpenServerSchedule
     def NewbieCheckInPackageListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_OpenServerSchedule
     def NewbieCheckInPackageListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         return o == 0
 
     # clz_Torappu_OpenServerSchedule
     def LongTermCheckInData(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_LongTermCheckInData()
@@ -4183,7 +4171,7 @@ class clz_Torappu_OpenServerSchedule(object):
         return None
 
 def clz_Torappu_OpenServerScheduleStart(builder):
-    builder.StartObject(7)
+    builder.StartObject(6)
 
 def clz_Torappu_OpenServerScheduleAddSchedule(builder, schedule):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(schedule), 0)
@@ -4203,17 +4191,14 @@ def clz_Torappu_OpenServerScheduleAddConstant(builder, constant):
 def clz_Torappu_OpenServerScheduleAddPlayerReturn(builder, playerReturn):
     builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(playerReturn), 0)
 
-def clz_Torappu_OpenServerScheduleAddPlayerReturnV2(builder, playerReturnV2):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(playerReturnV2), 0)
-
 def clz_Torappu_OpenServerScheduleAddNewbieCheckInPackageList(builder, newbieCheckInPackageList):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(newbieCheckInPackageList), 0)
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(newbieCheckInPackageList), 0)
 
 def clz_Torappu_OpenServerScheduleStartNewbieCheckInPackageListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_OpenServerScheduleAddLongTermCheckInData(builder, longTermCheckInData):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(longTermCheckInData), 0)
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(longTermCheckInData), 0)
 
 def clz_Torappu_OpenServerScheduleEnd(builder):
     return builder.EndObject()

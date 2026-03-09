@@ -480,6 +480,8 @@ class enum__Torappu_Act24SideData_MissionType(object):
     HUNTING_TASK = 1
     COLLECTION_TASK = 2
     EXPLORATION_TASK = 3
+    MONSTER_TASK = 4
+    INVATION_TASK = 5
 
 
 class enum__Torappu_Act25SideData_Act25SideArchiveItemType(object):
@@ -759,6 +761,7 @@ class enum__Torappu_ActAutoChessModeDifficultyType(object):
     FUNNY = 1
     NORMAL = 2
     HARD = 3
+    ABYSS = 4
 
 
 class enum__Torappu_AutoChessChessType(object):
@@ -772,6 +775,13 @@ class enum__Torappu_AutoChessItemType(object):
     EQUIP = 1
     MAGIC = 2
     TOKEN = 3
+
+
+class enum__Torappu_ActAutoChessBondActiveConditionType(object):
+    BOARD = 0
+    BOARD_AND_DECK = 1
+    DECK = 2
+    BOARD_ALL_CHESS = 3
 
 
 class enum__Torappu_ActAutoChessBondActiveType(object):
@@ -985,6 +995,7 @@ class enum__Torappu_AutoChessSkillTriggerType(object):
     GDGLOW_SKILL_2 = 9
     ACT_DEFAULT = 10
     AUTO_STOP = 11
+    TAKE_DAMAGE = 12
 
 
 class enum__Torappu_AutoChessBroadcastType(object):
@@ -24700,40 +24711,50 @@ class clz_Torappu_Act24SideData_MeldingItemData(object):
         return None
 
     # clz_Torappu_Act24SideData_MeldingItemData
-    def SortId(self):
+    def BgId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
     # clz_Torappu_Act24SideData_MeldingItemData
-    def MeldingPrice(self):
+    def SortId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_Act24SideData_MeldingItemData
-    def Rarity(self):
+    def MeldingPrice(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_Act24SideData_MeldingItemData
+    def Rarity(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_Act24SideData_MeldingItemDataStart(builder):
-    builder.StartObject(4)
+    builder.StartObject(5)
 
 def clz_Torappu_Act24SideData_MeldingItemDataAddMeldingId(builder, meldingId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(meldingId), 0)
 
+def clz_Torappu_Act24SideData_MeldingItemDataAddBgId(builder, bgId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(bgId), 0)
+
 def clz_Torappu_Act24SideData_MeldingItemDataAddSortId(builder, sortId):
-    builder.PrependInt32Slot(1, sortId, 0)
+    builder.PrependInt32Slot(2, sortId, 0)
 
 def clz_Torappu_Act24SideData_MeldingItemDataAddMeldingPrice(builder, meldingPrice):
-    builder.PrependInt32Slot(2, meldingPrice, 0)
+    builder.PrependInt32Slot(3, meldingPrice, 0)
 
 def clz_Torappu_Act24SideData_MeldingItemDataAddRarity(builder, rarity):
-    builder.PrependInt32Slot(3, rarity, 0)
+    builder.PrependInt32Slot(4, rarity, 0)
 
 def clz_Torappu_Act24SideData_MeldingItemDataEnd(builder):
     return builder.EndObject()
@@ -26053,6 +26074,231 @@ def dict__string__list_stringEnd(builder):
 
 
 
+class clz_Torappu_Act24SideData_HuntDatabaseData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_Act24SideData_HuntDatabaseData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_Act24SideData_HuntDatabaseData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def Id(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def Name(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def Level(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def IsBoss(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def BossPicId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def IconSmallId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def IconLargeId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def BasicDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def RideIcon(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def RideDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def SecretTaskId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def SecretTaskItemId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def SecretTaskDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_HuntDatabaseData
+    def SecretContent(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataStart(builder):
+    builder.StartObject(15)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddId(builder, id):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddName(builder, name):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(2, sortId, 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddLevel(builder, level):
+    builder.PrependInt32Slot(3, level, 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddIsBoss(builder, isBoss):
+    builder.PrependBoolSlot(4, isBoss, 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddBossPicId(builder, bossPicId):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(bossPicId), 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddIconSmallId(builder, iconSmallId):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(iconSmallId), 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddIconLargeId(builder, iconLargeId):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(iconLargeId), 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddBasicDesc(builder, basicDesc):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(basicDesc), 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddRideIcon(builder, rideIcon):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(rideIcon), 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddRideDesc(builder, rideDesc):
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(rideDesc), 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddSecretTaskId(builder, secretTaskId):
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(secretTaskId), 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddSecretTaskItemId(builder, secretTaskItemId):
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(secretTaskItemId), 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddSecretTaskDesc(builder, secretTaskDesc):
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(secretTaskDesc), 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataAddSecretContent(builder, secretContent):
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(secretContent), 0)
+
+def clz_Torappu_Act24SideData_HuntDatabaseDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_Act24SideData_HuntDatabaseData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_Act24SideData_HuntDatabaseData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_Act24SideData_HuntDatabaseData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_Act24SideData_HuntDatabaseData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_Act24SideData_HuntDatabaseData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_Act24SideData_HuntDatabaseData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_Act24SideData_HuntDatabaseData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_Act24SideData_HuntDatabaseDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_Act24SideData_HuntDatabaseDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_Act24SideData_HuntDatabaseDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_Act24SideData_HuntDatabaseDataEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_Act24SideData_ConstData(object):
     __slots__ = ['_tab']
 
@@ -26120,21 +26366,70 @@ class clz_Torappu_Act24SideData_ConstData(object):
         return o == 0
 
     # clz_Torappu_Act24SideData_ConstData
-    def GachaDefaultProb(self):
+    def HunterGuideRewardItemId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_ConstData
+    def HunterGuideRewardItemType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_ConstData
+    def HunterGuideRewardItemCount(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_Act24SideData_ConstData
+    def HunterGuideDetailTabPosition(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_Act24SideData_ConstData
+    def TaskRewardItemNoIconDisplayId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_ConstData
+    def SpecialLevelUnlockTaskId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_ConstData
+    def MissionProgressFormat(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act24SideData_ConstData
+    def GachaDefaultProb(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
     # clz_Torappu_Act24SideData_ConstData
     def GachaExtraProb(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
 def clz_Torappu_Act24SideData_ConstDataStart(builder):
-    builder.StartObject(7)
+    builder.StartObject(14)
 
 def clz_Torappu_Act24SideData_ConstDataAddStageUnlockToolDesc(builder, stageUnlockToolDesc):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(stageUnlockToolDesc), 0)
@@ -26154,11 +26449,32 @@ def clz_Torappu_Act24SideData_ConstDataAddStageCanNotUseToTool(builder, stageCan
 def clz_Torappu_Act24SideData_ConstDataStartStageCanNotUseToToolVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_Act24SideData_ConstDataAddHunterGuideRewardItemId(builder, hunterGuideRewardItemId):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(hunterGuideRewardItemId), 0)
+
+def clz_Torappu_Act24SideData_ConstDataAddHunterGuideRewardItemType(builder, hunterGuideRewardItemType):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(hunterGuideRewardItemType), 0)
+
+def clz_Torappu_Act24SideData_ConstDataAddHunterGuideRewardItemCount(builder, hunterGuideRewardItemCount):
+    builder.PrependInt32Slot(7, hunterGuideRewardItemCount, 0)
+
+def clz_Torappu_Act24SideData_ConstDataAddHunterGuideDetailTabPosition(builder, hunterGuideDetailTabPosition):
+    builder.PrependInt32Slot(8, hunterGuideDetailTabPosition, 0)
+
+def clz_Torappu_Act24SideData_ConstDataAddTaskRewardItemNoIconDisplayId(builder, taskRewardItemNoIconDisplayId):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(taskRewardItemNoIconDisplayId), 0)
+
+def clz_Torappu_Act24SideData_ConstDataAddSpecialLevelUnlockTaskId(builder, specialLevelUnlockTaskId):
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(specialLevelUnlockTaskId), 0)
+
+def clz_Torappu_Act24SideData_ConstDataAddMissionProgressFormat(builder, missionProgressFormat):
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(missionProgressFormat), 0)
+
 def clz_Torappu_Act24SideData_ConstDataAddGachaDefaultProb(builder, gachaDefaultProb):
-    builder.PrependFloat32Slot(5, gachaDefaultProb, 0.0)
+    builder.PrependFloat32Slot(12, gachaDefaultProb, 0.0)
 
 def clz_Torappu_Act24SideData_ConstDataAddGachaExtraProb(builder, gachaExtraProb):
-    builder.PrependFloat32Slot(6, gachaExtraProb, 0.0)
+    builder.PrependFloat32Slot(13, gachaExtraProb, 0.0)
 
 def clz_Torappu_Act24SideData_ConstDataEnd(builder):
     return builder.EndObject()
@@ -26448,8 +26764,56 @@ class clz_Torappu_Act24SideData(object):
         return o == 0
 
     # clz_Torappu_Act24SideData
-    def ConstData(self):
+    def HuntDatabaseDict(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_Act24SideData_HuntDatabaseData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_Act24SideData
+    def HuntDatabaseDictLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Act24SideData
+    def HuntDatabaseDictIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        return o == 0
+
+    # clz_Torappu_Act24SideData
+    def StageIdToUnlockItemIdDict(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__string()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_Act24SideData
+    def StageIdToUnlockItemIdDictLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Act24SideData
+    def StageIdToUnlockItemIdDictIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        return o == 0
+
+    # clz_Torappu_Act24SideData
+    def ConstData(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_Act24SideData_ConstData()
@@ -26458,7 +26822,7 @@ class clz_Torappu_Act24SideData(object):
         return None
 
 def clz_Torappu_Act24SideDataStart(builder):
-    builder.StartObject(12)
+    builder.StartObject(14)
 
 def clz_Torappu_Act24SideDataAddToolDataList(builder, toolDataList):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(toolDataList), 0)
@@ -26526,8 +26890,20 @@ def clz_Torappu_Act24SideDataAddStageMapPreviewDict(builder, stageMapPreviewDict
 def clz_Torappu_Act24SideDataStartStageMapPreviewDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_Act24SideDataAddHuntDatabaseDict(builder, huntDatabaseDict):
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(huntDatabaseDict), 0)
+
+def clz_Torappu_Act24SideDataStartHuntDatabaseDictVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Act24SideDataAddStageIdToUnlockItemIdDict(builder, stageIdToUnlockItemIdDict):
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(stageIdToUnlockItemIdDict), 0)
+
+def clz_Torappu_Act24SideDataStartStageIdToUnlockItemIdDictVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_Act24SideDataAddConstData(builder, constData):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(constData), 0)
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(constData), 0)
 
 def clz_Torappu_Act24SideDataEnd(builder):
     return builder.EndObject()
@@ -59444,8 +59820,15 @@ class clz_Torappu_ActAutoChessData_ActAutoChessModeData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         return o == 0
 
+    # clz_Torappu_ActAutoChessData_ActAutoChessModeData
+    def StartTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_ActAutoChessData_ActAutoChessModeDataStart(builder):
-    builder.StartObject(18)
+    builder.StartObject(19)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessModeDataAddModeId(builder, modeId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(modeId), 0)
@@ -59512,6 +59895,9 @@ def clz_Torappu_ActAutoChessData_ActAutoChessModeDataAddInactiveEnemyKey(builder
 
 def clz_Torappu_ActAutoChessData_ActAutoChessModeDataStartInactiveEnemyKeyVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActAutoChessData_ActAutoChessModeDataAddStartTime(builder, startTime):
+    builder.PrependInt64Slot(18, startTime, 0)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessModeDataEnd(builder):
     return builder.EndObject()
@@ -59713,8 +60099,15 @@ class clz_Torappu_ActAutoChessData_ActAutoChessBandData(object):
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
+    # clz_Torappu_ActAutoChessData_ActAutoChessBandData
+    def UpdateTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_ActAutoChessData_ActAutoChessBandDataStart(builder):
-    builder.StartObject(8)
+    builder.StartObject(9)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBandDataAddBandId(builder, bandId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(bandId), 0)
@@ -59742,6 +60135,9 @@ def clz_Torappu_ActAutoChessData_ActAutoChessBandDataAddVictorCount(builder, vic
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBandDataAddBandRewardModulus(builder, bandRewardModulus):
     builder.PrependFloat32Slot(7, bandRewardModulus, 0.0)
+
+def clz_Torappu_ActAutoChessData_ActAutoChessBandDataAddUpdateTime(builder, updateTime):
+    builder.PrependInt64Slot(8, updateTime, 0)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBandDataEnd(builder):
     return builder.EndObject()
@@ -61468,43 +61864,84 @@ class clz_Torappu_ActAutoChessData_ActAutoChessBondInfo(object):
         return 0
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
-    def EffectId(self):
+    def ActiveCondition(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
+    def ActiveConditionTemplate(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
+    def ActiveParamList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
+    def ActiveParamListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
+    def ActiveParamListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        return o == 0
+
+    # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
+    def EffectId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
     def ActiveType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
     def Identifier(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
     def Weight(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
     def IsActiveInDeck(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
+    def MaxInactiveBondCount(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
     def DescParamBaseList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -61512,19 +61949,19 @@ class clz_Torappu_ActAutoChessData_ActAutoChessBondInfo(object):
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
     def DescParamBaseListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
     def DescParamBaseListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         return o == 0
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
     def DescParamPerStackList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -61532,26 +61969,26 @@ class clz_Torappu_ActAutoChessData_ActAutoChessBondInfo(object):
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
     def DescParamPerStackListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
     def DescParamPerStackListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         return o == 0
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
     def NoStack(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
     def ChessIdList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -61559,18 +61996,18 @@ class clz_Torappu_ActAutoChessData_ActAutoChessBondInfo(object):
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
     def ChessIdListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActAutoChessData_ActAutoChessBondInfo
     def ChessIdListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         return o == 0
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoStart(builder):
-    builder.StartObject(14)
+    builder.StartObject(18)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddBondId(builder, bondId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(bondId), 0)
@@ -61587,38 +62024,53 @@ def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddIconId(builder, iconId):
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddActiveCount(builder, activeCount):
     builder.PrependInt32Slot(4, activeCount, 0)
 
+def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddActiveCondition(builder, activeCondition):
+    builder.PrependInt32Slot(5, activeCondition, 0)
+
+def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddActiveConditionTemplate(builder, activeConditionTemplate):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(activeConditionTemplate), 0)
+
+def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddActiveParamList(builder, activeParamList):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(activeParamList), 0)
+
+def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoStartActiveParamListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddEffectId(builder, effectId):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(effectId), 0)
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(effectId), 0)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddActiveType(builder, activeType):
-    builder.PrependInt32Slot(6, activeType, 0)
+    builder.PrependInt32Slot(9, activeType, 0)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddIdentifier(builder, identifier):
-    builder.PrependInt32Slot(7, identifier, 0)
+    builder.PrependInt32Slot(10, identifier, 0)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddWeight(builder, weight):
-    builder.PrependInt32Slot(8, weight, 0)
+    builder.PrependInt32Slot(11, weight, 0)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddIsActiveInDeck(builder, isActiveInDeck):
-    builder.PrependBoolSlot(9, isActiveInDeck, 0)
+    builder.PrependBoolSlot(12, isActiveInDeck, 0)
+
+def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddMaxInactiveBondCount(builder, maxInactiveBondCount):
+    builder.PrependInt32Slot(13, maxInactiveBondCount, 0)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddDescParamBaseList(builder, descParamBaseList):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(descParamBaseList), 0)
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(descParamBaseList), 0)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoStartDescParamBaseListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddDescParamPerStackList(builder, descParamPerStackList):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(descParamPerStackList), 0)
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(descParamPerStackList), 0)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoStartDescParamPerStackListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddNoStack(builder, noStack):
-    builder.PrependBoolSlot(12, noStack, 0)
+    builder.PrependBoolSlot(16, noStack, 0)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoAddChessIdList(builder, chessIdList):
-    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(chessIdList), 0)
+    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(chessIdList), 0)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessBondInfoStartChessIdListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
@@ -62365,14 +62817,21 @@ class clz_Torappu_ActAutoChessData_ActAutochessBossEntry(object):
         return 0
 
     # clz_Torappu_ActAutoChessData_ActAutochessBossEntry
-    def IsHidingBoss(self):
+    def BloodPointAbyss(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActAutoChessData_ActAutochessBossEntry
+    def IsHidingBoss(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
 def clz_Torappu_ActAutoChessData_ActAutochessBossEntryStart(builder):
-    builder.StartObject(7)
+    builder.StartObject(8)
 
 def clz_Torappu_ActAutoChessData_ActAutochessBossEntryAddBossId(builder, bossId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(bossId), 0)
@@ -62392,8 +62851,11 @@ def clz_Torappu_ActAutoChessData_ActAutochessBossEntryAddBloodPointNormal(builde
 def clz_Torappu_ActAutoChessData_ActAutochessBossEntryAddBloodPointHard(builder, bloodPointHard):
     builder.PrependInt32Slot(5, bloodPointHard, 0)
 
+def clz_Torappu_ActAutoChessData_ActAutochessBossEntryAddBloodPointAbyss(builder, bloodPointAbyss):
+    builder.PrependInt32Slot(6, bloodPointAbyss, 0)
+
 def clz_Torappu_ActAutoChessData_ActAutochessBossEntryAddIsHidingBoss(builder, isHidingBoss):
-    builder.PrependBoolSlot(6, isHidingBoss, 0)
+    builder.PrependBoolSlot(7, isHidingBoss, 0)
 
 def clz_Torappu_ActAutoChessData_ActAutochessBossEntryEnd(builder):
     return builder.EndObject()
@@ -63354,35 +63816,28 @@ class clz_Torappu_ActAutoChessData_ActAutoChessConstData(object):
         return None
 
     # clz_Torappu_ActAutoChessData_ActAutoChessConstData
-    def BandNextUpdateTs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ActAutoChessData_ActAutoChessConstData
     def EscapedBattleTemplateMapSinglePlayer(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActAutoChessData_ActAutoChessConstData
     def EscapedBattleTemplateMapMultiPlayer(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActAutoChessData_ActAutoChessConstData
     def WebBusType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
 def clz_Torappu_ActAutoChessData_ActAutoChessConstDataStart(builder):
-    builder.StartObject(23)
+    builder.StartObject(22)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessConstDataAddShopRefreshPrice(builder, shopRefreshPrice):
     builder.PrependInt32Slot(0, shopRefreshPrice, 0)
@@ -63450,17 +63905,14 @@ def clz_Torappu_ActAutoChessData_ActAutoChessConstDataStartTrBannedBondIdsVector
 def clz_Torappu_ActAutoChessData_ActAutoChessConstDataAddMilestoneTrackId(builder, milestoneTrackId):
     builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneTrackId), 0)
 
-def clz_Torappu_ActAutoChessData_ActAutoChessConstDataAddBandNextUpdateTs(builder, bandNextUpdateTs):
-    builder.PrependInt64Slot(19, bandNextUpdateTs, 0)
-
 def clz_Torappu_ActAutoChessData_ActAutoChessConstDataAddEscapedBattleTemplateMapSinglePlayer(builder, escapedBattleTemplateMapSinglePlayer):
-    builder.PrependUOffsetTRelativeSlot(20, flatbuffers.number_types.UOffsetTFlags.py_type(escapedBattleTemplateMapSinglePlayer), 0)
+    builder.PrependUOffsetTRelativeSlot(19, flatbuffers.number_types.UOffsetTFlags.py_type(escapedBattleTemplateMapSinglePlayer), 0)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessConstDataAddEscapedBattleTemplateMapMultiPlayer(builder, escapedBattleTemplateMapMultiPlayer):
-    builder.PrependUOffsetTRelativeSlot(21, flatbuffers.number_types.UOffsetTFlags.py_type(escapedBattleTemplateMapMultiPlayer), 0)
+    builder.PrependUOffsetTRelativeSlot(20, flatbuffers.number_types.UOffsetTFlags.py_type(escapedBattleTemplateMapMultiPlayer), 0)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessConstDataAddWebBusType(builder, webBusType):
-    builder.PrependUOffsetTRelativeSlot(22, flatbuffers.number_types.UOffsetTFlags.py_type(webBusType), 0)
+    builder.PrependUOffsetTRelativeSlot(21, flatbuffers.number_types.UOffsetTFlags.py_type(webBusType), 0)
 
 def clz_Torappu_ActAutoChessData_ActAutoChessConstDataEnd(builder):
     return builder.EndObject()
@@ -71862,6 +72314,769 @@ def clz_Torappu_Act6FunDataEnd(builder):
 
 
 
+class clz_Torappu_Act7FunStageAdditionData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_Act7FunStageAdditionData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_Act7FunStageAdditionData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_Act7FunStageAdditionData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_Act7FunStageAdditionData
+    def HomepageSpineGroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act7FunStageAdditionData
+    def BattleSpineGroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act7FunStageAdditionData
+    def SettleWinSpineGroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act7FunStageAdditionData
+    def SettleLoseSpineGroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act7FunStageAdditionData
+    def TrapMaxNum(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_Act7FunStageAdditionData
+    def TrapTargetNum(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_Act7FunStageAdditionDataStart(builder):
+    builder.StartObject(6)
+
+def clz_Torappu_Act7FunStageAdditionDataAddHomepageSpineGroupId(builder, homepageSpineGroupId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(homepageSpineGroupId), 0)
+
+def clz_Torappu_Act7FunStageAdditionDataAddBattleSpineGroupId(builder, battleSpineGroupId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(battleSpineGroupId), 0)
+
+def clz_Torappu_Act7FunStageAdditionDataAddSettleWinSpineGroupId(builder, settleWinSpineGroupId):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(settleWinSpineGroupId), 0)
+
+def clz_Torappu_Act7FunStageAdditionDataAddSettleLoseSpineGroupId(builder, settleLoseSpineGroupId):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(settleLoseSpineGroupId), 0)
+
+def clz_Torappu_Act7FunStageAdditionDataAddTrapMaxNum(builder, trapMaxNum):
+    builder.PrependInt32Slot(4, trapMaxNum, 0)
+
+def clz_Torappu_Act7FunStageAdditionDataAddTrapTargetNum(builder, trapTargetNum):
+    builder.PrependInt32Slot(5, trapTargetNum, 0)
+
+def clz_Torappu_Act7FunStageAdditionDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_Act7FunStageAdditionData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_Act7FunStageAdditionData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_Act7FunStageAdditionData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_Act7FunStageAdditionData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_Act7FunStageAdditionData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_Act7FunStageAdditionData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_Act7FunStageAdditionData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_Act7FunStageAdditionDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_Act7FunStageAdditionDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_Act7FunStageAdditionDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_Act7FunStageAdditionDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_Act7FunEasterEggData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_Act7FunEasterEggData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_Act7FunEasterEggData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_Act7FunEasterEggData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_Act7FunEasterEggData
+    def EastereggId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act7FunEasterEggData
+    def CharId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act7FunEasterEggData
+    def NewsDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_Act7FunEasterEggDataStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_Act7FunEasterEggDataAddEastereggId(builder, eastereggId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(eastereggId), 0)
+
+def clz_Torappu_Act7FunEasterEggDataAddCharId(builder, charId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(charId), 0)
+
+def clz_Torappu_Act7FunEasterEggDataAddNewsDesc(builder, newsDesc):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(newsDesc), 0)
+
+def clz_Torappu_Act7FunEasterEggDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_Act7FunEasterEggData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_Act7FunEasterEggData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_Act7FunEasterEggData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_Act7FunEasterEggData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_Act7FunEasterEggData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_Act7FunEasterEggData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_Act7FunEasterEggData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_Act7FunEasterEggDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_Act7FunEasterEggDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_Act7FunEasterEggDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_Act7FunEasterEggDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_Act7FunSpineHolderData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_Act7FunSpineHolderData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_Act7FunSpineHolderData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_Act7FunSpineHolderData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_Act7FunSpineHolderData
+    def HolderId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_Act7FunSpineHolderData
+    def CharId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act7FunSpineHolderData
+    def Direction(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def clz_Torappu_Act7FunSpineHolderDataStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_Act7FunSpineHolderDataAddHolderId(builder, holderId):
+    builder.PrependInt32Slot(0, holderId, 0)
+
+def clz_Torappu_Act7FunSpineHolderDataAddCharId(builder, charId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(charId), 0)
+
+def clz_Torappu_Act7FunSpineHolderDataAddDirection(builder, direction):
+    builder.PrependBoolSlot(2, direction, 0)
+
+def clz_Torappu_Act7FunSpineHolderDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_Act7FunSpineGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_Act7FunSpineGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_Act7FunSpineGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_Act7FunSpineGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_Act7FunSpineGroupData
+    def SpineGroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act7FunSpineGroupData
+    def HolderData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_Act7FunSpineHolderData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_Act7FunSpineGroupData
+    def HolderDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Act7FunSpineGroupData
+    def HolderDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+def clz_Torappu_Act7FunSpineGroupDataStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_Act7FunSpineGroupDataAddSpineGroupId(builder, spineGroupId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(spineGroupId), 0)
+
+def clz_Torappu_Act7FunSpineGroupDataAddHolderData(builder, holderData):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(holderData), 0)
+
+def clz_Torappu_Act7FunSpineGroupDataStartHolderDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Act7FunSpineGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_Act7FunSpineGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_Act7FunSpineGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_Act7FunSpineGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_Act7FunSpineGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_Act7FunSpineGroupData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_Act7FunSpineGroupData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_Act7FunSpineGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_Act7FunSpineGroupDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_Act7FunSpineGroupDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_Act7FunSpineGroupDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_Act7FunSpineGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_Act7FunCharAnimData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_Act7FunCharAnimData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_Act7FunCharAnimData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_Act7FunCharAnimData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_Act7FunCharAnimData
+    def CharId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act7FunCharAnimData
+    def FailAnimId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act7FunCharAnimData
+    def NormalAnimIds(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_Act7FunCharAnimData
+    def NormalAnimIdsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Act7FunCharAnimData
+    def NormalAnimIdsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+def clz_Torappu_Act7FunCharAnimDataStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_Act7FunCharAnimDataAddCharId(builder, charId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(charId), 0)
+
+def clz_Torappu_Act7FunCharAnimDataAddFailAnimId(builder, failAnimId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(failAnimId), 0)
+
+def clz_Torappu_Act7FunCharAnimDataAddNormalAnimIds(builder, normalAnimIds):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(normalAnimIds), 0)
+
+def clz_Torappu_Act7FunCharAnimDataStartNormalAnimIdsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Act7FunCharAnimDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_Act7FunCharAnimData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_Act7FunCharAnimData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_Act7FunCharAnimData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_Act7FunCharAnimData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_Act7FunCharAnimData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_Act7FunCharAnimData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_Act7FunCharAnimData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_Act7FunCharAnimDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_Act7FunCharAnimDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_Act7FunCharAnimDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_Act7FunCharAnimDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_Act7FunConstData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_Act7FunConstData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_Act7FunConstData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_Act7FunConstData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_Act7FunConstData
+    def DefaultStage(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Act7FunConstData
+    def HomepageSwitchStageId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_Act7FunConstDataStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_Act7FunConstDataAddDefaultStage(builder, defaultStage):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(defaultStage), 0)
+
+def clz_Torappu_Act7FunConstDataAddHomepageSwitchStageId(builder, homepageSwitchStageId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(homepageSwitchStageId), 0)
+
+def clz_Torappu_Act7FunConstDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_Act7FunData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_Act7FunData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_Act7FunData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_Act7FunData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_Act7FunData
+    def StageAdditionMap(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_Act7FunStageAdditionData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_Act7FunData
+    def StageAdditionMapLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Act7FunData
+    def StageAdditionMapIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+    # clz_Torappu_Act7FunData
+    def EasterEggData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_Act7FunEasterEggData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_Act7FunData
+    def EasterEggDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Act7FunData
+    def EasterEggDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+    # clz_Torappu_Act7FunData
+    def SpineGroupData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_Act7FunSpineGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_Act7FunData
+    def SpineGroupDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Act7FunData
+    def SpineGroupDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+    # clz_Torappu_Act7FunData
+    def CharAnimData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_Act7FunCharAnimData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_Act7FunData
+    def CharAnimDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Act7FunData
+    def CharAnimDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # clz_Torappu_Act7FunData
+    def StageRewardList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_Act7FunData
+    def StageRewardListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Act7FunData
+    def StageRewardListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        return o == 0
+
+    # clz_Torappu_Act7FunData
+    def ConstData(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_Act7FunConstData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def clz_Torappu_Act7FunDataStart(builder):
+    builder.StartObject(6)
+
+def clz_Torappu_Act7FunDataAddStageAdditionMap(builder, stageAdditionMap):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(stageAdditionMap), 0)
+
+def clz_Torappu_Act7FunDataStartStageAdditionMapVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Act7FunDataAddEasterEggData(builder, easterEggData):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(easterEggData), 0)
+
+def clz_Torappu_Act7FunDataStartEasterEggDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Act7FunDataAddSpineGroupData(builder, spineGroupData):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(spineGroupData), 0)
+
+def clz_Torappu_Act7FunDataStartSpineGroupDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Act7FunDataAddCharAnimData(builder, charAnimData):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(charAnimData), 0)
+
+def clz_Torappu_Act7FunDataStartCharAnimDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Act7FunDataAddStageRewardList(builder, stageRewardList):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(stageRewardList), 0)
+
+def clz_Torappu_Act7FunDataStartStageRewardListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Act7FunDataAddConstData(builder, constData):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(constData), 0)
+
+def clz_Torappu_Act7FunDataEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_AprilFoolTable(object):
     __slots__ = ['_tab']
 
@@ -71968,8 +73183,18 @@ class clz_Torappu_AprilFoolTable(object):
             return obj
         return None
 
+    # clz_Torappu_AprilFoolTable
+    def Act7FunData(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_Act7FunData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
 def clz_Torappu_AprilFoolTableStart(builder):
-    builder.StartObject(6)
+    builder.StartObject(7)
 
 def clz_Torappu_AprilFoolTableAddStages(builder, stages):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(stages), 0)
@@ -71994,6 +73219,9 @@ def clz_Torappu_AprilFoolTableAddAct5FunData(builder, act5FunData):
 
 def clz_Torappu_AprilFoolTableAddAct6FunData(builder, act6FunData):
     builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(act6FunData), 0)
+
+def clz_Torappu_AprilFoolTableAddAct7FunData(builder, act7FunData):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(act7FunData), 0)
 
 def clz_Torappu_AprilFoolTableEnd(builder):
     return builder.EndObject()
@@ -79101,28 +80329,21 @@ class clz_Torappu_AutoChessData_AutoChessVersionInfoData(object):
         return None
 
     # clz_Torappu_AutoChessData_AutoChessVersionInfoData
-    def UpdateTime(self):
+    def SeasonName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
     # clz_Torappu_AutoChessData_AutoChessVersionInfoData
-    def AppearTimeOnMainScreen(self):
+    def StartTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
-    # clz_Torappu_AutoChessData_AutoChessVersionInfoData
-    def DisappearTimeOnMainScreen(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
 def clz_Torappu_AutoChessData_AutoChessVersionInfoDataStart(builder):
-    builder.StartObject(5)
+    builder.StartObject(4)
 
 def clz_Torappu_AutoChessData_AutoChessVersionInfoDataAddVersionId(builder, versionId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(versionId), 0)
@@ -79130,14 +80351,11 @@ def clz_Torappu_AutoChessData_AutoChessVersionInfoDataAddVersionId(builder, vers
 def clz_Torappu_AutoChessData_AutoChessVersionInfoDataAddActivityId(builder, activityId):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(activityId), 0)
 
-def clz_Torappu_AutoChessData_AutoChessVersionInfoDataAddUpdateTime(builder, updateTime):
-    builder.PrependInt64Slot(2, updateTime, 0)
+def clz_Torappu_AutoChessData_AutoChessVersionInfoDataAddSeasonName(builder, seasonName):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(seasonName), 0)
 
-def clz_Torappu_AutoChessData_AutoChessVersionInfoDataAddAppearTimeOnMainScreen(builder, appearTimeOnMainScreen):
-    builder.PrependInt64Slot(3, appearTimeOnMainScreen, 0)
-
-def clz_Torappu_AutoChessData_AutoChessVersionInfoDataAddDisappearTimeOnMainScreen(builder, disappearTimeOnMainScreen):
-    builder.PrependInt64Slot(4, disappearTimeOnMainScreen, 0)
+def clz_Torappu_AutoChessData_AutoChessVersionInfoDataAddStartTime(builder, startTime):
+    builder.PrependInt64Slot(3, startTime, 0)
 
 def clz_Torappu_AutoChessData_AutoChessVersionInfoDataEnd(builder):
     return builder.EndObject()
@@ -79569,8 +80787,15 @@ class clz_Torappu_AutoChessData_AutoChessBondInfoData(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_AutoChessData_AutoChessBondInfoData
+    def IsHiddenCharList(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_AutoChessData_AutoChessBondInfoDataStart(builder):
-    builder.StartObject(7)
+    builder.StartObject(8)
 
 def clz_Torappu_AutoChessData_AutoChessBondInfoDataAddBondId(builder, bondId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(bondId), 0)
@@ -79595,6 +80820,9 @@ def clz_Torappu_AutoChessData_AutoChessBondInfoDataAddIsPower(builder, isPower):
 
 def clz_Torappu_AutoChessData_AutoChessBondInfoDataAddBondOrder(builder, bondOrder):
     builder.PrependInt32Slot(6, bondOrder, 0)
+
+def clz_Torappu_AutoChessData_AutoChessBondInfoDataAddIsHiddenCharList(builder, isHiddenCharList):
+    builder.PrependBoolSlot(7, isHiddenCharList, 0)
 
 def clz_Torappu_AutoChessData_AutoChessBondInfoDataEnd(builder):
     return builder.EndObject()
@@ -81059,99 +82287,106 @@ class clz_Torappu_AutoChessData_AutoChessConstData(object):
         return 0.0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
-    def SpecialPhaseStayTime(self):
+    def SingleReconnectTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
-    def HintTimeSpecialPhase(self):
+    def SpecialPhaseStayTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
-    def HintTimeNormalPhase(self):
+    def HintTimeSpecialPhase(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
-    def HintTimeFightPhase(self):
+    def HintTimeNormalPhase(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
-    def HintTimeDotPhase(self):
+    def HintTimeFightPhase(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
-    def InvitationSendCd(self):
+    def HintTimeDotPhase(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
-    def DiscountColor(self):
+    def InvitationSendCd(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
-    def PremiumColor(self):
+    def DiscountColor(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_AutoChessData_AutoChessConstData
-    def NormalColor(self):
+    def PremiumColor(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_AutoChessData_AutoChessConstData
-    def ReportMaxNum(self):
+    def NormalColor(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_AutoChessData_AutoChessConstData
+    def ReportMaxNum(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
     def ChatCd(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # clz_Torappu_AutoChessData_AutoChessConstData
-    def ChatTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(64))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
-    def BroadcastBeginDelay(self):
+    def ChatTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(66))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
-    def NoMoneyTipsBand(self, j):
+    def BroadcastBeginDelay(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_AutoChessData_AutoChessConstData
+    def NoMoneyTipsBand(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -81159,39 +82394,46 @@ class clz_Torappu_AutoChessData_AutoChessConstData(object):
 
     # clz_Torappu_AutoChessData_AutoChessConstData
     def NoMoneyTipsBandLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
     def NoMoneyTipsBandIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
         return o == 0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
     def BossTrailerStartRound(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
     def SingleClosureStayTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
     # clz_Torappu_AutoChessData_AutoChessConstData
     def MatchTimeMax(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
+    # clz_Torappu_AutoChessData_AutoChessConstData
+    def EnemyDataLevelId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_AutoChessData_AutoChessConstDataStart(builder):
-    builder.StartObject(36)
+    builder.StartObject(38)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddPingConds(builder, pingConds):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(pingConds), 0)
@@ -81253,59 +82495,65 @@ def clz_Torappu_AutoChessData_AutoChessConstDataAddEnemyDefFactor(builder, enemy
 def clz_Torappu_AutoChessData_AutoChessConstDataAddEnemyMagicResistanceFactor(builder, enemyMagicResistanceFactor):
     builder.PrependFloat32Slot(18, enemyMagicResistanceFactor, 0.0)
 
+def clz_Torappu_AutoChessData_AutoChessConstDataAddSingleReconnectTime(builder, singleReconnectTime):
+    builder.PrependInt32Slot(19, singleReconnectTime, 0)
+
 def clz_Torappu_AutoChessData_AutoChessConstDataAddSpecialPhaseStayTime(builder, specialPhaseStayTime):
-    builder.PrependInt32Slot(19, specialPhaseStayTime, 0)
+    builder.PrependInt32Slot(20, specialPhaseStayTime, 0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddHintTimeSpecialPhase(builder, hintTimeSpecialPhase):
-    builder.PrependInt32Slot(20, hintTimeSpecialPhase, 0)
+    builder.PrependInt32Slot(21, hintTimeSpecialPhase, 0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddHintTimeNormalPhase(builder, hintTimeNormalPhase):
-    builder.PrependInt32Slot(21, hintTimeNormalPhase, 0)
+    builder.PrependInt32Slot(22, hintTimeNormalPhase, 0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddHintTimeFightPhase(builder, hintTimeFightPhase):
-    builder.PrependInt32Slot(22, hintTimeFightPhase, 0)
+    builder.PrependInt32Slot(23, hintTimeFightPhase, 0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddHintTimeDotPhase(builder, hintTimeDotPhase):
-    builder.PrependInt32Slot(23, hintTimeDotPhase, 0)
+    builder.PrependInt32Slot(24, hintTimeDotPhase, 0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddInvitationSendCd(builder, invitationSendCd):
-    builder.PrependInt32Slot(24, invitationSendCd, 0)
+    builder.PrependInt32Slot(25, invitationSendCd, 0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddDiscountColor(builder, discountColor):
-    builder.PrependUOffsetTRelativeSlot(25, flatbuffers.number_types.UOffsetTFlags.py_type(discountColor), 0)
+    builder.PrependUOffsetTRelativeSlot(26, flatbuffers.number_types.UOffsetTFlags.py_type(discountColor), 0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddPremiumColor(builder, premiumColor):
-    builder.PrependUOffsetTRelativeSlot(26, flatbuffers.number_types.UOffsetTFlags.py_type(premiumColor), 0)
+    builder.PrependUOffsetTRelativeSlot(27, flatbuffers.number_types.UOffsetTFlags.py_type(premiumColor), 0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddNormalColor(builder, normalColor):
-    builder.PrependUOffsetTRelativeSlot(27, flatbuffers.number_types.UOffsetTFlags.py_type(normalColor), 0)
+    builder.PrependUOffsetTRelativeSlot(28, flatbuffers.number_types.UOffsetTFlags.py_type(normalColor), 0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddReportMaxNum(builder, reportMaxNum):
-    builder.PrependInt32Slot(28, reportMaxNum, 0)
+    builder.PrependInt32Slot(29, reportMaxNum, 0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddChatCd(builder, chatCd):
-    builder.PrependFloat32Slot(29, chatCd, 0.0)
+    builder.PrependFloat32Slot(30, chatCd, 0.0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddChatTime(builder, chatTime):
-    builder.PrependFloat32Slot(30, chatTime, 0.0)
+    builder.PrependFloat32Slot(31, chatTime, 0.0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddBroadcastBeginDelay(builder, broadcastBeginDelay):
-    builder.PrependFloat32Slot(31, broadcastBeginDelay, 0.0)
+    builder.PrependFloat32Slot(32, broadcastBeginDelay, 0.0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddNoMoneyTipsBand(builder, noMoneyTipsBand):
-    builder.PrependUOffsetTRelativeSlot(32, flatbuffers.number_types.UOffsetTFlags.py_type(noMoneyTipsBand), 0)
+    builder.PrependUOffsetTRelativeSlot(33, flatbuffers.number_types.UOffsetTFlags.py_type(noMoneyTipsBand), 0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataStartNoMoneyTipsBandVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddBossTrailerStartRound(builder, bossTrailerStartRound):
-    builder.PrependInt32Slot(33, bossTrailerStartRound, 0)
+    builder.PrependInt32Slot(34, bossTrailerStartRound, 0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddSingleClosureStayTime(builder, singleClosureStayTime):
-    builder.PrependFloat32Slot(34, singleClosureStayTime, 0.0)
+    builder.PrependFloat32Slot(35, singleClosureStayTime, 0.0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataAddMatchTimeMax(builder, matchTimeMax):
-    builder.PrependFloat32Slot(35, matchTimeMax, 0.0)
+    builder.PrependFloat32Slot(36, matchTimeMax, 0.0)
+
+def clz_Torappu_AutoChessData_AutoChessConstDataAddEnemyDataLevelId(builder, enemyDataLevelId):
+    builder.PrependUOffsetTRelativeSlot(37, flatbuffers.number_types.UOffsetTFlags.py_type(enemyDataLevelId), 0)
 
 def clz_Torappu_AutoChessData_AutoChessConstDataEnd(builder):
     return builder.EndObject()

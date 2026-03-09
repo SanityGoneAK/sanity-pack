@@ -18,6 +18,7 @@ class enum__Torappu_GachaRuleType(object):
     SPECIAL = 8
     DOUBLE = 9
     CLASSIC_DOUBLE = 10
+    BACKFLOW = 11
 
 
 class enum__Torappu_ItemType(object):

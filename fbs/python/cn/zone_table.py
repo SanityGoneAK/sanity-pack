@@ -278,8 +278,15 @@ class clz_Torappu_ZoneData(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
+    # clz_Torappu_ZoneData
+    def DiamondRewardCount(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_ZoneDataStart(builder):
-    builder.StartObject(16)
+    builder.StartObject(17)
 
 def clz_Torappu_ZoneDataAddZoneId(builder, zoneId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(zoneId), 0)
@@ -328,6 +335,9 @@ def clz_Torappu_ZoneDataAddBindMainlineZoneId(builder, bindMainlineZoneId):
 
 def clz_Torappu_ZoneDataAddBindMainlineRetroZoneId(builder, bindMainlineRetroZoneId):
     builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(bindMainlineRetroZoneId), 0)
+
+def clz_Torappu_ZoneDataAddDiamondRewardCount(builder, diamondRewardCount):
+    builder.PrependInt32Slot(16, diamondRewardCount, 0)
 
 def clz_Torappu_ZoneDataEnd(builder):
     return builder.EndObject()
