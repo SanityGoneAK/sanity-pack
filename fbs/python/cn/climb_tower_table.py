@@ -3001,8 +3001,15 @@ class clz_Torappu_ClimbTowerDetailConst(object):
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_ClimbTowerDetailConst
+    def RecordNoResetStartTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_ClimbTowerDetailConstStart(builder):
-    builder.StartObject(19)
+    builder.StartObject(20)
 
 def clz_Torappu_ClimbTowerDetailConstAddUnlockLevelId(builder, unlockLevelId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(unlockLevelId), 0)
@@ -3060,6 +3067,9 @@ def clz_Torappu_ClimbTowerDetailConstAddSweepCostCount(builder, sweepCostCount):
 
 def clz_Torappu_ClimbTowerDetailConstAddSquadMemStartTime(builder, squadMemStartTime):
     builder.PrependInt64Slot(18, squadMemStartTime, 0)
+
+def clz_Torappu_ClimbTowerDetailConstAddRecordNoResetStartTime(builder, recordNoResetStartTime):
+    builder.PrependInt64Slot(19, recordNoResetStartTime, 0)
 
 def clz_Torappu_ClimbTowerDetailConstEnd(builder):
     return builder.EndObject()

@@ -559,6 +559,62 @@ def clz_Torappu_GameDataConsts_FeverGameDataEnd(builder):
 
 
 
+class clz_Torappu_GameDataConsts_AVGReaderModeDefaultSetting(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_GameDataConsts_AVGReaderModeDefaultSetting()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_GameDataConsts_AVGReaderModeDefaultSetting(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_GameDataConsts_AVGReaderModeDefaultSetting
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_GameDataConsts_AVGReaderModeDefaultSetting
+    def DefaultReaderFontsize(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_GameDataConsts_AVGReaderModeDefaultSetting
+    def DefaultReaderLinespace(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_GameDataConsts_AVGReaderModeDefaultSetting
+    def DefaultReaderBackgroundAlpha(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_GameDataConsts_AVGReaderModeDefaultSettingStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_GameDataConsts_AVGReaderModeDefaultSettingAddDefaultReaderFontsize(builder, defaultReaderFontsize):
+    builder.PrependInt32Slot(0, defaultReaderFontsize, 0)
+
+def clz_Torappu_GameDataConsts_AVGReaderModeDefaultSettingAddDefaultReaderLinespace(builder, defaultReaderLinespace):
+    builder.PrependInt32Slot(1, defaultReaderLinespace, 0)
+
+def clz_Torappu_GameDataConsts_AVGReaderModeDefaultSettingAddDefaultReaderBackgroundAlpha(builder, defaultReaderBackgroundAlpha):
+    builder.PrependInt32Slot(2, defaultReaderBackgroundAlpha, 0)
+
+def clz_Torappu_GameDataConsts_AVGReaderModeDefaultSettingEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_GameDataConsts(object):
     __slots__ = ['_tab']
 
@@ -1823,8 +1879,18 @@ class clz_Torappu_GameDataConsts(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_GameDataConsts
+    def AvgReaderModeDefaultSetting(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(252))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_GameDataConsts_AVGReaderModeDefaultSetting()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
 def clz_Torappu_GameDataConstsStart(builder):
-    builder.StartObject(124)
+    builder.StartObject(125)
 
 def clz_Torappu_GameDataConstsAddMaxPlayerLevel(builder, maxPlayerLevel):
     builder.PrependInt32Slot(0, maxPlayerLevel, 0)
@@ -2263,6 +2329,9 @@ def clz_Torappu_GameDataConstsAddIsBirthdayFuncEnabled(builder, isBirthdayFuncEn
 
 def clz_Torappu_GameDataConstsAddIsSoCharEnabled(builder, isSoCharEnabled):
     builder.PrependBoolSlot(123, isSoCharEnabled, 0)
+
+def clz_Torappu_GameDataConstsAddAvgReaderModeDefaultSetting(builder, avgReaderModeDefaultSetting):
+    builder.PrependUOffsetTRelativeSlot(124, flatbuffers.number_types.UOffsetTFlags.py_type(avgReaderModeDefaultSetting), 0)
 
 def clz_Torappu_GameDataConstsEnd(builder):
     return builder.EndObject()

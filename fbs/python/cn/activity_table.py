@@ -47774,287 +47774,294 @@ class clz_Torappu_ActivityEnemyDuelConstData(object):
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeOperationRoundNumber(self):
+    def DefaultEnemyTag(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(66))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeOperationInitialScore(self):
+    def ModeOperationRoundNumber(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeOperationMaxScore(self):
+    def ModeOperationInitialScore(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeOperationSelectTime(self):
+    def ModeOperationMaxScore(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeOperationSelectTimeLast(self):
+    def ModeOperationSelectTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeOperationSkipParam(self):
+    def ModeOperationSelectTimeLast(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeOperationBetParam(self):
+    def ModeOperationSkipParam(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeOperationAllinParam(self):
+    def ModeOperationBetParam(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(80))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeOperationTopRank(self):
+    def ModeOperationAllinParam(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(82))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeOperationRankTime(self):
+    def ModeOperationTopRank(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(84))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeSoloOperationRankTime(self):
+    def ModeOperationRankTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(86))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeOperationRewardMultiplier(self):
+    def ModeSoloOperationRankTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(88))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeOperationRewardMultiplierAllin(self):
+    def ModeOperationRewardMultiplier(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(90))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeOperationHotRoundNumber(self):
+    def ModeOperationRewardMultiplierAllin(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(92))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeSoloOperationSelectTime(self):
+    def ModeOperationHotRoundNumber(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(94))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeStandRoundNumber(self):
+    def ModeSoloOperationSelectTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(96))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeStandShieldTurn(self):
+    def ModeStandRoundNumber(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(98))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeStandSelectTime(self):
+    def ModeStandShieldTurn(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(100))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeStandSelectTimeLast(self):
+    def ModeStandSelectTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(102))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeStandAllinParam(self):
+    def ModeStandSelectTimeLast(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(104))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeStandAllinParam(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(106))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
     # clz_Torappu_ActivityEnemyDuelConstData
     def ModeStandTopRank(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(106))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeStandRankTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(108))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeStandHotRoundNumber(self):
+    def ModeStandRankTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(110))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def MilestoneName(self):
+    def ModeStandHotRoundNumber(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(112))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def MilestoneItemId(self):
+    def MilestoneName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(114))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def MilestoneItemName(self):
+    def MilestoneItemId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(116))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def MilestoneItemText(self):
+    def MilestoneItemName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(118))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def MilestoneTrackId(self):
+    def MilestoneItemText(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(120))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def EntryVideoId(self):
+    def MilestoneTrackId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(122))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def EntryTabText(self):
+    def EntryVideoId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(124))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def MatchTabText(self):
+    def EntryTabText(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(126))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeOperationId(self):
+    def MatchTabText(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(128))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeStandId(self):
+    def ModeOperationId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(130))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def MultiPreposedModeId(self):
+    def ModeStandId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(132))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def EntryMusicName(self):
+    def MultiPreposedModeId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(134))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def MilestonePlanName(self):
+    def EntryMusicName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(136))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeCondLockText(self):
+    def MilestonePlanName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(138))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def ModeTimeLockText(self):
+    def ModeCondLockText(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(140))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActivityEnemyDuelConstData
-    def TitlePicRotateTime(self):
+    def ModeTimeLockText(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(142))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def TitlePicRotateTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(144))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
     # clz_Torappu_ActivityEnemyDuelConstData
     def TitlePicId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(144))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(146))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
 def clz_Torappu_ActivityEnemyDuelConstDataStart(builder):
-    builder.StartObject(71)
+    builder.StartObject(72)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddMaxLoadingTime(builder, maxLoadingTime):
     builder.PrependFloat32Slot(0, maxLoadingTime, 0.0)
@@ -48152,125 +48159,128 @@ def clz_Torappu_ActivityEnemyDuelConstDataAddDefaultEmoticonItemId(builder, defa
 def clz_Torappu_ActivityEnemyDuelConstDataAddDefaultEmoticonPicId(builder, defaultEmoticonPicId):
     builder.PrependUOffsetTRelativeSlot(30, flatbuffers.number_types.UOffsetTFlags.py_type(defaultEmoticonPicId), 0)
 
+def clz_Torappu_ActivityEnemyDuelConstDataAddDefaultEnemyTag(builder, defaultEnemyTag):
+    builder.PrependUOffsetTRelativeSlot(31, flatbuffers.number_types.UOffsetTFlags.py_type(defaultEnemyTag), 0)
+
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationRoundNumber(builder, modeOperationRoundNumber):
-    builder.PrependInt32Slot(31, modeOperationRoundNumber, 0)
+    builder.PrependInt32Slot(32, modeOperationRoundNumber, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationInitialScore(builder, modeOperationInitialScore):
-    builder.PrependInt32Slot(32, modeOperationInitialScore, 0)
+    builder.PrependInt32Slot(33, modeOperationInitialScore, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationMaxScore(builder, modeOperationMaxScore):
-    builder.PrependInt32Slot(33, modeOperationMaxScore, 0)
+    builder.PrependInt32Slot(34, modeOperationMaxScore, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationSelectTime(builder, modeOperationSelectTime):
-    builder.PrependInt32Slot(34, modeOperationSelectTime, 0)
+    builder.PrependInt32Slot(35, modeOperationSelectTime, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationSelectTimeLast(builder, modeOperationSelectTimeLast):
-    builder.PrependInt32Slot(35, modeOperationSelectTimeLast, 0)
+    builder.PrependInt32Slot(36, modeOperationSelectTimeLast, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationSkipParam(builder, modeOperationSkipParam):
-    builder.PrependFloat32Slot(36, modeOperationSkipParam, 0.0)
+    builder.PrependFloat32Slot(37, modeOperationSkipParam, 0.0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationBetParam(builder, modeOperationBetParam):
-    builder.PrependFloat32Slot(37, modeOperationBetParam, 0.0)
+    builder.PrependFloat32Slot(38, modeOperationBetParam, 0.0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationAllinParam(builder, modeOperationAllinParam):
-    builder.PrependFloat32Slot(38, modeOperationAllinParam, 0.0)
+    builder.PrependFloat32Slot(39, modeOperationAllinParam, 0.0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationTopRank(builder, modeOperationTopRank):
-    builder.PrependInt32Slot(39, modeOperationTopRank, 0)
+    builder.PrependInt32Slot(40, modeOperationTopRank, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationRankTime(builder, modeOperationRankTime):
-    builder.PrependInt32Slot(40, modeOperationRankTime, 0)
+    builder.PrependInt32Slot(41, modeOperationRankTime, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeSoloOperationRankTime(builder, modeSoloOperationRankTime):
-    builder.PrependInt32Slot(41, modeSoloOperationRankTime, 0)
+    builder.PrependInt32Slot(42, modeSoloOperationRankTime, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationRewardMultiplier(builder, modeOperationRewardMultiplier):
-    builder.PrependInt32Slot(42, modeOperationRewardMultiplier, 0)
+    builder.PrependInt32Slot(43, modeOperationRewardMultiplier, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationRewardMultiplierAllin(builder, modeOperationRewardMultiplierAllin):
-    builder.PrependInt32Slot(43, modeOperationRewardMultiplierAllin, 0)
+    builder.PrependInt32Slot(44, modeOperationRewardMultiplierAllin, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationHotRoundNumber(builder, modeOperationHotRoundNumber):
-    builder.PrependInt32Slot(44, modeOperationHotRoundNumber, 0)
+    builder.PrependInt32Slot(45, modeOperationHotRoundNumber, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeSoloOperationSelectTime(builder, modeSoloOperationSelectTime):
-    builder.PrependInt32Slot(45, modeSoloOperationSelectTime, 0)
+    builder.PrependInt32Slot(46, modeSoloOperationSelectTime, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandRoundNumber(builder, modeStandRoundNumber):
-    builder.PrependInt32Slot(46, modeStandRoundNumber, 0)
+    builder.PrependInt32Slot(47, modeStandRoundNumber, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandShieldTurn(builder, modeStandShieldTurn):
-    builder.PrependInt32Slot(47, modeStandShieldTurn, 0)
+    builder.PrependInt32Slot(48, modeStandShieldTurn, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandSelectTime(builder, modeStandSelectTime):
-    builder.PrependInt32Slot(48, modeStandSelectTime, 0)
+    builder.PrependInt32Slot(49, modeStandSelectTime, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandSelectTimeLast(builder, modeStandSelectTimeLast):
-    builder.PrependInt32Slot(49, modeStandSelectTimeLast, 0)
+    builder.PrependInt32Slot(50, modeStandSelectTimeLast, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandAllinParam(builder, modeStandAllinParam):
-    builder.PrependFloat32Slot(50, modeStandAllinParam, 0.0)
+    builder.PrependFloat32Slot(51, modeStandAllinParam, 0.0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandTopRank(builder, modeStandTopRank):
-    builder.PrependInt32Slot(51, modeStandTopRank, 0)
+    builder.PrependInt32Slot(52, modeStandTopRank, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandRankTime(builder, modeStandRankTime):
-    builder.PrependInt32Slot(52, modeStandRankTime, 0)
+    builder.PrependInt32Slot(53, modeStandRankTime, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandHotRoundNumber(builder, modeStandHotRoundNumber):
-    builder.PrependInt32Slot(53, modeStandHotRoundNumber, 0)
+    builder.PrependInt32Slot(54, modeStandHotRoundNumber, 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddMilestoneName(builder, milestoneName):
-    builder.PrependUOffsetTRelativeSlot(54, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneName), 0)
+    builder.PrependUOffsetTRelativeSlot(55, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneName), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddMilestoneItemId(builder, milestoneItemId):
-    builder.PrependUOffsetTRelativeSlot(55, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneItemId), 0)
+    builder.PrependUOffsetTRelativeSlot(56, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneItemId), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddMilestoneItemName(builder, milestoneItemName):
-    builder.PrependUOffsetTRelativeSlot(56, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneItemName), 0)
+    builder.PrependUOffsetTRelativeSlot(57, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneItemName), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddMilestoneItemText(builder, milestoneItemText):
-    builder.PrependUOffsetTRelativeSlot(57, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneItemText), 0)
+    builder.PrependUOffsetTRelativeSlot(58, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneItemText), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddMilestoneTrackId(builder, milestoneTrackId):
-    builder.PrependUOffsetTRelativeSlot(58, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneTrackId), 0)
+    builder.PrependUOffsetTRelativeSlot(59, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneTrackId), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddEntryVideoId(builder, entryVideoId):
-    builder.PrependUOffsetTRelativeSlot(59, flatbuffers.number_types.UOffsetTFlags.py_type(entryVideoId), 0)
+    builder.PrependUOffsetTRelativeSlot(60, flatbuffers.number_types.UOffsetTFlags.py_type(entryVideoId), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddEntryTabText(builder, entryTabText):
-    builder.PrependUOffsetTRelativeSlot(60, flatbuffers.number_types.UOffsetTFlags.py_type(entryTabText), 0)
+    builder.PrependUOffsetTRelativeSlot(61, flatbuffers.number_types.UOffsetTFlags.py_type(entryTabText), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddMatchTabText(builder, matchTabText):
-    builder.PrependUOffsetTRelativeSlot(61, flatbuffers.number_types.UOffsetTFlags.py_type(matchTabText), 0)
+    builder.PrependUOffsetTRelativeSlot(62, flatbuffers.number_types.UOffsetTFlags.py_type(matchTabText), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationId(builder, modeOperationId):
-    builder.PrependUOffsetTRelativeSlot(62, flatbuffers.number_types.UOffsetTFlags.py_type(modeOperationId), 0)
+    builder.PrependUOffsetTRelativeSlot(63, flatbuffers.number_types.UOffsetTFlags.py_type(modeOperationId), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandId(builder, modeStandId):
-    builder.PrependUOffsetTRelativeSlot(63, flatbuffers.number_types.UOffsetTFlags.py_type(modeStandId), 0)
+    builder.PrependUOffsetTRelativeSlot(64, flatbuffers.number_types.UOffsetTFlags.py_type(modeStandId), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddMultiPreposedModeId(builder, multiPreposedModeId):
-    builder.PrependUOffsetTRelativeSlot(64, flatbuffers.number_types.UOffsetTFlags.py_type(multiPreposedModeId), 0)
+    builder.PrependUOffsetTRelativeSlot(65, flatbuffers.number_types.UOffsetTFlags.py_type(multiPreposedModeId), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddEntryMusicName(builder, entryMusicName):
-    builder.PrependUOffsetTRelativeSlot(65, flatbuffers.number_types.UOffsetTFlags.py_type(entryMusicName), 0)
+    builder.PrependUOffsetTRelativeSlot(66, flatbuffers.number_types.UOffsetTFlags.py_type(entryMusicName), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddMilestonePlanName(builder, milestonePlanName):
-    builder.PrependUOffsetTRelativeSlot(66, flatbuffers.number_types.UOffsetTFlags.py_type(milestonePlanName), 0)
+    builder.PrependUOffsetTRelativeSlot(67, flatbuffers.number_types.UOffsetTFlags.py_type(milestonePlanName), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeCondLockText(builder, modeCondLockText):
-    builder.PrependUOffsetTRelativeSlot(67, flatbuffers.number_types.UOffsetTFlags.py_type(modeCondLockText), 0)
+    builder.PrependUOffsetTRelativeSlot(68, flatbuffers.number_types.UOffsetTFlags.py_type(modeCondLockText), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddModeTimeLockText(builder, modeTimeLockText):
-    builder.PrependUOffsetTRelativeSlot(68, flatbuffers.number_types.UOffsetTFlags.py_type(modeTimeLockText), 0)
+    builder.PrependUOffsetTRelativeSlot(69, flatbuffers.number_types.UOffsetTFlags.py_type(modeTimeLockText), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddTitlePicRotateTime(builder, titlePicRotateTime):
-    builder.PrependFloat32Slot(69, titlePicRotateTime, 0.0)
+    builder.PrependFloat32Slot(70, titlePicRotateTime, 0.0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataAddTitlePicId(builder, titlePicId):
-    builder.PrependUOffsetTRelativeSlot(70, flatbuffers.number_types.UOffsetTFlags.py_type(titlePicId), 0)
+    builder.PrependUOffsetTRelativeSlot(71, flatbuffers.number_types.UOffsetTFlags.py_type(titlePicId), 0)
 
 def clz_Torappu_ActivityEnemyDuelConstDataEnd(builder):
     return builder.EndObject()

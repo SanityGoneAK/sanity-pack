@@ -3707,22 +3707,29 @@ class clz_Torappu_NewbieCheckInPackageData(object):
         return 0
 
     # clz_Torappu_NewbieCheckInPackageData
-    def TotalCheckInDay(self):
+    def CompensateEndDay(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_NewbieCheckInPackageData
-    def IconId(self):
+    def TotalCheckInDay(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_NewbieCheckInPackageData
+    def IconId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_NewbieCheckInPackageData
     def CheckInRewardDict(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -3734,18 +3741,32 @@ class clz_Torappu_NewbieCheckInPackageData(object):
 
     # clz_Torappu_NewbieCheckInPackageData
     def CheckInRewardDictLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_NewbieCheckInPackageData
     def CheckInRewardDictIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         return o == 0
 
+    # clz_Torappu_NewbieCheckInPackageData
+    def TrigStartTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_NewbieCheckInPackageData
+    def TrigEndTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_NewbieCheckInPackageDataStart(builder):
-    builder.StartObject(8)
+    builder.StartObject(11)
 
 def clz_Torappu_NewbieCheckInPackageDataAddGroupId(builder, groupId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
@@ -3762,17 +3783,26 @@ def clz_Torappu_NewbieCheckInPackageDataAddBindGpgoodId(builder, bindGpgoodId):
 def clz_Torappu_NewbieCheckInPackageDataAddCheckInDuration(builder, checkInDuration):
     builder.PrependInt32Slot(4, checkInDuration, 0)
 
+def clz_Torappu_NewbieCheckInPackageDataAddCompensateEndDay(builder, compensateEndDay):
+    builder.PrependInt32Slot(5, compensateEndDay, 0)
+
 def clz_Torappu_NewbieCheckInPackageDataAddTotalCheckInDay(builder, totalCheckInDay):
-    builder.PrependInt32Slot(5, totalCheckInDay, 0)
+    builder.PrependInt32Slot(6, totalCheckInDay, 0)
 
 def clz_Torappu_NewbieCheckInPackageDataAddIconId(builder, iconId):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(iconId), 0)
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(iconId), 0)
 
 def clz_Torappu_NewbieCheckInPackageDataAddCheckInRewardDict(builder, checkInRewardDict):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(checkInRewardDict), 0)
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(checkInRewardDict), 0)
 
 def clz_Torappu_NewbieCheckInPackageDataStartCheckInRewardDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_NewbieCheckInPackageDataAddTrigStartTime(builder, trigStartTime):
+    builder.PrependInt64Slot(9, trigStartTime, 0)
+
+def clz_Torappu_NewbieCheckInPackageDataAddTrigEndTime(builder, trigEndTime):
+    builder.PrependInt64Slot(10, trigEndTime, 0)
 
 def clz_Torappu_NewbieCheckInPackageDataEnd(builder):
     return builder.EndObject()

@@ -476,36 +476,50 @@ class clz_Torappu_CharSkinData(object):
         return None
 
     # clz_Torappu_CharSkinData
-    def PortraitId(self):
+    def SpAvatarId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_CharSkinData
-    def DynPortraitId(self):
+    def PortraitId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_CharSkinData
-    def DynEntranceId(self):
+    def SpPortraitId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_CharSkinData
-    def BuildingId(self):
+    def DynPortraitId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_CharSkinData
-    def BattleSkin(self):
+    def DynEntranceId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CharSkinData
+    def BuildingId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CharSkinData
+    def BattleSkin(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_CharSkinData_BattleSkin()
@@ -515,35 +529,35 @@ class clz_Torappu_CharSkinData(object):
 
     # clz_Torappu_CharSkinData
     def IsBuySkin(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_CharSkinData
     def TmplId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_CharSkinData
     def VoiceId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_CharSkinData
     def VoiceType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_CharSkinData
     def DisplaySkin(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_CharSkinData_DisplaySkin()
@@ -552,7 +566,7 @@ class clz_Torappu_CharSkinData(object):
         return None
 
 def clz_Torappu_CharSkinDataStart(builder):
-    builder.StartObject(18)
+    builder.StartObject(20)
 
 def clz_Torappu_CharSkinDataAddSkinId(builder, skinId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(skinId), 0)
@@ -581,35 +595,41 @@ def clz_Torappu_CharSkinDataAddSpDynIllustId(builder, spDynIllustId):
 def clz_Torappu_CharSkinDataAddAvatarId(builder, avatarId):
     builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(avatarId), 0)
 
+def clz_Torappu_CharSkinDataAddSpAvatarId(builder, spAvatarId):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(spAvatarId), 0)
+
 def clz_Torappu_CharSkinDataAddPortraitId(builder, portraitId):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(portraitId), 0)
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(portraitId), 0)
+
+def clz_Torappu_CharSkinDataAddSpPortraitId(builder, spPortraitId):
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(spPortraitId), 0)
 
 def clz_Torappu_CharSkinDataAddDynPortraitId(builder, dynPortraitId):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(dynPortraitId), 0)
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(dynPortraitId), 0)
 
 def clz_Torappu_CharSkinDataAddDynEntranceId(builder, dynEntranceId):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(dynEntranceId), 0)
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(dynEntranceId), 0)
 
 def clz_Torappu_CharSkinDataAddBuildingId(builder, buildingId):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(buildingId), 0)
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(buildingId), 0)
 
 def clz_Torappu_CharSkinDataAddBattleSkin(builder, battleSkin):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(battleSkin), 0)
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(battleSkin), 0)
 
 def clz_Torappu_CharSkinDataAddIsBuySkin(builder, isBuySkin):
-    builder.PrependBoolSlot(13, isBuySkin, 0)
+    builder.PrependBoolSlot(15, isBuySkin, 0)
 
 def clz_Torappu_CharSkinDataAddTmplId(builder, tmplId):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(tmplId), 0)
+    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(tmplId), 0)
 
 def clz_Torappu_CharSkinDataAddVoiceId(builder, voiceId):
-    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(voiceId), 0)
+    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(voiceId), 0)
 
 def clz_Torappu_CharSkinDataAddVoiceType(builder, voiceType):
-    builder.PrependInt32Slot(16, voiceType, 0)
+    builder.PrependInt32Slot(18, voiceType, 0)
 
 def clz_Torappu_CharSkinDataAddDisplaySkin(builder, displaySkin):
-    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(displaySkin), 0)
+    builder.PrependUOffsetTRelativeSlot(19, flatbuffers.number_types.UOffsetTFlags.py_type(displaySkin), 0)
 
 def clz_Torappu_CharSkinDataEnd(builder):
     return builder.EndObject()
@@ -1278,8 +1298,22 @@ class clz_Torappu_SpDynIllustInfo(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
+    # clz_Torappu_SpDynIllustInfo
+    def SpPortraitId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_SpDynIllustInfo
+    def SpAvatarId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_SpDynIllustInfoStart(builder):
-    builder.StartObject(4)
+    builder.StartObject(6)
 
 def clz_Torappu_SpDynIllustInfoAddSkinId(builder, skinId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(skinId), 0)
@@ -1292,6 +1326,12 @@ def clz_Torappu_SpDynIllustInfoAddSpDynIllustSkinTag(builder, spDynIllustSkinTag
 
 def clz_Torappu_SpDynIllustInfoAddSpIllustId(builder, spIllustId):
     builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(spIllustId), 0)
+
+def clz_Torappu_SpDynIllustInfoAddSpPortraitId(builder, spPortraitId):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(spPortraitId), 0)
+
+def clz_Torappu_SpDynIllustInfoAddSpAvatarId(builder, spAvatarId):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(spAvatarId), 0)
 
 def clz_Torappu_SpDynIllustInfoEnd(builder):
     return builder.EndObject()
