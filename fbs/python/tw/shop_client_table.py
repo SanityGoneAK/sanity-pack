@@ -49,6 +49,8 @@ class enum__Torappu_ShopCondTrigPackageType(object):
     RETURN_PROGRESS = 1
     RETURN_ONCE = 2
     NEW_PROGRESS = 3
+    CHOOSE_REGISTER_TIME = 4
+    CHOOSE_NEWBIE = 5
 
 
 class enum__Torappu_ShopGPTabType(object):
