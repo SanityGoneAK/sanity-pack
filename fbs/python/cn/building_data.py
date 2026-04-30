@@ -7689,6 +7689,167 @@ def dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortDataEnd(build
 
 
 
+class clz_Torappu_BuildingData_TradingRoomSpecialOrderInfo(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_BuildingData_TradingRoomSpecialOrderInfo()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_BuildingData_TradingRoomSpecialOrderInfo(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_BuildingData_TradingRoomSpecialOrderInfo
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_BuildingData_TradingRoomSpecialOrderInfo
+    def CharId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_BuildingData_TradingRoomSpecialOrderInfo
+    def IconId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_BuildingData_TradingRoomSpecialOrderInfo
+    def Title(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_BuildingData_TradingRoomSpecialOrderInfoStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_BuildingData_TradingRoomSpecialOrderInfoAddCharId(builder, charId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(charId), 0)
+
+def clz_Torappu_BuildingData_TradingRoomSpecialOrderInfoAddIconId(builder, iconId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(iconId), 0)
+
+def clz_Torappu_BuildingData_TradingRoomSpecialOrderInfoAddTitle(builder, title):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(title), 0)
+
+def clz_Torappu_BuildingData_TradingRoomSpecialOrderInfoEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_BuildingData_TradingRoomSpecialOrderInfo(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_BuildingData_TradingRoomSpecialOrderInfo()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_BuildingData_TradingRoomSpecialOrderInfo(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_BuildingData_TradingRoomSpecialOrderInfo
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_BuildingData_TradingRoomSpecialOrderInfo
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_BuildingData_TradingRoomSpecialOrderInfo
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_BuildingData_TradingRoomSpecialOrderInfo()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_BuildingData_TradingRoomSpecialOrderInfoStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_BuildingData_TradingRoomSpecialOrderInfoAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_BuildingData_TradingRoomSpecialOrderInfoAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_BuildingData_TradingRoomSpecialOrderInfoEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_BuildingData_TradingRoomInfoData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_BuildingData_TradingRoomInfoData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_BuildingData_TradingRoomInfoData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_BuildingData_TradingRoomInfoData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_BuildingData_TradingRoomInfoData
+    def TradingRoomSpecialOrderData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_BuildingData_TradingRoomSpecialOrderInfo()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_BuildingData_TradingRoomInfoData
+    def TradingRoomSpecialOrderDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_BuildingData_TradingRoomInfoData
+    def TradingRoomSpecialOrderDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+def clz_Torappu_BuildingData_TradingRoomInfoDataStart(builder):
+    builder.StartObject(1)
+
+def clz_Torappu_BuildingData_TradingRoomInfoDataAddTradingRoomSpecialOrderData(builder, tradingRoomSpecialOrderData):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(tradingRoomSpecialOrderData), 0)
+
+def clz_Torappu_BuildingData_TradingRoomInfoDataStartTradingRoomSpecialOrderDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_BuildingData_TradingRoomInfoDataEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_BuildingData(object):
     __slots__ = ['_tab']
 
@@ -8799,8 +8960,18 @@ class clz_Torappu_BuildingData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(164))
         return o == 0
 
+    # clz_Torappu_BuildingData
+    def TradingRoomInfoData(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(166))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_BuildingData_TradingRoomInfoData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
 def clz_Torappu_BuildingDataStart(builder):
-    builder.StartObject(81)
+    builder.StartObject(82)
 
 def clz_Torappu_BuildingDataAddControlSlotId(builder, controlSlotId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(controlSlotId), 0)
@@ -9128,6 +9299,9 @@ def clz_Torappu_BuildingDataAddBuffSortData(builder, buffSortData):
 
 def clz_Torappu_BuildingDataStartBuffSortDataVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_BuildingDataAddTradingRoomInfoData(builder, tradingRoomInfoData):
+    builder.PrependUOffsetTRelativeSlot(81, flatbuffers.number_types.UOffsetTFlags.py_type(tradingRoomInfoData), 0)
 
 def clz_Torappu_BuildingDataEnd(builder):
     return builder.EndObject()

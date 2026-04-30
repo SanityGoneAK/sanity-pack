@@ -1415,6 +1415,52 @@ def clz_Torappu_ChooseShopRelationEnd(builder):
 
 
 
+class dict__string__string(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__string()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__string(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__string
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__string
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__string
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def dict__string__stringStart(builder):
+    builder.StartObject(2)
+
+def dict__string__stringAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__stringAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__stringEnd(builder):
+    return builder.EndObject()
+
+
+
 class dict__string__enum__Torappu_ShopUnlockType(object):
     __slots__ = ['_tab']
 
@@ -1487,30 +1533,40 @@ class clz_Torappu_ShopClientGPData(object):
         return None
 
     # clz_Torappu_ShopClientGPData
-    def DisplayName(self):
+    def GiftPackageId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ShopClientGPData
-    def CondTrigPackageType(self):
+    def DisplayName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ShopClientGPData
+    def CondTrigPackageType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
 def clz_Torappu_ShopClientGPDataStart(builder):
-    builder.StartObject(3)
+    builder.StartObject(4)
 
 def clz_Torappu_ShopClientGPDataAddGoodId(builder, goodId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(goodId), 0)
 
+def clz_Torappu_ShopClientGPDataAddGiftPackageId(builder, giftPackageId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(giftPackageId), 0)
+
 def clz_Torappu_ShopClientGPDataAddDisplayName(builder, displayName):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(displayName), 0)
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(displayName), 0)
 
 def clz_Torappu_ShopClientGPDataAddCondTrigPackageType(builder, condTrigPackageType):
-    builder.PrependInt32Slot(2, condTrigPackageType, 0)
+    builder.PrependInt32Slot(3, condTrigPackageType, 0)
 
 def clz_Torappu_ShopClientGPDataEnd(builder):
     return builder.EndObject()
@@ -2028,8 +2084,32 @@ class clz_Torappu_ShopClientData(object):
         return o == 0
 
     # clz_Torappu_ShopClientData
-    def ShopUnlockDict(self, j):
+    def ChooseOptionToGoodDict(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__string()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ShopClientData
+    def ChooseOptionToGoodDictLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ShopClientData
+    def ChooseOptionToGoodDictIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        return o == 0
+
+    # clz_Torappu_ShopClientData
+    def ShopUnlockDict(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -2041,19 +2121,19 @@ class clz_Torappu_ShopClientData(object):
 
     # clz_Torappu_ShopClientData
     def ShopUnlockDictLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ShopClientData
     def ShopUnlockDictIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         return o == 0
 
     # clz_Torappu_ShopClientData
     def ExtraQcshopRule(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -2061,19 +2141,19 @@ class clz_Torappu_ShopClientData(object):
 
     # clz_Torappu_ShopClientData
     def ExtraQcshopRuleLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ShopClientData
     def ExtraQcshopRuleIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         return o == 0
 
     # clz_Torappu_ShopClientData
     def RepQcshopRule(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -2081,19 +2161,19 @@ class clz_Torappu_ShopClientData(object):
 
     # clz_Torappu_ShopClientData
     def RepQcshopRuleLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ShopClientData
     def RepQcshopRuleIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         return o == 0
 
     # clz_Torappu_ShopClientData
     def ShopGpdataDict(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -2105,19 +2185,19 @@ class clz_Torappu_ShopClientData(object):
 
     # clz_Torappu_ShopClientData
     def ShopGpdataDictLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ShopClientData
     def ShopGpdataDictIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         return o == 0
 
     # clz_Torappu_ShopClientData
     def TabDisplayData(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -2129,26 +2209,26 @@ class clz_Torappu_ShopClientData(object):
 
     # clz_Torappu_ShopClientData
     def TabDisplayDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ShopClientData
     def TabDisplayDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         return o == 0
 
     # clz_Torappu_ShopClientData
     def ShopMonthlySubGoodId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ShopClientData
     def Ls(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -2160,19 +2240,19 @@ class clz_Torappu_ShopClientData(object):
 
     # clz_Torappu_ShopClientData
     def LsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ShopClientData
     def LsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         return o == 0
 
     # clz_Torappu_ShopClientData
     def Os(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -2184,18 +2264,18 @@ class clz_Torappu_ShopClientData(object):
 
     # clz_Torappu_ShopClientData
     def OsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ShopClientData
     def OsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         return o == 0
 
 def clz_Torappu_ShopClientDataStart(builder):
-    builder.StartObject(13)
+    builder.StartObject(14)
 
 def clz_Torappu_ShopClientDataAddRecommendList(builder, recommendList):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(recommendList), 0)
@@ -2224,47 +2304,53 @@ def clz_Torappu_ShopClientDataAddChooseShopRelations(builder, chooseShopRelation
 def clz_Torappu_ShopClientDataStartChooseShopRelationsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_ShopClientDataAddChooseOptionToGoodDict(builder, chooseOptionToGoodDict):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(chooseOptionToGoodDict), 0)
+
+def clz_Torappu_ShopClientDataStartChooseOptionToGoodDictVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_ShopClientDataAddShopUnlockDict(builder, shopUnlockDict):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(shopUnlockDict), 0)
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(shopUnlockDict), 0)
 
 def clz_Torappu_ShopClientDataStartShopUnlockDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ShopClientDataAddExtraQcshopRule(builder, extraQcshopRule):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(extraQcshopRule), 0)
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(extraQcshopRule), 0)
 
 def clz_Torappu_ShopClientDataStartExtraQcshopRuleVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ShopClientDataAddRepQcshopRule(builder, repQcshopRule):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(repQcshopRule), 0)
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(repQcshopRule), 0)
 
 def clz_Torappu_ShopClientDataStartRepQcshopRuleVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ShopClientDataAddShopGpdataDict(builder, shopGpdataDict):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(shopGpdataDict), 0)
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(shopGpdataDict), 0)
 
 def clz_Torappu_ShopClientDataStartShopGpdataDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ShopClientDataAddTabDisplayData(builder, tabDisplayData):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(tabDisplayData), 0)
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(tabDisplayData), 0)
 
 def clz_Torappu_ShopClientDataStartTabDisplayDataVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ShopClientDataAddShopMonthlySubGoodId(builder, shopMonthlySubGoodId):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(shopMonthlySubGoodId), 0)
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(shopMonthlySubGoodId), 0)
 
 def clz_Torappu_ShopClientDataAddLs(builder, ls):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(ls), 0)
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(ls), 0)
 
 def clz_Torappu_ShopClientDataStartLsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ShopClientDataAddOs(builder, os):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(os), 0)
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(os), 0)
 
 def clz_Torappu_ShopClientDataStartOsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
