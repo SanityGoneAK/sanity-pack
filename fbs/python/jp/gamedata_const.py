@@ -598,8 +598,15 @@ class clz_Torappu_GameDataConsts_AVGReaderModeDefaultSetting(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_GameDataConsts_AVGReaderModeDefaultSetting
+    def DefaultNameReaderFontsize(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_GameDataConsts_AVGReaderModeDefaultSettingStart(builder):
-    builder.StartObject(3)
+    builder.StartObject(4)
 
 def clz_Torappu_GameDataConsts_AVGReaderModeDefaultSettingAddDefaultReaderFontsize(builder, defaultReaderFontsize):
     builder.PrependInt32Slot(0, defaultReaderFontsize, 0)
@@ -609,6 +616,9 @@ def clz_Torappu_GameDataConsts_AVGReaderModeDefaultSettingAddDefaultReaderLinesp
 
 def clz_Torappu_GameDataConsts_AVGReaderModeDefaultSettingAddDefaultReaderBackgroundAlpha(builder, defaultReaderBackgroundAlpha):
     builder.PrependInt32Slot(2, defaultReaderBackgroundAlpha, 0)
+
+def clz_Torappu_GameDataConsts_AVGReaderModeDefaultSettingAddDefaultNameReaderFontsize(builder, defaultNameReaderFontsize):
+    builder.PrependInt32Slot(3, defaultNameReaderFontsize, 0)
 
 def clz_Torappu_GameDataConsts_AVGReaderModeDefaultSettingEnd(builder):
     return builder.EndObject()
