@@ -97,7 +97,9 @@ class enum__Torappu_AttributeType(object):
     DAMAGE_HITRATE_PHYSICAL = 33
     DAMAGE_HITRATE_MAGICAL = 34
     EP_BREAK_RECOVER_SPEED = 35
-    E_NUM = 36
+    SLOW_DOWN = 36
+    BLOCK_RADIUS_SCALE = 37
+    E_NUM = 38
 
 
 class enum__Torappu_AttributeModifierData_AttributeModifier_FormulaItemType(object):
@@ -794,8 +796,15 @@ class clz_Torappu_BuffData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
         return o == 0
 
+    # clz_Torappu_BuffData
+    def EnableInitDirectionFromSource(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_BuffDataStart(builder):
-    builder.StartObject(36)
+    builder.StartObject(37)
 
 def clz_Torappu_BuffDataAddAttributes(builder, attributes):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(attributes), 0)
@@ -910,6 +919,9 @@ def clz_Torappu_BuffDataAddBlackboard(builder, blackboard):
 
 def clz_Torappu_BuffDataStartBlackboardVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_BuffDataAddEnableInitDirectionFromSource(builder, enableInitDirectionFromSource):
+    builder.PrependBoolSlot(36, enableInitDirectionFromSource, 0)
 
 def clz_Torappu_BuffDataEnd(builder):
     return builder.EndObject()
