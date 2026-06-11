@@ -53,6 +53,7 @@ class enum__Torappu_NameCardV2SkinType(object):
     NONE = 0
     BASE = 1
     SPECIAL = 2
+    DYNAMIC = 3
 
 
 class enum__Torappu_MailArchiveItemType(object):
@@ -219,6 +220,7 @@ class enum__Torappu_UIGuideTarget(object):
     AUTO_CHESS = 50
     ART_GALLERY = 51
     ART_MAGAZINE = 52
+    ACT_FOOTBALL = 53
 
 
 class enum__Torappu_KeyCodeType(object):
@@ -300,7 +302,8 @@ class enum__Torappu_ActivityType(object):
     RECRUIT_ONLY = 59
     TYPE_ACT46SIDE = 60
     AUTOCHESS_SEASON = 61
-    ENUM = 62
+    ACT_FOOTBALL = 62
+    ENUM = 63
 
 
 class enum__Torappu_CollectType(object):
