@@ -349,6 +349,8 @@ class enum__Torappu_ActArchiveType(object):
     DISASTER = 25
     COPPER = 26
     WRATH = 27
+    SCRAP = 28
+    WEATHER = 29
 
 
 class enum__Torappu_Act13SideData_UnlockCondition(object):

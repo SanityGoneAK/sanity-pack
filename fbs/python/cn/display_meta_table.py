@@ -166,6 +166,7 @@ class enum__Torappu_EmojiSceneType(object):
     ENEMYDUEL_BATTLE = 4
     AUTOCHESS_ROOM = 5
     AUTOCHESS_BATTLE = 6
+    BUILDING_ACTION = 7
 
 
 class enum__Torappu_UIGuideTarget(object):
@@ -3959,6 +3960,154 @@ def dict__string__list_stringEnd(builder):
 
 
 
+class clz_Torappu_EmoticonData_EmoticonThemeTypeData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_EmoticonData_EmoticonThemeTypeData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_EmoticonData_EmoticonThemeTypeData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def ItemId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def IsBasic(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def IsDyn(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def PicSceneList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return 0
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def PicSceneListAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int32Flags, o)
+        return 0
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def PicSceneListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def PicSceneListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        return o == 0
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataStart(builder):
+    builder.StartObject(5)
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataAddItemId(builder, itemId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(itemId), 0)
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(1, sortId, 0)
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataAddIsBasic(builder, isBasic):
+    builder.PrependBoolSlot(2, isBasic, 0)
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataAddIsDyn(builder, isDyn):
+    builder.PrependBoolSlot(3, isDyn, 0)
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataAddPicSceneList(builder, picSceneList):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(picSceneList), 0)
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataStartPicSceneListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_EmoticonData_EmoticonThemeTypeData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeDataEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_EmoticonData(object):
     __slots__ = ['_tab']
 
@@ -4025,8 +4174,56 @@ class clz_Torappu_EmoticonData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         return o == 0
 
+    # clz_Torappu_EmoticonData
+    def EmoticonThemeTypeDict(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_EmoticonData
+    def EmoticonThemeTypeDictLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_EmoticonData
+    def EmoticonThemeTypeDictIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+    # clz_Torappu_EmoticonData
+    def EmoticonThemeReverseDict(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__list_string()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_EmoticonData
+    def EmoticonThemeReverseDictLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_EmoticonData
+    def EmoticonThemeReverseDictIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
 def clz_Torappu_EmoticonDataStart(builder):
-    builder.StartObject(2)
+    builder.StartObject(4)
 
 def clz_Torappu_EmoticonDataAddEmojiDataDict(builder, emojiDataDict):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(emojiDataDict), 0)
@@ -4038,6 +4235,18 @@ def clz_Torappu_EmoticonDataAddEmoticonThemeDataDict(builder, emoticonThemeDataD
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(emoticonThemeDataDict), 0)
 
 def clz_Torappu_EmoticonDataStartEmoticonThemeDataDictVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_EmoticonDataAddEmoticonThemeTypeDict(builder, emoticonThemeTypeDict):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(emoticonThemeTypeDict), 0)
+
+def clz_Torappu_EmoticonDataStartEmoticonThemeTypeDictVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_EmoticonDataAddEmoticonThemeReverseDict(builder, emoticonThemeReverseDict):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(emoticonThemeReverseDict), 0)
+
+def clz_Torappu_EmoticonDataStartEmoticonThemeReverseDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_EmoticonDataEnd(builder):
