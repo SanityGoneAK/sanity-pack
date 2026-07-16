@@ -2161,8 +2161,22 @@ class clz_Torappu_MapThemeData(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
+    # clz_Torappu_MapThemeData
+    def HighlandBuildableColor(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_MapThemeData
+    def HighlandEmissionColor(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_MapThemeDataStart(builder):
-    builder.StartObject(6)
+    builder.StartObject(8)
 
 def clz_Torappu_MapThemeDataAddThemeId(builder, themeId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(themeId), 0)
@@ -2181,6 +2195,12 @@ def clz_Torappu_MapThemeDataAddTrapTintColor(builder, trapTintColor):
 
 def clz_Torappu_MapThemeDataAddEmissionColor(builder, emissionColor):
     builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(emissionColor), 0)
+
+def clz_Torappu_MapThemeDataAddHighlandBuildableColor(builder, highlandBuildableColor):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(highlandBuildableColor), 0)
+
+def clz_Torappu_MapThemeDataAddHighlandEmissionColor(builder, highlandEmissionColor):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(highlandEmissionColor), 0)
 
 def clz_Torappu_MapThemeDataEnd(builder):
     return builder.EndObject()
