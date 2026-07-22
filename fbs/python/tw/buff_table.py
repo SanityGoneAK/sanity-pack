@@ -51,7 +51,8 @@ class enum__Torappu_AbnormalFlag(object):
     ATTRACTED = 41
     FEARED_PRIVATE = 42
     DOZE = 43
-    E_NUM = 44
+    TELEPORTED = 44
+    E_NUM = 45
 
 
 class enum__Torappu_AbnormalCombo(object):
