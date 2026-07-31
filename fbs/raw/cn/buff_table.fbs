@@ -10,12 +10,12 @@ enum enum__Torappu_AbnormalFlag : int {
     HEAL_FREE = 7,
     UNBALANCE_IMMUNE = 8,
     INVISIBLE = 9,
-    UNUSED_PLACEHOLDER_2 = 14,
-    ALLY_TARGET_FREE = 15,
     UNUSED_PLACEHOLDER_1 = 10,
     DISARMED = 11,
     SILENCED = 12,
     UNMOVABLE = 13,
+    UNUSED_PLACEHOLDER_2 = 14,
+    ALLY_TARGET_FREE = 15,
     FROZEN = 16,
     CAMOUFLAGE = 17,
     FORCE_DISARMED = 18,
@@ -29,23 +29,7 @@ enum enum__Torappu_AbnormalFlag : int {
     DURANCE = 26,
     NOT_WITHDRAWABLE = 27,
     OUT_OF_GROUND = 28,
-    SP_MODIFY_STOPPED = 29,
-    ANTI_STATUS_RESISTABLE = 30,
-    DISARMED_COMBAT = 31,
-    TOWER_TARGET_FREE = 32,
-    FEARED = 33,
-    SKILL_ACTIVABLE_IN_ABNORMAL = 34,
-    MOTION_TARGET_FREE = 35,
-    FORCE_LEVITATE = 36,
-    BUFF_ADD_CAN_BE_CANCELED_IF_DEFENSE = 37,
-    DEFENSE_BUFF_ADD_IF_CANCELABLE_BUFF = 38,
-    PALSY = 39,
-    PALSYING = 40,
-    ATTRACTED = 41,
-    FEARED_PRIVATE = 42,
-    DOZE = 43,
-    TELEPORTED = 44,
-    E_NUM = 45,
+    E_NUM = 29,
 }
 
 enum enum__Torappu_AbnormalCombo : int {
@@ -88,12 +72,7 @@ enum enum__Torappu_AttributeType : int {
     SP_RECOVER_RATIO = 30,
     EP_DAMAGE_RESISTANCE = 31,
     EP_RESISTANCE = 32,
-    DAMAGE_HITRATE_PHYSICAL = 33,
-    DAMAGE_HITRATE_MAGICAL = 34,
-    EP_BREAK_RECOVER_SPEED = 35,
-    SLOW_DOWN = 36,
-    BLOCK_RADIUS_SCALE = 37,
-    E_NUM = 38,
+    E_NUM = 33,
 }
 
 enum enum__Torappu_AttributeModifierData_AttributeModifier_FormulaItemType : int {
@@ -120,7 +99,7 @@ table clz_Torappu_AttributeModifierData {
     attributeModifiers: [clz_Torappu_AttributeModifierData_AttributeModifier]; 
 }
 
-enum enum__Torappu_BuffData_StatusResistable : ubyte {
+enum enum__Torappu_BuffData_StatusResistable : int {
     NO = 0,
     YES = 1,
     AUTOMATIC = 2,
@@ -135,20 +114,18 @@ enum enum__Torappu_BuffData_OverrideType : int {
 }
 
 enum enum__Torappu_BuffData_OnEventPriority : int {
-    HIGHER_PRIORITY = 2000,
-    HIGH_PRIORITY = 1000,
     DEFAULT = 0,
-    LOW_PRIORITY = -1000,
-    LOWER_PRIORITY = -2000,
+    HIGH_PRIORITY = 1000,
+    HIGHER_PRIORITY = 2000,
     LOWEST_PRIORITY = -3000,
-    TITI_DOZE_PRIORITY = -4000,
+    LOWER_PRIORITY = -2000,
+    LOW_PRIORITY = -1000,
 }
 
-enum enum__Torappu_LifeType : ubyte {
+enum enum__Torappu_LifeType : int {
     IMMEDIATELY = 0,
     LIMITED = 1,
     INFINITY = 2,
-    CUSTOM = 3,
 }
 
 table clz_Torappu_Blackboard_DataPair {
@@ -162,7 +139,6 @@ table clz_Torappu_BuffData {
     buffKey: string; 
     loadFromDB: bool; 
     isDurableBuff: bool; 
-    isDamageMissable: bool; 
     isSilenceable: bool; 
     isStunnable: bool; 
     isFreezable: bool; 
@@ -173,10 +149,7 @@ table clz_Torappu_BuffData {
     overrideKey: string; 
     overrideType: enum__Torappu_BuffData_OverrideType; 
     maxStackCnt: int; 
-    refreshRemainingTimeWhenStackMax: bool; 
-    clearAllStackCntWhenTimeUp: bool; 
     maxValidStackCnt: int; 
-    independentCharacterSource: bool; 
     overrideEffectKey: string; 
     overrideOnEventPriority: bool; 
     onEventPriority: enum__Torappu_BuffData_OnEventPriority; 
@@ -194,7 +167,6 @@ table clz_Torappu_BuffData {
     priorityBBKeys: [string]; 
     stripBlackboardParamsWithBuffKey: bool; 
     blackboard: [clz_Torappu_Blackboard_DataPair]; 
-    enableInitDirectionFromSource: bool; 
 }
 
 table dict__string__clz_Torappu_BuffData {
