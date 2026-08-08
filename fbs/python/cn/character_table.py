@@ -144,6 +144,7 @@ class enum__Torappu_ItemType(object):
     PLOT_ITEM = 90
     MAGAZINE_LEAF = 91
     STICKER = 92
+    ARKHUB = 93
 
 
 class enum__Torappu_CharacterData_PotentialRank_TypeEnum(object):
@@ -197,7 +198,8 @@ class enum__Torappu_AbnormalFlag(object):
     FEARED_PRIVATE = 42
     DOZE = 43
     TELEPORTED = 44
-    E_NUM = 45
+    GROUND_BOUND = 45
+    E_NUM = 46
 
 
 class enum__Torappu_AbnormalCombo(object):
@@ -785,8 +787,15 @@ class clz_Torappu_AttributesData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_AttributesData
+    def GroundBoundImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_AttributesDataStart(builder):
-    builder.StartObject(27)
+    builder.StartObject(28)
 
 def clz_Torappu_AttributesDataAddMaxHp(builder, maxHp):
     builder.PrependInt32Slot(0, maxHp, 0)
@@ -868,6 +877,9 @@ def clz_Torappu_AttributesDataAddAttractImmune(builder, attractImmune):
 
 def clz_Torappu_AttributesDataAddTeleportImmune(builder, teleportImmune):
     builder.PrependBoolSlot(26, teleportImmune, 0)
+
+def clz_Torappu_AttributesDataAddGroundBoundImmune(builder, groundBoundImmune):
+    builder.PrependBoolSlot(27, groundBoundImmune, 0)
 
 def clz_Torappu_AttributesDataEnd(builder):
     return builder.EndObject()
@@ -2146,8 +2158,15 @@ class clz_Torappu_AttributesDeltaData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_AttributesDeltaData
+    def GroundBoundImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_AttributesDeltaDataStart(builder):
-    builder.StartObject(27)
+    builder.StartObject(28)
 
 def clz_Torappu_AttributesDeltaDataAddMaxHp(builder, maxHp):
     builder.PrependInt32Slot(0, maxHp, 0)
@@ -2229,6 +2248,9 @@ def clz_Torappu_AttributesDeltaDataAddAttractImmune(builder, attractImmune):
 
 def clz_Torappu_AttributesDeltaDataAddTeleportImmune(builder, teleportImmune):
     builder.PrependBoolSlot(26, teleportImmune, 0)
+
+def clz_Torappu_AttributesDeltaDataAddGroundBoundImmune(builder, groundBoundImmune):
+    builder.PrependBoolSlot(27, groundBoundImmune, 0)
 
 def clz_Torappu_AttributesDeltaDataEnd(builder):
     return builder.EndObject()
