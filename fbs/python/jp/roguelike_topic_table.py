@@ -1604,8 +1604,22 @@ class clz_Torappu_RoguelikeTopicBP(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_RoguelikeTopicBP
+    def IsReturnDisplay(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_RoguelikeTopicBP
+    def ReturnSortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_RoguelikeTopicBPStart(builder):
-    builder.StartObject(9)
+    builder.StartObject(11)
 
 def clz_Torappu_RoguelikeTopicBPAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
@@ -1633,6 +1647,12 @@ def clz_Torappu_RoguelikeTopicBPAddIsGoodPrize(builder, isGoodPrize):
 
 def clz_Torappu_RoguelikeTopicBPAddIsGrandPrize(builder, isGrandPrize):
     builder.PrependBoolSlot(8, isGrandPrize, 0)
+
+def clz_Torappu_RoguelikeTopicBPAddIsReturnDisplay(builder, isReturnDisplay):
+    builder.PrependBoolSlot(9, isReturnDisplay, 0)
+
+def clz_Torappu_RoguelikeTopicBPAddReturnSortId(builder, returnSortId):
+    builder.PrependInt32Slot(10, returnSortId, 0)
 
 def clz_Torappu_RoguelikeTopicBPEnd(builder):
     return builder.EndObject()
@@ -14092,6 +14112,101 @@ def dict__string__clz_Torappu_RoguelikeRollNodeDataEnd(builder):
 
 
 
+class clz_Torappu_RoguelikeRelicTipsData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_RoguelikeRelicTipsData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_RoguelikeRelicTipsData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_RoguelikeRelicTipsData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_RoguelikeRelicTipsData
+    def ItemId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_RoguelikeRelicTipsData
+    def ToastText(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_RoguelikeRelicTipsDataStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_RoguelikeRelicTipsDataAddItemId(builder, itemId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(itemId), 0)
+
+def clz_Torappu_RoguelikeRelicTipsDataAddToastText(builder, toastText):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(toastText), 0)
+
+def clz_Torappu_RoguelikeRelicTipsDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_RoguelikeRelicTipsData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_RoguelikeRelicTipsData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_RoguelikeRelicTipsData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_RoguelikeRelicTipsData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_RoguelikeRelicTipsData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_RoguelikeRelicTipsData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_RoguelikeRelicTipsData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_RoguelikeRelicTipsDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_RoguelikeRelicTipsDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_RoguelikeRelicTipsDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_RoguelikeRelicTipsDataEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_RoguelikeActivityBasicData(object):
     __slots__ = ['_tab']
 
@@ -15851,8 +15966,32 @@ class clz_Torappu_RoguelikeTopicDetail(object):
         return o == 0
 
     # clz_Torappu_RoguelikeTopicDetail
-    def Activity(self):
+    def RelicTipsData(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(106))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_RoguelikeRelicTipsData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_RoguelikeTopicDetail
+    def RelicTipsDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(106))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_RoguelikeTopicDetail
+    def RelicTipsDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(106))
+        return o == 0
+
+    # clz_Torappu_RoguelikeTopicDetail
+    def Activity(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(108))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_RoguelikeActivityData()
@@ -15861,7 +16000,7 @@ class clz_Torappu_RoguelikeTopicDetail(object):
         return None
 
 def clz_Torappu_RoguelikeTopicDetailStart(builder):
-    builder.StartObject(52)
+    builder.StartObject(53)
 
 def clz_Torappu_RoguelikeTopicDetailAddUpdates(builder, updates):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(updates), 0)
@@ -16151,8 +16290,14 @@ def clz_Torappu_RoguelikeTopicDetailAddRollNodeData(builder, rollNodeData):
 def clz_Torappu_RoguelikeTopicDetailStartRollNodeDataVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_RoguelikeTopicDetailAddRelicTipsData(builder, relicTipsData):
+    builder.PrependUOffsetTRelativeSlot(51, flatbuffers.number_types.UOffsetTFlags.py_type(relicTipsData), 0)
+
+def clz_Torappu_RoguelikeTopicDetailStartRelicTipsDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_RoguelikeTopicDetailAddActivity(builder, activity):
-    builder.PrependUOffsetTRelativeSlot(51, flatbuffers.number_types.UOffsetTFlags.py_type(activity), 0)
+    builder.PrependUOffsetTRelativeSlot(52, flatbuffers.number_types.UOffsetTFlags.py_type(activity), 0)
 
 def clz_Torappu_RoguelikeTopicDetailEnd(builder):
     return builder.EndObject()
