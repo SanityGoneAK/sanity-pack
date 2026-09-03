@@ -64,60 +64,36 @@ class enum__Torappu_ItemType(object):
     REP_COIN = 37
     ROGUELIKE = 38
     LINKAGE_TKT_GACHA_10 = 39
-    VOUCHER_ELITE_II_4 = 40
-    VOUCHER_ELITE_II_5 = 41
-    VOUCHER_ELITE_II_6 = 42
-    VOUCHER_SKIN = 43
-    RETRO_COIN = 44
-    PLAYER_AVATAR = 45
-    UNI_COLLECTION = 46
-    VOUCHER_FULL_POTENTIAL = 47
-    RL_COIN = 48
-    RETURN_CREDIT = 49
-    MEDAL = 50
-    CHARM = 51
-    HOME_BACKGROUND = 52
-    EXTERMINATION_AGENT = 53
-    OPTIONAL_VOUCHER_PICK = 54
-    ACT_CART_COMPONENT = 55
-    VOUCHER_LEVELMAX_6 = 56
-    VOUCHER_LEVELMAX_5 = 57
-    VOUCHER_LEVELMAX_4 = 58
-    VOUCHER_SKILL_SPECIALLEVELMAX_6 = 59
-    VOUCHER_SKILL_SPECIALLEVELMAX_5 = 60
-    VOUCHER_SKILL_SPECIALLEVELMAX_4 = 61
-    ACTIVITY_POTENTIAL = 62
-    ITEM_PACK = 63
-    SANDBOX = 64
-    FAVOR_ADD_ITEM = 65
-    CLASSIC_SHD = 66
-    CLASSIC_TKT_GACHA = 67
-    CLASSIC_TKT_GACHA_10 = 68
-    LIMITED_BUFF = 69
-    CLASSIC_FES_PICK_TIER_5 = 70
-    CLASSIC_FES_PICK_TIER_6 = 71
-    RETURN_PROGRESS = 72
-    NEW_PROGRESS = 73
-    MCARD_VOUCHER = 74
-    MATERIAL_ISSUE_VOUCHER = 75
-    CRS_SHOP_COIN_V2 = 76
-    HOME_THEME = 77
-    SANDBOX_PERM = 78
-    SANDBOX_TOKEN = 79
-    TEMPLATE_TRAP = 80
-    NAME_CARD_SKIN = 81
-    EMOTICON_SET = 82
-    EXCLUSIVE_TKT_GACHA = 83
-    EXCLUSIVE_TKT_GACHA_10 = 84
-    SO_CHAR_EXP = 85
-    GIFTPACKAGE_TKT = 86
-    VOUCHER_SKIN_V2 = 87
-    RANDOM_VOUCHER_SKIN = 88
-    ACT1VHALFIDLE_ITEM = 89
-    PLOT_ITEM = 90
-    MAGAZINE_LEAF = 91
-    STICKER = 92
-    ARKHUB = 93
+    VOUCHER_ELITE_II_5 = 40
+    VOUCHER_ELITE_II_6 = 41
+    VOUCHER_SKIN = 42
+    RETRO_COIN = 43
+    PLAYER_AVATAR = 44
+    UNI_COLLECTION = 45
+    VOUCHER_FULL_POTENTIAL = 46
+    RL_COIN = 47
+    RETURN_CREDIT = 48
+    MEDAL = 49
+    CHARM = 50
+    HOME_BACKGROUND = 51
+    EXTERMINATION_AGENT = 52
+    OPTIONAL_VOUCHER_PICK = 53
+    ACT_CART_COMPONENT = 54
+    VOUCHER_LEVELMAX_6 = 55
+    VOUCHER_LEVELMAX_5 = 56
+    ACTIVITY_POTENTIAL = 57
+    ITEM_PACK = 58
+    SANDBOX = 59
+    FAVOR_ADD_ITEM = 60
+    CLASSIC_SHD = 61
+    CLASSIC_TKT_GACHA = 62
+    CLASSIC_TKT_GACHA_10 = 63
+    LIMITED_BUFF = 64
+    CLASSIC_FES_PICK_TIER_5 = 65
+    CLASSIC_FES_PICK_TIER_6 = 66
+    RETURN_PROGRESS = 67
+    NEW_PROGRESS = 68
+    MCARD_VOUCHER = 69
 
 
 class enum__Torappu_OccPer(object):
@@ -145,17 +121,7 @@ class enum__Torappu_BuildingData_RoomType(object):
     WORKSHOP = 1024
     TRAINING = 2048
     FUNCTIONAL = 3710
-    PRIVATE = 4096
-    ALL = 8191
-
-
-class enum__Torappu_ItemDropShopType(object):
-    HGGSHD_SHOP = 0
-    LGGSHD_SHOP = 1
-    XSHD_SHOP = 2
-    EPGS_SHOP = 3
-    REP_SHOP = 4
-    CLASSIC_SHOP = 5
+    ALL = 4095
 
 
 class enum__Torappu_VoucherDisplayType(object):
@@ -195,24 +161,14 @@ class clz_Torappu_ItemData_StageDropInfo(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # clz_Torappu_ItemData_StageDropInfo
-    def SortId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
 def clz_Torappu_ItemData_StageDropInfoStart(builder):
-    builder.StartObject(3)
+    builder.StartObject(2)
 
 def clz_Torappu_ItemData_StageDropInfoAddStageId(builder, stageId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(stageId), 0)
 
 def clz_Torappu_ItemData_StageDropInfoAddOccPer(builder, occPer):
     builder.PrependInt32Slot(1, occPer, 0)
-
-def clz_Torappu_ItemData_StageDropInfoAddSortId(builder, sortId):
-    builder.PrependInt32Slot(2, sortId, 0)
 
 def clz_Torappu_ItemData_StageDropInfoEnd(builder):
     return builder.EndObject()
@@ -261,108 +217,6 @@ def clz_Torappu_ItemData_BuildingProductInfoAddFormulaId(builder, formulaId):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(formulaId), 0)
 
 def clz_Torappu_ItemData_BuildingProductInfoEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ItemData_VoucherRelateInfo(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ItemData_VoucherRelateInfo()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ItemData_VoucherRelateInfo(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ItemData_VoucherRelateInfo
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ItemData_VoucherRelateInfo
-    def VoucherId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ItemData_VoucherRelateInfo
-    def VoucherItemType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-def clz_Torappu_ItemData_VoucherRelateInfoStart(builder):
-    builder.StartObject(2)
-
-def clz_Torappu_ItemData_VoucherRelateInfoAddVoucherId(builder, voucherId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(voucherId), 0)
-
-def clz_Torappu_ItemData_VoucherRelateInfoAddVoucherItemType(builder, voucherItemType):
-    builder.PrependInt32Slot(1, voucherItemType, 0)
-
-def clz_Torappu_ItemData_VoucherRelateInfoEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_ItemData_ShopRelateInfo(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_ItemData_ShopRelateInfo()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_ItemData_ShopRelateInfo(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_ItemData_ShopRelateInfo
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_ItemData_ShopRelateInfo
-    def ShopType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ItemData_ShopRelateInfo
-    def ShopGroup(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ItemData_ShopRelateInfo
-    def StartTs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-def clz_Torappu_ItemData_ShopRelateInfoStart(builder):
-    builder.StartObject(3)
-
-def clz_Torappu_ItemData_ShopRelateInfoAddShopType(builder, shopType):
-    builder.PrependInt32Slot(0, shopType, 0)
-
-def clz_Torappu_ItemData_ShopRelateInfoAddShopGroup(builder, shopGroup):
-    builder.PrependInt32Slot(1, shopGroup, 0)
-
-def clz_Torappu_ItemData_ShopRelateInfoAddStartTs(builder, startTs):
-    builder.PrependInt64Slot(2, startTs, 0)
-
-def clz_Torappu_ItemData_ShopRelateInfoEnd(builder):
     return builder.EndObject()
 
 
@@ -524,56 +378,8 @@ class clz_Torappu_ItemData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         return o == 0
 
-    # clz_Torappu_ItemData
-    def VoucherRelateList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ItemData_VoucherRelateInfo()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ItemData
-    def VoucherRelateListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ItemData
-    def VoucherRelateListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
-        return o == 0
-
-    # clz_Torappu_ItemData
-    def ShopRelateInfoList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_ItemData_ShopRelateInfo()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_ItemData
-    def ShopRelateInfoListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_ItemData
-    def ShopRelateInfoListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
-        return o == 0
-
 def clz_Torappu_ItemDataStart(builder):
-    builder.StartObject(17)
+    builder.StartObject(15)
 
 def clz_Torappu_ItemDataAddItemId(builder, itemId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(itemId), 0)
@@ -624,18 +430,6 @@ def clz_Torappu_ItemDataAddBuildingProductList(builder, buildingProductList):
     builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(buildingProductList), 0)
 
 def clz_Torappu_ItemDataStartBuildingProductListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ItemDataAddVoucherRelateList(builder, voucherRelateList):
-    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(voucherRelateList), 0)
-
-def clz_Torappu_ItemDataStartVoucherRelateListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_ItemDataAddShopRelateInfoList(builder, shopRelateInfoList):
-    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(shopRelateInfoList), 0)
-
-def clz_Torappu_ItemDataStartShopRelateInfoListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ItemDataEnd(builder):
@@ -2022,32 +1816,8 @@ class clz_Torappu_InventoryData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         return o == 0
 
-    # clz_Torappu_InventoryData
-    def ItemShopNameDict(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = dict__string__string()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_InventoryData
-    def ItemShopNameDictLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_InventoryData
-    def ItemShopNameDictIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
-        return o == 0
-
 def clz_Torappu_InventoryDataStart(builder):
-    builder.StartObject(13)
+    builder.StartObject(12)
 
 def clz_Torappu_InventoryDataAddItems(builder, items):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(items), 0)
@@ -2119,12 +1889,6 @@ def clz_Torappu_InventoryDataAddFavorCharacters(builder, favorCharacters):
     builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(favorCharacters), 0)
 
 def clz_Torappu_InventoryDataStartFavorCharactersVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_InventoryDataAddItemShopNameDict(builder, itemShopNameDict):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(itemShopNameDict), 0)
-
-def clz_Torappu_InventoryDataStartItemShopNameDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_InventoryDataEnd(builder):
