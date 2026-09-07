@@ -101,6 +101,7 @@ class enum__Torappu_ItemType(object):
     MAGAZINE_LEAF = 91
     STICKER = 92
     ARKHUB = 93
+    LINKAGE_TKT_GACHA = 94
 
 
 class enum__Torappu_SubProfessionAttackType(object):
