@@ -32,8 +32,15 @@ class clz_Torappu_EPBreakBuffData(object):
         return 0.0
 
     # clz_Torappu_EPBreakBuffData
-    def ElementBuffs(self, j):
+    def EnemyElementBreakDuration(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_EPBreakBuffData
+    def ElementBuffs(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -41,24 +48,27 @@ class clz_Torappu_EPBreakBuffData(object):
 
     # clz_Torappu_EPBreakBuffData
     def ElementBuffsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_EPBreakBuffData
     def ElementBuffsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         return o == 0
 
 def clz_Torappu_EPBreakBuffDataStart(builder):
-    builder.StartObject(2)
+    builder.StartObject(3)
 
 def clz_Torappu_EPBreakBuffDataAddElementBreakDuration(builder, elementBreakDuration):
     builder.PrependFloat32Slot(0, elementBreakDuration, 0.0)
 
+def clz_Torappu_EPBreakBuffDataAddEnemyElementBreakDuration(builder, enemyElementBreakDuration):
+    builder.PrependFloat32Slot(1, enemyElementBreakDuration, 0.0)
+
 def clz_Torappu_EPBreakBuffDataAddElementBuffs(builder, elementBuffs):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(elementBuffs), 0)
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(elementBuffs), 0)
 
 def clz_Torappu_EPBreakBuffDataStartElementBuffsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)

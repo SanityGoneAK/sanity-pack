@@ -105,6 +105,8 @@ class enum__Torappu_ItemType(object):
     PLOT_ITEM = 90
     MAGAZINE_LEAF = 91
     STICKER = 92
+    ARKHUB = 93
+    LINKAGE_TKT_GACHA = 94
 
 
 class enum__Torappu_ClimbTowerLevelType(object):
