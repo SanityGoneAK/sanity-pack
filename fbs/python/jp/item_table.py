@@ -16,11 +16,20 @@ class enum__Torappu_ItemRarity(object):
     E_NUM = 6
 
 
+class enum__Torappu_ItemReslockStatus(object):
+    NOT_SUPPORT_RESLOCK = 0
+    MAT_GACHA_RESLOCK_BLACKLIST = 1
+    CHAR_POTENTIAL_BLACKLIST = 2
+    COMMON_BLACKLIST = 999
+    CAN_RESLOCK = 1000
+
+
 class enum__Torappu_ItemClassifyType(object):
     NONE = 0
     CONSUME = 1
     NORMAL = 2
     MATERIAL = 3
+    MEMENTO = 4
 
 
 class enum__Torappu_ItemType(object):
@@ -118,6 +127,7 @@ class enum__Torappu_ItemType(object):
     MAGAZINE_LEAF = 91
     STICKER = 92
     ARKHUB = 93
+    LINKAGE_TKT_GACHA = 94
 
 
 class enum__Torappu_OccPer(object):
@@ -463,22 +473,36 @@ class clz_Torappu_ItemData(object):
         return False
 
     # clz_Torappu_ItemData
-    def ClassifyType(self):
+    def ReslockStatus(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ItemData
-    def ItemType(self):
+    def CanReslock(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_ItemData
+    def ClassifyType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ItemData
+    def ItemType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ItemData
     def StageDropList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -490,19 +514,19 @@ class clz_Torappu_ItemData(object):
 
     # clz_Torappu_ItemData
     def StageDropListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ItemData
     def StageDropListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         return o == 0
 
     # clz_Torappu_ItemData
     def BuildingProductList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -514,19 +538,19 @@ class clz_Torappu_ItemData(object):
 
     # clz_Torappu_ItemData
     def BuildingProductListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ItemData
     def BuildingProductListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         return o == 0
 
     # clz_Torappu_ItemData
     def VoucherRelateList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -538,19 +562,19 @@ class clz_Torappu_ItemData(object):
 
     # clz_Torappu_ItemData
     def VoucherRelateListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ItemData
     def VoucherRelateListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         return o == 0
 
     # clz_Torappu_ItemData
     def ShopRelateInfoList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -562,18 +586,18 @@ class clz_Torappu_ItemData(object):
 
     # clz_Torappu_ItemData
     def ShopRelateInfoListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ItemData
     def ShopRelateInfoListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         return o == 0
 
 def clz_Torappu_ItemDataStart(builder):
-    builder.StartObject(17)
+    builder.StartObject(19)
 
 def clz_Torappu_ItemDataAddItemId(builder, itemId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(itemId), 0)
@@ -608,32 +632,38 @@ def clz_Torappu_ItemDataAddObtainApproach(builder, obtainApproach):
 def clz_Torappu_ItemDataAddHideInItemGet(builder, hideInItemGet):
     builder.PrependBoolSlot(10, hideInItemGet, 0)
 
+def clz_Torappu_ItemDataAddReslockStatus(builder, reslockStatus):
+    builder.PrependInt32Slot(11, reslockStatus, 0)
+
+def clz_Torappu_ItemDataAddCanReslock(builder, canReslock):
+    builder.PrependBoolSlot(12, canReslock, 0)
+
 def clz_Torappu_ItemDataAddClassifyType(builder, classifyType):
-    builder.PrependInt32Slot(11, classifyType, 0)
+    builder.PrependInt32Slot(13, classifyType, 0)
 
 def clz_Torappu_ItemDataAddItemType(builder, itemType):
-    builder.PrependInt32Slot(12, itemType, 0)
+    builder.PrependInt32Slot(14, itemType, 0)
 
 def clz_Torappu_ItemDataAddStageDropList(builder, stageDropList):
-    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(stageDropList), 0)
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(stageDropList), 0)
 
 def clz_Torappu_ItemDataStartStageDropListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ItemDataAddBuildingProductList(builder, buildingProductList):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(buildingProductList), 0)
+    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(buildingProductList), 0)
 
 def clz_Torappu_ItemDataStartBuildingProductListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ItemDataAddVoucherRelateList(builder, voucherRelateList):
-    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(voucherRelateList), 0)
+    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(voucherRelateList), 0)
 
 def clz_Torappu_ItemDataStartVoucherRelateListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ItemDataAddShopRelateInfoList(builder, shopRelateInfoList):
-    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(shopRelateInfoList), 0)
+    builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(shopRelateInfoList), 0)
 
 def clz_Torappu_ItemDataStartShopRelateInfoListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)

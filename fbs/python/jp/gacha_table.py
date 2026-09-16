@@ -116,6 +116,7 @@ class enum__Torappu_ItemType(object):
     MAGAZINE_LEAF = 91
     STICKER = 92
     ARKHUB = 93
+    LINKAGE_TKT_GACHA = 94
 
 
 class hg__internal__JObject(object):
@@ -1476,58 +1477,68 @@ def clz_Torappu_GachaData_LimitTenGachaTktEnd(builder):
 
 
 
-class clz_Torappu_GachaData_LinkageTenGachaTkt(object):
+class clz_Torappu_GachaData_LinkageGachaTkt(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_GachaData_LinkageTenGachaTkt()
+        x = clz_Torappu_GachaData_LinkageGachaTkt()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsclz_Torappu_GachaData_LinkageTenGachaTkt(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_GachaData_LinkageGachaTkt(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # clz_Torappu_GachaData_LinkageTenGachaTkt
+    # clz_Torappu_GachaData_LinkageGachaTkt
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # clz_Torappu_GachaData_LinkageTenGachaTkt
+    # clz_Torappu_GachaData_LinkageGachaTkt
     def ItemId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # clz_Torappu_GachaData_LinkageTenGachaTkt
+    # clz_Torappu_GachaData_LinkageGachaTkt
     def EndTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
-    # clz_Torappu_GachaData_LinkageTenGachaTkt
+    # clz_Torappu_GachaData_LinkageGachaTkt
     def GachaPoolId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-def clz_Torappu_GachaData_LinkageTenGachaTktStart(builder):
-    builder.StartObject(3)
+    # clz_Torappu_GachaData_LinkageGachaTkt
+    def IsTen(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def clz_Torappu_GachaData_LinkageTenGachaTktAddItemId(builder, itemId):
+def clz_Torappu_GachaData_LinkageGachaTktStart(builder):
+    builder.StartObject(4)
+
+def clz_Torappu_GachaData_LinkageGachaTktAddItemId(builder, itemId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(itemId), 0)
 
-def clz_Torappu_GachaData_LinkageTenGachaTktAddEndTime(builder, endTime):
+def clz_Torappu_GachaData_LinkageGachaTktAddEndTime(builder, endTime):
     builder.PrependInt64Slot(1, endTime, 0)
 
-def clz_Torappu_GachaData_LinkageTenGachaTktAddGachaPoolId(builder, gachaPoolId):
+def clz_Torappu_GachaData_LinkageGachaTktAddGachaPoolId(builder, gachaPoolId):
     builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(gachaPoolId), 0)
 
-def clz_Torappu_GachaData_LinkageTenGachaTktEnd(builder):
+def clz_Torappu_GachaData_LinkageGachaTktAddIsTen(builder, isTen):
+    builder.PrependBoolSlot(3, isTen, 0)
+
+def clz_Torappu_GachaData_LinkageGachaTktEnd(builder):
     return builder.EndObject()
 
 
@@ -2064,26 +2075,26 @@ class clz_Torappu_GachaData(object):
         return o == 0
 
     # clz_Torappu_GachaData
-    def LinkageTenGachaItem(self, j):
+    def LinkageGachaItem(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = clz_Torappu_GachaData_LinkageTenGachaTkt()
+            obj = clz_Torappu_GachaData_LinkageGachaTkt()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
     # clz_Torappu_GachaData
-    def LinkageTenGachaItemLength(self):
+    def LinkageGachaItemLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GachaData
-    def LinkageTenGachaItemIsNone(self):
+    def LinkageGachaItemIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         return o == 0
 
@@ -2255,10 +2266,10 @@ def clz_Torappu_GachaDataAddLimitTenGachaItem(builder, limitTenGachaItem):
 def clz_Torappu_GachaDataStartLimitTenGachaItemVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def clz_Torappu_GachaDataAddLinkageTenGachaItem(builder, linkageTenGachaItem):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(linkageTenGachaItem), 0)
+def clz_Torappu_GachaDataAddLinkageGachaItem(builder, linkageGachaItem):
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(linkageGachaItem), 0)
 
-def clz_Torappu_GachaDataStartLinkageTenGachaItemVector(builder, numElems):
+def clz_Torappu_GachaDataStartLinkageGachaItemVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GachaDataAddNormalGachaItem(builder, normalGachaItem):
