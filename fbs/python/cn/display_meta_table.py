@@ -157,6 +157,7 @@ class enum__Torappu_ItemType(object):
     MAGAZINE_LEAF = 91
     STICKER = 92
     ARKHUB = 93
+    LINKAGE_TKT_GACHA = 94
 
 
 class enum__Torappu_EmojiSceneType(object):
@@ -227,6 +228,8 @@ class enum__Torappu_UIGuideTarget(object):
     PIXEL_MAP = 54
     ARK_HUB = 55
     ARK_ODC = 56
+    ACT54SIDE_CARD = 57
+    ACT_VASEBREAKER = 58
 
 
 class enum__Torappu_KeyCodeType(object):
@@ -312,7 +315,9 @@ class enum__Torappu_ActivityType(object):
     ARK_HUB = 62
     ACT_FOOTBALL = 63
     TYPE_ACT53SIDE = 64
-    ENUM = 65
+    TYPE_ACT54SIDE = 65
+    ACT_DP = 66
+    ENUM = 67
 
 
 class enum__Torappu_CollectType(object):
