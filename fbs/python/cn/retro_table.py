@@ -101,6 +101,7 @@ class enum__Torappu_ItemType(object):
     MAGAZINE_LEAF = 91
     STICKER = 92
     ARKHUB = 93
+    LINKAGE_TKT_GACHA = 94
 
 
 class enum__Torappu_StageDropType(object):
@@ -200,7 +201,9 @@ class enum__Torappu_ActivityType(object):
     ARK_HUB = 62
     ACT_FOOTBALL = 63
     TYPE_ACT53SIDE = 64
-    ENUM = 65
+    TYPE_ACT54SIDE = 65
+    ACT_DP = 66
+    ENUM = 67
 
 
 class enum__Torappu_StageType(object):
