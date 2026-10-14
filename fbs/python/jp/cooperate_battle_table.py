@@ -349,14 +349,24 @@ class clz_Torappu_Battle_Cooperate_CooperateTeamWeight(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_Battle_Cooperate_CooperateTeamWeight
+    def TeamType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_Battle_Cooperate_CooperateTeamWeightStart(builder):
-    builder.StartObject(2)
+    builder.StartObject(3)
 
 def clz_Torappu_Battle_Cooperate_CooperateTeamWeightAddTeamName(builder, teamName):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(teamName), 0)
 
 def clz_Torappu_Battle_Cooperate_CooperateTeamWeightAddWeight(builder, weight):
     builder.PrependInt32Slot(1, weight, 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateTeamWeightAddTeamType(builder, teamType):
+    builder.PrependInt32Slot(2, teamType, 0)
 
 def clz_Torappu_Battle_Cooperate_CooperateTeamWeightEnd(builder):
     return builder.EndObject()
@@ -510,6 +520,52 @@ def dict__string__stringAddValue(builder, value):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
 
 def dict__string__stringEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_Battle_Cooperate_FootballStadiumWeight(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_Battle_Cooperate_FootballStadiumWeight()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_Battle_Cooperate_FootballStadiumWeight(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_Battle_Cooperate_FootballStadiumWeight
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_Battle_Cooperate_FootballStadiumWeight
+    def StadiumType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_Battle_Cooperate_FootballStadiumWeight
+    def Weight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_Battle_Cooperate_FootballStadiumWeightStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_Battle_Cooperate_FootballStadiumWeightAddStadiumType(builder, stadiumType):
+    builder.PrependInt32Slot(0, stadiumType, 0)
+
+def clz_Torappu_Battle_Cooperate_FootballStadiumWeightAddWeight(builder, weight):
+    builder.PrependInt32Slot(1, weight, 0)
+
+def clz_Torappu_Battle_Cooperate_FootballStadiumWeightEnd(builder):
     return builder.EndObject()
 
 
@@ -721,8 +777,39 @@ class clz_Torappu_Battle_Cooperate_CooperateModeBattleData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         return o == 0
 
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballPlayersWaitTimeOnWaveStart(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballStadiumWeights(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_Battle_Cooperate_FootballStadiumWeight()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballStadiumWeightsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballStadiumWeightsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        return o == 0
+
 def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataStart(builder):
-    builder.StartObject(10)
+    builder.StartObject(12)
 
 def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddCostTransferred(builder, costTransferred):
     builder.PrependInt32Slot(0, costTransferred, 0)
@@ -773,6 +860,15 @@ def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddFootballPlayersName(b
     builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(footballPlayersName), 0)
 
 def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataStartFootballPlayersNameVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddFootballPlayersWaitTimeOnWaveStart(builder, footballPlayersWaitTimeOnWaveStart):
+    builder.PrependInt32Slot(10, footballPlayersWaitTimeOnWaveStart, 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddFootballStadiumWeights(builder, footballStadiumWeights):
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(footballStadiumWeights), 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataStartFootballStadiumWeightsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataEnd(builder):
