@@ -1901,8 +1901,22 @@ class clz_Torappu_GameDataConsts(object):
             return obj
         return None
 
+    # clz_Torappu_GameDataConsts
+    def FriendAddUidLimit(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(254))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_GameDataConsts
+    def FriendUrlFormat(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(256))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_GameDataConstsStart(builder):
-    builder.StartObject(125)
+    builder.StartObject(127)
 
 def clz_Torappu_GameDataConstsAddMaxPlayerLevel(builder, maxPlayerLevel):
     builder.PrependInt32Slot(0, maxPlayerLevel, 0)
@@ -2344,6 +2358,12 @@ def clz_Torappu_GameDataConstsAddIsSoCharEnabled(builder, isSoCharEnabled):
 
 def clz_Torappu_GameDataConstsAddAvgReaderModeDefaultSetting(builder, avgReaderModeDefaultSetting):
     builder.PrependUOffsetTRelativeSlot(124, flatbuffers.number_types.UOffsetTFlags.py_type(avgReaderModeDefaultSetting), 0)
+
+def clz_Torappu_GameDataConstsAddFriendAddUidLimit(builder, friendAddUidLimit):
+    builder.PrependInt32Slot(125, friendAddUidLimit, 0)
+
+def clz_Torappu_GameDataConstsAddFriendUrlFormat(builder, friendUrlFormat):
+    builder.PrependUOffsetTRelativeSlot(126, flatbuffers.number_types.UOffsetTFlags.py_type(friendUrlFormat), 0)
 
 def clz_Torappu_GameDataConstsEnd(builder):
     return builder.EndObject()

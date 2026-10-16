@@ -206,7 +206,8 @@ class enum__Torappu_AbnormalFlag(object):
 class enum__Torappu_AbnormalCombo(object):
     SLEEPING = 0
     SHELTERING = 1
-    E_NUM = 2
+    ISOLATE = 2
+    E_NUM = 3
 
 
 class enum__Torappu_AttributeType(object):

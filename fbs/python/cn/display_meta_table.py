@@ -230,6 +230,8 @@ class enum__Torappu_UIGuideTarget(object):
     ARK_ODC = 56
     ACT54SIDE_CARD = 57
     ACT_VASEBREAKER = 58
+    BUILDING_RECYCLE = 59
+    ACT_ARCADE_V2 = 60
 
 
 class enum__Torappu_KeyCodeType(object):
@@ -317,7 +319,8 @@ class enum__Torappu_ActivityType(object):
     TYPE_ACT53SIDE = 64
     TYPE_ACT54SIDE = 65
     ACT_DP = 66
-    ENUM = 67
+    REWARD_ONLY = 67
+    ENUM = 68
 
 
 class enum__Torappu_CollectType(object):
