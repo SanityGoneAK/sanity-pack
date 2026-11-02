@@ -19,6 +19,7 @@ class enum__Torappu_MissionType(object):
     RETRO = 9
     SPECIAL_OPERATOR = 10
     SPECIAL_OPERATOR_WEEKLY = 11
+    GUIDE_V3 = 12
 
 
 class enum__Torappu_MissionItemBgType(object):
@@ -122,6 +123,10 @@ class enum__Torappu_ItemType(object):
     MAGAZINE_LEAF = 91
     STICKER = 92
     ARKHUB = 93
+    LINKAGE_TKT_GACHA = 94
+    AUTOCHESS_SKIN = 95
+    AUTOCHESS_MISSION_POINT = 96
+    OPEN_SERVER_CREDIT = 97
 
 
 class enum__Torappu_CrossAppShareMissionType(object):
