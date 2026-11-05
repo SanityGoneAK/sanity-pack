@@ -1312,8 +1312,15 @@ class clz_Torappu_SpDynIllustInfo(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
+    # clz_Torappu_SpDynIllustInfo
+    def SpDynEntranceId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_SpDynIllustInfoStart(builder):
-    builder.StartObject(6)
+    builder.StartObject(7)
 
 def clz_Torappu_SpDynIllustInfoAddSkinId(builder, skinId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(skinId), 0)
@@ -1332,6 +1339,9 @@ def clz_Torappu_SpDynIllustInfoAddSpPortraitId(builder, spPortraitId):
 
 def clz_Torappu_SpDynIllustInfoAddSpAvatarId(builder, spAvatarId):
     builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(spAvatarId), 0)
+
+def clz_Torappu_SpDynIllustInfoAddSpDynEntranceId(builder, spDynEntranceId):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(spDynEntranceId), 0)
 
 def clz_Torappu_SpDynIllustInfoEnd(builder):
     return builder.EndObject()
