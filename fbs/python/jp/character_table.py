@@ -146,6 +146,9 @@ class enum__Torappu_ItemType(object):
     STICKER = 92
     ARKHUB = 93
     LINKAGE_TKT_GACHA = 94
+    AUTOCHESS_SKIN = 95
+    AUTOCHESS_MISSION_POINT = 96
+    OPEN_SERVER_CREDIT = 97
 
 
 class enum__Torappu_CharacterData_PotentialRank_TypeEnum(object):
@@ -720,84 +723,91 @@ class clz_Torappu_AttributesData(object):
         return 0
 
     # clz_Torappu_AttributesData
-    def StunImmune(self):
+    def BlockVolume(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_AttributesData
-    def SilenceImmune(self):
+    def StunImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesData
-    def SleepImmune(self):
+    def SilenceImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesData
-    def FrozenImmune(self):
+    def SleepImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesData
-    def LevitateImmune(self):
+    def FrozenImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesData
-    def DisarmedCombatImmune(self):
+    def LevitateImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesData
-    def FearedImmune(self):
+    def DisarmedCombatImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesData
-    def PalsyImmune(self):
+    def FearedImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesData
-    def AttractImmune(self):
+    def PalsyImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesData
-    def TeleportImmune(self):
+    def AttractImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesData
-    def GroundBoundImmune(self):
+    def TeleportImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_AttributesData
+    def GroundBoundImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_AttributesDataStart(builder):
-    builder.StartObject(28)
+    builder.StartObject(29)
 
 def clz_Torappu_AttributesDataAddMaxHp(builder, maxHp):
     builder.PrependInt32Slot(0, maxHp, 0)
@@ -850,38 +860,41 @@ def clz_Torappu_AttributesDataAddMassLevel(builder, massLevel):
 def clz_Torappu_AttributesDataAddBaseForceLevel(builder, baseForceLevel):
     builder.PrependInt32Slot(16, baseForceLevel, 0)
 
+def clz_Torappu_AttributesDataAddBlockVolume(builder, blockVolume):
+    builder.PrependInt32Slot(17, blockVolume, 0)
+
 def clz_Torappu_AttributesDataAddStunImmune(builder, stunImmune):
-    builder.PrependBoolSlot(17, stunImmune, 0)
+    builder.PrependBoolSlot(18, stunImmune, 0)
 
 def clz_Torappu_AttributesDataAddSilenceImmune(builder, silenceImmune):
-    builder.PrependBoolSlot(18, silenceImmune, 0)
+    builder.PrependBoolSlot(19, silenceImmune, 0)
 
 def clz_Torappu_AttributesDataAddSleepImmune(builder, sleepImmune):
-    builder.PrependBoolSlot(19, sleepImmune, 0)
+    builder.PrependBoolSlot(20, sleepImmune, 0)
 
 def clz_Torappu_AttributesDataAddFrozenImmune(builder, frozenImmune):
-    builder.PrependBoolSlot(20, frozenImmune, 0)
+    builder.PrependBoolSlot(21, frozenImmune, 0)
 
 def clz_Torappu_AttributesDataAddLevitateImmune(builder, levitateImmune):
-    builder.PrependBoolSlot(21, levitateImmune, 0)
+    builder.PrependBoolSlot(22, levitateImmune, 0)
 
 def clz_Torappu_AttributesDataAddDisarmedCombatImmune(builder, disarmedCombatImmune):
-    builder.PrependBoolSlot(22, disarmedCombatImmune, 0)
+    builder.PrependBoolSlot(23, disarmedCombatImmune, 0)
 
 def clz_Torappu_AttributesDataAddFearedImmune(builder, fearedImmune):
-    builder.PrependBoolSlot(23, fearedImmune, 0)
+    builder.PrependBoolSlot(24, fearedImmune, 0)
 
 def clz_Torappu_AttributesDataAddPalsyImmune(builder, palsyImmune):
-    builder.PrependBoolSlot(24, palsyImmune, 0)
+    builder.PrependBoolSlot(25, palsyImmune, 0)
 
 def clz_Torappu_AttributesDataAddAttractImmune(builder, attractImmune):
-    builder.PrependBoolSlot(25, attractImmune, 0)
+    builder.PrependBoolSlot(26, attractImmune, 0)
 
 def clz_Torappu_AttributesDataAddTeleportImmune(builder, teleportImmune):
-    builder.PrependBoolSlot(26, teleportImmune, 0)
+    builder.PrependBoolSlot(27, teleportImmune, 0)
 
 def clz_Torappu_AttributesDataAddGroundBoundImmune(builder, groundBoundImmune):
-    builder.PrependBoolSlot(27, groundBoundImmune, 0)
+    builder.PrependBoolSlot(28, groundBoundImmune, 0)
 
 def clz_Torappu_AttributesDataEnd(builder):
     return builder.EndObject()
@@ -2091,84 +2104,91 @@ class clz_Torappu_AttributesDeltaData(object):
         return 0
 
     # clz_Torappu_AttributesDeltaData
-    def StunImmune(self):
+    def BlockVolume(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_AttributesDeltaData
-    def SilenceImmune(self):
+    def StunImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesDeltaData
-    def SleepImmune(self):
+    def SilenceImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesDeltaData
-    def FrozenImmune(self):
+    def SleepImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesDeltaData
-    def LevitateImmune(self):
+    def FrozenImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesDeltaData
-    def DisarmedCombatImmune(self):
+    def LevitateImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesDeltaData
-    def FearedImmune(self):
+    def DisarmedCombatImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesDeltaData
-    def PalsyImmune(self):
+    def FearedImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesDeltaData
-    def AttractImmune(self):
+    def PalsyImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesDeltaData
-    def TeleportImmune(self):
+    def AttractImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_AttributesDeltaData
-    def GroundBoundImmune(self):
+    def TeleportImmune(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_AttributesDeltaData
+    def GroundBoundImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_AttributesDeltaDataStart(builder):
-    builder.StartObject(28)
+    builder.StartObject(29)
 
 def clz_Torappu_AttributesDeltaDataAddMaxHp(builder, maxHp):
     builder.PrependInt32Slot(0, maxHp, 0)
@@ -2221,38 +2241,41 @@ def clz_Torappu_AttributesDeltaDataAddMassLevel(builder, massLevel):
 def clz_Torappu_AttributesDeltaDataAddBaseForceLevel(builder, baseForceLevel):
     builder.PrependInt32Slot(16, baseForceLevel, 0)
 
+def clz_Torappu_AttributesDeltaDataAddBlockVolume(builder, blockVolume):
+    builder.PrependInt32Slot(17, blockVolume, 0)
+
 def clz_Torappu_AttributesDeltaDataAddStunImmune(builder, stunImmune):
-    builder.PrependBoolSlot(17, stunImmune, 0)
+    builder.PrependBoolSlot(18, stunImmune, 0)
 
 def clz_Torappu_AttributesDeltaDataAddSilenceImmune(builder, silenceImmune):
-    builder.PrependBoolSlot(18, silenceImmune, 0)
+    builder.PrependBoolSlot(19, silenceImmune, 0)
 
 def clz_Torappu_AttributesDeltaDataAddSleepImmune(builder, sleepImmune):
-    builder.PrependBoolSlot(19, sleepImmune, 0)
+    builder.PrependBoolSlot(20, sleepImmune, 0)
 
 def clz_Torappu_AttributesDeltaDataAddFrozenImmune(builder, frozenImmune):
-    builder.PrependBoolSlot(20, frozenImmune, 0)
+    builder.PrependBoolSlot(21, frozenImmune, 0)
 
 def clz_Torappu_AttributesDeltaDataAddLevitateImmune(builder, levitateImmune):
-    builder.PrependBoolSlot(21, levitateImmune, 0)
+    builder.PrependBoolSlot(22, levitateImmune, 0)
 
 def clz_Torappu_AttributesDeltaDataAddDisarmedCombatImmune(builder, disarmedCombatImmune):
-    builder.PrependBoolSlot(22, disarmedCombatImmune, 0)
+    builder.PrependBoolSlot(23, disarmedCombatImmune, 0)
 
 def clz_Torappu_AttributesDeltaDataAddFearedImmune(builder, fearedImmune):
-    builder.PrependBoolSlot(23, fearedImmune, 0)
+    builder.PrependBoolSlot(24, fearedImmune, 0)
 
 def clz_Torappu_AttributesDeltaDataAddPalsyImmune(builder, palsyImmune):
-    builder.PrependBoolSlot(24, palsyImmune, 0)
+    builder.PrependBoolSlot(25, palsyImmune, 0)
 
 def clz_Torappu_AttributesDeltaDataAddAttractImmune(builder, attractImmune):
-    builder.PrependBoolSlot(25, attractImmune, 0)
+    builder.PrependBoolSlot(26, attractImmune, 0)
 
 def clz_Torappu_AttributesDeltaDataAddTeleportImmune(builder, teleportImmune):
-    builder.PrependBoolSlot(26, teleportImmune, 0)
+    builder.PrependBoolSlot(27, teleportImmune, 0)
 
 def clz_Torappu_AttributesDeltaDataAddGroundBoundImmune(builder, groundBoundImmune):
-    builder.PrependBoolSlot(27, groundBoundImmune, 0)
+    builder.PrependBoolSlot(28, groundBoundImmune, 0)
 
 def clz_Torappu_AttributesDeltaDataEnd(builder):
     return builder.EndObject()

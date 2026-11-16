@@ -19,6 +19,7 @@ class enum__Torappu_GachaRuleType(object):
     DOUBLE = 9
     CLASSIC_DOUBLE = 10
     BACKFLOW = 11
+    GACHAWITHSPECIFIED6 = 12
 
 
 class enum__Torappu_ItemType(object):
@@ -117,6 +118,9 @@ class enum__Torappu_ItemType(object):
     STICKER = 92
     ARKHUB = 93
     LINKAGE_TKT_GACHA = 94
+    AUTOCHESS_SKIN = 95
+    AUTOCHESS_MISSION_POINT = 96
+    OPEN_SERVER_CREDIT = 97
 
 
 class hg__internal__JObject(object):
